@@ -1,0 +1,20 @@
+PODS:
+  - CombineCocoa (0.2.2)
+  - SwiftLint (0.43.1)
+
+DEPENDENCIES:
+  - CombineCocoa
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - CombineCocoa
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  CombineCocoa: 66c79441761907c096ecbd0021cefd8566acaf06
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+
+PODFILE CHECKSUM: 0315514006d93ce2c2d93818176916d0bdfbc829
+
+COCOAPODS: 1.9.3
