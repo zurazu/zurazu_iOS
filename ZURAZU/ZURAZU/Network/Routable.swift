@@ -20,7 +20,7 @@ enum NetworkError: Error {
 
 protocol Routable {
   
-  func request<T: Decodable>(route: EndPointable) -> AnyPublisher<T, NetworkError>
+  func request<T: Decodable>(route: EndPointable) -> AnyPublisher<Result<T, NetworkError>, Never>
 }
 
 

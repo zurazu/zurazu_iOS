@@ -16,34 +16,29 @@ final class Router: Routable {
     self.urlSession = urlSession
   }
   
-  func request<T>(route: EndPointable) -> AnyPublisher<T, NetworkError> where T : Decodable {
+  func request<T: Decodable>(route: EndPointable) -> AnyPublisher<Result<T, NetworkError>, Never> {
     guard let request = self.setupRequest(from: route) else {
-      let result: AnyPublisher<T, NetworkError> = AnyPublisher<T, NetworkError>.init(Result<T, NetworkError>.Publisher(.client))
-      return result
+      return .just(.failure(NetworkError.client))
     }
     
     return self.urlSession.dataTaskPublisher(for: request)
-      .tryMap { data, response -> T in
+      .mapError { _ in NetworkError.unknown }
+      .flatMap { data, response -> AnyPublisher<Data, Error> in
         guard let response = response as? HTTPURLResponse else {
-          throw NetworkError.client
+          return .fail(NetworkError.server)
         }
         
-        guard
-          let responseError = self.handleNetworkResponseError(response)
-        else {
-          do {
-            let model = try JSONDecoder().decode(T.self, from: data)
-            return model
-          } catch {
-            throw NetworkError.decodingJson
-          }
+        if let error = self.handleNetworkResponseError(response) {
+          return .fail(error)
         }
         
-        throw responseError
+        return .just(data)
       }
-      .mapError { error -> NetworkError in
-        return .unknown
-      }
+      .decode(type: T.self, decoder: JSONDecoder())
+      .map { .success($0) }
+      .catch ({ error -> AnyPublisher<Result<T, NetworkError>, Never> in
+        return .just(.failure(NetworkError.decodingJson))
+      })
       .eraseToAnyPublisher()
   }
 }
