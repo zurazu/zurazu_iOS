@@ -20,6 +20,7 @@
 		BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB912643C21C0029CCC6 /* EndPointable.swift */; };
 		BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB992643C3220029CCC6 /* Routable.swift */; };
 		BD88BB9F2643C75D0029CCC6 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB9E2643C75D0029CCC6 /* Router.swift */; };
+		BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BBB12643EA190029CCC6 /* Publisher+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		BD88BB912643C21C0029CCC6 /* EndPointable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointable.swift; sourceTree = "<group>"; };
 		BD88BB992643C3220029CCC6 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		BD88BB9E2643C75D0029CCC6 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		BD88BBB12643EA190029CCC6 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 		BD88BB412643ABDF0029CCC6 /* ZURAZU */ = {
 			isa = PBXGroup;
 			children = (
+				BD88BBB02643EA0B0029CCC6 /* Util */,
 				BD88BB422643ABDF0029CCC6 /* AppDelegate.swift */,
 				BD88BB442643ABDF0029CCC6 /* SceneDelegate.swift */,
 				BD88BB4B2643ABE30029CCC6 /* Assets.xcassets */,
@@ -180,6 +183,14 @@
 				BD88BB9E2643C75D0029CCC6 /* Router.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		BD88BBB02643EA0B0029CCC6 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BBB12643EA190029CCC6 /* Publisher+.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,6 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,
 				BD88BB9F2643C75D0029CCC6 /* Router.swift in Sources */,
