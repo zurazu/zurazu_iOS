@@ -7,7 +7,12 @@
 
 import Foundation
 
+typealias HTTPQuery = [String: Any]
+typealias HTTPHeader = [String: Any]
+typealias HTTPBody = [String: Any]
+
 protocol EndPointable {
+  
   var environmentBaseURL: String { get }
   var baseURL: URLComponents { get }
   var query: HTTPQuery? { get }
@@ -16,10 +21,8 @@ protocol EndPointable {
   var bodies: HTTPBody? { get }
 }
 
-enum HTTPMethod {
+enum HTTPMethod: String {
+  
   case GET, POST, PUT, DELETE, PATCH
 }
 
-typealias HTTPQuery = [String: Any]
-typealias HTTPHeader = [String: Any]
-typealias HTTPBody = [String: Any]
