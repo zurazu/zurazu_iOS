@@ -18,7 +18,7 @@ final class Router: Routable {
   
   func request<T: Decodable>(route: EndPointable) -> AnyPublisher<Result<T, NetworkError>, Never> {
     guard let request = self.setupRequest(from: route) else {
-      return .just(.failure(NetworkError.client))
+      return .just(.failure(.client))
     }
     
     return self.urlSession.dataTaskPublisher(for: request)
@@ -36,9 +36,9 @@ final class Router: Routable {
       }
       .decode(type: T.self, decoder: JSONDecoder())
       .map { .success($0) }
-      .catch ({ error -> AnyPublisher<Result<T, NetworkError>, Never> in
-        return .just(.failure(NetworkError.decodingJson))
-      })
+      .catch { _ -> AnyPublisher<Result<T, NetworkError>, Never> in
+        return .just(.failure(.decodingJson))
+      }
       .eraseToAnyPublisher()
   }
 }
