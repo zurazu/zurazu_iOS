@@ -17,18 +17,18 @@ final class Router: Routable {
   }
   
   func request<T: Decodable>(route: EndPointable) -> AnyPublisher<Result<T, NetworkError>, Never> {
-    guard let request = self.setupRequest(from: route) else {
+    guard let request: URLRequest = setupRequest(from: route) else {
       return .just(.failure(.client))
     }
     
-    return self.urlSession.dataTaskPublisher(for: request)
+    return urlSession.dataTaskPublisher(for: request)
       .mapError { _ in NetworkError.unknown }
-      .flatMap { data, response -> AnyPublisher<Data, Error> in
-        guard let response = response as? HTTPURLResponse else {
+      .flatMap { [weak self] data, response -> AnyPublisher<Data, Error> in
+        guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
           return .fail(NetworkError.server)
         }
         
-        if let error = self.handleNetworkResponseError(response) {
+        if let error: NetworkError = self?.handleNetworkResponseError(response) {
           return .fail(error)
         }
         

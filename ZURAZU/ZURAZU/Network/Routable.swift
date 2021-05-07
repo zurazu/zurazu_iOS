@@ -36,21 +36,19 @@ extension Routable {
   
   func setupRequest(from route: EndPointable) -> URLRequest? {
     var urlComponent: URLComponents = route.baseURL
-    
-    if let query = route.query {
-      urlComponent.queryItems = self.queryItems(from: query)
-    }
-    
     guard let url: URL = urlComponent.url else { return nil }
-    
     var request: URLRequest = .init(url: url)
     
-    if let body = route.bodies,
-       let jsonString = self.jsonString(to: body) {
+    if let query: HTTPQuery = route.query {
+      urlComponent.queryItems = queryItems(from: query)
+    }
+    
+    if let body: HTTPBody = route.bodies,
+       let jsonString: String = jsonString(to: body) {
         request.httpBody = jsonString.data(using: .utf8)
     }
     
-    request.httpMethod = route.httpMethod?.rawValue
+    request.httpMethod = route.httpMethod?.value
     route.headers?.forEach { key, value in
       request.setValue("\(value)", forHTTPHeaderField: key)
     }
@@ -74,8 +72,8 @@ private extension Routable {
   
   func jsonString(to body: [String: Any]) -> String? {
     guard
-      let data = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted),
-      let jsonString = String(data: data, encoding: .utf8)
+      let data: Data = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted),
+      let jsonString: String = String(data: data, encoding: .utf8)
     else { return nil }
     
     return jsonString
