@@ -39,7 +39,30 @@ class MemberAPITest: XCTestCase {
     wait(for: [expectation], timeout: 3.0)
   }
   
-  
+  func test_로그인() throws {
+    let expectation = XCTestExpectation(description: "Login")
+    let router: Routable = Router()
+    let testEmail = "test"
+    let testPassword = "test123"
+    
+    let testPublisher: AnyPublisher<Result<BaseUser<LoginResponseData>, NetworkError>, Never> = router.request(route: TestEndPoint.login(email: testEmail, password: testPassword))
+    
+    testPublisher.sink { _ in
+      
+    } receiveValue: { result in
+      switch result {
+      case .success(let data):
+        if data.status == "OK", data.message == "로그인 성공", data.data!.accessToken == "testAccessToken", data.data!.refreshToken == "testRefreshToken" {
+          expectation.fulfill()
+        }
+      case .failure(let error):
+        print(error)
+      }
+    }
+    .store(in: &cancellables)
+    
+    wait(for: [expectation], timeout: 3.0)
+  }
 }
 
 struct BaseUser<T: Decodable>: Decodable {
@@ -50,6 +73,12 @@ struct BaseUser<T: Decodable>: Decodable {
 }
 
 struct RegisterResponseData: Decodable { }
+
+struct LoginResponseData: Decodable {
+  
+  let accessToken: String
+  let refreshToken: String
+}
 
 enum TestEndPoint {
   
