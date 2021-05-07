@@ -26,6 +26,7 @@
 		BD88BC042644EEE90029CCC6 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC032644EEE90029CCC6 /* BaseResponse.swift */; };
 		BD88BC2526452C680029CCC6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC2426452C680029CCC6 /* MainViewController.swift */; };
 		BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC3C26452F8D0029CCC6 /* ViewModelBindableType.swift */; };
+		BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC41264534020029CCC6 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		BD88BC032644EEE90029CCC6 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		BD88BC2426452C680029CCC6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BD88BC3C26452F8D0029CCC6 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
+		BD88BC41264534020029CCC6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -245,6 +247,7 @@
 		BD88BC3026452CC60029CCC6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BD88BC41264534020029CCC6 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
+				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

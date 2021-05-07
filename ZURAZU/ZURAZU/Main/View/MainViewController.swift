@@ -8,10 +8,15 @@
 import UIKit
 import Combine
 
-final class MainViewController: UIViewController {
+final class MainViewController: UIViewController, ViewModelBindableType {
   
+  var viewModel: MainViewModelType!
   
   override func viewDidLoad() {
+    
+  }
+  
+  func bindViewModel() {
     
   }
 }
