@@ -17,6 +17,7 @@
 		BD88BB4F2643ABE30029CCC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */; };
 		BD88BB5A2643ABE30029CCC6 /* ZURAZUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB592643ABE30029CCC6 /* ZURAZUTests.swift */; };
 		BD88BB652643ABE30029CCC6 /* ZURAZUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB642643ABE30029CCC6 /* ZURAZUUITests.swift */; };
+		BD88BBD02644BD940029CCC6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BBCF2644BD940029CCC6 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		BD88BB602643ABE30029CCC6 /* ZURAZUUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZURAZUUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD88BB642643ABE30029CCC6 /* ZURAZUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZURAZUUITests.swift; sourceTree = "<group>"; };
 		BD88BB662643ABE30029CCC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD88BBCF2644BD940029CCC6 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 				BD88BB502643ABE30029CCC6 /* Info.plist */,
 				BD88BB482643ABDF0029CCC6 /* Main.storyboard */,
 				BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */,
+				BD88BBD42644BD9A0029CCC6 /* Constant */,
 			);
 			path = ZURAZU;
 			sourceTree = "<group>";
@@ -163,6 +166,14 @@
 				BD88BB662643ABE30029CCC6 /* Info.plist */,
 			);
 			path = ZURAZUUITests;
+			sourceTree = "<group>";
+		};
+		BD88BBD42644BD9A0029CCC6 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BBCF2644BD940029CCC6 /* Image.swift */,
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
+				BD88BBD02644BD940029CCC6 /* Image.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
