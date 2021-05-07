@@ -22,6 +22,8 @@
 		BD88BB9F2643C75D0029CCC6 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB9E2643C75D0029CCC6 /* Router.swift */; };
 		BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BBB12643EA190029CCC6 /* Publisher+.swift */; };
 		BD88BBDF2644E11F0029CCC6 /* APICredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BBDE2644E11F0029CCC6 /* APICredentials.swift */; };
+		BD88BBF82644EEA40029CCC6 /* MemberAPIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BBF72644EEA40029CCC6 /* MemberAPIResource.swift */; };
+		BD88BC042644EEE90029CCC6 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC032644EEE90029CCC6 /* BaseResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		BD88BB9E2643C75D0029CCC6 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		BD88BBB12643EA190029CCC6 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
 		BD88BBDE2644E11F0029CCC6 /* APICredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICredentials.swift; sourceTree = "<group>"; };
+		BD88BBF72644EEA40029CCC6 /* MemberAPIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberAPIResource.swift; sourceTree = "<group>"; };
+		BD88BC032644EEE90029CCC6 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -200,8 +204,18 @@
 			isa = PBXGroup;
 			children = (
 				BD88BBDE2644E11F0029CCC6 /* APICredentials.swift */,
+				BD88BC032644EEE90029CCC6 /* BaseResponse.swift */,
+				BD88BBFC2644EEAB0029CCC6 /* TestResource */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		BD88BBFC2644EEAB0029CCC6 /* TestResource */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BBF72644EEA40029CCC6 /* MemberAPIResource.swift */,
+			);
+			path = TestResource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,7 +489,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD88BB5A2643ABE30029CCC6 /* MemberAPITest.swift in Sources */,
+				BD88BBF82644EEA40029CCC6 /* MemberAPIResource.swift in Sources */,
 				BD88BBDF2644E11F0029CCC6 /* APICredentials.swift in Sources */,
+				BD88BC042644EEE90029CCC6 /* BaseResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
