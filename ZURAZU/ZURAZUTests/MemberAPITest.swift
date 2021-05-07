@@ -63,6 +63,30 @@ class MemberAPITest: XCTestCase {
     
     wait(for: [expectation], timeout: 3.0)
   }
+  
+  func test_accessToken_재발급() {
+    let expectation = XCTestExpectation(description: "RefreshToken")
+    let router: Routable = Router()
+    let refreshToken = "testRefreshToken"
+    
+    let testPublisher: AnyPublisher<Result<BaseUser<RefreshTokenResponseData>, NetworkError>, Never> = router.request(route: TestEndPoint.refreshToken(refreshToken: refreshToken))
+    
+    testPublisher.sink { _ in
+      
+    } receiveValue: { result in
+      switch result {
+      case .success(let data):
+        if data.status == "OK", data.message == "재발급 성공", data.data!.accessToken == "testAccessToken" {
+          expectation.fulfill()
+        }
+      case .failure(let error):
+        print(error)
+      }
+    }
+    .store(in: &cancellables)
+    
+    wait(for: [expectation], timeout: 3.0)
+  }
 }
 
 struct BaseUser<T: Decodable>: Decodable {
@@ -78,6 +102,11 @@ struct LoginResponseData: Decodable {
   
   let accessToken: String
   let refreshToken: String
+}
+
+struct RefreshTokenResponseData: Decodable {
+  
+  let accessToken: String
 }
 
 enum TestEndPoint {
