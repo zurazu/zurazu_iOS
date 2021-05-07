@@ -17,12 +17,10 @@ enum NetworkError: Error {
        unknown
 }
 
-
 protocol Routable {
   
   func request<T>(route: EndPointable) -> AnyPublisher<Result<T, NetworkError>, Never> where T: Decodable
 }
-
 
 extension Routable {
   
@@ -40,34 +38,46 @@ extension Routable {
     var urlComponent: URLComponents = route.baseURL
     
     if let query = route.query {
-      var queryItems: [URLQueryItem] = .init()
-      
-      query.forEach { (key, value) in
-        let queryItem: URLQueryItem = .init(name: key, value: "\(value)")
-        queryItems.append(queryItem)
-      }
-      
-      urlComponent.queryItems = queryItems
+      urlComponent.queryItems = self.queryItems(from: query)
     }
     
-    if let url: URL = urlComponent.url {
-      var request: URLRequest = .init(url: url)
-      
-      request.httpMethod = route.httpMethod?.rawValue
-      
-      if let body = route.bodies {
-        if let data = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted),
-           let jsonString = String(data: data, encoding: .utf8) {
-          request.httpBody = jsonString.data(using: .utf8)
-        }
-      }
-      
-      route.headers?.forEach { key, value in
-        request.setValue("\(value)", forHTTPHeaderField: key)
-      }
-      return request
+    guard let url: URL = urlComponent.url else { return nil }
+    
+    var request: URLRequest = .init(url: url)
+    
+    if let body = route.bodies,
+       let jsonString = self.jsonString(to: body) {
+        request.httpBody = jsonString.data(using: .utf8)
     }
     
-    return nil
+    request.httpMethod = route.httpMethod?.rawValue
+    route.headers?.forEach { key, value in
+      request.setValue("\(value)", forHTTPHeaderField: key)
+    }
+    
+    return request
+  }
+}
+
+private extension Routable {
+  
+  func queryItems(from query: [String: Any]) -> [URLQueryItem] {
+    var queryItems: [URLQueryItem] = .init()
+    
+    query.forEach { (key, value) in
+      let queryItem: URLQueryItem = .init(name: key, value: "\(value)")
+      queryItems.append(queryItem)
+    }
+    
+    return queryItems
+  }
+  
+  func jsonString(to body: [String: Any]) -> String? {
+    guard
+      let data = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted),
+      let jsonString = String(data: data, encoding: .utf8)
+    else { return nil }
+    
+    return jsonString
   }
 }
