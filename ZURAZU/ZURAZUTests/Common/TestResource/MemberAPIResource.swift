@@ -52,7 +52,7 @@ extension TestEndPoint: EndPointable {
   }
   
   var httpMethod: HTTPMethod? {
-    return .POST
+    return .post
   }
   
   var headers: HTTPHeader? {
