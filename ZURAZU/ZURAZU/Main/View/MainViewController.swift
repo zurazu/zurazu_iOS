@@ -10,7 +10,7 @@ import Combine
 
 final class MainViewController: UIViewController, ViewModelBindableType {
   
-  var viewModel: MainViewModelType!
+  var viewModel: MainViewModelType?
   
   override func viewDidLoad() {
     
