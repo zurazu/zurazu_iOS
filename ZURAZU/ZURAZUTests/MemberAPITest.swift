@@ -22,9 +22,7 @@ class MemberAPITest: XCTestCase {
     
     let testPublisher: AnyPublisher<Result<BaseUser<RegisterResponseData>, NetworkError>, Never> = router.request(route: TestEndPoint.register(email: testEmail, password: testPassword))
     
-    testPublisher.sink { _ in
-      
-    } receiveValue: { result in
+    testPublisher.sink { result in
       switch result {
       case .success(let data):
         if data.status == "OK", data.message == "DB에 등록 성공" {
@@ -47,9 +45,7 @@ class MemberAPITest: XCTestCase {
     
     let testPublisher: AnyPublisher<Result<BaseUser<LoginResponseData>, NetworkError>, Never> = router.request(route: TestEndPoint.login(email: testEmail, password: testPassword))
     
-    testPublisher.sink { _ in
-      
-    } receiveValue: { result in
+    testPublisher.sink { result in
       switch result {
       case .success(let data):
         if data.status == "OK", data.message == "로그인 성공", data.data!.accessToken == "testAccessToken", data.data!.refreshToken == "testRefreshToken" {
@@ -71,9 +67,7 @@ class MemberAPITest: XCTestCase {
     
     let testPublisher: AnyPublisher<Result<BaseUser<RefreshTokenResponseData>, NetworkError>, Never> = router.request(route: TestEndPoint.refreshToken(refreshToken: refreshToken))
     
-    testPublisher.sink { _ in
-      
-    } receiveValue: { result in
+    testPublisher.sink { result in
       switch result {
       case .success(let data):
         if data.status == "OK", data.message == "재발급 성공", data.data!.accessToken == "testAccessToken" {
