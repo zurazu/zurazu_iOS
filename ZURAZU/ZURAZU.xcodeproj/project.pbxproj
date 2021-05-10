@@ -28,6 +28,8 @@
 		BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC3C26452F8D0029CCC6 /* ViewModelBindableType.swift */; };
 		BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC41264534020029CCC6 /* MainViewModel.swift */; };
 		BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC6626492FA60029CCC6 /* TransitionModel.swift */; };
+		BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */; };
+		BD88BC74264931410029CCC6 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC73264931410029CCC6 /* Scene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		BD88BC3C26452F8D0029CCC6 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		BD88BC41264534020029CCC6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		BD88BC6626492FA60029CCC6 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
+		BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		BD88BC73264931410029CCC6 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -274,6 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				BD88BC6626492FA60029CCC6 /* TransitionModel.swift */,
+				BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */,
+				BD88BC73264931410029CCC6 /* Scene.swift */,
 			);
 			path = SceneCoordinator;
 			sourceTree = "<group>";
@@ -543,8 +549,10 @@
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
+				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
+				BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
