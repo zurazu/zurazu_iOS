@@ -12,12 +12,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    guard let windowScene = (scene as? UIWindowScene) else { return }
+    guard let windowScene: UIWindowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(windowScene: windowScene)
     
     guard let window = window else { return }
     
-    let coordinator = SceneCoordinator(window: window)
+    let coordinator: SceneCoordinator = .init(window: window)
     coordinator.transition(scene: MainScene(), using: .root, animated: false)
     window.makeKeyAndVisible()
   }

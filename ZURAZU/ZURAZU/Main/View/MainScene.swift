@@ -15,11 +15,11 @@ struct MainScene: Scene {
   
   func instantiate() -> UIViewController {
     guard
-      let navigationController = navigationController(identifier: .mainNavC),
-      var listViewController = navigationController.viewControllers.first as? MainViewController
+      let navigationController: UINavigationController = navigationController(identifier: .mainNavC),
+      var listViewController: MainViewController = navigationController.viewControllers.first as? MainViewController
     else { fatalError() }
     
-    let viewModel = MainViewModel()
+    let viewModel: MainViewModel = MainViewModel()
     listViewController.bind(viewModel: viewModel)
     
     return navigationController
