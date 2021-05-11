@@ -19,7 +19,7 @@ struct MainScene: Scene {
       var listViewController: MainViewController = navigationController.viewControllers.first as? MainViewController
     else { fatalError() }
     
-    let viewModel: MainViewModel = MainViewModel()
+    let viewModel: MainViewModel = .init()
     listViewController.bind(viewModel: viewModel)
     
     return navigationController
