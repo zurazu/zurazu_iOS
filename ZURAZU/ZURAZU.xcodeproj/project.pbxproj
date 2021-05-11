@@ -32,6 +32,8 @@
 		BD88BC74264931410029CCC6 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC73264931410029CCC6 /* Scene.swift */; };
 		BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC7B264A58820029CCC6 /* MainScene.swift */; };
 		BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */; };
+		BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC95264A85A90029CCC6 /* SignInViewController.swift */; };
+		BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		BD88BC73264931410029CCC6 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		BD88BC7B264A58820029CCC6 /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
 		BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneIdentifier.swift; sourceTree = "<group>"; };
+		BD88BC95264A85A90029CCC6 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -174,6 +178,7 @@
 				BD88BB4B2643ABE30029CCC6 /* Assets.xcassets */,
 				BD88BB502643ABE30029CCC6 /* Info.plist */,
 				BD88BC2326452C430029CCC6 /* Main */,
+				BD88BC94264A83B00029CCC6 /* SignIn */,
 				BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */,
 				BD88BB902643C1F00029CCC6 /* Network */,
 				BD88BC3B26452F6B0029CCC6 /* Common */,
@@ -290,6 +295,15 @@
 			path = SceneCoordinator;
 			sourceTree = "<group>";
 		};
+		BD88BC94264A83B00029CCC6 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BC95264A85A90029CCC6 /* SignInViewController.swift */,
+				BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -399,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */,
 				BD88BB4F2643ABE30029CCC6 /* LaunchScreen.storyboard in Resources */,
 				BD88BB4C2643ABE30029CCC6 /* Assets.xcassets in Resources */,
 				BD88BB4A2643ABDF0029CCC6 /* Main.storyboard in Resources */,
@@ -555,6 +570,7 @@
 				BD88BB9F2643C75D0029CCC6 /* Router.swift in Sources */,
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
+				BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */,
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
 				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
