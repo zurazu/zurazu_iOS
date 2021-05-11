@@ -34,6 +34,8 @@
 		BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */; };
 		BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC95264A85A90029CCC6 /* SignInViewController.swift */; };
 		BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */; };
+		BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCA5264A86C60029CCC6 /* SignInScene.swift */; };
+		BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCB2264A87B20029CCC6 /* SignInViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneIdentifier.swift; sourceTree = "<group>"; };
 		BD88BC95264A85A90029CCC6 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		BD88BCA5264A86C60029CCC6 /* SignInScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScene.swift; sourceTree = "<group>"; };
+		BD88BCB2264A87B20029CCC6 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -298,10 +302,36 @@
 		BD88BC94264A83B00029CCC6 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				BD88BC95264A85A90029CCC6 /* SignInViewController.swift */,
-				BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */,
+				BD88BCBA264A88490029CCC6 /* Model */,
+				BD88BCAA264A87850029CCC6 /* View */,
+				BD88BCB1264A87A40029CCC6 /* ViewModel */,
 			);
 			path = SignIn;
+			sourceTree = "<group>";
+		};
+		BD88BCAA264A87850029CCC6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BC95264A85A90029CCC6 /* SignInViewController.swift */,
+				BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */,
+				BD88BCA5264A86C60029CCC6 /* SignInScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD88BCB1264A87A40029CCC6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BCB2264A87B20029CCC6 /* SignInViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BD88BCBA264A88490029CCC6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -564,12 +594,14 @@
 			files = (
 				BD88BC2526452C680029CCC6 /* MainViewController.swift in Sources */,
 				BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */,
+				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,
 				BD88BB9F2643C75D0029CCC6 /* Router.swift in Sources */,
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
+				BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */,
 				BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */,
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
 				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,

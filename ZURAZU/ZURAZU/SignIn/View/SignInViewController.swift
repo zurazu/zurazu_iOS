@@ -7,10 +7,16 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+final class SignInViewController: UIViewController, ViewModelBindableType {
+  
+  var viewModel: SignInViewModelType?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+  }
+  
+  func bindViewModel() {
     
   }
 }

@@ -10,4 +10,5 @@ import Foundation
 enum SceneIdentifier: String {
   
   case mainNavC = "MainNavigationController"
+  case signInVC = "SignInViewController"
 }
