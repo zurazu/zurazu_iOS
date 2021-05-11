@@ -37,29 +37,32 @@ private extension InputView {
     }
     
     NSLayoutConstraint.activate([
-      textField.topAnchor.constraint(equalTo: self.topAnchor),
-      textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-      textField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+      textField.topAnchor.constraint(equalTo: topAnchor),
+      textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 6),
+      textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6),
+      textField.heightAnchor.constraint(equalToConstant: 24),
       
-      line.topAnchor.constraint(equalTo: textField.bottomAnchor),
-      line.widthAnchor.constraint(equalToConstant: 2),
-      line.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
-      line.trailingAnchor.constraint(equalTo: textField.trailingAnchor),
+      line.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 6),
+      line.heightAnchor.constraint(equalToConstant: 1),
+      line.leadingAnchor.constraint(equalTo: leadingAnchor),
+      line.trailingAnchor.constraint(equalTo: trailingAnchor),
       
       messageLabel.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 8),
-      messageLabel.leadingAnchor.constraint(equalTo: textField.leadingAnchor, constant: 7),
-      messageLabel.trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: -7),
-      messageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+      messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 7),
+      messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -7),
+      messageLabel.heightAnchor.constraint(equalToConstant: 12)
     ])
   }
   
   func setupView() {
     textField.placeholder = inputViewType.placeHolder
     textField.layer.borderColor = .none
-    // MARK:- AssetsColor로 수정해야합니다.
+    // MARK: - AssetsColor로 수정해야합니다.
     textField.backgroundColor = .white
     
     messageLabel.textColor = .red
+    messageLabel.text = inputViewType.emptyMessage
+    messageLabel.font = UIFont.systemFont(ofSize: 10)
     
     line.backgroundColor = .gray
   }
