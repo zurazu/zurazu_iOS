@@ -18,7 +18,6 @@ extension Scene {
   
   func navigationController(identifier: SceneIdentifier) -> UINavigationController? {
     let storyboard = UIStoryboard(name: self.storyboard, bundle: nil)
-    
     let navigationController = storyboard.instantiateViewController(identifier: identifier.rawValue) as? UINavigationController
     
     return navigationController
