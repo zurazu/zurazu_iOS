@@ -36,12 +36,12 @@ private extension SignInInputView {
     NSLayoutConstraint.activate([
       signInLable.topAnchor.constraint(equalTo: topAnchor),
       signInLable.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-      signInLable.heightAnchor.constraint(equalToConstant: 15.6),
-      signInLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      signInLable.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+      signInLable.heightAnchor.constraint(equalToConstant: 16),
       
       emailInputView.topAnchor.constraint(equalTo: signInLable.bottomAnchor, constant: 28),
-      emailInputView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),
-      emailInputView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -22),
+      emailInputView.leadingAnchor.constraint(equalTo: signInLable.leadingAnchor),
+      emailInputView.trailingAnchor.constraint(equalTo: signInLable.trailingAnchor),
       emailInputView.heightAnchor.constraint(equalToConstant: 40),
       
       passwordInputView.topAnchor.constraint(equalTo: emailInputView.bottomAnchor, constant: 25),
