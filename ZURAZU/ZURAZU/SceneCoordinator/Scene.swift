@@ -11,5 +11,5 @@ protocol Scene {
   
   var storyboard: String { get }
   
-  func instantiate(from storyboard: String) -> UIViewController
+  func instantiate() -> UIViewController
 }
