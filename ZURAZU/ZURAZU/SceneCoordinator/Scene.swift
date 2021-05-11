@@ -16,17 +16,17 @@ protocol Scene {
 
 extension Scene {
   
-  func navigationController(identifier: String) -> UINavigationController? {
+  func navigationController(identifier: SceneIdentifier) -> UINavigationController? {
     let storyboard = UIStoryboard(name: self.storyboard, bundle: nil)
     
-    let navigationController = storyboard.instantiateViewController(identifier: identifier) as? UINavigationController
+    let navigationController = storyboard.instantiateViewController(identifier: identifier.rawValue) as? UINavigationController
     
     return navigationController
   }
   
-  func viewController(identifier: String) -> UIViewController {
+  func viewController(identifier: SceneIdentifier) -> UIViewController {
     let storyboard = UIStoryboard(name: self.storyboard, bundle: nil)
-    let viewController = storyboard.instantiateViewController(identifier: identifier)
+    let viewController = storyboard.instantiateViewController(identifier: identifier.rawValue)
     
     return viewController
   }

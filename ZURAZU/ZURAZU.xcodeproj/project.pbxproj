@@ -31,6 +31,7 @@
 		BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */; };
 		BD88BC74264931410029CCC6 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC73264931410029CCC6 /* Scene.swift */; };
 		BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC7B264A58820029CCC6 /* MainScene.swift */; };
+		BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		BD88BC73264931410029CCC6 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		BD88BC7B264A58820029CCC6 /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
+		BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneIdentifier.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -283,6 +285,7 @@
 				BD88BC6626492FA60029CCC6 /* TransitionModel.swift */,
 				BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */,
 				BD88BC73264931410029CCC6 /* Scene.swift */,
+				BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */,
 			);
 			path = SceneCoordinator;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD88BC2526452C680029CCC6 /* MainViewController.swift in Sources */,
+				BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,

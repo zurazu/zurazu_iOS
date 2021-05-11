@@ -5,7 +5,7 @@
 //  Created by 서명렬 on 2021/05/11.
 //
 
-import Foundation
+import UIKit
 
 struct MainScene: Scene {
   
@@ -14,10 +14,8 @@ struct MainScene: Scene {
   }
   
   func instantiate() -> UIViewController {
-    let storyboard = UIStoryboard(name: self.storyboard, bundle: nil)
-
     guard
-      let navigationController = storyboard.instantiateViewController(identifier: "MainNavigationController") as? UINavigationController,
+      let navigationController = navigationController(identifier: .mainNavC),
       var listViewController = navigationController.viewControllers.first as? MainViewController
     else { fatalError() }
     let viewModel = MainViewModel()
