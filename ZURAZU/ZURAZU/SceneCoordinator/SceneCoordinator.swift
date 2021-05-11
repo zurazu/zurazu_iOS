@@ -24,8 +24,7 @@ final class SceneCoordinator: SceneCoordinatorType {
   
   required init(window: UIWindow) {
     self.window = window
-    let rootViewController: UIViewController? = window.rootViewController
-    self.currentViewController = rootViewController
+    self.currentViewController = window.rootViewController
   }
   
   @discardableResult
