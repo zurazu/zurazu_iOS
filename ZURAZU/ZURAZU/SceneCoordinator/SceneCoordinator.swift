@@ -11,59 +11,77 @@ import Combine
 protocol SceneCoordinatorType {
   
   @discardableResult
-  func transition(scene: Scene, using style: TransitionStyle, animated: Bool) -> AnyPublisher<Never, TransitionError>
+  func transition(scene: Scene, using style: TransitionStyle, animated: Bool) -> AnyPublisher<Void, TransitionError>
   
   @discardableResult
-  func close(animated: Bool) -> AnyPublisher<Never, TransitionError>
+  func close(animated: Bool) -> AnyPublisher<Void, TransitionError>
 }
 
 final class SceneCoordinator: SceneCoordinatorType {
   
-  private var cancellables: Set<AnyCancellable> = .init()
   private var window: UIWindow
-  private var currentViewController: UIViewController
+  private var currentViewController: UIViewController?
   
-  required init?(window: UIWindow) {
+  required init(window: UIWindow) {
     self.window = window
-    
-    guard let rootViewController = window.rootViewController else { return nil}
-    
+    let rootViewController = window.rootViewController
     self.currentViewController = rootViewController
   }
   
   @discardableResult
-  func transition(scene: Scene, using style: TransitionStyle, animated: Bool) -> AnyPublisher<Never, TransitionError> {
-    let subject: PassthroughSubject<Never, TransitionError> = .init()
-    let target: UIViewController = scene.instantiate(from: scene.storyboard)
-    
-    switch style {
-    case .root:
-      currentViewController = target
-      window.rootViewController = target
-      subject.send(completion: .finished)
-    case .push:
-      guard let navigationController: UINavigationController = currentViewController.navigationController else {
-        subject.send(completion: .failure(TransitionError.navigationControllerMissing))
-        break
-      }
-      navigationController.pushViewController(target, animated: animated)
-      currentViewController = target
+  func transition(scene: Scene, using style: TransitionStyle, animated: Bool) -> AnyPublisher<Void, TransitionError> {
+    return Future { [weak self] promise in
+      let target = scene.instantiate()
       
-      subject.send(completion: .finished)
-    case .modal:
-      currentViewController.present(target, animated: animated) {
-        subject.send(completion: .finished)
+      switch style {
+      case .root:
+        self?.currentViewController = target
+        self?.window.rootViewController = target
+        promise(.success(()))
+        
+      case .push:
+        guard let navigationController: UINavigationController = self?.currentViewController?.navigationController else {
+          promise(.failure(TransitionError.navigationControllerMissing))
+          break
+        }
+        navigationController.pushViewController(target, animated: animated)
+        self?.currentViewController = target
+        
+        promise(.success(()))
+        
+      case .modal:
+        self?.currentViewController?.present(target, animated: animated) {
+          promise(.success(()))
+        }
+        self?.currentViewController = target
       }
-      currentViewController = target
-    }
-    
-    return subject.ignoreOutput().eraseToAnyPublisher()
+    }.eraseToAnyPublisher()
   }
   
   @discardableResult
-  func close(animated: Bool) -> AnyPublisher<Never, TransitionError> {
-    
+  func close(animated: Bool) -> AnyPublisher<Void, TransitionError> {
+    return Future { [weak self] promise in
+      if let navigationController = self?.currentViewController?.navigationController {
+        guard
+          navigationController.popViewController(animated: true) != nil,
+          let lastViewController = navigationController.viewControllers.last
+        else {
+          promise(.failure(TransitionError.cannotPop))
+          return
+        }
+        
+        self?.currentViewController = lastViewController
+        promise(.success(()))
+      }
+      
+      if let presentingViewController = self?.currentViewController?.presentingViewController {
+        self?.currentViewController?.dismiss(animated: animated) { [weak self] in
+          self?.currentViewController = presentingViewController
+          promise(.success(()))
+        }
+      }
+      
+      promise(.failure(TransitionError.unknown))
+    }.eraseToAnyPublisher()
   }
-  
-  
 }
