@@ -11,6 +11,6 @@ protocol MainViewModelType {
   
 }
 
-final class MainViewModel {
+final class MainViewModel: MainViewModelType {
   
 }
