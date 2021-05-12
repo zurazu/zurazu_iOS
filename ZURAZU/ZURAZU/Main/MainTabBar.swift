@@ -12,11 +12,11 @@ final class MainTabBar: UITabBar {
   private var shapeLayer: CALayer?
   
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-    guard !clipsToBounds && !isHidden && alpha > 0 else { return nil }
+    guard !clipsToBounds, !isHidden, alpha > 0 else { return nil }
     
     for subview in subviews.reversed() {
       let subPoint: CGPoint = subview.convert(point, from: self)
-      guard let result = subview.hitTest(subPoint, with: event) else { continue }
+      guard let result: UIView = subview.hitTest(subPoint, with: event) else { continue }
       
       return result
     }
@@ -25,7 +25,7 @@ final class MainTabBar: UITabBar {
   }
   
   override func draw(_ rect: CGRect) {
-    self.addShape()
+    addShape()
   }
 }
 
