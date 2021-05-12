@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - 네이밍 변경 필요!
 final class OptionStackView: UIStackView {
   
   private let signUpButton: OptionButton = .init(title: "이메일 가입")

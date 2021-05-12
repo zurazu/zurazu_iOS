@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - 네이밍 변경 필요!
 final class OptionButton: UIButton {
   
   convenience init(title: String) {
