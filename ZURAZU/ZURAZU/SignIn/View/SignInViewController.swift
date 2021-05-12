@@ -45,7 +45,7 @@ private extension SignInViewController {
       closeButton.widthAnchor.constraint(equalToConstant: 18),
       closeButton.heightAnchor.constraint(equalToConstant: 24),
       
-      logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 172),
+      logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.2),
       logoImageView.widthAnchor.constraint(equalToConstant: 153),
       logoImageView.heightAnchor.constraint(equalToConstant: 26),
       logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -64,13 +64,13 @@ private extension SignInViewController {
       optionStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       optionStackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
       optionStackView.heightAnchor.constraint(equalToConstant: 16)
-      
     ])
   }
   
   func setupView() {
     closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
     closeButton.backgroundColor = .white
+    closeButton.tintColor = .black
     
     logoImageView.image = #imageLiteral(resourceName: "Image")
     
