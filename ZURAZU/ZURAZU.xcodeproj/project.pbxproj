@@ -36,6 +36,10 @@
 		BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */; };
 		BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCA5264A86C60029CCC6 /* SignInScene.swift */; };
 		BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCB2264A87B20029CCC6 /* SignInViewModel.swift */; };
+		BD88BCDE264B94820029CCC6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCDD264B94820029CCC6 /* MainTabBarController.swift */; };
+		BD88BCE3264B94B80029CCC6 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCE2264B94B80029CCC6 /* MainTabBar.swift */; };
+		BD88BCE8264B9C020029CCC6 /* MainTabBarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCE7264B9C010029CCC6 /* MainTabBarScene.swift */; };
+		BD88BCF4264BAF820029CCC6 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BCF3264BAF820029CCC6 /* MainTabBar.storyboard */; };
 		BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCC1264A8D170029CCC6 /* InputView.swift */; };
 		BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCC6264A94E90029CCC6 /* InputViewType.swift */; };
 		BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCCB264A9CAB0029CCC6 /* SignInInputView.swift */; };
@@ -100,6 +104,10 @@
 		BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		BD88BCA5264A86C60029CCC6 /* SignInScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScene.swift; sourceTree = "<group>"; };
 		BD88BCB2264A87B20029CCC6 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		BD88BCDD264B94820029CCC6 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		BD88BCE2264B94B80029CCC6 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		BD88BCE7264B9C010029CCC6 /* MainTabBarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarScene.swift; sourceTree = "<group>"; };
+		BD88BCF3264BAF820029CCC6 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		BD88BCC1264A8D170029CCC6 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		BD88BCC6264A94E90029CCC6 /* InputViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewType.swift; sourceTree = "<group>"; };
 		BD88BCCB264A9CAB0029CCC6 /* SignInInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInputView.swift; sourceTree = "<group>"; };
@@ -258,6 +266,10 @@
 		BD88BC2326452C430029CCC6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BD88BCDD264B94820029CCC6 /* MainTabBarController.swift */,
+				BD88BCE2264B94B80029CCC6 /* MainTabBar.swift */,
+				BD88BCE7264B9C010029CCC6 /* MainTabBarScene.swift */,
+				BD88BCF3264BAF820029CCC6 /* MainTabBar.storyboard */,
 				BD88BC3426452CFB0029CCC6 /* Model */,
 				BD88BC2C26452CBE0029CCC6 /* View */,
 				BD88BC3026452CC60029CCC6 /* ViewModel */,
@@ -458,6 +470,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD88BCF4264BAF820029CCC6 /* MainTabBar.storyboard in Resources */,
 				BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */,
 				BD88BB4F2643ABE30029CCC6 /* LaunchScreen.storyboard in Resources */,
 				BD88BB4C2643ABE30029CCC6 /* Assets.xcassets in Resources */,
@@ -611,6 +624,8 @@
 				BD88BC2526452C680029CCC6 /* MainViewController.swift in Sources */,
 				BD88BCD1264AA6A90029CCC6 /* OptionStackView.swift in Sources */,
 				BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */,
+				BD88BCE3264B94B80029CCC6 /* MainTabBar.swift in Sources */,
+				BD88BCDE264B94820029CCC6 /* MainTabBarController.swift in Sources */,
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
@@ -629,6 +644,7 @@
 				BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */,
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
 				BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */,
+				BD88BCE8264B9C020029CCC6 /* MainTabBarScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
