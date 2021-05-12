@@ -42,6 +42,6 @@ private extension MainTabBarController {
   }
   
   @objc func tappedHomeButton(sender: UIButton) {
-    self.selectedIndex = 2
+    selectedIndex = 2
   }
 }
