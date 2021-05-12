@@ -42,7 +42,7 @@ private extension OptionStackView {
   func makeDivider() {
     let divider: UIView = .init(frame: .zero)
     
-    divider.backgroundColor = UIColor.monoSecondary
+    divider.backgroundColor = .monoSecondary
     
     addArrangedSubview(divider)
     

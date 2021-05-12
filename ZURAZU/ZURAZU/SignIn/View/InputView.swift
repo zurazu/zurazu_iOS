@@ -57,11 +57,11 @@ private extension InputView {
   func setupView() {
     textField.placeholder = inputViewType.placeHolder
     textField.layer.borderColor = .none
-    textField.backgroundColor = UIColor.background
+    textField.backgroundColor = .background
     
-    messageLabel.textColor = UIColor.redPrimary
-    messageLabel.font = UIFont.systemFont(ofSize: 12)
+    messageLabel.textColor = .redPrimary
+    messageLabel.font = .systemFont(ofSize: 12)
     
-    line.backgroundColor = UIColor.monoQuaternary
+    line.backgroundColor = .monoQuaternary
   }
 }
