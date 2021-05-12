@@ -74,9 +74,9 @@ private extension SignInViewController {
     
     logoImageView.image = #imageLiteral(resourceName: "Image")
     
-    signInButton.backgroundColor = .blue
-    signInButton.titleLabel?.text = "로그인"
+    signInButton.backgroundColor = UIColor.bluePrimary
+    signInButton.titleLabel?.font = UIFont.primaryBold
     signInButton.setTitle("로그인", for: .normal)
-    signInButton.setTitleColor(.white, for: .normal)
+    signInButton.setTitleColor(UIColor.background, for: .normal)
   }
 }
