@@ -14,9 +14,9 @@ struct MainScene: Scene {
   }
   
   func instantiate() -> UIViewController {
-    guard
-      let navigationController: UINavigationController = navigationController(identifier: .mainNavC),
-      var listViewController: MainViewController = navigationController.viewControllers.first as? MainViewController
+    let navigationController: UINavigationController = self.navigationController(identifier: .mainNavC)
+    
+    guard var listViewController: MainViewController = navigationController.viewControllers.first as? MainViewController
     else { fatalError() }
     
     let viewModel: MainViewModel = .init()
