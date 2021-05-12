@@ -25,9 +25,12 @@ struct MainTabBarScene: Scene {
     
     tabBarController.setViewControllers([categoryScene, logScene, mainScene, likeScene, myPageScene], animated: false)
     
-    tabBarController.tabBar.items?.forEach {
-      $0.image = UIImage(systemName: "person")
-      $0.image?.withTintColor(.red)
+    // MARK: - 로직 정리해야 함.
+    tabBarController.tabBar.items?.enumerated().forEach {
+      if $0 != 2 {
+        $1.image = UIImage(systemName: "person")
+        $1.image?.withTintColor(.red)
+      }
     }
     
     return tabBarController
