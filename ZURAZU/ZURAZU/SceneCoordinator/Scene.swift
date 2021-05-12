@@ -16,7 +16,7 @@ protocol Scene {
 
 extension Scene {
   
-  func navigationController(identifier: SceneIdentifier) -> UINavigationController? {
+  func navigationController(identifier: SceneIdentifier) -> UINavigationController {
     let storyboard: UIStoryboard = .init(name: self.storyboard, bundle: nil)
     let navigationController: UINavigationController = storyboard.instantiateViewController(identifier: identifier.rawValue)
     
@@ -28,5 +28,12 @@ extension Scene {
     let viewController: UIViewController = storyboard.instantiateViewController(identifier: identifier.rawValue)
     
     return viewController
+  }
+  
+  func tabBarController(identifier: SceneIdentifier) -> UITabBarController {
+    let storyboard: UIStoryboard = .init(name: self.storyboard, bundle: nil)
+    let tabBarConroller: UITabBarController = storyboard.instantiateViewController(identifier: identifier.rawValue)
+    
+    return tabBarConroller
   }
 }
