@@ -36,6 +36,11 @@
 		BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */; };
 		BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCA5264A86C60029CCC6 /* SignInScene.swift */; };
 		BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCB2264A87B20029CCC6 /* SignInViewModel.swift */; };
+		BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCC1264A8D170029CCC6 /* InputView.swift */; };
+		BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCC6264A94E90029CCC6 /* InputViewType.swift */; };
+		BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCCB264A9CAB0029CCC6 /* SignInInputView.swift */; };
+		BD88BCD1264AA6A90029CCC6 /* OptionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCD0264AA6A90029CCC6 /* OptionStackView.swift */; };
+		BD88BCD6264AAF2B0029CCC6 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCD5264AAF2B0029CCC6 /* OptionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +100,11 @@
 		BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		BD88BCA5264A86C60029CCC6 /* SignInScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScene.swift; sourceTree = "<group>"; };
 		BD88BCB2264A87B20029CCC6 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		BD88BCC1264A8D170029CCC6 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		BD88BCC6264A94E90029CCC6 /* InputViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewType.swift; sourceTree = "<group>"; };
+		BD88BCCB264A9CAB0029CCC6 /* SignInInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInputView.swift; sourceTree = "<group>"; };
+		BD88BCD0264AA6A90029CCC6 /* OptionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionStackView.swift; sourceTree = "<group>"; };
+		BD88BCD5264AAF2B0029CCC6 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -315,6 +325,10 @@
 				BD88BC95264A85A90029CCC6 /* SignInViewController.swift */,
 				BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */,
 				BD88BCA5264A86C60029CCC6 /* SignInScene.swift */,
+				BD88BCC1264A8D170029CCC6 /* InputView.swift */,
+				BD88BCCB264A9CAB0029CCC6 /* SignInInputView.swift */,
+				BD88BCD0264AA6A90029CCC6 /* OptionStackView.swift */,
+				BD88BCD5264AAF2B0029CCC6 /* OptionButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,6 +344,7 @@
 		BD88BCBA264A88490029CCC6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BD88BCC6264A94E90029CCC6 /* InputViewType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -592,13 +607,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD88BCD6264AAF2B0029CCC6 /* OptionButton.swift in Sources */,
 				BD88BC2526452C680029CCC6 /* MainViewController.swift in Sources */,
+				BD88BCD1264AA6A90029CCC6 /* OptionStackView.swift in Sources */,
 				BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */,
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,
 				BD88BB9F2643C75D0029CCC6 /* Router.swift in Sources */,
+				BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */,
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */,
@@ -606,7 +624,9 @@
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
 				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
+				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
+				BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */,
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
 				BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */,
 			);
