@@ -48,7 +48,6 @@ private extension SignInInputView {
       passwordInputView.leadingAnchor.constraint(equalTo: emailInputView.leadingAnchor),
       passwordInputView.trailingAnchor.constraint(equalTo: emailInputView.trailingAnchor),
       passwordInputView.heightAnchor.constraint(equalTo: emailInputView.heightAnchor)
-      
     ])
   }
   
