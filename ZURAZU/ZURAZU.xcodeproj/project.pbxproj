@@ -45,6 +45,9 @@
 		BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCCB264A9CAB0029CCC6 /* SignInInputView.swift */; };
 		BD88BCD1264AA6A90029CCC6 /* OptionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCD0264AA6A90029CCC6 /* OptionStackView.swift */; };
 		BD88BCD6264AAF2B0029CCC6 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCD5264AAF2B0029CCC6 /* OptionButton.swift */; };
+		E2C1340E264BA2D800792751 /* UIFont+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1340D264BA2D800792751 /* UIFont+Named.swift */; };
+		E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */; };
+		E2FB1E5A264545FB004893E0 /* UIColor+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E59264545FB004893E0 /* UIColor+Named.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +118,9 @@
 		BD88BCD5264AAF2B0029CCC6 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2C1340D264BA2D800792751 /* UIFont+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Named.swift"; sourceTree = "<group>"; };
+		E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+CustomAttribute.swift"; sourceTree = "<group>"; };
+		E2FB1E59264545FB004893E0 /* UIColor+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Named.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				BD88BBB12643EA190029CCC6 /* Publisher+.swift */,
+				E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */,
+				E2FB1E59264545FB004893E0 /* UIColor+Named.swift */,
+				E2C1340D264BA2D800792751 /* UIFont+Named.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -630,12 +639,16 @@
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,
+				E2FB1E5A264545FB004893E0 /* UIColor+Named.swift in Sources */,
 				BD88BB9F2643C75D0029CCC6 /* Router.swift in Sources */,
 				BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */,
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */,
 				BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */,
+				E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */,
+				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
+				E2C1340E264BA2D800792751 /* UIFont+Named.swift in Sources */,
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
 				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
