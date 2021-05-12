@@ -23,6 +23,10 @@ protocol EndPointable {
 
 enum HTTPMethod: String {
   
-  case GET, POST, PUT, DELETE, PATCH
+  case get, post, put, delete, patch
+  
+  var value: String {
+    return self.rawValue.uppercased()
+  }
 }
 
