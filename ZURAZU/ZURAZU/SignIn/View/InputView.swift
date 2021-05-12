@@ -57,13 +57,11 @@ private extension InputView {
   func setupView() {
     textField.placeholder = inputViewType.placeHolder
     textField.layer.borderColor = .none
-    // MARK: - AssetsColor로 수정해야합니다.
-    textField.backgroundColor = .white
+    textField.backgroundColor = .background
     
-    messageLabel.textColor = .red
-    messageLabel.text = inputViewType.emptyMessage
-    messageLabel.font = UIFont.systemFont(ofSize: 10)
+    messageLabel.textColor = .redPrimary
+    messageLabel.font = .systemFont(ofSize: 12)
     
-    line.backgroundColor = .gray
+    line.backgroundColor = .monoQuaternary
   }
 }

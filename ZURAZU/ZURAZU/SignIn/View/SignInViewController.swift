@@ -69,14 +69,14 @@ private extension SignInViewController {
   
   func setupView() {
     closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-    closeButton.backgroundColor = .white
+    closeButton.backgroundColor = .background
     closeButton.tintColor = .black
     
     logoImageView.image = #imageLiteral(resourceName: "Image")
     
-    signInButton.backgroundColor = .blue
-    signInButton.titleLabel?.text = "로그인"
+    signInButton.backgroundColor = .bluePrimary
+    signInButton.titleLabel?.font = .primaryBold
     signInButton.setTitle("로그인", for: .normal)
-    signInButton.setTitleColor(.white, for: .normal)
+    signInButton.setTitleColor(.background, for: .normal)
   }
 }

@@ -53,6 +53,7 @@ private extension SignInInputView {
   
   func setupView() {
     signInLable.text = "로그인"
-    signInLable.font = UIFont.systemFont(ofSize: 13)
+    signInLable.font = .systemFont(ofSize: 15)
+    signInLable.textColor = .monoPrimary
   }
 }

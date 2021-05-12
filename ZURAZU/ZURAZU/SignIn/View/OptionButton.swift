@@ -20,8 +20,9 @@ final class OptionButton: UIButton {
 
 private extension OptionButton {
   func setupView() {
-    backgroundColor = .white
-    setTitleColor(.black, for: .normal)
-    titleLabel?.font = UIFont.systemFont(ofSize: 11)
+    backgroundColor = .background
+    setTitleColor(.monoSecondary, for: .normal)
+    // MARK: - size 12가 생긴다면 변경..
+    titleLabel?.font = .systemFont(ofSize: 12)
   }
 }
