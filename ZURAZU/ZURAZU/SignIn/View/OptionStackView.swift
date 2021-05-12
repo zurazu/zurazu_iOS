@@ -32,13 +32,11 @@ private extension OptionStackView {
     axis = .horizontal
     alignment = .fill
     
-    
     addArrangedSubview(signUpButton)
     makeDivider()
     addArrangedSubview(findPasswordButton)
     makeDivider()
     addArrangedSubview(findEmailButton)
-    
   }
   
   func makeDivider() {
@@ -48,7 +46,9 @@ private extension OptionStackView {
     
     addArrangedSubview(divider)
     
-    divider.widthAnchor.constraint(equalToConstant: 1).isActive = true
-    divider.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+    NSLayoutConstraint.activate([
+      divider.widthAnchor.constraint(equalToConstant: 1),
+      divider.heightAnchor.constraint(equalTo: heightAnchor)
+    ])
   }
 }
