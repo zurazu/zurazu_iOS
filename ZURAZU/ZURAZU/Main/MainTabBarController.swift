@@ -9,25 +9,23 @@ import UIKit
 import Combine
 import CombineCocoa
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
   
   private let homeButtonRadius: CGFloat = .init(27.5)
   private let homeButtonDiameter: CGFloat = .init(55)
   private lazy var homeButton: UIButton = {
     let button: UIButton = .init(frame: CGRect(
                                   x: (view.bounds.width / 2) - homeButtonRadius,
-                                  y: -20,
+                                  y: -13,
                                   width: homeButtonDiameter,
                                   height: homeButtonDiameter))
     button.addTarget(self, action: #selector(tappedHomeButton(sender:)), for: .touchUpInside)
-    //MARK: - 이미지 및 속성 수정해야 함.
-    button.setImage(UIImage(systemName: "xmark"), for: .normal)
-    button.backgroundColor = .blue
+    button.setImage(#imageLiteral(resourceName: "icon-home"), for: .normal)
     button.layer.cornerRadius = button.frame.height / 2
     
     return button
   }()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -37,11 +35,18 @@ class MainTabBarController: UITabBarController {
 
 private extension MainTabBarController {
   
+  var tabBarItems: [UITabBarItem] {
+    return tabBar.items ?? []
+  }
+  
   func setupView() {
     tabBar.addSubview(homeButton)
+    selectedIndex = tabBarItems.centerIndex
+    tabBar.tintColor = .bluePrimary
+    tabBarItems[tabBarItems.centerIndex].isEnabled = false
   }
   
   @objc func tappedHomeButton(sender: UIButton) {
-    selectedIndex = 2
+    selectedIndex = tabBarItems.centerIndex
   }
 }

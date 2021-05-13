@@ -72,7 +72,7 @@ private extension SignInViewController {
     closeButton.backgroundColor = .background
     closeButton.tintColor = .black
     
-    logoImageView.image = #imageLiteral(resourceName: "Image")
+    logoImageView.image = #imageLiteral(resourceName: "zurazuLogoImage")
     
     signInButton.backgroundColor = .bluePrimary
     signInButton.titleLabel?.font = .primaryBold
