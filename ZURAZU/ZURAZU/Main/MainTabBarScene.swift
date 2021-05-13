@@ -14,24 +14,24 @@ struct MainTabBarScene: Scene {
   }
   
   func instantiate() -> UIViewController {
-    let tabBarController = self.tabBarController(identifier: .mainTabBarC)
+    let tabBarController: UITabBarController = self.tabBarController(identifier: .mainTabBarC)
     
     // MARK: - 화면이 추가된 후 각각의 화면으로 변경해줘야 함
-    let categoryScene = MainScene().instantiate()
-    let logScene = MainScene().instantiate()
-    let mainScene = MainScene().instantiate()
-    let likeScene = MainScene().instantiate()
-    let myPageScene = MainScene().instantiate()
+    let categoryScene: UIViewController = MainScene().instantiate()
+    categoryScene.tabBarItem = UITabBarItem(title: "카테고리", image: .textAlignLeft, selectedImage: .textAlignLeft)
+    
+    let logScene: UIViewController = MainScene().instantiate()
+    logScene.tabBarItem = UITabBarItem(title: "거래내역", image: .docText, selectedImage: .docTextFill)
+    
+    let mainScene: UIViewController = SignInScene().instantiate()
+    
+    let likeScene: UIViewController = MainScene().instantiate()
+    likeScene.tabBarItem = UITabBarItem(title: "좋아요", image: .heart, selectedImage: .heartFill)
+    
+    let myPageScene: UIViewController = MainScene().instantiate()
+    myPageScene.tabBarItem = UITabBarItem(title: "마이페이지", image: .person, selectedImage: .personFill)
     
     tabBarController.setViewControllers([categoryScene, logScene, mainScene, likeScene, myPageScene], animated: false)
-    
-    // MARK: - 로직 정리해야 함.
-    tabBarController.tabBar.items?.enumerated().forEach {
-      if $0 != 2 {
-        $1.image = UIImage(systemName: "person")
-        $1.image?.withTintColor(.red)
-      }
-    }
     
     return tabBarController
   }
