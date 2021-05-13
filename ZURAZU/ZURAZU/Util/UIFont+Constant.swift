@@ -1,5 +1,5 @@
 //
-//  UIFont+Named.swift
+//  UIFont+Constant.swift
 //  ZURAZU
 //
 //  Created by itzel.du on 2021/05/12.

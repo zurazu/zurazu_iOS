@@ -1,5 +1,5 @@
 //
-//  UIColor+Named.swift
+//  UIColor+Constant.swift
 //  ZURAZU
 //
 //  Created by itzel.du on 2021/05/07.
