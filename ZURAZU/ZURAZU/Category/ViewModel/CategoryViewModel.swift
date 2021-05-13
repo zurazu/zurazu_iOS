@@ -9,8 +9,10 @@ import Foundation
 
 protocol CategoryViewModelType {
   
+  var categoryTypes: [CategoryType] { get }
 }
 
 final class CategoryViewModel: CategoryViewModelType {
   
+  var categoryTypes: [CategoryType] = CategoryType.allCases
 }
