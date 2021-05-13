@@ -12,45 +12,38 @@ enum Attributes {
   typealias AttributesOfNSAttributedString = [NSAttributedString.Key: Any]
   
   static let category: AttributesOfNSAttributedString = [
-    .foregroundColor : UIColor.monoPrimary,
-    .font            : UIFont.primary,
-    .paragraphStyle  : NSTextAlignment.left
+    .foregroundColor : UIColor.bluePrimary,
+    .font            : UIFont.quaternaryBold
   ]
   
   static let categoryBold: AttributesOfNSAttributedString = [
-    .foregroundColor : UIColor.monoQuaternary,
-    .font            : UIFont.primary,
-    .paragraphStyle  : NSTextAlignment.left
+    .foregroundColor : UIColor.monoPrimary,
+    .font            : UIFont.biggestBold
   ]
   
   static let brandPrimary: AttributesOfNSAttributedString = [
     .foregroundColor : UIColor.monoTertiary,
-    .font            : UIFont.smallest,
-    .paragraphStyle  : NSTextAlignment.left
+    .font            : UIFont.smallest
   ]
   
   static let wearPrimary: AttributesOfNSAttributedString = [
     .foregroundColor : UIColor.monoPrimary,
-    .font            : UIFont.tertiary,
-    .paragraphStyle  : NSTextAlignment.left
+    .font            : UIFont.tertiary
   ]
   
   static let pricePrimary: AttributesOfNSAttributedString = [
     .foregroundColor : UIColor.monoPrimary,
-    .font            : UIFont.secondary,
-    .paragraphStyle  : NSTextAlignment.left
+    .font            : UIFont.secondary
   ]
   
   static let wearSecondary: AttributesOfNSAttributedString = [
     .foregroundColor : UIColor.monoPrimary,
-    .font            : UIFont.quaternary,
-    .paragraphStyle  : NSTextAlignment.left
+    .font            : UIFont.quaternary
   ]
   
   static let priceSecondary: AttributesOfNSAttributedString = [
     .foregroundColor : UIColor.monoPrimary,
-    .font            : UIFont.tertiary,
-    .paragraphStyle  : NSTextAlignment.left
+    .font            : UIFont.tertiary
   ]
   
 }
