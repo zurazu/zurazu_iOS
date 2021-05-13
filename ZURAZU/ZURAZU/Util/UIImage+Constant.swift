@@ -9,7 +9,7 @@ import UIKit
 
 extension UIImage {
   
-  static let errorImage = #imageLiteral(resourceName: "errorImage")
+  static let errorImage = #imageLiteral(resourceName: "icon-error")
   
   static let textAlignLeft: UIImage = UIImage(systemName: "text.alignleft") ?? errorImage
   static let docText      : UIImage = UIImage(systemName: "doc.text")       ?? errorImage

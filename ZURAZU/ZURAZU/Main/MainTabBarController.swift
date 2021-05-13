@@ -20,7 +20,7 @@ final class MainTabBarController: UITabBarController {
                                   width: homeButtonDiameter,
                                   height: homeButtonDiameter))
     button.addTarget(self, action: #selector(tappedHomeButton(sender:)), for: .touchUpInside)
-    button.setImage(#imageLiteral(resourceName: "homeButtonImage"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "icon-home"), for: .normal)
     button.layer.cornerRadius = button.frame.height / 2
     
     return button
