@@ -9,6 +9,7 @@ import UIKit
 
 enum FontSize {
   
+  static let biggest     : CGFloat = 20
   static let primary     : CGFloat = 17
   static let secondary   : CGFloat = 15
   static let tertiary    : CGFloat = 13
@@ -17,6 +18,9 @@ enum FontSize {
 }
 
 extension UIFont {
+  
+  static let biggestBold    : UIFont = UIFont.systemFont(ofSize: FontSize.biggest, weight: .bold)
+  static let biggest        : UIFont = UIFont.systemFont(ofSize: FontSize.biggest)
   
   static let primaryBold    : UIFont = UIFont.systemFont(ofSize: FontSize.primary, weight: .bold)
   static let primary        : UIFont = UIFont.systemFont(ofSize: FontSize.primary)

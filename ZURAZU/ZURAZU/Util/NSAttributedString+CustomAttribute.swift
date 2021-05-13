@@ -13,7 +13,7 @@ enum Attributes {
   
   static let category: AttributesOfNSAttributedString = [
     .foregroundColor : UIColor.bluePrimary,
-    .font            : UIFont.quaternaryBold
+    .font            : UIFont.tertiaryBold
   ]
   
   static let categoryBold: AttributesOfNSAttributedString = [
