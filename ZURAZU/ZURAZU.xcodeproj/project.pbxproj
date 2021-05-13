@@ -47,6 +47,10 @@
 		BD88BCF4264BAF820029CCC6 /* MainTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BCF3264BAF820029CCC6 /* MainTabBar.storyboard */; };
 		BD88BD17264D01180029CCC6 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD16264D01180029CCC6 /* Array+.swift */; };
 		BD88BD1C264D032D0029CCC6 /* UIImage+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD1B264D032D0029CCC6 /* UIImage+Constant.swift */; };
+		BD88BD31264D12FD0029CCC6 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD30264D12FD0029CCC6 /* CategoryViewController.swift */; };
+		BD88BD3C264D13320029CCC6 /* Category.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BD3B264D13320029CCC6 /* Category.storyboard */; };
+		BD88BD41264D13840029CCC6 /* CategoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD40264D13840029CCC6 /* CategoryScene.swift */; };
+		BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD45264D14650029CCC6 /* CategoryViewModel.swift */; };
 		E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1340D264BA2D800792751 /* UIFont+Constant.swift */; };
 		E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */; };
 		E2FB1E5A264545FB004893E0 /* UIColor+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E59264545FB004893E0 /* UIColor+Constant.swift */; };
@@ -120,6 +124,10 @@
 		BD88BCF3264BAF820029CCC6 /* MainTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTabBar.storyboard; sourceTree = "<group>"; };
 		BD88BD16264D01180029CCC6 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		BD88BD1B264D032D0029CCC6 /* UIImage+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Constant.swift"; sourceTree = "<group>"; };
+		BD88BD30264D12FD0029CCC6 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		BD88BD3B264D13320029CCC6 /* Category.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Category.storyboard; sourceTree = "<group>"; };
+		BD88BD40264D13840029CCC6 /* CategoryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScene.swift; sourceTree = "<group>"; };
+		BD88BD45264D14650029CCC6 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C1340D264BA2D800792751 /* UIFont+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constant.swift"; sourceTree = "<group>"; };
@@ -210,6 +218,7 @@
 				BD88BB4B2643ABE30029CCC6 /* Assets.xcassets */,
 				BD88BB502643ABE30029CCC6 /* Info.plist */,
 				BD88BC2326452C430029CCC6 /* Main */,
+				BD88BD2F264D12D70029CCC6 /* Category */,
 				BD88BC94264A83B00029CCC6 /* SignIn */,
 				BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */,
 				BD88BB902643C1F00029CCC6 /* Network */,
@@ -376,6 +385,41 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BD88BD2F264D12D70029CCC6 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BD38264D13020029CCC6 /* Model */,
+				BD88BD39264D13070029CCC6 /* View */,
+				BD88BD3A264D13120029CCC6 /* ViewModel */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		BD88BD38264D13020029CCC6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BD88BD39264D13070029CCC6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BD30264D12FD0029CCC6 /* CategoryViewController.swift */,
+				BD88BD3B264D13320029CCC6 /* Category.storyboard */,
+				BD88BD40264D13840029CCC6 /* CategoryScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD88BD3A264D13120029CCC6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD88BD45264D14650029CCC6 /* CategoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -485,6 +529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD88BD3C264D13320029CCC6 /* Category.storyboard in Resources */,
 				BD88BCF4264BAF820029CCC6 /* MainTabBar.storyboard in Resources */,
 				BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */,
 				BD88BB4F2643ABE30029CCC6 /* LaunchScreen.storyboard in Resources */,
@@ -653,12 +698,15 @@
 				BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */,
 				BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */,
 				E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */,
+				BD88BD41264D13840029CCC6 /* CategoryScene.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BD88BD17264D01180029CCC6 /* Array+.swift in Sources */,
+				BD88BD31264D12FD0029CCC6 /* CategoryViewController.swift in Sources */,
 				BD88BD1C264D032D0029CCC6 /* UIImage+Constant.swift in Sources */,
 				E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */,
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
 				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
+				BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */,
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
