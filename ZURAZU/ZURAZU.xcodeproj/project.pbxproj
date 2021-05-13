@@ -55,6 +55,7 @@
 		BD88BD50264D1B370029CCC6 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD4F264D1B370029CCC6 /* UITableView+Register.swift */; };
 		BD88BD55264D1B6E0029CCC6 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD54264D1B6E0029CCC6 /* Reusable.swift */; };
 		BD88BD5A264D1B8F0029CCC6 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */; };
+		BD88BD5F264D342C0029CCC6 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD5E264D342C0029CCC6 /* CategoryType.swift */; };
 		E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1340D264BA2D800792751 /* UIFont+Constant.swift */; };
 		E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */; };
 		E2FB1E5A264545FB004893E0 /* UIColor+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E59264545FB004893E0 /* UIColor+Constant.swift */; };
@@ -136,6 +137,7 @@
 		BD88BD4F264D1B370029CCC6 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		BD88BD54264D1B6E0029CCC6 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		BD88BD5E264D342C0029CCC6 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C1340D264BA2D800792751 /* UIFont+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constant.swift"; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 		BD88BD38264D13020029CCC6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BD88BD5E264D342C0029CCC6 /* CategoryType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -721,6 +724,7 @@
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
 				BD88BD5A264D1B8F0029CCC6 /* NibLoadable.swift in Sources */,
 				BD88BD4B264D16F80029CCC6 /* CategoryTableViewCell.swift in Sources */,
+				BD88BD5F264D342C0029CCC6 /* CategoryType.swift in Sources */,
 				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
 				BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */,
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
