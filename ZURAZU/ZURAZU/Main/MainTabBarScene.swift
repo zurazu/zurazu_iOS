@@ -17,7 +17,7 @@ struct MainTabBarScene: Scene {
     let tabBarController: UITabBarController = self.tabBarController(identifier: .mainTabBarC)
     
     // MARK: - 화면이 추가된 후 각각의 화면으로 변경해줘야 함
-    let categoryScene: UIViewController = MainScene().instantiate()
+    let categoryScene: UIViewController = CategoryScene().instantiate()
     categoryScene.tabBarItem = UITabBarItem(title: "카테고리", image: .textAlignLeft, selectedImage: .textAlignLeft)
     
     let logScene: UIViewController = MainScene().instantiate()
