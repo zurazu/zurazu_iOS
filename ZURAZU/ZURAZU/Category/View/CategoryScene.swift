@@ -24,7 +24,4 @@ struct CategoryScene: Scene {
     
     return navigationController
   }
-  
-  
-  
 }

@@ -56,7 +56,7 @@ private extension CategoryViewController {
 
 extension CategoryViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let viewModel = viewModel else { return 0 }
+    guard let viewModel: CategoryViewModelType = viewModel else { return 0 }
     
     return viewModel.categoryTypes.count
   }
@@ -64,7 +64,7 @@ extension CategoryViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: CategoryTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
     
-    if let viewModel = viewModel {
+    if let viewModel: CategoryViewModelType = viewModel {
       cell.updateCell(with: viewModel.categoryTypes[indexPath.row])
     }
     
