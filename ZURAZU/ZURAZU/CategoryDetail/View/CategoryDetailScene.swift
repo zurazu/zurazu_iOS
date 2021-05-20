@@ -10,11 +10,12 @@ import UIKit
 struct CategoryDetailScene: Scene {
   
   var storyboard: String {
-    return ""
+    return "CategoryDetail"
   }
   
   func instantiate() -> UIViewController {
-    guard var categoryDetailViewController: CategoryDetailViewController = self.viewController(identifier: .categoryDetailVC) as? CategoryDetailViewController else { fatalError() }
+    guard var categoryDetailViewController: CategoryDetailViewController = self.viewController(identifier: .categoryDetailVC) as? CategoryDetailViewController
+    else { fatalError() }
     
     let viewModel: CategoryDetailViewModel = .init()
     
