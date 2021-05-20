@@ -56,6 +56,10 @@
 		BD88BD55264D1B6E0029CCC6 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD54264D1B6E0029CCC6 /* Reusable.swift */; };
 		BD88BD5A264D1B8F0029CCC6 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */; };
 		BD88BD5F264D342C0029CCC6 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD5E264D342C0029CCC6 /* CategoryType.swift */; };
+		BDA003952656545300C98928 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003942656545300C98928 /* CategoryDetailViewController.swift */; };
+		BDA0039A2656547F00C98928 /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */; };
+		BDA0039F265654D600C98928 /* CategoryDetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0039E265654D600C98928 /* CategoryDetailScene.swift */; };
+		BDA003A42656552E00C98928 /* CategoryDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA003A32656552E00C98928 /* CategoryDetail.storyboard */; };
 		E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1340D264BA2D800792751 /* UIFont+Constant.swift */; };
 		E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */; };
 		E2FB1E5A264545FB004893E0 /* UIColor+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E59264545FB004893E0 /* UIColor+Constant.swift */; };
@@ -138,6 +142,10 @@
 		BD88BD54264D1B6E0029CCC6 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		BD88BD5E264D342C0029CCC6 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
+		BDA003942656545300C98928 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
+		BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
+		BDA0039E265654D600C98928 /* CategoryDetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailScene.swift; sourceTree = "<group>"; };
+		BDA003A32656552E00C98928 /* CategoryDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryDetail.storyboard; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C1340D264BA2D800792751 /* UIFont+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constant.swift"; sourceTree = "<group>"; };
@@ -229,6 +237,7 @@
 				BD88BB502643ABE30029CCC6 /* Info.plist */,
 				BD88BC2326452C430029CCC6 /* Main */,
 				BD88BD2F264D12D70029CCC6 /* Category */,
+				BDA003902656540100C98928 /* CategoryDetail */,
 				BD88BC94264A83B00029CCC6 /* SignIn */,
 				BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */,
 				BD88BB902643C1F00029CCC6 /* Network */,
@@ -435,6 +444,41 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		BDA003902656540100C98928 /* CategoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				BDA003932656543800C98928 /* Model */,
+				BDA003922656543300C98928 /* View */,
+				BDA003912656542C00C98928 /* ViewModel */,
+			);
+			path = CategoryDetail;
+			sourceTree = "<group>";
+		};
+		BDA003912656542C00C98928 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BDA003922656543300C98928 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BDA003942656545300C98928 /* CategoryDetailViewController.swift */,
+				BDA003A32656552E00C98928 /* CategoryDetail.storyboard */,
+				BDA0039E265654D600C98928 /* CategoryDetailScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BDA003932656543800C98928 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -545,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD88BD3C264D13320029CCC6 /* Category.storyboard in Resources */,
+				BDA003A42656552E00C98928 /* CategoryDetail.storyboard in Resources */,
 				BD88BCF4264BAF820029CCC6 /* MainTabBar.storyboard in Resources */,
 				BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */,
 				BD88BB4F2643ABE30029CCC6 /* LaunchScreen.storyboard in Resources */,
@@ -704,6 +749,7 @@
 				BD88BCDE264B94820029CCC6 /* MainTabBarController.swift in Sources */,
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
+				BDA003952656545300C98928 /* CategoryDetailViewController.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,
 				E2FB1E5A264545FB004893E0 /* UIColor+Constant.swift in Sources */,
@@ -730,6 +776,8 @@
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
+				BDA0039A2656547F00C98928 /* CategoryDetailViewModel.swift in Sources */,
+				BDA0039F265654D600C98928 /* CategoryDetailScene.swift in Sources */,
 				BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */,
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
 				BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */,
