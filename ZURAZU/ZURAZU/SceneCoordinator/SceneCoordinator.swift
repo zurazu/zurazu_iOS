@@ -11,6 +11,9 @@ import Combine
 protocol SceneCoordinatorType {
   
   @discardableResult
+  func tabTransition() -> AnyPublisher<Void, TransitionError>
+  
+  @discardableResult
   func transition(scene: Scene, using style: TransitionStyle, animated: Bool) -> AnyPublisher<Void, TransitionError>
   
   @discardableResult
@@ -25,6 +28,32 @@ final class SceneCoordinator: SceneCoordinatorType {
   required init(window: UIWindow) {
     self.window = window
     self.currentViewController = window.rootViewController
+  }
+  
+  @discardableResult
+  func tabTransition() -> AnyPublisher<Void, TransitionError> {
+    return Future { [weak self] promise in
+      // MARK: - 로직 수정 필요함 ㅠㅠ
+      guard
+        let tabBarController = self?.window.rootViewController as? UITabBarController,
+        let tabBarItems = tabBarController.viewControllers
+      else {
+        promise(.failure(TransitionError.unknown))
+        return
+      }
+      
+      let viewController = tabBarItems[tabBarController.selectedIndex]
+      
+      guard let navigationController = viewController as? UINavigationController else {
+        self?.currentViewController = viewController
+        
+        promise(.success(()))
+        return
+      }
+      
+      self?.currentViewController = navigationController.viewControllers.last
+      promise(.success(()))
+    }.eraseToAnyPublisher()
   }
   
   @discardableResult
