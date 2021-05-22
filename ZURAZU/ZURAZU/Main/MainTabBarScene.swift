@@ -13,9 +13,14 @@ struct MainTabBarScene: Scene {
     return "MainTabBar"
   }
   
+  var sceneCoordinator: SceneCoordinatorType
+  
   func instantiate() -> UIViewController {
-    let tabBarController: UITabBarController = self.tabBarController(identifier: .mainTabBarC)
+    guard var tabBarController: MainTabBarController = self.tabBarController(identifier: .mainTabBarC) as? MainTabBarController
+    else { fatalError() }
     
+    let viewModel: MainTabBarViewModel = .init(sceneCoordinator: sceneCoordinator)
+    tabBarController.bind(viewModel: viewModel)
     // MARK: - 화면이 추가된 후 각각의 화면으로 변경해줘야 함
     let categoryScene: UIViewController = CategoryScene().instantiate()
     categoryScene.tabBarItem = UITabBarItem(title: "카테고리", image: .textAlignLeft, selectedImage: .textAlignLeft)
