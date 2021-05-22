@@ -25,3 +25,12 @@ extension ViewModelBindableType where Self: UIViewController {
     self.bindViewModel()
   }
 }
+
+extension ViewModelBindableType where Self: UITabBarController {
+  
+  mutating func bind(viewModel: ViewModelType) {
+    self.viewModel = viewModel
+    
+    self.bindViewModel()
+  }
+}
