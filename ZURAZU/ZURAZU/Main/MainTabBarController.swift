@@ -9,7 +9,9 @@ import UIKit
 import Combine
 import CombineCocoa
 
-final class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController, ViewModelBindableType {
+  
+  var viewModel: MainTabBarViewModelType?
   
   private let homeButtonRadius: CGFloat = .init(27.5)
   private let homeButtonDiameter: CGFloat = .init(55)
@@ -31,6 +33,10 @@ final class MainTabBarController: UITabBarController {
     
     setupView()
   }
+  
+  func bindViewModel() {
+    
+  }
 }
 
 private extension MainTabBarController {
@@ -44,9 +50,17 @@ private extension MainTabBarController {
     selectedIndex = tabBarItems.centerIndex
     tabBar.tintColor = .bluePrimary
     tabBarItems[tabBarItems.centerIndex].isEnabled = false
+    
+    self.delegate = self
   }
   
   @objc func tappedHomeButton(sender: UIButton) {
     selectedIndex = tabBarItems.centerIndex
+  }
+}
+
+extension MainTabBarController: UITabBarControllerDelegate {
+  func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    viewModel?.tabItemDidSelect()
   }
 }
