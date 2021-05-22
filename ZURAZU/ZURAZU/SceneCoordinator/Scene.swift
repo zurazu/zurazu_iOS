@@ -10,6 +10,7 @@ import UIKit
 protocol Scene {
   
   var storyboard: String { get }
+  var sceneCoordinator: SceneCoordinatorType { get }
   
   func instantiate() -> UIViewController
 }
