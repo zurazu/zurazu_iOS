@@ -13,8 +13,8 @@ final class MainTabBarController: UITabBarController, ViewModelBindableType {
   
   var viewModel: MainTabBarViewModelType?
   
-  private let homeButtonRadius: CGFloat = .init(27.5)
-  private let homeButtonDiameter: CGFloat = .init(55)
+  private let homeButtonRadius: CGFloat = 27.5
+  private let homeButtonDiameter: CGFloat = 55
   private lazy var homeButton: UIButton = {
     let button: UIButton = .init(frame: CGRect(
                                   x: (view.bounds.width / 2) - homeButtonRadius,
