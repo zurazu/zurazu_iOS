@@ -35,16 +35,16 @@ final class SceneCoordinator: SceneCoordinatorType {
     return Future { [weak self] promise in
       // MARK: - 로직 수정 필요함 ㅠㅠ
       guard
-        let tabBarController = self?.window.rootViewController as? UITabBarController,
-        let tabBarItems = tabBarController.viewControllers
+        let tabBarController: UITabBarController = self?.window.rootViewController as? UITabBarController,
+        let tabBarItems: [UIViewController] = tabBarController.viewControllers
       else {
         promise(.failure(TransitionError.unknown))
         return
       }
       
-      let viewController = tabBarItems[tabBarController.selectedIndex]
+      let viewController: UIViewController = tabBarItems[tabBarController.selectedIndex]
       
-      guard let navigationController = viewController as? UINavigationController else {
+      guard let navigationController: UINavigationController = viewController as? UINavigationController else {
         self?.currentViewController = viewController
         
         promise(.success(()))
