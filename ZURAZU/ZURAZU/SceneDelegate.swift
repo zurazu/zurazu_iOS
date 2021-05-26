@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene: UIWindowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(windowScene: windowScene)
     
-    guard let window = window else { return }
+    guard let window: UIWindow = window else { return }
     
     let coordinator: SceneCoordinator = .init(window: window)
     coordinator.transition(scene: MainTabBarScene(sceneCoordinator: coordinator), using: .root, animated: false)
