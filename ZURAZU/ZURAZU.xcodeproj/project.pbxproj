@@ -60,6 +60,7 @@
 		BD9AA96A265E44900046EB2F /* ItemDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD9AA969265E44900046EB2F /* ItemDetail.storyboard */; };
 		BD9AA96C265E44C20046EB2F /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA96B265E44C20046EB2F /* ItemDetailViewModel.swift */; };
 		BD9AA96E265E44FA0046EB2F /* ItemDetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA96D265E44FA0046EB2F /* ItemDetailScene.swift */; };
+		BD9AA970265F99990046EB2F /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA96F265F99990046EB2F /* BaseResponse.swift */; };
 		BDA003952656545300C98928 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003942656545300C98928 /* CategoryDetailViewController.swift */; };
 		BDA0039A2656547F00C98928 /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */; };
 		BDA0039F265654D600C98928 /* CategoryDetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0039E265654D600C98928 /* CategoryDetailScene.swift */; };
@@ -151,6 +152,7 @@
 		BD9AA969265E44900046EB2F /* ItemDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemDetail.storyboard; sourceTree = "<group>"; };
 		BD9AA96B265E44C20046EB2F /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		BD9AA96D265E44FA0046EB2F /* ItemDetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailScene.swift; sourceTree = "<group>"; };
+		BD9AA96F265F99990046EB2F /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		BDA003942656545300C98928 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
 		BDA0039E265654D600C98928 /* CategoryDetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailScene.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				BD88BC3C26452F8D0029CCC6 /* ViewModelBindableType.swift */,
 				BD88BD54264D1B6E0029CCC6 /* Reusable.swift */,
 				BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */,
+				BD9AA96F265F99990046EB2F /* BaseResponse.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BDA003952656545300C98928 /* CategoryDetailViewController.swift in Sources */,
+				BD9AA970265F99990046EB2F /* BaseResponse.swift in Sources */,
 				BDA7B2C62657A99C00DE2B27 /* MainTabBarViewModel.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,
