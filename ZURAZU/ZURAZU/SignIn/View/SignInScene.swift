@@ -12,6 +12,7 @@ struct SignInScene: Scene {
   var storyboard: String {
     return "SignIn"
   }
+  var sceneCoordinator: SceneCoordinatorType
   
   func instantiate() -> UIViewController {
     guard var signInViewController: SignInViewController = viewController(identifier: .signInVC) as? SignInViewController else { fatalError() }

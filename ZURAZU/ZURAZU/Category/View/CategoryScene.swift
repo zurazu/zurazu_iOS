@@ -12,6 +12,7 @@ struct CategoryScene: Scene {
   var storyboard: String {
     return "Category"
   }
+  var sceneCoordinator: SceneCoordinatorType
   
   func instantiate() -> UIViewController {
     let navigationController: UINavigationController = self.navigationController(identifier: .categoryNavC)
