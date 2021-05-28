@@ -16,11 +16,11 @@ protocol CategoryViewModelType {
 
 final class CategoryViewModel: CategoryViewModelType {
   
-  private let sceneCoordinator: SceneCoordinatorType
-  private var cancellables: Set<AnyCancellable> = []
-  
   var mainCategories: PassthroughSubject<[MainCategory], Never> = .init()
   var fetchMainCategories: PassthroughSubject<Void, Never> = .init()
+  
+  private let sceneCoordinator: SceneCoordinatorType
+  private var cancellables: Set<AnyCancellable> = []
   
   init(sceneCoordinator: SceneCoordinatorType) {
     self.sceneCoordinator = sceneCoordinator
