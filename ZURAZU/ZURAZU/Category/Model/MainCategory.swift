@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MainCategory: Decodable {
+struct MainCategory: Decodable, Hashable {
   
   let idx: Int
   let korean: String
