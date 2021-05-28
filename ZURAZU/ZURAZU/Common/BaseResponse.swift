@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct BaseResponse<T: Decodable> {
+struct BaseResponse<T: Decodable>: Decodable {
   
   let id: String
   let dateTime: String
   let status: String
   let message: String
-  let list: T?
+  let list: [T]?
 }
