@@ -55,13 +55,14 @@
 		BD88BD50264D1B370029CCC6 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD4F264D1B370029CCC6 /* UITableView+Register.swift */; };
 		BD88BD55264D1B6E0029CCC6 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD54264D1B6E0029CCC6 /* Reusable.swift */; };
 		BD88BD5A264D1B8F0029CCC6 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */; };
-		BD88BD5F264D342C0029CCC6 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BD5E264D342C0029CCC6 /* CategoryType.swift */; };
 		BD9AA968265E44840046EB2F /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA967265E44840046EB2F /* ItemDetailViewController.swift */; };
 		BD9AA96A265E44900046EB2F /* ItemDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD9AA969265E44900046EB2F /* ItemDetail.storyboard */; };
 		BD9AA96C265E44C20046EB2F /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA96B265E44C20046EB2F /* ItemDetailViewModel.swift */; };
 		BD9AA96E265E44FA0046EB2F /* ItemDetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA96D265E44FA0046EB2F /* ItemDetailScene.swift */; };
 		BD9AA970265F99990046EB2F /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA96F265F99990046EB2F /* BaseResponse.swift */; };
 		BD9AA972265F9A2F0046EB2F /* MainCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA971265F9A2F0046EB2F /* MainCategory.swift */; };
+		BD9AA974265FA8310046EB2F /* MainCategoryEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA973265FA8310046EB2F /* MainCategoryEndPoint.swift */; };
+		BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA9752660EBAC0046EB2F /* APICredentials.swift */; };
 		BDA003952656545300C98928 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003942656545300C98928 /* CategoryDetailViewController.swift */; };
 		BDA0039A2656547F00C98928 /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */; };
 		BDA0039F265654D600C98928 /* CategoryDetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0039E265654D600C98928 /* CategoryDetailScene.swift */; };
@@ -148,13 +149,14 @@
 		BD88BD4F264D1B370029CCC6 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		BD88BD54264D1B6E0029CCC6 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
-		BD88BD5E264D342C0029CCC6 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		BD9AA967265E44840046EB2F /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		BD9AA969265E44900046EB2F /* ItemDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemDetail.storyboard; sourceTree = "<group>"; };
 		BD9AA96B265E44C20046EB2F /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		BD9AA96D265E44FA0046EB2F /* ItemDetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailScene.swift; sourceTree = "<group>"; };
 		BD9AA96F265F99990046EB2F /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		BD9AA971265F9A2F0046EB2F /* MainCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategory.swift; sourceTree = "<group>"; };
+		BD9AA973265FA8310046EB2F /* MainCategoryEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryEndPoint.swift; sourceTree = "<group>"; };
+		BD9AA9752660EBAC0046EB2F /* APICredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICredentials.swift; sourceTree = "<group>"; };
 		BDA003942656545300C98928 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
 		BDA0039E265654D600C98928 /* CategoryDetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailScene.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				BD88BD54264D1B6E0029CCC6 /* Reusable.swift */,
 				BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */,
 				BD9AA96F265F99990046EB2F /* BaseResponse.swift */,
+				BD9AA9752660EBAC0046EB2F /* APICredentials.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -437,8 +440,8 @@
 		BD88BD38264D13020029CCC6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BD88BD5E264D342C0029CCC6 /* CategoryType.swift */,
 				BD9AA971265F9A2F0046EB2F /* MainCategory.swift */,
+				BD9AA973265FA8310046EB2F /* MainCategoryEndPoint.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -828,7 +831,7 @@
 				BD88BB9A2643C3220029CCC6 /* Routable.swift in Sources */,
 				BD88BD5A264D1B8F0029CCC6 /* NibLoadable.swift in Sources */,
 				BD88BD4B264D16F80029CCC6 /* CategoryTableViewCell.swift in Sources */,
-				BD88BD5F264D342C0029CCC6 /* CategoryType.swift in Sources */,
+				BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */,
 				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
 				BD9AA968265E44840046EB2F /* ItemDetailViewController.swift in Sources */,
 				BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */,
@@ -842,6 +845,7 @@
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
 				BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */,
 				BD88BCE8264B9C020029CCC6 /* MainTabBarScene.swift in Sources */,
+				BD9AA974265FA8310046EB2F /* MainCategoryEndPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
