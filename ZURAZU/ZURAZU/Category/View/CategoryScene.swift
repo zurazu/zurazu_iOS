@@ -20,7 +20,7 @@ struct CategoryScene: Scene {
     guard var categoryViewController: CategoryViewController = navigationController.viewControllers.first as? CategoryViewController
     else { fatalError() }
     
-    let viewModel: CategoryViewModel = .init()
+    let viewModel: CategoryViewModel = .init(sceneCoordinator: sceneCoordinator)
     categoryViewController.bind(viewModel: viewModel)
     
     return navigationController

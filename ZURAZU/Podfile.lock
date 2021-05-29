@@ -1,20 +1,24 @@
 PODS:
   - CombineCocoa (0.2.2)
+  - CombineDataSources (0.2.5)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
   - CombineCocoa
+  - CombineDataSources
   - SwiftLint
 
 SPEC REPOS:
   trunk:
     - CombineCocoa
+    - CombineDataSources
     - SwiftLint
 
 SPEC CHECKSUMS:
   CombineCocoa: 66c79441761907c096ecbd0021cefd8566acaf06
+  CombineDataSources: dcbc3b06a038ffdf620b3b4533d3ecaf76ca6a2e
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 0315514006d93ce2c2d93818176916d0bdfbc829
+PODFILE CHECKSUM: 7259d2cfd3e89f0e481bc68ff6401236e0e561d0
 
 COCOAPODS: 1.10.1

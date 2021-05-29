@@ -16,7 +16,7 @@ class MemberAPITest: XCTestCase {
   
   func test_회원등록() throws {
     let expectation = XCTestExpectation(description: "Register")
-    let router: Routable = Router()
+    let router: NetworkProvidable = NetworkProvider()
     let testEmail = "test"
     let testPassword = "test123"
     
@@ -39,7 +39,7 @@ class MemberAPITest: XCTestCase {
   
   func test_로그인() throws {
     let expectation = XCTestExpectation(description: "Login")
-    let router: Routable = Router()
+    let router: NetworkProvidable = NetworkProvider()
     let testEmail = "test"
     let testPassword = "test123"
     
@@ -62,7 +62,7 @@ class MemberAPITest: XCTestCase {
   
   func test_accessToken_재발급() {
     let expectation = XCTestExpectation(description: "RefreshToken")
-    let router: Routable = Router()
+    let router: NetworkProvidable = NetworkProvider()
     let refreshToken = "testRefreshToken"
     
     let testPublisher: AnyPublisher<Result<BaseUser<RefreshTokenResponseData>, NetworkError>, Never> = router.request(route: TestEndPoint.refreshToken(refreshToken: refreshToken))

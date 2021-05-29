@@ -12,6 +12,8 @@ final class CategoryTableViewCell: UITableViewCell, Reusable {
   private let titleLabel: UILabel = .init(frame: .zero)
   private let separator: UIView = .init(frame: .zero)
   
+  private let divider: String = "  ㅣ "
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
@@ -23,9 +25,9 @@ final class CategoryTableViewCell: UITableViewCell, Reusable {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func updateCell(with categoryType: CategoryType) {
-    titleLabel.attributedText = title(withEnglishTitle: categoryType.title,
-                                      koreanSubTitle: categoryType.subTitle)
+  func updateCell(with category: MainCategory) {
+    titleLabel.attributedText = title(withEnglishTitle: category.english,
+                                      koreanSubTitle: category.korean)
   }
 }
 
@@ -56,7 +58,7 @@ private extension CategoryTableViewCell {
   
   func title(withEnglishTitle englishTitle: String, koreanSubTitle: String) -> NSMutableAttributedString {
     let title = NSMutableAttributedString(string: englishTitle, attributes: Attributes.categoryBold)
-    let subTitle = NSAttributedString(string: koreanSubTitle, attributes: Attributes.category)
+    let subTitle = NSAttributedString(string: divider + koreanSubTitle, attributes: Attributes.category)
     title.append(subTitle)
     
     return title
