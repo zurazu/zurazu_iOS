@@ -14,13 +14,7 @@ protocol MainTabBarViewModelType {
 
 final class MainTabBarViewModel: MainTabBarViewModelType {
   
-  private let sceneCoordinator: SceneCoordinatorType
-  
-  init(sceneCoordinator: SceneCoordinatorType) {
-    self.sceneCoordinator = sceneCoordinator
-  }
-  
   func tabItemDidSelect() {
-    sceneCoordinator.tabTransition()
+    SceneCoordinator.shared.tabTransition()
   }
 }
