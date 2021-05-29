@@ -12,7 +12,6 @@ struct MainScene: Scene {
   var storyboard: String {
     return "Main"
   }
-  var sceneCoordinator: SceneCoordinatorType
   
   func instantiate() -> UIViewController {
     let navigationController: UINavigationController = self.navigationController(identifier: .mainNavC)

@@ -10,13 +10,12 @@ import UIKit
 struct ItemDetailScene: Scene {
   
   var storyboard: String
-  var sceneCoordinator: SceneCoordinatorType
   
   func instantiate() -> UIViewController {
     guard var itemDetailViewController: ItemDetailViewController = self.viewController(identifier: .ItemDetailVC) as? ItemDetailViewController
     else { fatalError() }
     
-    let viewModel: ItemDetailViewModel = .init(sceneCoordinator: sceneCoordinator)
+    let viewModel: ItemDetailViewModel = .init()
     itemDetailViewController.bind(viewModel: viewModel)
     
     return itemDetailViewController

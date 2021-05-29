@@ -12,7 +12,6 @@ struct CategoryDetailScene: Scene {
   var storyboard: String {
     return "CategoryDetail"
   }
-  var sceneCoordinator: SceneCoordinatorType
   
   func instantiate() -> UIViewController {
     guard var categoryDetailViewController: CategoryDetailViewController = self.viewController(identifier: .categoryDetailVC) as? CategoryDetailViewController

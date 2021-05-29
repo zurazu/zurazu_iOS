@@ -19,12 +19,9 @@ final class CategoryViewModel: CategoryViewModelType {
   var mainCategories: PassthroughSubject<[MainCategory], Never> = .init()
   var startFetching: PassthroughSubject<Void, Never> = .init()
   
-  private let sceneCoordinator: SceneCoordinatorType
   private var cancellables: Set<AnyCancellable> = []
   
-  init(sceneCoordinator: SceneCoordinatorType) {
-    self.sceneCoordinator = sceneCoordinator
-    
+  init() {
     bind()
   }
 }

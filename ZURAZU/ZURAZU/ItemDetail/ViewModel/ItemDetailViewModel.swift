@@ -13,10 +13,4 @@ protocol ItemDetailViewModelType {
 
 final class ItemDetailViewModel: ItemDetailViewModelType {
   
-  let sceneCoordinator: SceneCoordinatorType
-  
-  init(sceneCoordinator: SceneCoordinatorType) {
-    self.sceneCoordinator = sceneCoordinator
-  }
-  
 }
