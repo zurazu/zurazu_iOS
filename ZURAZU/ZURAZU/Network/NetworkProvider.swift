@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class Router: Routable {
+final class NetworkProvider: NetworkProvidable {
   
   private let urlSession: URLSession
   

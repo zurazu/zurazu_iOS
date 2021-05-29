@@ -40,7 +40,7 @@ private extension CategoryViewModel {
   
   func fetchMainCategories() {
     // MARK: - Router를 어디서 주입할지 아니면 싱글톤으로 사용할지 논의해야합니다
-    let router = Router()
+    let router = NetworkProvider()
     
     let testPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = router.request(route: MainCategoryEndPoint.requestMainCategories)
     
