@@ -15,7 +15,7 @@ enum MainCategoryEndPoint {
 extension MainCategoryEndPoint: EndPointable {
   
   var environmentBaseURL: String {
-    return APICredentials.ip.rawValue
+    return APICredentials.baseURL.rawValue
   }
   
   var baseURL: URLComponents {

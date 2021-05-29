@@ -9,6 +9,6 @@ import Foundation
 
 enum APICredentials: String {
   
-  case ip = "http://api.zurazu.com"
+  case baseURL = "http://api.zurazu.com"
   case mainCategories = "/mainCategories"
 }
