@@ -49,8 +49,8 @@ private extension CategoryViewModel {
       case .success(let responseResult):
         guard let mainCategories = responseResult.list else { return }
         // MARK: - main큐에서 진행할지 커스텀 큐 사용할지 알아보고 수정할 것.
-        DispatchQueue.main.sync {
-          self.mainCategories.send(mainCategories)
+        DispatchQueue.main.sync { [weak self] in
+          self?.mainCategories.send(mainCategories)
         }
         
       case .failure(let error):
