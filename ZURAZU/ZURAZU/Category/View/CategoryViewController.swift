@@ -30,7 +30,7 @@ final class CategoryViewController: UIViewController, ViewModelBindableType {
     setupView()
     setupConstraint()
     
-    viewModel?.fetchMainCategories.send()
+    viewModel?.startFetching.send()
   }
   
   func bindViewModel() {

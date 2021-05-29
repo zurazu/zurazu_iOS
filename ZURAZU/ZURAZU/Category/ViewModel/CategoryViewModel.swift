@@ -11,13 +11,13 @@ import Combine
 protocol CategoryViewModelType {
   
   var mainCategories: PassthroughSubject<[MainCategory], Never> { get }
-  var fetchMainCategories: PassthroughSubject<Void, Never> { get }
+  var startFetching: PassthroughSubject<Void, Never> { get }
 }
 
 final class CategoryViewModel: CategoryViewModelType {
   
   var mainCategories: PassthroughSubject<[MainCategory], Never> = .init()
-  var fetchMainCategories: PassthroughSubject<Void, Never> = .init()
+  var startFetching: PassthroughSubject<Void, Never> = .init()
   
   private let sceneCoordinator: SceneCoordinatorType
   private var cancellables: Set<AnyCancellable> = []
@@ -32,13 +32,13 @@ final class CategoryViewModel: CategoryViewModelType {
 private extension CategoryViewModel {
   
   func bind() {
-    fetchMainCategories.sink { [weak self] in
-      self?.requestMainCategories()
+    startFetching.sink { [weak self] in
+      self?.fetchMainCategories()
     }
     .store(in: &cancellables)
   }
   
-  func requestMainCategories() {
+  func fetchMainCategories() {
     // MARK: - Router를 어디서 주입할지 아니면 싱글톤으로 사용할지 논의해야합니다
     let router = Router()
     
