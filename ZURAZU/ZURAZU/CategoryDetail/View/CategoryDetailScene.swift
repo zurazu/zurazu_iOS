@@ -15,6 +15,10 @@ struct CategoryDetailScene: Scene {
   
   private let indexPath: IndexPath
   
+  init(indexPath: IndexPath) {
+    self.indexPath = indexPath
+  }
+  
   func instantiate() -> UIViewController {
     guard var categoryDetailViewController: CategoryDetailViewController = self.viewController(identifier: .categoryDetailVC) as? CategoryDetailViewController
     else { fatalError() }
