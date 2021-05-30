@@ -63,6 +63,7 @@
 		BD9AA972265F9A2F0046EB2F /* MainCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA971265F9A2F0046EB2F /* MainCategory.swift */; };
 		BD9AA974265FA8310046EB2F /* MainCategoryEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA973265FA8310046EB2F /* MainCategoryEndPoint.swift */; };
 		BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA9752660EBAC0046EB2F /* APICredentials.swift */; };
+		BD9AA978266386D10046EB2F /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA977266386D10046EB2F /* Scheduler.swift */; };
 		BDA003952656545300C98928 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003942656545300C98928 /* CategoryDetailViewController.swift */; };
 		BDA0039A2656547F00C98928 /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */; };
 		BDA0039F265654D600C98928 /* CategoryDetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0039E265654D600C98928 /* CategoryDetailScene.swift */; };
@@ -157,6 +158,7 @@
 		BD9AA971265F9A2F0046EB2F /* MainCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategory.swift; sourceTree = "<group>"; };
 		BD9AA973265FA8310046EB2F /* MainCategoryEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryEndPoint.swift; sourceTree = "<group>"; };
 		BD9AA9752660EBAC0046EB2F /* APICredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICredentials.swift; sourceTree = "<group>"; };
+		BD9AA977266386D10046EB2F /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		BDA003942656545300C98928 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		BDA003992656547F00C98928 /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
 		BDA0039E265654D600C98928 /* CategoryDetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailScene.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				BD88BD59264D1B8F0029CCC6 /* NibLoadable.swift */,
 				BD9AA96F265F99990046EB2F /* BaseResponse.swift */,
 				BD9AA9752660EBAC0046EB2F /* APICredentials.swift */,
+				BD9AA977266386D10046EB2F /* Scheduler.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				BD9AA972265F9A2F0046EB2F /* MainCategory.swift in Sources */,
 				BD88BD55264D1B6E0029CCC6 /* Reusable.swift in Sources */,
 				BD88BCD6264AAF2B0029CCC6 /* OptionButton.swift in Sources */,
+				BD9AA978266386D10046EB2F /* Scheduler.swift in Sources */,
 				BD88BC2526452C680029CCC6 /* MainViewController.swift in Sources */,
 				BD88BCD1264AA6A90029CCC6 /* OptionStackView.swift in Sources */,
 				BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */,
