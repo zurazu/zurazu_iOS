@@ -12,12 +12,14 @@ protocol CategoryViewModelType {
   
   var mainCategories: PassthroughSubject<[MainCategory], Never> { get }
   var startFetching: PassthroughSubject<Void, Never> { get }
+  var coordinateSubCategory: PassthroughSubject<IndexPath, Never> { get }
 }
 
 final class CategoryViewModel: CategoryViewModelType {
   
   var mainCategories: PassthroughSubject<[MainCategory], Never> = .init()
   var startFetching: PassthroughSubject<Void, Never> = .init()
+  var coordinateSubCategory: PassthroughSubject<IndexPath, Never> = .init()
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -33,6 +35,13 @@ private extension CategoryViewModel {
       self?.fetchMainCategories()
     }
     .store(in: &cancellables)
+
+    coordinateSubCategory
+      .receive(on: Scheduler.mainScheduler)
+      .sink {
+      SceneCoordinator.shared.transition(scene: CategoryDetailScene(indexPath: $0), using: .push, animated: true)
+    }
+    .store(in: &cancellables)
   }
   
   func fetchMainCategories() {
@@ -42,7 +51,6 @@ private extension CategoryViewModel {
     let testPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = router.request(route: MainCategoryEndPoint.requestMainCategories)
     
     testPublisher
-      .subscribe(on: Scheduler.backgroundWorkScheduler)
       .receive(on: Scheduler.mainScheduler)
       .sink { [weak self] result in
       switch result {
