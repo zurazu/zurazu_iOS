@@ -13,11 +13,13 @@ struct CategoryDetailScene: Scene {
     return "CategoryDetail"
   }
   
+  private let indexPath: IndexPath
+  
   func instantiate() -> UIViewController {
     guard var categoryDetailViewController: CategoryDetailViewController = self.viewController(identifier: .categoryDetailVC) as? CategoryDetailViewController
     else { fatalError() }
     
-    let viewModel: CategoryDetailViewModel = .init()
+    let viewModel: CategoryDetailViewModel = .init(indexPath: indexPath)
     
     categoryDetailViewController.bind(viewModel: viewModel)
     
