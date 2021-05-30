@@ -35,7 +35,8 @@ final class CategoryViewController: UIViewController, ViewModelBindableType {
   
   func bindViewModel() {
     viewModel?.mainCategories
-      .receive(on: DispatchQueue.main)
+      .subscribe(on: Scheduler.backgroundWorkScheduler)
+      .receive(on: Scheduler.mainScheduler)
       .bind(subscriber: tableView.rowsSubscriber(cellIdentifier: "CategoryTableViewCell", cellType: CategoryTableViewCell.self, cellConfig: { cell, _, model in
       cell.updateCell(with: model)
     }))

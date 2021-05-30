@@ -41,15 +41,15 @@ private extension CategoryViewModel {
     
     let testPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = router.request(route: MainCategoryEndPoint.requestMainCategories)
     
-    testPublisher.sink { result in
+    testPublisher
+      .subscribe(on: Scheduler.backgroundWorkScheduler)
+      .receive(on: Scheduler.mainScheduler)
+      .sink { [weak self] result in
       switch result {
       case .success(let responseResult):
         guard let mainCategories = responseResult.list else { return }
-        // MARK: - main큐에서 진행할지 커스텀 큐 사용할지 알아보고 수정할 것.
-        DispatchQueue.main.sync { [weak self] in
-          self?.mainCategories.send(mainCategories)
-        }
         
+        self?.mainCategories.send(mainCategories)
       case .failure(let error):
         print(error.localizedDescription)
       }
