@@ -13,17 +13,17 @@ struct SubCategoryScene: Scene {
     return "SubCategory"
   }
   
-  private let indexPath: IndexPath
+  private let mainCategory: MainCategory
   
-  init(indexPath: IndexPath) {
-    self.indexPath = indexPath
+  init(mainCategory: MainCategory) {
+    self.mainCategory = mainCategory
   }
   
   func instantiate() -> UIViewController {
     guard var subCategoryViewController: SubCategoryViewController = self.viewController(identifier: .subCategoryVC) as? SubCategoryViewController
     else { fatalError() }
     
-    let viewModel: SubCategoryViewModel = .init(indexPath: indexPath)
+    let viewModel: SubCategoryViewModel = .init(mainCategory: mainCategory)
     
     subCategoryViewController.bind(viewModel: viewModel)
     

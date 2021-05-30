@@ -10,14 +10,14 @@ import Combine
 
 protocol CategoryViewModelType {
   
-  var mainCategories: PassthroughSubject<[MainCategory], Never> { get }
+  var mainCategories: CurrentValueSubject<[MainCategory], Never> { get }
   var startFetching: PassthroughSubject<Void, Never> { get }
   var coordinateSubCategory: PassthroughSubject<IndexPath, Never> { get }
 }
 
 final class CategoryViewModel: CategoryViewModelType {
   
-  var mainCategories: PassthroughSubject<[MainCategory], Never> = .init()
+  var mainCategories: CurrentValueSubject<[MainCategory], Never> = .init([])
   var startFetching: PassthroughSubject<Void, Never> = .init()
   var coordinateSubCategory: PassthroughSubject<IndexPath, Never> = .init()
   
@@ -35,13 +35,21 @@ private extension CategoryViewModel {
       self?.fetchMainCategories()
     }
     .store(in: &cancellables)
-
+    
     coordinateSubCategory
       .receive(on: Scheduler.mainScheduler)
-      .sink {
-      SceneCoordinator.shared.transition(scene: SubCategoryScene(indexPath: $0), using: .push, animated: true)
-    }
-    .store(in: &cancellables)
+      .sink { [weak self] index in
+        guard let selectedCategory = self?.mainCategories.value.first(where: {
+          $0.idx == index.row.advanced(by: 1)
+        }) else { return }
+        
+        SceneCoordinator.shared.transition(
+          scene: SubCategoryScene(mainCategory: selectedCategory),
+          using: .push,
+          animated: true
+        )
+      }
+      .store(in: &cancellables)
   }
   
   func fetchMainCategories() {
@@ -53,14 +61,14 @@ private extension CategoryViewModel {
     testPublisher
       .receive(on: Scheduler.mainScheduler)
       .sink { [weak self] result in
-      switch result {
-      case .success(let responseResult):
-        guard let mainCategories = responseResult.list else { return }
-        
-        self?.mainCategories.send(mainCategories)
-      case .failure(let error):
-        print(error.localizedDescription)
-      }
-    }.store(in: &cancellables)
+        switch result {
+        case .success(let responseResult):
+          guard let mainCategories = responseResult.list else { return }
+          
+          self?.mainCategories.send(mainCategories)
+        case .failure(let error):
+          print(error.localizedDescription)
+        }
+      }.store(in: &cancellables)
   }
 }
