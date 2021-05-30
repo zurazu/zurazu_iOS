@@ -54,16 +54,16 @@ private extension CategoryViewModel {
   
   func fetchMainCategories() {
     // MARK: - Router를 어디서 주입할지 아니면 싱글톤으로 사용할지 논의해야합니다
-    let router = NetworkProvider()
+    let networkProvider: NetworkProvider = .init()
     
-    let testPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = router.request(route: MainCategoryEndPoint.requestMainCategories)
+    let mainCategoryPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = networkProvider.request(route: MainCategoryEndPoint.requestMainCategories)
     
-    testPublisher
+    mainCategoryPublisher
       .receive(on: Scheduler.mainScheduler)
       .sink { [weak self] result in
         switch result {
         case .success(let responseResult):
-          guard let mainCategories = responseResult.list else { return }
+          guard let mainCategories: [MainCategory] = responseResult.list else { return }
           
           self?.mainCategories.send(mainCategories)
         case .failure(let error):

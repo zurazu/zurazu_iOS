@@ -48,18 +48,18 @@ final class SubCategoryViewModel: SubCategoryViewModelType {
 private extension SubCategoryViewModel {
   
   func fetchSubCategories() {
-    let network = NetworkProvider()
+    let networkProvider: NetworkProvider = .init()
     
-    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<SubCategory>, NetworkError>, Never> = network.request(route: SubCategoryEndPoint.subCategories(mainIndex: mainCategory.idx))
+    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<SubCategory>, NetworkError>, Never> = networkProvider.request(route: SubCategoryEndPoint.subCategories(mainIndex: mainCategory.idx))
     
     subCategoryPublisher
       .receive(on: Scheduler.mainScheduler)
       .sink { [weak self] result in
         switch result {
         case .success(let responseResult):
-          guard let list = responseResult.list else { return }
+          guard let subCategories: [SubCategory] = responseResult.list else { return }
           
-          self?.subCategories.send(list)
+          self?.subCategories.send(subCategories)
         case .failure(let error):
           print(error.localizedDescription)
         }

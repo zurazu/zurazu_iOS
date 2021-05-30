@@ -37,6 +37,7 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
     viewModel?.subCategories
       .receive(on: Scheduler.mainScheduler)
       .sink(receiveValue: { subCategories in
+        // MARK: - 수정 필요
         print(subCategories)
       })
       .store(in: &cancellables)
@@ -52,7 +53,7 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
 private extension SubCategoryViewController {
   
   func setupView() {
-    let leftButtonItem = UIBarButtonItem(customView: backButton)
+    let leftButtonItem: UIBarButtonItem = .init(customView: backButton)
     navigationItem.leftBarButtonItem = leftButtonItem
   }
   
