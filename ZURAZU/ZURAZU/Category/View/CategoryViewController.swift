@@ -29,17 +29,23 @@ final class CategoryViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
-    
-    viewModel?.startFetching.send()
   }
   
   func bindViewModel() {
     viewModel?.mainCategories
-      .receive(on: DispatchQueue.main)
+      .receive(on: Scheduler.main)
       .bind(subscriber: tableView.rowsSubscriber(cellIdentifier: "CategoryTableViewCell", cellType: CategoryTableViewCell.self, cellConfig: { cell, _, model in
       cell.updateCell(with: model)
     }))
     .store(in: &cancellables)
+    
+    tableView.didSelectRowPublisher
+      .sink { [weak self] in
+        self?.viewModel?.coordinateSubCategory.send($0)
+      }
+      .store(in: &cancellables)
+    
+    viewModel?.startFetching.send()
   }
 }
 

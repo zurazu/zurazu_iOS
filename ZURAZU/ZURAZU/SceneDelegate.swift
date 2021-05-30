@@ -18,7 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let window: UIWindow = window else { return }
     
     SceneCoordinator.shared.setup(with: window)
-    SceneCoordinator.shared.transition(scene: MainTabBarScene(), using: .root, animated: false)
+    SceneCoordinator.shared.transition(
+      scene: MainTabBarScene(),
+      using: .root,
+      animated: false
+    )
     SceneCoordinator.shared.tabTransition()
     window.makeKeyAndVisible()
   }

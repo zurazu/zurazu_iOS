@@ -10,14 +10,16 @@ import Combine
 
 protocol CategoryViewModelType {
   
-  var mainCategories: PassthroughSubject<[MainCategory], Never> { get }
+  var mainCategories: CurrentValueSubject<[MainCategory], Never> { get }
   var startFetching: PassthroughSubject<Void, Never> { get }
+  var coordinateSubCategory: PassthroughSubject<IndexPath, Never> { get }
 }
 
 final class CategoryViewModel: CategoryViewModelType {
   
-  var mainCategories: PassthroughSubject<[MainCategory], Never> = .init()
+  var mainCategories: CurrentValueSubject<[MainCategory], Never> = .init([])
   var startFetching: PassthroughSubject<Void, Never> = .init()
+  var coordinateSubCategory: PassthroughSubject<IndexPath, Never> = .init()
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -33,26 +35,40 @@ private extension CategoryViewModel {
       self?.fetchMainCategories()
     }
     .store(in: &cancellables)
+    
+    coordinateSubCategory
+      .receive(on: Scheduler.main)
+      .sink { [weak self] index in
+        guard let selectedCategory = self?.mainCategories.value.first(where: {
+          $0.idx == index.row.advanced(by: 1)
+        }) else { return }
+        
+        SceneCoordinator.shared.transition(
+          scene: SubCategoryScene(mainCategory: selectedCategory),
+          using: .push,
+          animated: true
+        )
+      }
+      .store(in: &cancellables)
   }
   
   func fetchMainCategories() {
     // MARK: - Router를 어디서 주입할지 아니면 싱글톤으로 사용할지 논의해야합니다
-    let router = NetworkProvider()
+    let networkProvider: NetworkProvider = .init()
     
-    let testPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = router.request(route: MainCategoryEndPoint.requestMainCategories)
+    let mainCategoryPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = networkProvider.request(route: MainCategoryEndPoint.requestMainCategories)
     
-    testPublisher.sink { result in
-      switch result {
-      case .success(let responseResult):
-        guard let mainCategories = responseResult.list else { return }
-        // MARK: - main큐에서 진행할지 커스텀 큐 사용할지 알아보고 수정할 것.
-        DispatchQueue.main.sync { [weak self] in
+    mainCategoryPublisher
+      .receive(on: Scheduler.main)
+      .sink { [weak self] result in
+        switch result {
+        case .success(let responseResult):
+          guard let mainCategories: [MainCategory] = responseResult.list else { return }
+          
           self?.mainCategories.send(mainCategories)
+        case .failure(let error):
+          print(error.localizedDescription)
         }
-        
-      case .failure(let error):
-        print(error.localizedDescription)
-      }
-    }.store(in: &cancellables)
+      }.store(in: &cancellables)
   }
 }

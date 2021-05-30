@@ -36,12 +36,13 @@ extension NetworkProvidable {
   
   func setupRequest(from route: EndPointable) -> URLRequest? {
     var urlComponent: URLComponents = route.baseURL
-    guard let url: URL = urlComponent.url else { return nil }
-    var request: URLRequest = .init(url: url)
     
     if let query: HTTPQuery = route.query {
       urlComponent.queryItems = queryItems(from: query)
     }
+    
+    guard let url: URL = urlComponent.url else { return nil }
+    var request: URLRequest = .init(url: url)
     
     if let body: HTTPBody = route.bodies,
        let jsonString: String = jsonString(to: body) {
