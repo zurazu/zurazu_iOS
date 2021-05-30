@@ -17,15 +17,15 @@ protocol SubCategoryViewModelType {
 
 final class SubCategoryViewModel: SubCategoryViewModelType {
   
-  private let indexPath: IndexPath
+  private let mainCategory: MainCategory
   private var cancellables: Set<AnyCancellable> = []
   
   var subCategories: PassthroughSubject<[SubCategory], Never> = .init()
   var startFetching: PassthroughSubject<Void, Never> = .init()
   var close: PassthroughSubject<Void, Never> = .init()
   
-  init(indexPath: IndexPath) {
-    self.indexPath = indexPath
+  init(mainCategory: MainCategory) {
+    self.mainCategory = mainCategory
     
     bind()
   }
@@ -50,7 +50,7 @@ private extension SubCategoryViewModel {
   func fetchSubCategories() {
     let network = NetworkProvider()
     
-    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<SubCategory>, NetworkError>, Never> = network.request(route: SubCategoryEndPoint.subCategories(mainIndex: indexPath.row))
+    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<SubCategory>, NetworkError>, Never> = network.request(route: SubCategoryEndPoint.subCategories(mainIndex: mainCategory.idx))
     
     subCategoryPublisher
       .receive(on: Scheduler.mainScheduler)

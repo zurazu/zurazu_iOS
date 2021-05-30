@@ -26,6 +26,7 @@ struct SubCategoryScene: Scene {
     let viewModel: SubCategoryViewModel = .init(mainCategory: mainCategory)
     
     subCategoryViewController.bind(viewModel: viewModel)
+    subCategoryViewController.title = mainCategory.korean
     
     return subCategoryViewController
   }

@@ -29,6 +29,8 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
+    
+    self.viewModel?.startFetching.send()
   }
   
   func bindViewModel() {
@@ -38,21 +40,12 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
         print(subCategories)
       })
       .store(in: &cancellables)
-    
+
     backButton.tapPublisher
       .sink { [weak self] in
         self?.viewModel?.close.send()
       }
       .store(in: &cancellables)
-    
-    // MARK: - Test Code입니다. 추후 삭제 예정입니다.
-    navigationItem.leftBarButtonItem?.tapPublisher
-      .sink {
-        
-      }
-      .store(in: &cancellables)
-
-    self.viewModel?.startFetching.send()
   }
 }
 
