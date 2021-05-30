@@ -10,7 +10,7 @@ import Foundation
 
 final class Scheduler {
   
-  static var backgroundWorkScheduler: OperationQueue = {
+  static var background: OperationQueue = {
     let operationQueue = OperationQueue()
     operationQueue.maxConcurrentOperationCount = 5
     operationQueue.qualityOfService = QualityOfService.userInitiated
@@ -18,5 +18,5 @@ final class Scheduler {
     return operationQueue
   }()
   
-  static let mainScheduler = DispatchQueue.main
+  static let main = DispatchQueue.main
 }

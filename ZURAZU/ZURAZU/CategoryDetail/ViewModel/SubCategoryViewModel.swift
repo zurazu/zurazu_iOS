@@ -53,7 +53,7 @@ private extension SubCategoryViewModel {
     let subCategoryPublisher: AnyPublisher<Result<BaseResponse<SubCategory>, NetworkError>, Never> = networkProvider.request(route: SubCategoryEndPoint.subCategories(mainIndex: mainCategory.idx))
     
     subCategoryPublisher
-      .receive(on: Scheduler.mainScheduler)
+      .receive(on: Scheduler.main)
       .sink { [weak self] result in
         switch result {
         case .success(let responseResult):

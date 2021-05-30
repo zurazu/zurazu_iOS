@@ -35,7 +35,7 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
   
   func bindViewModel() {
     viewModel?.subCategories
-      .receive(on: Scheduler.mainScheduler)
+      .receive(on: Scheduler.main)
       .sink(receiveValue: { subCategories in
         // MARK: - 수정 필요
         print(subCategories)

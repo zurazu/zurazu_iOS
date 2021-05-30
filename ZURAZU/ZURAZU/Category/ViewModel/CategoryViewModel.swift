@@ -37,7 +37,7 @@ private extension CategoryViewModel {
     .store(in: &cancellables)
     
     coordinateSubCategory
-      .receive(on: Scheduler.mainScheduler)
+      .receive(on: Scheduler.main)
       .sink { [weak self] index in
         guard let selectedCategory = self?.mainCategories.value.first(where: {
           $0.idx == index.row.advanced(by: 1)
@@ -59,7 +59,7 @@ private extension CategoryViewModel {
     let mainCategoryPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = networkProvider.request(route: MainCategoryEndPoint.requestMainCategories)
     
     mainCategoryPublisher
-      .receive(on: Scheduler.mainScheduler)
+      .receive(on: Scheduler.main)
       .sink { [weak self] result in
         switch result {
         case .success(let responseResult):

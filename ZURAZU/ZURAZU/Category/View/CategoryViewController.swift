@@ -33,7 +33,7 @@ final class CategoryViewController: UIViewController, ViewModelBindableType {
   
   func bindViewModel() {
     viewModel?.mainCategories
-      .receive(on: Scheduler.mainScheduler)
+      .receive(on: Scheduler.main)
       .bind(subscriber: tableView.rowsSubscriber(cellIdentifier: "CategoryTableViewCell", cellType: CategoryTableViewCell.self, cellConfig: { cell, _, model in
       cell.updateCell(with: model)
     }))
