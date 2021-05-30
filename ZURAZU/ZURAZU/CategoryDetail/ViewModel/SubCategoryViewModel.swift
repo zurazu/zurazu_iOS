@@ -1,5 +1,5 @@
 //
-//  CategoryDetailViewModel.swift
+//  SubCategoryViewModel.swift
 //  ZURAZU
 //
 //  Created by 서명렬 on 2021/05/20.
@@ -8,14 +8,14 @@
 import Foundation
 import Combine
 
-protocol CategoryDetailViewModelType {
+protocol SubCategoryViewModelType {
   
   var subCategories: PassthroughSubject<[SubCategory], Never> { get }
   var startFetching: PassthroughSubject<Void, Never> { get }
   var close: PassthroughSubject<Void, Never> { get }
 }
 
-final class CategoryDetailViewModel: CategoryDetailViewModelType {
+final class SubCategoryViewModel: SubCategoryViewModelType {
   
   private let indexPath: IndexPath
   private var cancellables: Set<AnyCancellable> = []
@@ -45,12 +45,12 @@ final class CategoryDetailViewModel: CategoryDetailViewModelType {
   }
 }
 
-private extension CategoryDetailViewModel {
+private extension SubCategoryViewModel {
   
   func fetchSubCategories() {
     let network = NetworkProvider()
     
-    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<SubCategory>, NetworkError>, Never> = network.request(route: CategoryDetailEndPoint.subCategories(mainIndex: indexPath.row))
+    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<SubCategory>, NetworkError>, Never> = network.request(route: SubCategoryEndPoint.subCategories(mainIndex: indexPath.row))
     
     subCategoryPublisher
       .receive(on: Scheduler.mainScheduler)

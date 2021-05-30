@@ -1,5 +1,5 @@
 //
-//  CategoryDetailEndPoint.swift
+//  SubCategoryEndPoint.swift
 //  ZURAZU
 //
 //  Created by 서명렬 on 2021/05/30.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum CategoryDetailEndPoint {
+enum SubCategoryEndPoint {
   
   case subCategories(mainIndex: Int)
 }
 
-extension CategoryDetailEndPoint: EndPointable {
+extension SubCategoryEndPoint: EndPointable {
   var environmentBaseURL: String {
     return APICredentials.baseURL.rawValue
   }

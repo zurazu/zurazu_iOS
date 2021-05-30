@@ -39,7 +39,7 @@ private extension CategoryViewModel {
     coordinateSubCategory
       .receive(on: Scheduler.mainScheduler)
       .sink {
-      SceneCoordinator.shared.transition(scene: CategoryDetailScene(indexPath: $0), using: .push, animated: true)
+      SceneCoordinator.shared.transition(scene: SubCategoryScene(indexPath: $0), using: .push, animated: true)
     }
     .store(in: &cancellables)
   }

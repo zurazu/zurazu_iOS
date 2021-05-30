@@ -1,5 +1,5 @@
 //
-//  CategoryDetailViewController.swift
+//  SubCategoryViewController.swift
 //  ZURAZU
 //
 //  Created by 서명렬 on 2021/05/20.
@@ -10,9 +10,9 @@ import Combine
 import CombineCocoa
 import CombineDataSources
 
-final class CategoryDetailViewController: UIViewController, ViewModelBindableType {
+final class SubCategoryViewController: UIViewController, ViewModelBindableType {
   
-  var viewModel: CategoryDetailViewModelType?
+  var viewModel: SubCategoryViewModelType?
   
   private lazy var backButton: UIButton = {
     let button = UIButton(frame: .zero)
@@ -56,7 +56,7 @@ final class CategoryDetailViewController: UIViewController, ViewModelBindableTyp
   }
 }
 
-private extension CategoryDetailViewController {
+private extension SubCategoryViewController {
   
   func setupView() {
     let leftButtonItem = UIBarButtonItem(customView: backButton)
