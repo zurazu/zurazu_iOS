@@ -259,7 +259,7 @@
 				BD88BB502643ABE30029CCC6 /* Info.plist */,
 				BD88BC2326452C430029CCC6 /* Main */,
 				BD88BD2F264D12D70029CCC6 /* Category */,
-				BDA003902656540100C98928 /* CategoryDetail */,
+				BDA003902656540100C98928 /* SubCategory */,
 				BD9AA963265E443A0046EB2F /* ItemDetail */,
 				BD88BC94264A83B00029CCC6 /* SignIn */,
 				BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */,
@@ -507,14 +507,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		BDA003902656540100C98928 /* CategoryDetail */ = {
+		BDA003902656540100C98928 /* SubCategory */ = {
 			isa = PBXGroup;
 			children = (
 				BDA003932656543800C98928 /* Model */,
 				BDA003922656543300C98928 /* View */,
 				BDA003912656542C00C98928 /* ViewModel */,
 			);
-			path = CategoryDetail;
+			path = SubCategory;
 			sourceTree = "<group>";
 		};
 		BDA003912656542C00C98928 /* ViewModel */ = {
