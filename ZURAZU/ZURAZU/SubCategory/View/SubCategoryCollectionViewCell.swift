@@ -35,7 +35,7 @@ final class SubCategoryCollectionViewCell: UICollectionViewCell, Reusable {
     categoryLabel.attributedText = attributedString
   }
   
-  func selected() {
+  func updateToSelected() {
     let attributedString: NSAttributedString = .init(string: categoryLabelText, attributes: [
       .foregroundColor : UIColor.bluePrimary,
       .font            : UIFont.secondaryBold
@@ -43,12 +43,20 @@ final class SubCategoryCollectionViewCell: UICollectionViewCell, Reusable {
     categoryLabel.attributedText = attributedString
   }
   
-  func deselected() {    
+  func updateToDeselected() {    
     let attributedString: NSAttributedString = .init(string: categoryLabelText, attributes: [
       .foregroundColor : UIColor.monoTertiary,
       .font            : UIFont.secondary
     ])
     categoryLabel.attributedText = attributedString
+  }
+  
+  func animateToSelected() {
+    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: .repeat) { [weak self] in
+      self?.categoryLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+    } completion: { [weak self] _ in
+      self?.categoryLabel.transform = .identity
+    }
   }
 }
 

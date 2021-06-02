@@ -40,16 +40,20 @@ final class SubCategoryCollectionView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func selectCell(at indexPath: IndexPath) {
+  
+  
+  func selectedCell(at indexPath: IndexPath) {
     guard let cell = cellForItem(at: indexPath) as? SubCategoryCollectionViewCell else { return }
     
-    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: .curveEaseInOut) { [weak self] in
-      self?.deselectedAllCells()
-      cell.selected()
-      self?.selectedLineWidthConstraint.constant = cell.frame.width
-      self?.selectedLineLeadingConstraint.constant = cell.frame.origin.x
-      self?.layoutIfNeeded()
-    }
+    self.deselectedAllCells()
+    cell.updateToSelected()
+    moveSelectedLine(at: indexPath)
+  }
+  
+  func animateSelectedCell(at indexPath: IndexPath) {
+    guard let cell = cellForItem(at: indexPath) as? SubCategoryCollectionViewCell else { return }
+    
+    cell.animateToSelected()
   }
 }
 
@@ -90,7 +94,17 @@ private extension SubCategoryCollectionView {
     visibleCells.forEach {
       guard let cell: SubCategoryCollectionViewCell = $0 as? SubCategoryCollectionViewCell else { return }
       
-      cell.deselected()
+      cell.updateToDeselected()
+    }
+  }
+  
+  func moveSelectedLine(at indexPath: IndexPath) {
+    guard let cell = cellForItem(at: indexPath) as? SubCategoryCollectionViewCell else { return }
+    
+    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: .curveEaseInOut) { [weak self] in
+      self?.selectedLineWidthConstraint.constant = cell.frame.width
+      self?.selectedLineLeadingConstraint.constant = cell.frame.origin.x
+      self?.layoutIfNeeded()
     }
   }
 }

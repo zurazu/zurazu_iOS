@@ -56,7 +56,7 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
     
     viewModel?.selectedCategoryIndex
       .sink { [weak self] in
-        self?.categoryCollectionView.selectCell(at: $0)
+        self?.categoryCollectionView.selectedCell(at: $0)
       }
       .store(in: &cancellables)
     
@@ -67,11 +67,9 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
       .store(in: &cancellables)
     
     categoryCollectionView.didSelectItemPublisher
-      .filter {
-        self.viewModel?.selectedCategoryIndex.value != $0
-      }
       .receive(on: Scheduler.main)
       .sink { [weak self] in
+        self?.categoryCollectionView.animateSelectedCell(at: $0)
         self?.viewModel?.selectedCategoryIndex.send($0)
       }
       .store(in: &cancellables)
