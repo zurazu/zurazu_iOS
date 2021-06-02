@@ -67,6 +67,9 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
       .store(in: &cancellables)
     
     categoryCollectionView.didSelectItemPublisher
+      .filter {
+        self.viewModel?.selectedCategoryIndex.value != $0
+      }
       .receive(on: Scheduler.main)
       .sink { [weak self] in
         self?.viewModel?.selectedCategoryIndex.send($0)
