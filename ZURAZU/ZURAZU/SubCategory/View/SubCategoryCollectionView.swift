@@ -47,7 +47,7 @@ final class SubCategoryCollectionView: UICollectionView {
     
     self.deselectedAllCells()
     cell.updateToSelected()
-    moveSelectedLine(at: indexPath)
+    moveSelectedLine(to: indexPath)
   }
   
   func animateSelectedCell(at indexPath: IndexPath) {
@@ -98,7 +98,7 @@ private extension SubCategoryCollectionView {
     }
   }
   
-  func moveSelectedLine(at indexPath: IndexPath) {
+  func moveSelectedLine(to indexPath: IndexPath) {
     guard let cell = cellForItem(at: indexPath) as? SubCategoryCollectionViewCell else { return }
     
     UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: .curveEaseInOut) { [weak self] in
