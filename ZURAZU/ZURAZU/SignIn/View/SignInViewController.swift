@@ -28,6 +28,12 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     setupConstraint()
   }
   
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesEnded(touches, with: event)
+    
+    view.endEditing(true)
+  }
+  
   func bindViewModel() {
     
     viewModel?.isValid
