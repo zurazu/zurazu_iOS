@@ -26,6 +26,12 @@ final class SubCategoryCollectionViewCell: UICollectionViewCell, Reusable {
     fatalError("init(coder:) has not been implemented")
   }
   
+  override var isSelected: Bool {
+    didSet {
+      isSelected ? updateToSelected() : updateToDeselected()
+    }
+  }
+  
   // MARK: - 해당 AttributedString들을 상수화 해야합니다!
   func updateCell(withSubCategory subCategory: SubCategory) {
     let attributedString: NSAttributedString = .init(string: subCategory.korean, attributes: [
@@ -33,30 +39,7 @@ final class SubCategoryCollectionViewCell: UICollectionViewCell, Reusable {
       .font            : UIFont.secondary
     ])
     categoryLabel.attributedText = attributedString
-  }
-  
-  func updateToSelected() {
-    let attributedString: NSAttributedString = .init(string: categoryLabelText, attributes: [
-      .foregroundColor : UIColor.bluePrimary,
-      .font            : UIFont.secondaryBold
-    ])
-    categoryLabel.attributedText = attributedString
-  }
-  
-  func updateToDeselected() {    
-    let attributedString: NSAttributedString = .init(string: categoryLabelText, attributes: [
-      .foregroundColor : UIColor.monoTertiary,
-      .font            : UIFont.secondary
-    ])
-    categoryLabel.attributedText = attributedString
-  }
-  
-  func animateToSelected() {
-    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: .repeat) { [weak self] in
-      self?.categoryLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-    } completion: { [weak self] _ in
-      self?.categoryLabel.transform = .identity
-    }
+    animateToSelected()
   }
 }
 
@@ -78,5 +61,30 @@ private extension SubCategoryCollectionViewCell {
       categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
       categoryLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
     ])
+  }
+  
+  // MARK: - 해당 AttributedString들을 상수화 해야합니다!
+  func updateToSelected() {
+    let attributedString: NSAttributedString = .init(string: categoryLabelText, attributes: [
+      .foregroundColor : UIColor.bluePrimary,
+      .font            : UIFont.secondaryBold
+    ])
+    categoryLabel.attributedText = attributedString
+  }
+  
+  func updateToDeselected() {
+    let attributedString: NSAttributedString = .init(string: categoryLabelText, attributes: [
+      .foregroundColor : UIColor.monoTertiary,
+      .font            : UIFont.secondary
+    ])
+    categoryLabel.attributedText = attributedString
+  }
+  
+  func animateToSelected() {
+    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: .repeat) { [weak self] in
+      self?.categoryLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+    } completion: { [weak self] _ in
+      self?.categoryLabel.transform = .identity
+    }
   }
 }

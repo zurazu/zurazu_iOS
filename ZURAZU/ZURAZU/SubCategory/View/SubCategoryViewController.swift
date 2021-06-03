@@ -56,7 +56,7 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
     
     viewModel?.selectedCategoryIndex
       .sink { [weak self] in
-        self?.categoryCollectionView.selectedCell(at: $0)
+        self?.categoryCollectionView.selectItem(at: $0, animated: true, scrollPosition: .init())
       }
       .store(in: &cancellables)
     
@@ -69,7 +69,6 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
     categoryCollectionView.didSelectItemPublisher
       .receive(on: Scheduler.main)
       .sink { [weak self] in
-        self?.categoryCollectionView.animateSelectedCell(at: $0)
         self?.viewModel?.selectedCategoryIndex.send($0)
       }
       .store(in: &cancellables)

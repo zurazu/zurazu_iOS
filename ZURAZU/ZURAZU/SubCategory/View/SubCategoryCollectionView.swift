@@ -40,20 +40,11 @@ final class SubCategoryCollectionView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  
-  
-  func selectedCell(at indexPath: IndexPath) {
-    guard let cell = cellForItem(at: indexPath) as? SubCategoryCollectionViewCell else { return }
+  override func selectItem(at indexPath: IndexPath?, animated: Bool, scrollPosition: UICollectionView.ScrollPosition) {
+    super.selectItem(at: indexPath, animated: animated, scrollPosition: scrollPosition)
+    guard let indexPath = indexPath else { return }
     
-    self.deselectedAllCells()
-    cell.updateToSelected()
     moveSelectedLine(to: indexPath)
-  }
-  
-  func animateSelectedCell(at indexPath: IndexPath) {
-    guard let cell = cellForItem(at: indexPath) as? SubCategoryCollectionViewCell else { return }
-    
-    cell.animateToSelected()
   }
 }
 
@@ -74,6 +65,7 @@ private extension SubCategoryCollectionView {
     register(SubCategoryCollectionViewCell.self)
     backgroundColor = .white
     contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    allowsMultipleSelection = false
   }
   
   func setupContraint() {
@@ -88,14 +80,6 @@ private extension SubCategoryCollectionView {
       selectedLineWidthConstraint,
       selectedLineLeadingConstraint
     ])
-  }
-  
-  func deselectedAllCells() {
-    visibleCells.forEach {
-      guard let cell: SubCategoryCollectionViewCell = $0 as? SubCategoryCollectionViewCell else { return }
-      
-      cell.updateToDeselected()
-    }
   }
   
   func moveSelectedLine(to indexPath: IndexPath) {
