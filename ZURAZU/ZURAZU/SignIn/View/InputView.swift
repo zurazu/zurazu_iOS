@@ -27,8 +27,8 @@ final class InputView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func showMessage(with isValid: Bool) {
-    isValid ? showValidMessage() : showinvalidMessage()
+  func showingMessage(with isValid: Bool) {
+    isValid ? showingValidMessage() : showingInvalidMessage()
   }
 }
 
@@ -69,12 +69,12 @@ private extension InputView {
     line.backgroundColor = .monoQuaternary
   }
   
-  func showValidMessage() {
+  func showingValidMessage() {
     messageLabel.text = .none
     line.backgroundColor = .monoQuaternary
   }
   
-  func showinvalidMessage() {
+  func showingInvalidMessage() {
     messageLabel.text = inputViewType.invalidMessage
     line.backgroundColor = .redPrimary
   }

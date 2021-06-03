@@ -45,13 +45,13 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     viewModel?.isEmailValid
       .receive(on: Scheduler.main)
       .removeDuplicates()
-      .sink { self.signInInputView.emailInputView.showMessage(with: $0) }
+      .sink { self.signInInputView.emailInputView.showingMessage(with: $0) }
       .store(in: &cancellables)
     
     viewModel?.isPasswordValid
       .receive(on: Scheduler.main)
       .removeDuplicates()
-      .sink { self.signInInputView.passwordInputView.showMessage(with: $0) }
+      .sink { self.signInInputView.passwordInputView.showingMessage(with: $0) }
       .store(in: &cancellables)
     
     signInInputView.emailInputView.textField
