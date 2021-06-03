@@ -73,6 +73,8 @@
 		BDA0039A2656547F00C98928 /* SubCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003992656547F00C98928 /* SubCategoryViewModel.swift */; };
 		BDA0039F265654D600C98928 /* SubCategoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0039E265654D600C98928 /* SubCategoryScene.swift */; };
 		BDA003A42656552E00C98928 /* SubCategory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA003A32656552E00C98928 /* SubCategory.storyboard */; };
+		BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD22668BBE10088BEC4 /* Validator.swift */; };
+		BDA73CD52668BF2B0088BEC4 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD42668BF2B0088BEC4 /* SignInButton.swift */; };
 		BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */; };
 		BDA73CD126677E240088BEC4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD026677E240088BEC4 /* Product.swift */; };
 		BDA7B2C62657A99C00DE2B27 /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA7B2C52657A99C00DE2B27 /* MainTabBarViewModel.swift */; };
@@ -175,6 +177,8 @@
 		BDA003992656547F00C98928 /* SubCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryViewModel.swift; sourceTree = "<group>"; };
 		BDA0039E265654D600C98928 /* SubCategoryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryScene.swift; sourceTree = "<group>"; };
 		BDA003A32656552E00C98928 /* SubCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubCategory.storyboard; sourceTree = "<group>"; };
+		BDA73CD22668BBE10088BEC4 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		BDA73CD42668BF2B0088BEC4 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+First.swift"; sourceTree = "<group>"; };
 		BDA73CD026677E240088BEC4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		BDA7B2C52657A99C00DE2B27 /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 				BD88BCCB264A9CAB0029CCC6 /* SignInInputView.swift */,
 				BD88BCD0264AA6A90029CCC6 /* OptionStackView.swift */,
 				BD88BCD5264AAF2B0029CCC6 /* OptionButton.swift */,
+				BDA73CD42668BF2B0088BEC4 /* SignInButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				BD88BCC6264A94E90029CCC6 /* InputViewType.swift */,
+				BDA73CD22668BBE10088BEC4 /* Validator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -854,6 +860,7 @@
 				BD88BD41264D13840029CCC6 /* CategoryScene.swift in Sources */,
 				BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */,
 				BD9AA96C265E44C20046EB2F /* ItemDetailViewModel.swift in Sources */,
+				BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BD88BD17264D01180029CCC6 /* Array+.swift in Sources */,
 				BD88BD31264D12FD0029CCC6 /* CategoryViewController.swift in Sources */,
@@ -866,6 +873,7 @@
 				BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */,
 				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
 				BD9AA968265E44840046EB2F /* ItemDetailViewController.swift in Sources */,
+				BDA73CD52668BF2B0088BEC4 /* SignInButton.swift in Sources */,
 				BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */,
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,

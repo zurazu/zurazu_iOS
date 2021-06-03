@@ -13,10 +13,12 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
   
   var viewModel: SignInViewModelType?
   
+  private var cancellables: Set<AnyCancellable> = []
+  
   private let closeButton: UIButton = .init(frame: .zero)
   private let logoImageView: UIImageView = .init(frame: .zero)
   private let signInInputView: SignInInputView = .init(frame: .zero)
-  private let signInButton: UIButton = .init(frame: .zero)
+  private let signInButton: SignInButton = .init(frame: .zero)
   private let optionStackView: OptionStackView = .init(frame: .zero)
   
   override func viewDidLoad() {
@@ -26,8 +28,63 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     setupConstraint()
   }
   
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesEnded(touches, with: event)
+    
+    view.endEditing(true)
+  }
+  
   func bindViewModel() {
     
+    viewModel?.isValid
+      .receive(on: Scheduler.main)
+      .removeDuplicates()
+      .assign(to: \.isEnabled, on: signInButton)
+      .store(in: &cancellables)
+    
+    viewModel?.isEmailValid
+      .receive(on: Scheduler.main)
+      .removeDuplicates()
+      .sink { self.signInInputView.emailInputView.showMessage(with: $0) }
+      .store(in: &cancellables)
+    
+    viewModel?.isPasswordValid
+      .receive(on: Scheduler.main)
+      .removeDuplicates()
+      .sink { self.signInInputView.passwordInputView.showMessage(with: $0) }
+      .store(in: &cancellables)
+    
+    signInInputView.emailInputView.textField
+      .returnPublisher
+      .sink {
+        self.signInInputView.passwordInputView.textField.becomeFirstResponder()
+      }
+      .store(in: &cancellables)
+    
+    signInInputView.emailInputView.textField
+      .returnPublisher
+      .sink {
+        self.signInInputView.emailInputView.textField.endEditing(true)
+      }
+      .store(in: &cancellables)
+    
+    signInInputView.emailInputView.textField
+      .textPublisher
+      .compactMap { $0 }
+      .filter { !$0.isEmpty }
+      .sink { [weak self] in
+        self?.viewModel?.email.send($0)
+      }
+      .store(in: &cancellables)
+    
+    signInInputView.passwordInputView.textField
+      .textPublisher
+      .compactMap { $0 }
+      .filter { !$0.isEmpty }
+      .sink { [weak self] in
+        self?.viewModel?.password.send($0)
+      }
+      .store(in: &cancellables)
   }
 }
 
@@ -73,10 +130,5 @@ private extension SignInViewController {
     closeButton.tintColor = .black
     
     logoImageView.image = #imageLiteral(resourceName: "zurazuLogoImage")
-    
-    signInButton.backgroundColor = .bluePrimary
-    signInButton.titleLabel?.font = .primaryBold
-    signInButton.setTitle("로그인", for: .normal)
-    signInButton.setTitleColor(.background, for: .normal)
   }
 }

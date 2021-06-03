@@ -9,7 +9,7 @@ import UIKit
 
 final class InputView: UIView {
   
-  private let textField: UITextField = .init(frame: .zero)
+  let textField: UITextField = .init(frame: .zero)
   private let line: UIView = .init(frame: .zero)
   private let messageLabel: UILabel = .init(frame: .zero)
   
@@ -25,6 +25,10 @@ final class InputView: UIView {
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  func showMessage(with isValid: Bool) {
+    isValid ? showValidMessage() : showInvalidMessage()
   }
 }
 
@@ -63,5 +67,15 @@ private extension InputView {
     messageLabel.font = .systemFont(ofSize: 12)
     
     line.backgroundColor = .monoQuaternary
+  }
+  
+  func showValidMessage() {
+    messageLabel.text = .none
+    line.backgroundColor = .monoQuaternary
+  }
+  
+  func showInvalidMessage() {
+    messageLabel.text = inputViewType.invalidMessage
+    line.backgroundColor = .redPrimary
   }
 }
