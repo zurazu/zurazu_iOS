@@ -12,4 +12,5 @@ enum APICredentials: String {
   case baseURL = "http://api.zurazu.com"
   case mainCategories = "/mainCategories"
   case subCategories = "/subCategories"
+  case categoryProducts = "/product"
 }
