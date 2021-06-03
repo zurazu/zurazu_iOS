@@ -49,6 +49,20 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
       .store(in: &cancellables)
     
     signInInputView.emailInputView.textField
+      .returnPublisher
+      .sink {
+        self.signInInputView.passwordInputView.textField.becomeFirstResponder()
+      }
+      .store(in: &cancellables)
+    
+    signInInputView.emailInputView.textField
+      .returnPublisher
+      .sink {
+        self.signInInputView.emailInputView.textField.endEditing(true)
+      }
+      .store(in: &cancellables)
+    
+    signInInputView.emailInputView.textField
       .textPublisher
       .compactMap { $0 }
       .filter { !$0.isEmpty }

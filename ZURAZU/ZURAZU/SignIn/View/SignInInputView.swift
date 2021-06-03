@@ -55,5 +55,7 @@ private extension SignInInputView {
     signInLable.text = "로그인"
     signInLable.font = .systemFont(ofSize: 15)
     signInLable.textColor = .monoPrimary
+    
+    emailInputView.textField.becomeFirstResponder()
   }
 }
