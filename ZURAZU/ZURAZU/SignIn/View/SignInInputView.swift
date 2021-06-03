@@ -57,5 +57,6 @@ private extension SignInInputView {
     signInLable.textColor = .monoPrimary
     
     emailInputView.textField.becomeFirstResponder()
+    passwordInputView.textField.isSecureTextEntry = true
   }
 }
