@@ -14,11 +14,11 @@ struct Products: Decodable, Hashable {
 struct Product: Decodable, Hashable {
   
   let brand: String
-  let image: Image
+  let image: ProductImage
   let name: String
   let productIdx: Int
   
-  struct Image: Decodable, Hashable {
+  struct ProductImage: Decodable, Hashable {
     
     let createDate: String
     let idx: Int
