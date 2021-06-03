@@ -15,4 +15,6 @@ enum SceneIdentifier: String {
   case categoryNavC = "CategoryNavigationController"
   case categoryDetailVC = "CategoryDetailViewController"
   case salesApplicationVC = "SalesApplicationViewController"
+  case subCategoryVC = "SubCategoryViewController"
+  case ItemDetailVC = "ItemDetailViewController"
 }

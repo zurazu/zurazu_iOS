@@ -17,12 +17,12 @@ enum NetworkError: Error {
        unknown
 }
 
-protocol Routable {
+protocol NetworkProvidable {
   
   func request<T>(route: EndPointable) -> AnyPublisher<Result<T, NetworkError>, Never> where T: Decodable
 }
 
-extension Routable {
+extension NetworkProvidable {
   
   func handleNetworkResponseError(_ response: HTTPURLResponse) -> NetworkError? {
     switch response.statusCode {
@@ -36,12 +36,13 @@ extension Routable {
   
   func setupRequest(from route: EndPointable) -> URLRequest? {
     var urlComponent: URLComponents = route.baseURL
-    guard let url: URL = urlComponent.url else { return nil }
-    var request: URLRequest = .init(url: url)
     
     if let query: HTTPQuery = route.query {
       urlComponent.queryItems = queryItems(from: query)
     }
+    
+    guard let url: URL = urlComponent.url else { return nil }
+    var request: URLRequest = .init(url: url)
     
     if let body: HTTPBody = route.bodies,
        let jsonString: String = jsonString(to: body) {
@@ -57,7 +58,7 @@ extension Routable {
   }
 }
 
-private extension Routable {
+private extension NetworkProvidable {
   
   func queryItems(from query: [String: Any]) -> [URLQueryItem] {
     var queryItems: [URLQueryItem] = .init()

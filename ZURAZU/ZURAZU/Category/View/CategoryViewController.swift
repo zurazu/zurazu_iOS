@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Combine
+import CombineDataSources
 
 final class CategoryViewController: UIViewController, ViewModelBindableType {
   
   var viewModel: CategoryViewModelType?
+  
+  private var cancellables: Set<AnyCancellable> = []
   
   private lazy var tableView: UITableView = {
     let tableView: UITableView = .init()
@@ -25,11 +29,23 @@ final class CategoryViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
-    tableView.dataSource = self
   }
   
   func bindViewModel() {
+    viewModel?.mainCategories
+      .receive(on: Scheduler.main)
+      .bind(subscriber: tableView.rowsSubscriber(cellIdentifier: "CategoryTableViewCell", cellType: CategoryTableViewCell.self, cellConfig: { cell, _, model in
+      cell.updateCell(with: model)
+    }))
+    .store(in: &cancellables)
     
+    tableView.didSelectRowPublisher
+      .sink { [weak self] in
+        self?.viewModel?.coordinateSubCategory.send($0)
+      }
+      .store(in: &cancellables)
+    
+    viewModel?.startFetching.send()
   }
 }
 
@@ -51,23 +67,5 @@ private extension CategoryViewController {
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
-  }
-}
-
-extension CategoryViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let viewModel: CategoryViewModelType = viewModel else { return 0 }
-    
-    return viewModel.categoryTypes.count
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: CategoryTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-    
-    if let viewModel: CategoryViewModelType = viewModel {
-      cell.updateCell(with: viewModel.categoryTypes[indexPath.row])
-    }
-    
-    return cell
   }
 }

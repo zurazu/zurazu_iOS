@@ -6,6 +6,7 @@ target 'ZURAZU' do
   use_frameworks!
   
   pod 'CombineCocoa'
+	pod 'CombineDataSources'
   pod 'SwiftLint'
   # Pods for ZURAZU
   

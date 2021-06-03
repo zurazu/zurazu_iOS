@@ -8,23 +8,43 @@
 import UIKit
 import Combine
 
-protocol SceneCoordinatorType {
+final class SceneCoordinator {
   
-  @discardableResult
-  func transition(scene: Scene, using style: TransitionStyle, animated: Bool) -> AnyPublisher<Void, TransitionError>
+  static let shared: SceneCoordinator = .init()
   
-  @discardableResult
-  func close(animated: Bool) -> AnyPublisher<Void, TransitionError>
-}
-
-final class SceneCoordinator: SceneCoordinatorType {
-  
-  private var window: UIWindow
+  private var window: UIWindow?
   private var currentViewController: UIViewController?
   
-  required init(window: UIWindow) {
+  private init() { }
+  
+  func setup(with window: UIWindow) {
     self.window = window
-    self.currentViewController = window.rootViewController
+  }
+  
+  @discardableResult
+  func tabTransition() -> AnyPublisher<Void, TransitionError> {
+    return Future { [weak self] promise in
+      // MARK: - 로직 수정 필요함 ㅠㅠ
+      guard
+        let tabBarController: UITabBarController = self?.window?.rootViewController as? UITabBarController,
+        let tabBarItems: [UIViewController] = tabBarController.viewControllers
+      else {
+        promise(.failure(TransitionError.unknown))
+        return
+      }
+      
+      let viewController: UIViewController = tabBarItems[tabBarController.selectedIndex]
+      
+      guard let navigationController: UINavigationController = viewController as? UINavigationController else {
+        self?.currentViewController = viewController
+        
+        promise(.success(()))
+        return
+      }
+      
+      self?.currentViewController = navigationController.viewControllers.last
+      promise(.success(()))
+    }.eraseToAnyPublisher()
   }
   
   @discardableResult
@@ -35,7 +55,7 @@ final class SceneCoordinator: SceneCoordinatorType {
       switch style {
       case .root:
         self?.currentViewController = target
-        self?.window.rootViewController = target
+        self?.window?.rootViewController = target
         promise(.success(()))
         
       case .push:
