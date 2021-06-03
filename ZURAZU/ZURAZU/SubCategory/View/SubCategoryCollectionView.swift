@@ -42,7 +42,7 @@ final class SubCategoryCollectionView: UICollectionView {
   
   override func selectItem(at indexPath: IndexPath?, animated: Bool, scrollPosition: UICollectionView.ScrollPosition) {
     super.selectItem(at: indexPath, animated: animated, scrollPosition: scrollPosition)
-    guard let indexPath = indexPath else { return }
+    guard let indexPath: IndexPath = indexPath else { return }
     
     moveSelectedLine(to: indexPath)
   }
@@ -83,7 +83,7 @@ private extension SubCategoryCollectionView {
   }
   
   func moveSelectedLine(to indexPath: IndexPath) {
-    guard let cell = cellForItem(at: indexPath) as? SubCategoryCollectionViewCell else { return }
+    guard let cell: SubCategoryCollectionViewCell = cellForItem(at: indexPath) as? SubCategoryCollectionViewCell else { return }
     
     UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: .curveEaseInOut) { [weak self] in
       self?.selectedLineWidthConstraint.constant = cell.frame.width
