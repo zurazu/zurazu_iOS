@@ -26,11 +26,6 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
-    bind()
-  }
-  
-  func bind() {
-    
   }
   
   func bindViewModel() {
