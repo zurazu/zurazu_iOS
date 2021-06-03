@@ -13,5 +13,5 @@ struct BaseResponse<T: Decodable>: Decodable {
   let dateTime: String
   let status: String
   let message: String
-  let list: [T]?
+  let list: T?
 }

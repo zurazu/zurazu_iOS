@@ -56,7 +56,7 @@ private extension CategoryViewModel {
     // MARK: - Router를 어디서 주입할지 아니면 싱글톤으로 사용할지 논의해야합니다
     let networkProvider: NetworkProvider = .init()
     
-    let mainCategoryPublisher: AnyPublisher<Result<BaseResponse<MainCategory>, NetworkError>, Never> = networkProvider.request(route: MainCategoryEndPoint.requestMainCategories)
+    let mainCategoryPublisher: AnyPublisher<Result<BaseResponse<[MainCategory]>, NetworkError>, Never> = networkProvider.request(route: MainCategoryEndPoint.requestMainCategories)
     
     mainCategoryPublisher
       .receive(on: Scheduler.main)
