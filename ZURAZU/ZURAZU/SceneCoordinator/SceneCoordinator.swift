@@ -93,14 +93,19 @@ final class SceneCoordinator {
         promise(.success(()))
       }
       
-      if let presentingViewController: UIViewController = self?.currentViewController?.presentingViewController {
-        self?.currentViewController?.dismiss(animated: animated) { [weak self] in
-          self?.currentViewController = presentingViewController
-          promise(.success(()))
+      if let tabbarController = self?.currentViewController?.presentingViewController as? UITabBarController {
+        if let navigationController = tabbarController.selectedViewController as? UINavigationController {
+          self?.currentViewController?.dismiss(animated: animated) { [weak self] in
+            self?.currentViewController = navigationController.topViewController
+            promise(.success(()))
+          }
+        } else {
+          self?.currentViewController?.dismiss(animated: animated) { [weak self] in
+            self?.currentViewController = tabbarController.selectedViewController
+            promise(.success(()))
+          }
         }
       }
-      
-      promise(.failure(TransitionError.unknown))
     }.eraseToAnyPublisher()
   }
 }
