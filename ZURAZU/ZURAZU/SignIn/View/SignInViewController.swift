@@ -85,6 +85,13 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
         self?.viewModel?.password.send($0)
       }
       .store(in: &cancellables)
+    
+    optionStackView.signUpButton
+      .tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.signUpEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }
 
