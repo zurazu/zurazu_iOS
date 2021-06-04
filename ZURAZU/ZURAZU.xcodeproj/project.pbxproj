@@ -13,6 +13,7 @@
 		BD59AFB9266A09A700CC40A9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFB8266A09A700CC40A9 /* SignUpViewController.swift */; };
 		BD59AFBB266A09D100CC40A9 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFBA266A09D100CC40A9 /* SignUpViewModel.swift */; };
 		BD59AFBD266A0A1C00CC40A9 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD59AFBC266A0A1C00CC40A9 /* SignUp.storyboard */; };
+		BD59AFBF266A0A9E00CC40A9 /* SignUpScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */; };
 		BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB422643ABDF0029CCC6 /* AppDelegate.swift */; };
 		BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB442643ABDF0029CCC6 /* SceneDelegate.swift */; };
 		BD88BB4A2643ABDF0029CCC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BB482643ABDF0029CCC6 /* Main.storyboard */; };
@@ -114,6 +115,7 @@
 		BD59AFB8266A09A700CC40A9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BD59AFBA266A09D100CC40A9 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		BD59AFBC266A0A1C00CC40A9 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScene.swift; sourceTree = "<group>"; };
 		BD88BB3F2643ABDF0029CCC6 /* ZURAZU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZURAZU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD88BB422643ABDF0029CCC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD88BB442643ABDF0029CCC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			children = (
 				BD59AFB8266A09A700CC40A9 /* SignUpViewController.swift */,
 				BD59AFBC266A0A1C00CC40A9 /* SignUp.storyboard */,
+				BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -921,6 +924,7 @@
 				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
+				BD59AFBF266A0A9E00CC40A9 /* SignUpScene.swift in Sources */,
 				BD9AA96E265E44FA0046EB2F /* ItemDetailScene.swift in Sources */,
 				BDA0039A2656547F00C98928 /* SubCategoryViewModel.swift in Sources */,
 				BDA0039F265654D600C98928 /* SubCategoryScene.swift in Sources */,
