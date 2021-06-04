@@ -59,6 +59,8 @@ private extension InputView {
   }
   
   func setupView() {
+    textField.clearButtonMode = .always
+    
     textField.placeholder = inputViewType.placeHolder
     textField.layer.borderColor = .none
     textField.backgroundColor = .background

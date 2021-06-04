@@ -64,14 +64,14 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     signInInputView.emailInputView.textField
       .returnPublisher
       .sink {
-        self.signInInputView.emailInputView.textField.endEditing(true)
+        self.signInInputView.emailInputView.textField.resignFirstResponder()
       }
       .store(in: &cancellables)
     
     signInInputView.emailInputView.textField
       .textPublisher
       .compactMap { $0 }
-      .filter { !$0.isEmpty }
+      .output(in: 2...)
       .sink { [weak self] in
         self?.viewModel?.email.send($0)
       }
@@ -80,7 +80,7 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     signInInputView.passwordInputView.textField
       .textPublisher
       .compactMap { $0 }
-      .filter { !$0.isEmpty }
+      .output(in: 2...)
       .sink { [weak self] in
         self?.viewModel?.password.send($0)
       }
