@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import Combine
+
+protocol SignUpViewModelType {
+  
+}
+
+final class SignUpViewModel: SignUpViewModelType {
+  
+}
