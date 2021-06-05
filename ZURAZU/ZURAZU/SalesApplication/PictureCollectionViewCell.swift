@@ -45,6 +45,5 @@ private extension PictureCollectionViewCell {
                                  borderView.topAnchor.constraint(equalTo: topAnchor),
                                  borderView.bottomAnchor.constraint(equalTo: bottomAnchor)])
   }
-
 }
 

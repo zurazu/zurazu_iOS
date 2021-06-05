@@ -22,7 +22,7 @@ final class SalesApplicationViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setView()
+    setupView()
   }
   
   override func viewDidLayoutSubviews() {
@@ -100,11 +100,14 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
     case UICollectionView.elementKindSectionHeader:
-      guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier: SalesApplicationSectionHeader.identifier, for: indexPath) as? SalesApplicationSectionHeader else { return UICollectionReusableView()
+      guard let headerView = collectionView
+              .dequeueReusableSupplementaryView(ofKind: kind,
+                                                withReuseIdentifier: SalesApplicationSectionHeader.identifier,
+                                                for: indexPath) as? SalesApplicationSectionHeader else { return UICollectionReusableView()
       }
       
-      headerView.setTitleLabelText(model[indexPath.section].title)
-      headerView.setSubtitleLabelText(model[indexPath.section].subtitle)
+      headerView.updateTitleLabelText(model[indexPath.section].title)
+      headerView.updateSubtitleLabelText(model[indexPath.section].subtitle)
       headerView.isNecessary = model[indexPath.section].isNecessary
       
       return headerView
@@ -141,7 +144,7 @@ extension SalesApplicationViewController: UITextFieldDelegate {
 
 private extension SalesApplicationViewController {
   
-  func setView() {
+  func setupView() {
     collectionView.contentInset = .init(top: 0, left: 26, bottom: 13, right: 26)
     let layout: UICollectionViewFlowLayout? = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
     layout?.sectionInset = .init(top: 0, left: 0, bottom: 22, right: 0)
@@ -156,6 +159,8 @@ private extension SalesApplicationViewController {
     collectionView.register(PickerCollectionViewCell.self, forCellWithReuseIdentifier: "PickerCollectionViewCell")
     collectionView.register(PictureCollectionViewCell.self, forCellWithReuseIdentifier: "PictureCollectionViewCell")
     
-    collectionView.register(SalesApplicationSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SalesApplicationSectionHeader.identifier)
+    collectionView.register(SalesApplicationSectionHeader.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                            withReuseIdentifier: SalesApplicationSectionHeader.identifier)
   }
 }

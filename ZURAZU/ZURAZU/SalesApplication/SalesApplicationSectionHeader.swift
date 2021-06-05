@@ -61,11 +61,11 @@ final class SalesApplicationSectionHeader: UICollectionReusableView {
 
 extension SalesApplicationSectionHeader {
   
-  func setTitleLabelText(_ text: String?) {
+  func updateTitleLabelText(_ text: String?) {
     titleLabel.text = text
   }
   
-  func setSubtitleLabelText(_ text: String?) {
+  func updateSubtitleLabelText(_ text: String?) {
     subtitleLabel.text = text
     subtitleLabel.isHidden = (text?.isEmpty) ?? true
   }
@@ -74,8 +74,8 @@ extension SalesApplicationSectionHeader {
 private extension SalesApplicationSectionHeader {
   
   func configure() {
-    let horizontalStackView = UIStackView()
-    let verticalStackView = UIStackView()
+    let horizontalStackView: UIStackView = .init()
+    let verticalStackView: UIStackView = .init()
     
     horizontalStackView.axis = .horizontal
     verticalStackView.axis = .vertical
@@ -88,7 +88,7 @@ private extension SalesApplicationSectionHeader {
     verticalStackView.addArrangedSubview(horizontalStackView)
     verticalStackView.addArrangedSubview(subtitleLabel)
     
-    let spacer = UIView()
+    let spacer: UIView = .init()
     
     spacer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     
