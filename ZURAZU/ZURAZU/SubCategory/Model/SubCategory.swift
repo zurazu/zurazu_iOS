@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct SubCategory: Decodable {
+struct SubCategory: Decodable, Hashable {
   
   let idx: Int
-  let mainCategoryIdx: Int
+  let mainCategory: MainCategory
   let korean: String
   let english: String
   let priority: Int

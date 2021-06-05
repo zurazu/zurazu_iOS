@@ -9,8 +9,8 @@ import UIKit
 
 final class SignInInputView: UIView {
   
-  private let emailInputView: InputView = .init(frame: .zero, inputViewType: .email)
-  private let passwordInputView: InputView = .init(frame: .zero, inputViewType: .password)
+  let emailInputView: InputView = .init(frame: .zero, inputViewType: .email)
+  let passwordInputView: InputView = .init(frame: .zero, inputViewType: .password)
   private let signInLable: UILabel = .init(frame: .zero)
   
   override init(frame: CGRect) {
@@ -55,5 +55,8 @@ private extension SignInInputView {
     signInLable.text = "로그인"
     signInLable.font = .systemFont(ofSize: 15)
     signInLable.textColor = .monoPrimary
+    
+    emailInputView.textField.becomeFirstResponder()
+    passwordInputView.textField.isSecureTextEntry = true
   }
 }
