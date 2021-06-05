@@ -22,28 +22,13 @@ final class SalesApplicationViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView.contentInset = .init(top: 0, left: 26, bottom: 13, right: 26)
-    let layout: UICollectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-    layout?.sectionInset = .init(top: 0, left: 0, bottom: 22, right: 0)
-    layout?.minimumInteritemSpacing = 5
-    navigationItem.setLeftBarButton(UIBarButtonItem(title: "취소", style: .plain, target: nil, action: nil), animated: false)
-    navigationItem.setRightBarButton(UIBarButtonItem(title: "확인", style: .plain, target: nil, action: nil), animated: false)
-    title = "판매 신청"
-    collectionView.delegate = self
-    collectionView.dataSource = self
-    
-    collectionView.register(InputCollectionViewCell.self, forCellWithReuseIdentifier: "InputCollectionViewCell")
-    collectionView.register(PickerCollectionViewCell.self, forCellWithReuseIdentifier: "PickerCollectionViewCell")
-    collectionView.register(PictureCollectionViewCell.self, forCellWithReuseIdentifier: "PictureCollectionViewCell")
-    
-    collectionView.register(SalesApplicationSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SalesApplicationSectionHeader.identifier)
-    // Do any additional setup after loading the view.
+    setView()
   }
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     collectionView.visibleCells.forEach {
-      let cell: InputCollectionViewCell = $0 as? InputCollectionViewCell
+      let cell: InputCollectionViewCell? = $0 as? InputCollectionViewCell
       cell?.textField.setNeedsDisplay()
     }
   }
@@ -71,9 +56,9 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       else { return UICollectionViewCell() }
       
       cell.textField.delegate = self
-      let inputModel: SalesApplicationSectionInputModel = model[indexPath.section] as? SalesApplicationSectionInputModel
-      cell.setPlaceHolder(message: inputModel?.placeHolder)
-      cell.setDescriptionLabel(message: inputModel?.description)
+      let inputModel: SalesApplicationSectionInputModel? = model[indexPath.section] as? SalesApplicationSectionInputModel
+      cell.updatePlaceHolder(message: inputModel?.placeHolder)
+      cell.updateDescriptionLabel(message: inputModel?.description)
       
       return cell
       
@@ -151,5 +136,26 @@ extension SalesApplicationViewController: UITextFieldDelegate {
     textField.resignFirstResponder()
     
     return true
+  }
+}
+
+private extension SalesApplicationViewController {
+  
+  func setView() {
+    collectionView.contentInset = .init(top: 0, left: 26, bottom: 13, right: 26)
+    let layout: UICollectionViewFlowLayout? = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+    layout?.sectionInset = .init(top: 0, left: 0, bottom: 22, right: 0)
+    layout?.minimumInteritemSpacing = 5
+    navigationItem.setLeftBarButton(UIBarButtonItem(title: "취소", style: .plain, target: nil, action: nil), animated: false)
+    navigationItem.setRightBarButton(UIBarButtonItem(title: "확인", style: .plain, target: nil, action: nil), animated: false)
+    title = "판매 신청"
+    collectionView.delegate = self
+    collectionView.dataSource = self
+    
+    collectionView.register(InputCollectionViewCell.self, forCellWithReuseIdentifier: "InputCollectionViewCell")
+    collectionView.register(PickerCollectionViewCell.self, forCellWithReuseIdentifier: "PickerCollectionViewCell")
+    collectionView.register(PictureCollectionViewCell.self, forCellWithReuseIdentifier: "PictureCollectionViewCell")
+    
+    collectionView.register(SalesApplicationSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SalesApplicationSectionHeader.identifier)
   }
 }

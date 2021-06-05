@@ -11,9 +11,9 @@ import UIKit
 final class PictureCollectionViewCell: UICollectionViewCell {
   
   let borderView: UIView = {
-    let view = UIView()
+    let view: UIView = .init()
     view.layer.borderWidth = 1
-    view.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+    view.layer.borderColor = UIColor.monoSecondary.cgColor
     
     return view
   }()

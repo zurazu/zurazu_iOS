@@ -9,26 +9,24 @@ import UIKit
 
 final class UnderLineTextField: UITextField {
   
-  let border = CALayer()
-  let inset: CGFloat = 4
+  let border: CALayer = .init()
+  let inset: CGFloat = .init(4)
   
-  // placeholder position
   override func textRect(forBounds bounds: CGRect) -> CGRect {
     return bounds.insetBy(dx: inset, dy: inset)
   }
   
-  // text position
   override func editingRect(forBounds bounds: CGRect) -> CGRect {
     return bounds.insetBy(dx: inset, dy: inset)
   }
   
-  @IBInspectable var lineColor: UIColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1) {
+  @IBInspectable var lineColor: UIColor = .monoSecondary {
     didSet {
       border.borderColor = lineColor.cgColor
     }
   }
   
-  @IBInspectable var lineHeight: CGFloat = CGFloat(1.0) {
+  @IBInspectable var lineHeight: CGFloat = .init(1.0) {
     didSet {
       border.frame = CGRect(x: 0, y: self.frame.size.height - lineHeight,
                             width: self.frame.size.width, height: self.frame.size.height)

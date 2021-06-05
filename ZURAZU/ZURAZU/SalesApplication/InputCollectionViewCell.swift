@@ -10,25 +10,31 @@ import UIKit
 final class InputCollectionViewCell: UICollectionViewCell {
 
   let textField: UnderLineTextField =  {
-    let textField = UnderLineTextField()
+    let textField: UnderLineTextField = .init()
+    
     textField.font = .tertiary
     
     return textField
   }()
+  
   private let descriptionLabel: UILabel = {
-    let label = UILabel()
+    let label: UILabel = .init()
+    
     label.font = .tertiary
     label.textColor = .monoQuaternary
     
     return label
   }()
+  
   private let stackView: UIStackView =  {
-    let stackView = UIStackView()
+    let stackView: UIStackView = .init()
+    
     stackView.axis = .vertical
     
     return stackView
   }()
-  private let marginView: UIView = UIView()
+  
+  private let marginView: UIView = .init()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -65,19 +71,19 @@ private extension InputCollectionViewCell {
     
     stackView.addArrangedSubview(textField)
     stackView.addArrangedSubview(marginView)
+    
     NSLayoutConstraint.activate([stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
                                  stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
                                  stackView.topAnchor.constraint(equalTo: topAnchor),
                                  stackView.bottomAnchor.constraint(equalTo: bottomAnchor)])
 
     marginView.addSubview(descriptionLabel)
+    
     NSLayoutConstraint.activate([marginView.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: 4),
                                  marginView.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor, constant: -4),
                                  marginView.topAnchor.constraint(equalTo: descriptionLabel.topAnchor),
                                  marginView.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor)])
     marginView.isHidden = true
   }
-  
-
 }
 

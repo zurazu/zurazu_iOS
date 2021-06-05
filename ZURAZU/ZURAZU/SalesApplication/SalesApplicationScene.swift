@@ -14,8 +14,9 @@ struct SalesApplicationScene: Scene {
   }
 
   func instantiate() -> UIViewController {
-    let navigationController: UINavigationController = UINavigationController()
+    let navigationController: UINavigationController = .init()
     let viewController: UIViewController = self.viewController(identifier: .salesApplicationVC)
+    
     navigationController.setViewControllers([viewController], animated: false)
 
     return navigationController

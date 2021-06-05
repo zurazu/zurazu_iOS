@@ -20,7 +20,8 @@ final class SalesApplicationSectionHeader: UICollectionReusableView {
   }
   
   private let titleLabel: UILabel = {
-    let label = UILabel()
+    let label: UILabel = .init()
+    
     label.font = .systemFont(ofSize: 16, weight: .bold)
     label.textColor = .monoPrimary
     
@@ -28,7 +29,8 @@ final class SalesApplicationSectionHeader: UICollectionReusableView {
   }()
   
   private let subtitleLabel: UILabel = {
-    let label = UILabel()
+    let label: UILabel = .init()
+    
     label.font = .systemFont(ofSize: 12)
     label.textColor = .monoSecondary
     label.numberOfLines = 0
@@ -37,7 +39,8 @@ final class SalesApplicationSectionHeader: UICollectionReusableView {
   }()
   
   private let necessaryMark: UILabel = {
-    let label = UILabel()
+    let label: UILabel = .init()
+    
     label.font = .systemFont(ofSize: 18, weight: .bold)
     label.text = " *"
     label.textColor = .systemRed
@@ -73,17 +76,20 @@ private extension SalesApplicationSectionHeader {
   func configure() {
     let horizontalStackView = UIStackView()
     let verticalStackView = UIStackView()
+    
     horizontalStackView.axis = .horizontal
     verticalStackView.axis = .vertical
     
     horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
     necessaryMark.translatesAutoresizingMaskIntoConstraints = false
     verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+    
     self.addSubview(verticalStackView)
     verticalStackView.addArrangedSubview(horizontalStackView)
     verticalStackView.addArrangedSubview(subtitleLabel)
     
     let spacer = UIView()
+    
     spacer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     
     horizontalStackView.addArrangedSubview(titleLabel)
