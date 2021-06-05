@@ -14,6 +14,7 @@ final class PictureCollectionViewCell: UICollectionViewCell {
     let view = UIView()
     view.layer.borderWidth = 1
     view.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+    
     return view
   }()
   
@@ -30,7 +31,6 @@ final class PictureCollectionViewCell: UICollectionViewCell {
 
 extension PictureCollectionViewCell {
   
- 
 }
 
 private extension PictureCollectionViewCell {
@@ -44,7 +44,6 @@ private extension PictureCollectionViewCell {
                                  borderView.leadingAnchor.constraint(equalTo: leadingAnchor),
                                  borderView.topAnchor.constraint(equalTo: topAnchor),
                                  borderView.bottomAnchor.constraint(equalTo: bottomAnchor)])
-
   }
 
 }

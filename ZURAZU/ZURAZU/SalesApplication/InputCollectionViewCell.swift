@@ -12,17 +12,20 @@ final class InputCollectionViewCell: UICollectionViewCell {
   let textField: UnderLineTextField =  {
     let textField = UnderLineTextField()
     textField.font = .tertiary
+    
     return textField
   }()
   private let descriptionLabel: UILabel = {
     let label = UILabel()
     label.font = .tertiary
     label.textColor = .monoQuaternary
+    
     return label
   }()
   private let stackView: UIStackView =  {
     let stackView = UIStackView()
     stackView.axis = .vertical
+    
     return stackView
   }()
   private let marginView: UIView = UIView()
@@ -40,11 +43,11 @@ final class InputCollectionViewCell: UICollectionViewCell {
 
 extension InputCollectionViewCell {
   
-  func setPlaceHolder(message: String?) {
+  func updatePlaceHolder(message: String?) {
     textField.placeholder = message
   }
   
-  func setDescriptionLabel(message: String?) {
+  func updateDescriptionLabel(message: String?) {
     descriptionLabel.text = message
     marginView.isHidden = (message?.isEmpty) ?? true
   }

@@ -11,24 +11,31 @@ final class PickerCollectionViewCell: UICollectionViewCell {
   
   let borderView: UIView = {
     let view = UIView()
+    
     view.layer.borderWidth = 1
     view.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-    let label = UILabel()
+    
     return view
   }()
+  
   let textField: UITextField = {
     let textField = UITextField()
+    
     textField.font = .tertiary
     textField.textColor = .monoQuaternary
     textField.placeholder = "선택해주세요"
+    
     return textField
   }()
+  
   let imageView: UIImageView = {
     let imageView = UIImageView()
     imageView.image = UIImage(systemName: "chevron.down")
     imageView.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+    
     return imageView
   }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     configure()
@@ -42,7 +49,6 @@ final class PickerCollectionViewCell: UICollectionViewCell {
 
 extension PickerCollectionViewCell {
   
- 
 }
 
 private extension PickerCollectionViewCell {

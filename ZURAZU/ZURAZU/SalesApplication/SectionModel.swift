@@ -9,12 +9,14 @@ import Foundation
 import UIKit
 
 enum SalesApplicationSectionStyle {
+  
   case input
   case picker
   case picture
 }
 
 protocol SalesApplicationSectionModel {
+  
   var style: SalesApplicationSectionStyle { get }
   var title: String { get }
   var subtitle: String? { get }
@@ -24,14 +26,11 @@ protocol SalesApplicationSectionModel {
 }
 
 struct SalesApplicationSectionInputModel: SalesApplicationSectionModel {
-
-
+  
   let height: CGFloat
   let headerHeight: CGFloat
   let isNecessary: Bool
-  
   let style: SalesApplicationSectionStyle = .input
-  
   let title: String
   let placeHolder: String?
   let description: String?
@@ -41,7 +40,6 @@ struct SalesApplicationSectionInputModel: SalesApplicationSectionModel {
     self.title = title
     self.placeHolder = placeHolder
     self.height = height
-    
     self.headerHeight = headerHeight
     self.subtitle = subtitle
     self.description = subTitle
@@ -50,12 +48,11 @@ struct SalesApplicationSectionInputModel: SalesApplicationSectionModel {
 }
 
 struct SalesApplicationSectionPickerModel: SalesApplicationSectionModel {
+  
   let height: CGFloat
   let headerHeight: CGFloat
   let isNecessary: Bool
-  
   let style: SalesApplicationSectionStyle = .picker
-  
   let title: String
   let subtitle: String?
   var items: [String]
@@ -68,16 +65,14 @@ struct SalesApplicationSectionPickerModel: SalesApplicationSectionModel {
     self.isNecessary = isNecessary
     self.items = items
   }
-
 }
 
 struct SalesApplicationSectionPictureModel: SalesApplicationSectionModel {
+  
   var height: CGFloat
   let headerHeight: CGFloat
   var isNecessary: Bool
-  
   let style: SalesApplicationSectionStyle = .picture
-  
   let title: String
   let subtitle: String?
   var images: [UIImage] = []
@@ -89,5 +84,4 @@ struct SalesApplicationSectionPictureModel: SalesApplicationSectionModel {
     self.subtitle = subtitle
     self.isNecessary = isNecessary
   }
-
 }

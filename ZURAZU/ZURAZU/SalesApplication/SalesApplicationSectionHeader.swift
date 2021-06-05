@@ -12,33 +12,39 @@ final class SalesApplicationSectionHeader: UICollectionReusableView {
   static var identifier: String {
       return String(describing: Self.self)
   }
+  
   var isNecessary: Bool = false {
     didSet {
       necessaryMark.isHidden = !isNecessary
     }
   }
+  
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 16, weight: .bold)
     label.textColor = .monoPrimary
+    
     return label
   }()
+  
   private let subtitleLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 12)
     label.textColor = .monoSecondary
     label.numberOfLines = 0
+    
     return label
   }()
+  
   private let necessaryMark: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 18, weight: .bold)
     label.text = " *"
     label.textColor = .systemRed
+    
     return label
   }()
   
-
   override init(frame: CGRect) {
     super.init(frame: frame)
     configure()
@@ -51,6 +57,7 @@ final class SalesApplicationSectionHeader: UICollectionReusableView {
 }
 
 extension SalesApplicationSectionHeader {
+  
   func setTitleLabelText(_ text: String?) {
     titleLabel.text = text
   }
@@ -60,7 +67,9 @@ extension SalesApplicationSectionHeader {
     subtitleLabel.isHidden = (text?.isEmpty) ?? true
   }
 }
+
 private extension SalesApplicationSectionHeader {
+  
   func configure() {
     let horizontalStackView = UIStackView()
     let verticalStackView = UIStackView()
@@ -74,7 +83,6 @@ private extension SalesApplicationSectionHeader {
     verticalStackView.addArrangedSubview(horizontalStackView)
     verticalStackView.addArrangedSubview(subtitleLabel)
     
-    
     let spacer = UIView()
     spacer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     
@@ -83,7 +91,7 @@ private extension SalesApplicationSectionHeader {
     horizontalStackView.addArrangedSubview(spacer)
     
     NSLayoutConstraint.activate([trailingAnchor.constraint(greaterThanOrEqualTo: verticalStackView.trailingAnchor),
- verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                                 verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
                                  verticalStackView.topAnchor.constraint(equalTo: topAnchor),
                                  verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor)])
 
