@@ -20,21 +20,20 @@ struct MainTabBarScene: Scene {
     let viewModel: MainTabBarViewModel = .init()
     tabBarController.bind(viewModel: viewModel)
     // MARK: - 화면이 추가된 후 각각의 화면으로 변경해줘야 함
-    let categoryScene: UIViewController = CategoryScene().instantiate()
-    categoryScene.tabBarItem = UITabBarItem(title: "카테고리", image: .textAlignLeft, selectedImage: .textAlignLeft)
     
-    let logScene: UIViewController = MainScene().instantiate()
-    logScene.tabBarItem = UITabBarItem(title: "거래내역", image: .docText, selectedImage: .docTextFill)
+    var viewControllers: [UIViewController] = []
     
-    let mainScene: UIViewController = MainScene().instantiate()
+    TabItem.allCases.enumerated().forEach {
+      let scene: UIViewController = $1.scene.instantiate()
+      
+      viewControllers.append(scene)
+      
+      if $0 != TabItem.allCases.centerIndex {
+        scene.tabBarItem = UITabBarItem(title: $1.title, image: $1.image, selectedImage: $1.selectedImage)
+      }
+    }
     
-    let likeScene: UIViewController = MainScene().instantiate()
-    likeScene.tabBarItem = UITabBarItem(title: "좋아요", image: .heart, selectedImage: .heartFill)
-    
-    let myPageScene: UIViewController = MyPageScene().instantiate()
-    myPageScene.tabBarItem = UITabBarItem(title: "마이페이지", image: .person, selectedImage: .personFill)
-    
-    tabBarController.setViewControllers([categoryScene, logScene, mainScene, likeScene, myPageScene], animated: false)
+    tabBarController.setViewControllers(viewControllers, animated: false)
     
     return tabBarController
   }
