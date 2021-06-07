@@ -119,7 +119,7 @@ private extension SignInViewController {
     
     NSLayoutConstraint.activate([
       closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-      closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+      closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
       closeButton.widthAnchor.constraint(equalToConstant: 18),
       closeButton.heightAnchor.constraint(equalToConstant: 24),
       
@@ -146,7 +146,7 @@ private extension SignInViewController {
   }
   
   func setupView() {
-    closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+    closeButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
     closeButton.backgroundColor = .background
     closeButton.tintColor = .black
     
