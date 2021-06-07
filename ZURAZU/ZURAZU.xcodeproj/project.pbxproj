@@ -14,6 +14,19 @@
 		BD59AFBB266A09D100CC40A9 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFBA266A09D100CC40A9 /* SignUpViewModel.swift */; };
 		BD59AFBD266A0A1C00CC40A9 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD59AFBC266A0A1C00CC40A9 /* SignUp.storyboard */; };
 		BD59AFBF266A0A9E00CC40A9 /* SignUpScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */; };
+		B9004CAA266261A200DAE135 /* SalesApplicationSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9004CA9266261A200DAE135 /* SalesApplicationSectionHeader.swift */; };
+		B957DC972668F599005E9F03 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957DC932668F599005E9F03 /* SceneCoordinator.swift */; };
+		B957DC982668F599005E9F03 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957DC942668F599005E9F03 /* Scene.swift */; };
+		B957DC992668F599005E9F03 /* SceneIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957DC952668F599005E9F03 /* SceneIdentifier.swift */; };
+		B957DC9A2668F599005E9F03 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957DC962668F599005E9F03 /* TransitionModel.swift */; };
+		B9591566265D20D300EC6538 /* SalesApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9591565265D20D300EC6538 /* SalesApplicationViewController.swift */; };
+		B959156D265D235C00EC6538 /* PickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B959156B265D235C00EC6538 /* PickerCollectionViewCell.swift */; };
+		B9591571265D2AF800EC6538 /* InputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B959156F265D2AF800EC6538 /* InputCollectionViewCell.swift */; };
+		B96D0AB62660DD2800ED6485 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96D0AB52660DD2800ED6485 /* UnderLineTextField.swift */; };
+		B96D0AB82660E5EE00ED6485 /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96D0AB72660E5EE00ED6485 /* SectionModel.swift */; };
+		B99FEEC5265E7976007C9E15 /* SalesApplicationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99FEEC4265E7976007C9E15 /* SalesApplicationScene.swift */; };
+		B9B59F9F2663930D0065BFE8 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B59F9E2663930D0065BFE8 /* PictureCollectionViewCell.swift */; };
+		B9F68E77265BC5070006E2D4 /* SalesApplication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F68E76265BC5070006E2D4 /* SalesApplication.storyboard */; };
 		BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB422643ABDF0029CCC6 /* AppDelegate.swift */; };
 		BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BB442643ABDF0029CCC6 /* SceneDelegate.swift */; };
 		BD88BB4A2643ABDF0029CCC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BB482643ABDF0029CCC6 /* Main.storyboard */; };
@@ -31,11 +44,7 @@
 		BD88BC2526452C680029CCC6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC2426452C680029CCC6 /* MainViewController.swift */; };
 		BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC3C26452F8D0029CCC6 /* ViewModelBindableType.swift */; };
 		BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC41264534020029CCC6 /* MainViewModel.swift */; };
-		BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC6626492FA60029CCC6 /* TransitionModel.swift */; };
-		BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */; };
-		BD88BC74264931410029CCC6 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC73264931410029CCC6 /* Scene.swift */; };
 		BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC7B264A58820029CCC6 /* MainScene.swift */; };
-		BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */; };
 		BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BC95264A85A90029CCC6 /* SignInViewController.swift */; };
 		BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */; };
 		BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD88BCA5264A86C60029CCC6 /* SignInScene.swift */; };
@@ -116,6 +125,19 @@
 		BD59AFBA266A09D100CC40A9 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		BD59AFBC266A0A1C00CC40A9 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScene.swift; sourceTree = "<group>"; };
+		B9004CA9266261A200DAE135 /* SalesApplicationSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesApplicationSectionHeader.swift; sourceTree = "<group>"; };
+		B957DC932668F599005E9F03 /* SceneCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		B957DC942668F599005E9F03 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		B957DC952668F599005E9F03 /* SceneIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneIdentifier.swift; sourceTree = "<group>"; };
+		B957DC962668F599005E9F03 /* TransitionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
+		B9591565265D20D300EC6538 /* SalesApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesApplicationViewController.swift; sourceTree = "<group>"; };
+		B959156B265D235C00EC6538 /* PickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		B959156F265D2AF800EC6538 /* InputCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCollectionViewCell.swift; sourceTree = "<group>"; };
+		B96D0AB52660DD2800ED6485 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
+		B96D0AB72660E5EE00ED6485 /* SectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
+		B99FEEC4265E7976007C9E15 /* SalesApplicationScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesApplicationScene.swift; sourceTree = "<group>"; };
+		B9B59F9E2663930D0065BFE8 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
+		B9F68E76265BC5070006E2D4 /* SalesApplication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SalesApplication.storyboard; sourceTree = "<group>"; };
 		BD88BB3F2643ABDF0029CCC6 /* ZURAZU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZURAZU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD88BB422643ABDF0029CCC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD88BB442643ABDF0029CCC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,11 +161,7 @@
 		BD88BC2426452C680029CCC6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BD88BC3C26452F8D0029CCC6 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		BD88BC41264534020029CCC6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		BD88BC6626492FA60029CCC6 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
-		BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
-		BD88BC73264931410029CCC6 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		BD88BC7B264A58820029CCC6 /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
-		BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneIdentifier.swift; sourceTree = "<group>"; };
 		BD88BC95264A85A90029CCC6 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		BD88BCA0264A85BA0029CCC6 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		BD88BCA5264A86C60029CCC6 /* SignInScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScene.swift; sourceTree = "<group>"; };
@@ -281,6 +299,31 @@
 			children = (
 			);
 			path = Model;
+		B957DC922668F58C005E9F03 /* SceneCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				B957DC942668F599005E9F03 /* Scene.swift */,
+				B957DC932668F599005E9F03 /* SceneCoordinator.swift */,
+				B957DC952668F599005E9F03 /* SceneIdentifier.swift */,
+				B957DC962668F599005E9F03 /* TransitionModel.swift */,
+			);
+			path = SceneCoordinator;
+			sourceTree = "<group>";
+		};
+		B9F68E75265BC49C0006E2D4 /* SalesApplication */ = {
+			isa = PBXGroup;
+			children = (
+				B9F68E76265BC5070006E2D4 /* SalesApplication.storyboard */,
+				B9591565265D20D300EC6538 /* SalesApplicationViewController.swift */,
+				B959156B265D235C00EC6538 /* PickerCollectionViewCell.swift */,
+				B959156F265D2AF800EC6538 /* InputCollectionViewCell.swift */,
+				B99FEEC4265E7976007C9E15 /* SalesApplicationScene.swift */,
+				B96D0AB52660DD2800ED6485 /* UnderLineTextField.swift */,
+				B9B59F9E2663930D0065BFE8 /* PictureCollectionViewCell.swift */,
+				B96D0AB72660E5EE00ED6485 /* SectionModel.swift */,
+				B9004CA9266261A200DAE135 /* SalesApplicationSectionHeader.swift */,
+			);
+			path = SalesApplication;
 			sourceTree = "<group>";
 		};
 		BD88BB362643ABDF0029CCC6 = {
@@ -293,7 +336,9 @@
 				81B0A3E863C983A350B4604C /* Pods */,
 				312707ED7D6D85CD920B0060 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		BD88BB402643ABDF0029CCC6 /* Products */ = {
 			isa = PBXGroup;
@@ -308,7 +353,8 @@
 		BD88BB412643ABDF0029CCC6 /* ZURAZU */ = {
 			isa = PBXGroup;
 			children = (
-				BD88BC6526492F7C0029CCC6 /* SceneCoordinator */,
+				B9F68E75265BC49C0006E2D4 /* SalesApplication */,
+				B957DC922668F58C005E9F03 /* SceneCoordinator */,
 				BD88BBB02643EA0B0029CCC6 /* Util */,
 				BD88BB422643ABDF0029CCC6 /* AppDelegate.swift */,
 				BD88BB442643ABDF0029CCC6 /* SceneDelegate.swift */,
@@ -441,17 +487,6 @@
 				BD9AA977266386D10046EB2F /* Scheduler.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		BD88BC6526492F7C0029CCC6 /* SceneCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				BD88BC6626492FA60029CCC6 /* TransitionModel.swift */,
-				BD88BC6E264930290029CCC6 /* SceneCoordinator.swift */,
-				BD88BC73264931410029CCC6 /* Scene.swift */,
-				BD88BC80264A5D470029CCC6 /* SceneIdentifier.swift */,
-			);
-			path = SceneCoordinator;
 			sourceTree = "<group>";
 		};
 		BD88BC94264A83B00029CCC6 /* SignIn */ = {
@@ -725,6 +760,7 @@
 				BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */,
 				BD88BB4F2643ABE30029CCC6 /* LaunchScreen.storyboard in Resources */,
 				BD88BB4C2643ABE30029CCC6 /* Assets.xcassets in Resources */,
+				B9F68E77265BC5070006E2D4 /* SalesApplication.storyboard in Resources */,
 				BD9AA96A265E44900046EB2F /* ItemDetail.storyboard in Resources */,
 				BD88BB4A2643ABDF0029CCC6 /* Main.storyboard in Resources */,
 			);
@@ -875,14 +911,16 @@
 				BD9AA97C26638F490046EB2F /* SubCategory.swift in Sources */,
 				BD9AA972265F9A2F0046EB2F /* MainCategory.swift in Sources */,
 				BD88BD55264D1B6E0029CCC6 /* Reusable.swift in Sources */,
+				B957DC992668F599005E9F03 /* SceneIdentifier.swift in Sources */,
 				BD88BCD6264AAF2B0029CCC6 /* OptionButton.swift in Sources */,
 				BD9AA97A26638D520046EB2F /* SubCategoryEndPoint.swift in Sources */,
 				BD9AA978266386D10046EB2F /* Scheduler.swift in Sources */,
 				BD88BC2526452C680029CCC6 /* MainViewController.swift in Sources */,
+				B957DC972668F599005E9F03 /* SceneCoordinator.swift in Sources */,
 				BD88BCD1264AA6A90029CCC6 /* OptionStackView.swift in Sources */,
-				BD88BC81264A5D470029CCC6 /* SceneIdentifier.swift in Sources */,
 				BD88BCE3264B94B80029CCC6 /* MainTabBar.swift in Sources */,
 				BD88BCDE264B94820029CCC6 /* MainTabBarController.swift in Sources */,
+				B9B59F9F2663930D0065BFE8 /* PictureCollectionViewCell.swift in Sources */,
 				BD9AA986266638F10046EB2F /* UICollectionView+Register.swift in Sources */,
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
@@ -891,6 +929,7 @@
 				BDA7B2C62657A99C00DE2B27 /* MainTabBarViewModel.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
 				BD88BB452643ABDF0029CCC6 /* SceneDelegate.swift in Sources */,
+				B96D0AB62660DD2800ED6485 /* UnderLineTextField.swift in Sources */,
 				E2FB1E5A264545FB004893E0 /* UIColor+Constant.swift in Sources */,
 				BD88BB9F2643C75D0029CCC6 /* NetworkProvider.swift in Sources */,
 				BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */,
@@ -904,6 +943,7 @@
 				BD88BD50264D1B370029CCC6 /* UITableView+Register.swift in Sources */,
 				BD88BD41264D13840029CCC6 /* CategoryScene.swift in Sources */,
 				BD59AFBB266A09D100CC40A9 /* SignUpViewModel.swift in Sources */,
+				B9591571265D2AF800EC6538 /* InputCollectionViewCell.swift in Sources */,
 				BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */,
 				BD9AA96C265E44C20046EB2F /* ItemDetailViewModel.swift in Sources */,
 				BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */,
@@ -915,14 +955,19 @@
 				BDA73CD126677E240088BEC4 /* Product.swift in Sources */,
 				BD88BB9A2643C3220029CCC6 /* NetworkProvidable.swift in Sources */,
 				BD88BD5A264D1B8F0029CCC6 /* NibLoadable.swift in Sources */,
+				B957DC982668F599005E9F03 /* Scene.swift in Sources */,
 				BD88BD4B264D16F80029CCC6 /* CategoryTableViewCell.swift in Sources */,
+				B957DC9A2668F599005E9F03 /* TransitionModel.swift in Sources */,
+				B9004CAA266261A200DAE135 /* SalesApplicationSectionHeader.swift in Sources */,
+				B959156D265D235C00EC6538 /* PickerCollectionViewCell.swift in Sources */,
+				B96D0AB82660E5EE00ED6485 /* SectionModel.swift in Sources */,
 				BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */,
-				BD88BC74264931410029CCC6 /* Scene.swift in Sources */,
 				BD9AA968265E44840046EB2F /* ItemDetailViewController.swift in Sources */,
 				BDA73CD52668BF2B0088BEC4 /* SignInButton.swift in Sources */,
 				BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */,
-				BD88BC6726492FA70029CCC6 /* TransitionModel.swift in Sources */,
+				B9591566265D20D300EC6538 /* SalesApplicationViewController.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
+				B99FEEC5265E7976007C9E15 /* SalesApplicationScene.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
 				BD59AFBF266A0A9E00CC40A9 /* SignUpScene.swift in Sources */,
 				BD9AA96E265E44FA0046EB2F /* ItemDetailScene.swift in Sources */,
@@ -931,7 +976,6 @@
 				BD59AFB9266A09A700CC40A9 /* SignUpViewController.swift in Sources */,
 				BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */,
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
-				BD88BC6F264930290029CCC6 /* SceneCoordinator.swift in Sources */,
 				BD88BCE8264B9C020029CCC6 /* MainTabBarScene.swift in Sources */,
 				BD9AA974265FA8310046EB2F /* MainCategoryEndPoint.swift in Sources */,
 			);
