@@ -13,6 +13,7 @@ enum SignInEndPoint {
 }
 
 extension SignInEndPoint: EndPointable {
+  
   var environmentBaseURL: String {
     return APICredentials.baseURL.rawValue
   }
