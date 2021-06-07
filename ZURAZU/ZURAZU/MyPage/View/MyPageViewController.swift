@@ -38,6 +38,8 @@ private extension MyPageViewController {
   
   func setupView() {
     signInButton.backgroundColor = .black
+    
+    navigationController?.setNavigationBarHidden(true, animated: false)
   }
   
   func setupConstraint() {
