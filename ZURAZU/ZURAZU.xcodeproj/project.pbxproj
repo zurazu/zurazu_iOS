@@ -307,6 +307,7 @@
 			children = (
 			);
 			path = Model;
+    };
 		B957DC922668F58C005E9F03 /* SceneCoordinator */ = {
 			isa = PBXGroup;
 			children = (
