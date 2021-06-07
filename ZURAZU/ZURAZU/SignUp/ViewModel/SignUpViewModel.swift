@@ -10,8 +10,26 @@ import Combine
 
 protocol SignUpViewModelType {
   
+  var closeEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class SignUpViewModel: SignUpViewModelType {
   
+  var closeEvent: PassthroughSubject<Void, Never> = .init()
+  
+  private var cancellables: Set<AnyCancellable> = []
+  
+  init() {
+    bind()
+  }
+  
+}
+
+private extension SignUpViewModel {
+  
+  func bind() {
+    closeEvent
+      .sink { SceneCoordinator.shared.close(animated: true) }
+      .store(in: &cancellables)
+  }
 }
