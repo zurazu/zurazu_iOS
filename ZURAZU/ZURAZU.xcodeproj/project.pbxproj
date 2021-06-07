@@ -78,6 +78,10 @@
 		BD9AA986266638F10046EB2F /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA985266638F10046EB2F /* UICollectionView+Register.swift */; };
 		BD9AA98826663FE70046EB2F /* SubCategoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9AA98726663FE70046EB2F /* SubCategoryCollectionView.swift */; };
 		BD9ADE20266E0D5600F47B14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE1F266E0D5600F47B14 /* SceneDelegate.swift */; };
+		BD9ADE26266E0DF600F47B14 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE25266E0DF600F47B14 /* MyPageViewController.swift */; };
+		BD9ADE28266E0DFF00F47B14 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD9ADE27266E0DFF00F47B14 /* MyPage.storyboard */; };
+		BD9ADE2A266E0E0800F47B14 /* MyPageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE29266E0E0800F47B14 /* MyPageScene.swift */; };
+		BD9ADE2C266E0E3500F47B14 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE2B266E0E3500F47B14 /* MyPageViewModel.swift */; };
 		BDA003952656545300C98928 /* SubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003942656545300C98928 /* SubCategoryViewController.swift */; };
 		BDA0039A2656547F00C98928 /* SubCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003992656547F00C98928 /* SubCategoryViewModel.swift */; };
 		BDA0039F265654D600C98928 /* SubCategoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0039E265654D600C98928 /* SubCategoryScene.swift */; };
@@ -191,6 +195,10 @@
 		BD9AA985266638F10046EB2F /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
 		BD9AA98726663FE70046EB2F /* SubCategoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryCollectionView.swift; sourceTree = "<group>"; };
 		BD9ADE1F266E0D5600F47B14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BD9ADE25266E0DF600F47B14 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		BD9ADE27266E0DFF00F47B14 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		BD9ADE29266E0E0800F47B14 /* MyPageScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScene.swift; sourceTree = "<group>"; };
+		BD9ADE2B266E0E3500F47B14 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		BDA003942656545300C98928 /* SubCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryViewController.swift; sourceTree = "<group>"; };
 		BDA003992656547F00C98928 /* SubCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryViewModel.swift; sourceTree = "<group>"; };
 		BDA0039E265654D600C98928 /* SubCategoryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryScene.swift; sourceTree = "<group>"; };
@@ -325,6 +333,7 @@
 				BD9AA963265E443A0046EB2F /* ItemDetail */,
 				BD88BC94264A83B00029CCC6 /* SignIn */,
 				BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */,
+				BD9ADE21266E0DCB00F47B14 /* MyPage */,
 				BD88BB902643C1F00029CCC6 /* Network */,
 				BD88BC3B26452F6B0029CCC6 /* Common */,
 			);
@@ -562,6 +571,41 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BD9ADE21266E0DCB00F47B14 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				BD9ADE24266E0DE800F47B14 /* Model */,
+				BD9ADE23266E0DE400F47B14 /* View */,
+				BD9ADE22266E0DDA00F47B14 /* ViewModel */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		BD9ADE22266E0DDA00F47B14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD9ADE2B266E0E3500F47B14 /* MyPageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BD9ADE23266E0DE400F47B14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD9ADE25266E0DF600F47B14 /* MyPageViewController.swift */,
+				BD9ADE27266E0DFF00F47B14 /* MyPage.storyboard */,
+				BD9ADE29266E0E0800F47B14 /* MyPageScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD9ADE24266E0DE800F47B14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BDA003902656540100C98928 /* SubCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,6 +756,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD88BD3C264D13320029CCC6 /* Category.storyboard in Resources */,
+				BD9ADE28266E0DFF00F47B14 /* MyPage.storyboard in Resources */,
 				BDA003A42656552E00C98928 /* SubCategory.storyboard in Resources */,
 				BD88BCF4264BAF820029CCC6 /* MainTabBar.storyboard in Resources */,
 				BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */,
@@ -882,6 +927,7 @@
 				BD9AA986266638F10046EB2F /* UICollectionView+Register.swift in Sources */,
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
+				BD9ADE2C266E0E3500F47B14 /* MyPageViewModel.swift in Sources */,
 				BDA003952656545300C98928 /* SubCategoryViewController.swift in Sources */,
 				BD9AA970265F99990046EB2F /* BaseResponse.swift in Sources */,
 				BDA7B2C62657A99C00DE2B27 /* MainTabBarViewModel.swift in Sources */,
@@ -892,6 +938,7 @@
 				BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */,
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
+				BD9ADE26266E0DF600F47B14 /* MyPageViewController.swift in Sources */,
 				BD9AA98826663FE70046EB2F /* SubCategoryCollectionView.swift in Sources */,
 				BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */,
 				BD9AA984266635540046EB2F /* SubCategoryCollectionViewCell.swift in Sources */,
@@ -901,6 +948,7 @@
 				BD88BD41264D13840029CCC6 /* CategoryScene.swift in Sources */,
 				B9591571265D2AF800EC6538 /* InputCollectionViewCell.swift in Sources */,
 				BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */,
+				BD9ADE2A266E0E0800F47B14 /* MyPageScene.swift in Sources */,
 				BD9AA96C265E44C20046EB2F /* ItemDetailViewModel.swift in Sources */,
 				BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
