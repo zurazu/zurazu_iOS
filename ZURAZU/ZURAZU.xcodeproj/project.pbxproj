@@ -10,6 +10,10 @@
 		0AFD4E0887051986166469B5 /* Pods_ZURAZU_ZURAZUUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FBC27E2A2261F647B9D6 /* Pods_ZURAZU_ZURAZUUITests.framework */; };
 		155D18C02EC42D3E48D9ADE4 /* Pods_ZURAZU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8F69851333A5E7BE04F9AC /* Pods_ZURAZU.framework */; };
 		2039CFAC0AE1BF3E9935B277 /* Pods_ZURAZUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */; };
+		BD59AFB9266A09A700CC40A9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFB8266A09A700CC40A9 /* SignUpViewController.swift */; };
+		BD59AFBB266A09D100CC40A9 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFBA266A09D100CC40A9 /* SignUpViewModel.swift */; };
+		BD59AFBD266A0A1C00CC40A9 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD59AFBC266A0A1C00CC40A9 /* SignUp.storyboard */; };
+		BD59AFBF266A0A9E00CC40A9 /* SignUpScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */; };
 		B9004CAA266261A200DAE135 /* SalesApplicationSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9004CA9266261A200DAE135 /* SalesApplicationSectionHeader.swift */; };
 		B957DC972668F599005E9F03 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957DC932668F599005E9F03 /* SceneCoordinator.swift */; };
 		B957DC982668F599005E9F03 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957DC942668F599005E9F03 /* Scene.swift */; };
@@ -121,6 +125,10 @@
 		3B8F69851333A5E7BE04F9AC /* Pods_ZURAZU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40F5FBC27E2A2261F647B9D6 /* Pods_ZURAZU_ZURAZUUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZU_ZURAZUUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7DEFE46661AAE27F7016532 /* Pods-ZURAZU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZU.release.xcconfig"; path = "Target Support Files/Pods-ZURAZU/Pods-ZURAZU.release.xcconfig"; sourceTree = "<group>"; };
+		BD59AFB8266A09A700CC40A9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BD59AFBA266A09D100CC40A9 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		BD59AFBC266A0A1C00CC40A9 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScene.swift; sourceTree = "<group>"; };
 		B9004CA9266261A200DAE135 /* SalesApplicationSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesApplicationSectionHeader.swift; sourceTree = "<group>"; };
 		B957DC932668F599005E9F03 /* SceneCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		B957DC942668F599005E9F03 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -266,6 +274,39 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BD59AFB4266A094700CC40A9 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				BD59AFB7266A097900CC40A9 /* Model */,
+				BD59AFB6266A097500CC40A9 /* View */,
+				BD59AFB5266A096D00CC40A9 /* ViewModel */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		BD59AFB5266A096D00CC40A9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD59AFBA266A09D100CC40A9 /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BD59AFB6266A097500CC40A9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD59AFB8266A09A700CC40A9 /* SignUpViewController.swift */,
+				BD59AFBC266A0A1C00CC40A9 /* SignUp.storyboard */,
+				BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD59AFB7266A097900CC40A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 		B957DC922668F58C005E9F03 /* SceneCoordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +373,7 @@
 				BDA003902656540100C98928 /* SubCategory */,
 				BD9AA963265E443A0046EB2F /* ItemDetail */,
 				BD88BC94264A83B00029CCC6 /* SignIn */,
+				BD59AFB4266A094700CC40A9 /* SignUp */,
 				BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */,
 				BD9ADE21266E0DCB00F47B14 /* MyPage */,
 				BD88BB902643C1F00029CCC6 /* Network */,
@@ -758,6 +800,7 @@
 				BD88BD3C264D13320029CCC6 /* Category.storyboard in Resources */,
 				BD9ADE28266E0DFF00F47B14 /* MyPage.storyboard in Resources */,
 				BDA003A42656552E00C98928 /* SubCategory.storyboard in Resources */,
+				BD59AFBD266A0A1C00CC40A9 /* SignUp.storyboard in Resources */,
 				BD88BCF4264BAF820029CCC6 /* MainTabBar.storyboard in Resources */,
 				BD88BCA1264A85BA0029CCC6 /* SignIn.storyboard in Resources */,
 				BD88BB4F2643ABE30029CCC6 /* LaunchScreen.storyboard in Resources */,
@@ -946,6 +989,7 @@
 				E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */,
 				BD88BD50264D1B370029CCC6 /* UITableView+Register.swift in Sources */,
 				BD88BD41264D13840029CCC6 /* CategoryScene.swift in Sources */,
+				BD59AFBB266A09D100CC40A9 /* SignUpViewModel.swift in Sources */,
 				B9591571265D2AF800EC6538 /* InputCollectionViewCell.swift in Sources */,
 				BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */,
 				BD9ADE2A266E0E0800F47B14 /* MyPageScene.swift in Sources */,
@@ -973,9 +1017,11 @@
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
 				B99FEEC5265E7976007C9E15 /* SalesApplicationScene.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
+				BD59AFBF266A0A9E00CC40A9 /* SignUpScene.swift in Sources */,
 				BD9AA96E265E44FA0046EB2F /* ItemDetailScene.swift in Sources */,
 				BDA0039A2656547F00C98928 /* SubCategoryViewModel.swift in Sources */,
 				BDA0039F265654D600C98928 /* SubCategoryScene.swift in Sources */,
+				BD59AFB9266A09A700CC40A9 /* SignUpViewController.swift in Sources */,
 				BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */,
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
 				BD88BCE8264B9C020029CCC6 /* MainTabBarScene.swift in Sources */,

@@ -10,9 +10,9 @@ import UIKit
 // MARK: - 네이밍 변경 필요!
 final class OptionStackView: UIStackView {
   
-  private let signUpButton: OptionButton = .init(title: "이메일 가입")
-  private let findPasswordButton: OptionButton = .init(title: "이메일 찾기")
-  private let findEmailButton: OptionButton = .init(title: "비밀번호 찾기")
+  let signUpButton: OptionButton = .init(title: "이메일 가입")
+  let findPasswordButton: OptionButton = .init(title: "이메일 찾기")
+  let findEmailButton: OptionButton = .init(title: "비밀번호 찾기")
   
   override init(frame: CGRect) {
     super.init(frame: frame)
