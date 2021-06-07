@@ -82,11 +82,11 @@ private extension SignInViewModel {
   func requestSignIn() {
     let networkProvider: NetworkProvider = .init()
     
-    let endPoint = SignInEndPoint.requestSignIn(email: email.value, password: password.value)
+    let endPoint: SignInEndPoint = .requestSignIn(email: email.value, password: password.value)
     
-    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<Token>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+    let requestSignInPublisher: AnyPublisher<Result<BaseResponse<Token>, NetworkError>, Never> = networkProvider.request(route: endPoint)
     
-    subCategoryPublisher
+    requestSignInPublisher
       .sink { result in
         switch result {
         case .success(let responseResult):
