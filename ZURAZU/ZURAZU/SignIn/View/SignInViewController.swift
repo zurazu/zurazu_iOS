@@ -71,7 +71,7 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     signInInputView.emailInputView.textField
       .textPublisher
       .compactMap { $0 }
-      .output(in: 2...)
+      .filter { !$0.isEmpty }
       .sink { [weak self] in
         self?.viewModel?.email.send($0)
       }
@@ -80,7 +80,7 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     signInInputView.passwordInputView.textField
       .textPublisher
       .compactMap { $0 }
-      .output(in: 2...)
+      .filter { !$0.isEmpty }
       .sink { [weak self] in
         self?.viewModel?.password.send($0)
       }
@@ -151,5 +151,17 @@ private extension SignInViewController {
     closeButton.tintColor = .black
     
     logoImageView.image = #imageLiteral(resourceName: "zurazuLogoImage")
+    
+    signInInputView.emailInputView.textField.delegate = self
+    signInInputView.passwordInputView.textField.delegate = self
+  }
+}
+
+extension SignInViewController: UITextFieldDelegate {
+  
+  func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    viewModel?.isValid.send(false)
+    
+    return true
   }
 }
