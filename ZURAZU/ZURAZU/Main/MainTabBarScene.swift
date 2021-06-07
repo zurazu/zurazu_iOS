@@ -31,7 +31,7 @@ struct MainTabBarScene: Scene {
     let likeScene: UIViewController = MainScene().instantiate()
     likeScene.tabBarItem = UITabBarItem(title: "좋아요", image: .heart, selectedImage: .heartFill)
     
-    let myPageScene: UIViewController = MainScene().instantiate()
+    let myPageScene: UIViewController = MyPageScene().instantiate()
     myPageScene.tabBarItem = UITabBarItem(title: "마이페이지", image: .person, selectedImage: .personFill)
     
     tabBarController.setViewControllers([categoryScene, logScene, mainScene, likeScene, myPageScene], animated: false)

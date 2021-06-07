@@ -12,7 +12,7 @@ struct ItemDetailScene: Scene {
   var storyboard: String
   
   func instantiate() -> UIViewController {
-    guard var itemDetailViewController: ItemDetailViewController = self.viewController(identifier: .ItemDetailVC) as? ItemDetailViewController
+    guard var itemDetailViewController: ItemDetailViewController = self.viewController(identifier: .itemDetailVC) as? ItemDetailViewController
     else { fatalError() }
     
     let viewModel: ItemDetailViewModel = .init()
