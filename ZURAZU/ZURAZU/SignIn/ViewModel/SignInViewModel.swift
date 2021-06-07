@@ -17,6 +17,7 @@ protocol SignInViewModelType {
   var isPasswordValid: PassthroughSubject<Bool, Never> { get }
   
   var signUpEvent: PassthroughSubject<Void, Never> { get }
+  var closeEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class SignInViewModel: SignInViewModelType {
@@ -28,6 +29,7 @@ final class SignInViewModel: SignInViewModelType {
   var isPasswordValid: PassthroughSubject<Bool, Never> = .init()
   
   var signUpEvent: PassthroughSubject<Void, Never> = .init()
+  var closeEvent: PassthroughSubject<Void, Never> = .init()
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -59,6 +61,12 @@ private extension SignInViewModel {
     signUpEvent
       .sink {
         SceneCoordinator.shared.transition(scene: SignUpScene(), using: .modal, animated: true)
+      }
+      .store(in: &cancellables)
+    
+    closeEvent
+      .sink {
+        SceneCoordinator.shared.close(animated: true)
       }
       .store(in: &cancellables)
   }

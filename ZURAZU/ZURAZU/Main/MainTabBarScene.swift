@@ -26,7 +26,7 @@ struct MainTabBarScene: Scene {
     let logScene: UIViewController = MainScene().instantiate()
     logScene.tabBarItem = UITabBarItem(title: "거래내역", image: .docText, selectedImage: .docTextFill)
     
-    let mainScene: UIViewController = SignInScene().instantiate()
+    let mainScene: UIViewController = MainScene().instantiate()
     
     let likeScene: UIViewController = MainScene().instantiate()
     likeScene.tabBarItem = UITabBarItem(title: "좋아요", image: .heart, selectedImage: .heartFill)
