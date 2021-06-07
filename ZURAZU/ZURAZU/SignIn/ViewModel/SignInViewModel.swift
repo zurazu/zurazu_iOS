@@ -60,7 +60,7 @@ private extension SignInViewModel {
     
     signUpEvent
       .sink {
-        SceneCoordinator.shared.transition(scene: SignUpScene(), using: .modal, animated: true)
+        SceneCoordinator.shared.transition(scene: SignUpScene(), using: .push, animated: true)
       }
       .store(in: &cancellables)
     
