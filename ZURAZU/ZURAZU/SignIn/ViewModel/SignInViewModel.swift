@@ -17,6 +17,8 @@ protocol SignInViewModelType {
   var isPasswordValid: PassthroughSubject<Bool, Never> { get }
   
   var signUpEvent: PassthroughSubject<Void, Never> { get }
+  var signInEvent: PassthroughSubject<Void, Never> { get }
+  var closeEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class SignInViewModel: SignInViewModelType {
@@ -28,6 +30,8 @@ final class SignInViewModel: SignInViewModelType {
   var isPasswordValid: PassthroughSubject<Bool, Never> = .init()
   
   var signUpEvent: PassthroughSubject<Void, Never> = .init()
+  var signInEvent: PassthroughSubject<Void, Never> = .init()
+  var closeEvent: PassthroughSubject<Void, Never> = .init()
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -58,7 +62,39 @@ private extension SignInViewModel {
     
     signUpEvent
       .sink {
-        SceneCoordinator.shared.transition(scene: SignUpScene(), using: .modal, animated: true)
+        SceneCoordinator.shared.transition(scene: SignUpScene(), using: .push, animated: true)
+      }
+      .store(in: &cancellables)
+    
+    closeEvent
+      .sink {
+        SceneCoordinator.shared.close(animated: true)
+      }
+      .store(in: &cancellables)
+    
+    signInEvent
+      .sink {
+        self.requestSignIn()
+      }
+      .store(in: &cancellables)
+  }
+  
+  func requestSignIn() {
+    let networkProvider: NetworkProvider = .init()
+    
+    let endPoint: SignInEndPoint = .requestSignIn(email: email.value, password: password.value)
+    
+    let requestSignInPublisher: AnyPublisher<Result<BaseResponse<Token>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+    
+    requestSignInPublisher
+      .sink { result in
+        switch result {
+        case .success(let responseResult):
+          // MARK: - 성공 여부 판단 후 로직 추가해야됩니다. 화면 전환 또는 email / pw 재입력
+          print(responseResult.message)
+        case .failure(let error):
+          print(error.localizedDescription)
+        }
       }
       .store(in: &cancellables)
   }

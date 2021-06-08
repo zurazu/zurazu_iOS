@@ -13,4 +13,6 @@ enum APICredentials: String {
   case mainCategories = "/mainCategories"
   case subCategories = "/subCategories"
   case categoryProducts = "/product"
+  case signIn = "/member/login"
+  case profile = "/member/profile"
 }
