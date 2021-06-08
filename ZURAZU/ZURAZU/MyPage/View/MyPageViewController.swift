@@ -70,11 +70,11 @@ private extension MyPageViewController {
       notSignInView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       notSignInView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       notSignInView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      notSignInView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+      notSignInView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
       notSignInView.widthAnchor.constraint(equalTo: view.widthAnchor),
       
       signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      signInButton.topAnchor.constraint(equalTo: notSignInView.bottomAnchor, constant: 10),
+      signInButton.topAnchor.constraint(equalTo: notSignInView.bottomAnchor),
       signInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
       signInButton.heightAnchor.constraint(equalToConstant: 53)
     ])
