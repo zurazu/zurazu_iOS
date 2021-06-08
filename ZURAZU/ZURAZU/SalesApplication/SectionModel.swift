@@ -23,10 +23,13 @@ protocol SalesApplicationSectionModel {
   var isNecessary: Bool { get }
   var height: CGFloat { get }
   var headerHeight: CGFloat { get }
+  
+  var content: String { get set }
 }
 
-struct SalesApplicationSectionInputModel: SalesApplicationSectionModel {
+class SalesApplicationSectionInputModel: SalesApplicationSectionModel {
   
+  var content: String = ""
   let height: CGFloat
   let headerHeight: CGFloat
   let isNecessary: Bool
@@ -47,8 +50,9 @@ struct SalesApplicationSectionInputModel: SalesApplicationSectionModel {
   }
 }
 
-struct SalesApplicationSectionPickerModel: SalesApplicationSectionModel {
+class SalesApplicationSectionPickerModel: SalesApplicationSectionModel {
   
+  var content: String = ""
   let height: CGFloat
   let headerHeight: CGFloat
   let isNecessary: Bool
@@ -67,8 +71,9 @@ struct SalesApplicationSectionPickerModel: SalesApplicationSectionModel {
   }
 }
 
-struct SalesApplicationSectionPictureModel: SalesApplicationSectionModel {
+class SalesApplicationSectionPictureModel: SalesApplicationSectionModel {
   
+  var content: String = ""
   var height: CGFloat
   let headerHeight: CGFloat
   var isNecessary: Bool
