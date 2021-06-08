@@ -28,6 +28,12 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     setupConstraint()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.setNavigationBarHidden(true, animated: true)
+  }
+  
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     super.touchesEnded(touches, with: event)
     
@@ -35,7 +41,6 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
   }
   
   func bindViewModel() {
-    
     viewModel?.isValid
       .receive(on: Scheduler.main)
       .removeDuplicates()

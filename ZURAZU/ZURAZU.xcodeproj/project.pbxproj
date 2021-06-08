@@ -91,6 +91,8 @@
 		BD9ADE32266E2DE200F47B14 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE31266E2DE200F47B14 /* Token.swift */; };
 		BD9ADE34266E38F500F47B14 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE33266E38F500F47B14 /* Profile.swift */; };
 		BD9ADE36266E399D00F47B14 /* MyPageEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE35266E399D00F47B14 /* MyPageEndPoint.swift */; };
+		BD9ADE3E266F41AA00F47B14 /* NotSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE3D266F41AA00F47B14 /* NotSignInView.swift */; };
+		BD9ADE42266F519100F47B14 /* UserSignUpInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9ADE41266F519100F47B14 /* UserSignUpInformation.swift */; };
 		BDA003952656545300C98928 /* SubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003942656545300C98928 /* SubCategoryViewController.swift */; };
 		BDA0039A2656547F00C98928 /* SubCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA003992656547F00C98928 /* SubCategoryViewModel.swift */; };
 		BDA0039F265654D600C98928 /* SubCategoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0039E265654D600C98928 /* SubCategoryScene.swift */; };
@@ -217,6 +219,8 @@
 		BD9ADE31266E2DE200F47B14 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		BD9ADE33266E38F500F47B14 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = SOURCE_ROOT; };
 		BD9ADE35266E399D00F47B14 /* MyPageEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEndPoint.swift; sourceTree = "<group>"; };
+		BD9ADE3D266F41AA00F47B14 /* NotSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSignInView.swift; sourceTree = "<group>"; };
+		BD9ADE41266F519100F47B14 /* UserSignUpInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignUpInformation.swift; sourceTree = "<group>"; };
 		BDA003942656545300C98928 /* SubCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryViewController.swift; sourceTree = "<group>"; };
 		BDA003992656547F00C98928 /* SubCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryViewModel.swift; sourceTree = "<group>"; };
 		BDA0039E265654D600C98928 /* SubCategoryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryScene.swift; sourceTree = "<group>"; };
@@ -314,7 +318,7 @@
 		BD59AFB4266A094700CC40A9 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				BD59AFB7266A097900CC40A9 /* Model */,
+				BD9ADE40266F519100F47B14 /* Model */,
 				BD59AFB6266A097500CC40A9 /* View */,
 				BD59AFB5266A096D00CC40A9 /* ViewModel */,
 			);
@@ -338,13 +342,6 @@
 			);
 			path = View;
 			sourceTree = "<group>";
-		};
-		BD59AFB7266A097900CC40A9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<unknown>";
 		};
 		BD88BB362643ABDF0029CCC6 = {
 			isa = PBXGroup;
@@ -652,6 +649,7 @@
 				BD9ADE25266E0DF600F47B14 /* MyPageViewController.swift */,
 				BD9ADE27266E0DFF00F47B14 /* MyPage.storyboard */,
 				BD9ADE29266E0E0800F47B14 /* MyPageScene.swift */,
+				BD9ADE3D266F41AA00F47B14 /* NotSignInView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -661,6 +659,14 @@
 			children = (
 				BD9ADE33266E38F500F47B14 /* Profile.swift */,
 				BD9ADE35266E399D00F47B14 /* MyPageEndPoint.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BD9ADE40266F519100F47B14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD9ADE41266F519100F47B14 /* UserSignUpInformation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -971,6 +977,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD9AA97C26638F490046EB2F /* SubCategory.swift in Sources */,
+				BD9ADE42266F519100F47B14 /* UserSignUpInformation.swift in Sources */,
 				BD9AA972265F9A2F0046EB2F /* MainCategory.swift in Sources */,
 				BD88BD55264D1B6E0029CCC6 /* Reusable.swift in Sources */,
 				B957DC992668F599005E9F03 /* SceneIdentifier.swift in Sources */,
@@ -998,6 +1005,7 @@
 				BD88BB9F2643C75D0029CCC6 /* NetworkProvider.swift in Sources */,
 				BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */,
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
+				BD9ADE3E266F41AA00F47B14 /* NotSignInView.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BD9ADE26266E0DF600F47B14 /* MyPageViewController.swift in Sources */,
 				BD9AA98826663FE70046EB2F /* SubCategoryCollectionView.swift in Sources */,
