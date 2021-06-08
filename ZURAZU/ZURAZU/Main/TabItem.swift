@@ -10,7 +10,7 @@ import UIKit
 enum TabItem: Int, CaseIterable {
   case category = 0
   case log
-  case search
+  case main
   case like
   case myPage
   
@@ -18,7 +18,7 @@ enum TabItem: Int, CaseIterable {
     switch self {
     case .category: return CategoryScene()
     case .log: return MainScene()
-    case .search: return MainScene()
+    case .main: return MainScene()
     case .like: return MainScene()
     case .myPage: return MyPageScene()
     }
@@ -28,7 +28,7 @@ enum TabItem: Int, CaseIterable {
     switch self {
     case .category: return "카테고리"
     case .log: return "거래내역"
-    case .search: return ""
+    case .main: return ""
     case .like: return "좋아요"
     case .myPage: return "마이페이지"
     }
@@ -38,7 +38,7 @@ enum TabItem: Int, CaseIterable {
     switch self {
     case .category: return .textAlignLeft
     case .log: return .docText
-    case .search: return UIImage()
+    case .main: return UIImage()
     case .like: return .heart
     case .myPage: return .person
     }
@@ -48,7 +48,7 @@ enum TabItem: Int, CaseIterable {
     switch self {
     case .category: return .textAlignLeft
     case .log: return .docTextFill
-    case .search: return UIImage()
+    case .main: return UIImage()
     case .like: return .heartFill
     case .myPage: return .personFill
     }

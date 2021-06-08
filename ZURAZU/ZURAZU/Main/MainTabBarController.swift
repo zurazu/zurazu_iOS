@@ -55,7 +55,7 @@ private extension MainTabBarController {
   }
   
   @objc func tappedHomeButton(sender: UIButton) {
-    SceneCoordinator.shared.tabTransition(item: .search)
+    SceneCoordinator.shared.tabTransition(item: .main)
   }
 }
 
