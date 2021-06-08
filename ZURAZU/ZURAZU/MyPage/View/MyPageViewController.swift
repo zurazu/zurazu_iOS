@@ -15,7 +15,7 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
   
   // MARK: - 해당 sign in 버튼에 대한 모든 부분은 추후 수정돼야합니다.
   private let signInButton: UIButton = .init(frame: .zero)
-  private let notSignInView: NotSignInView = .init(frame: .zero)
+  private let guestGuideView: GuestGuideView = .init(frame: .zero)
   private lazy var logoImageView: UIImageView = {
     let imageView: UIImageView = .init(image: .logoText)
     
@@ -40,7 +40,7 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
   }
   
   func bindViewModel() {
-    signInButton.tapPublisher
+    guestGuideView.signInButton.tapPublisher
       .sink { [weak self] in
         self?.viewModel?.showSignInScene.send()
         self?.logoImageView.removeFromSuperview()
@@ -52,31 +52,19 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
 private extension MyPageViewController {
   
   func setupView() {
-    signInButton.backgroundColor = .bluePrimary
-    signInButton.titleLabel?.font = .primaryBold
-    signInButton.setTitle("로그인 하기", for: .normal)
-    signInButton.setTitleColor(.background, for: .normal)
     
-    navigationController?.setNavigationBarHidden(true, animated: false)
   }
   
   func setupConstraint() {
-    [signInButton, notSignInView].forEach {
+    [guestGuideView].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       view.addSubview($0)
     }
     
     NSLayoutConstraint.activate([
-      notSignInView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      notSignInView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      notSignInView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      notSignInView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
-      notSignInView.widthAnchor.constraint(equalTo: view.widthAnchor),
-      
-      signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      signInButton.topAnchor.constraint(equalTo: notSignInView.bottomAnchor),
-      signInButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-      signInButton.heightAnchor.constraint(equalToConstant: 53)
+      guestGuideView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      guestGuideView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+      guestGuideView.widthAnchor.constraint(equalTo: view.widthAnchor),
     ])
   }
   

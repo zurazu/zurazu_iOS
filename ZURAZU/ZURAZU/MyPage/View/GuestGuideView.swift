@@ -1,5 +1,5 @@
 //
-//  NotSignInView.swift
+//  GuestGuideView.swift
 //  ZURAZU
 //
 //  Created by 서명렬 on 2021/06/08.
@@ -7,7 +7,18 @@
 
 import UIKit
 
-final class NotSignInView: UIView {
+final class GuestGuideView: UIView {
+  
+  lazy var signInButton: UIButton = {
+    let button: UIButton = .init(frame: .zero)
+    
+    button.backgroundColor = .bluePrimary
+    button.titleLabel?.font = .primaryBold
+    button.setTitle("로그인 하기", for: .normal)
+    button.setTitleColor(.background, for: .normal)
+    
+    return button
+  }()
   
   private lazy var currentStateLabel: UILabel = {
     let label: UILabel = .init(frame: .zero)
@@ -19,7 +30,7 @@ final class NotSignInView: UIView {
     return label
   }()
   
-  private lazy var indicateLabel: UILabel = {
+  private lazy var guideLabel: UILabel = {
     let label: UILabel = .init(frame: .zero)
     
     label.font = .secondary
@@ -41,14 +52,14 @@ final class NotSignInView: UIView {
   }
 }
 
-private extension NotSignInView {
+private extension GuestGuideView {
   
   func setupView() {
     backgroundColor = .white
   }
   
   func setupConstraint() {
-    [currentStateLabel, indicateLabel].forEach {
+    [signInButton, currentStateLabel, guideLabel].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       addSubview($0)
     }
@@ -56,11 +67,16 @@ private extension NotSignInView {
     NSLayoutConstraint.activate([
       currentStateLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
       currentStateLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
-      currentStateLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30),
+      currentStateLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -60),
       
-      indicateLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-      indicateLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
-      indicateLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 30),
+      guideLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+      guideLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      guideLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+      
+      signInButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+      signInButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+      signInButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+      signInButton.heightAnchor.constraint(equalToConstant: 53)
     ])
   }
 }
