@@ -23,13 +23,13 @@ struct MainTabBarScene: Scene {
     
     var viewControllers: [UIViewController] = []
     
-    TabItem.allCases.enumerated().forEach {
-      let scene: UIViewController = $1.scene.instantiate()
+    TabItem.allCases.enumerated().forEach { index, item in
+      let scene: UIViewController = item.scene.instantiate()
       
       viewControllers.append(scene)
       
-      if $0 != TabItem.allCases.centerIndex {
-        scene.tabBarItem = UITabBarItem(title: $1.title, image: $1.image, selectedImage: $1.selectedImage)
+      if index != TabItem.allCases.centerIndex {
+        scene.tabBarItem = UITabBarItem(title: item.title, image: item.image, selectedImage: item.selectedImage)
       }
     }
     
