@@ -30,7 +30,6 @@ protocol SalesApplicationSectionModel {
 class SalesApplicationSectionInputModel: SalesApplicationSectionModel {
   
   var content: String = ""
-  
   let height: CGFloat
   let headerHeight: CGFloat
   let isNecessary: Bool

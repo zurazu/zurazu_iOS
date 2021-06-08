@@ -10,7 +10,7 @@ import Combine
 
 final class InputCollectionViewCell: UICollectionViewCell {
 
-  var subscription: [AnyCancellable] = []
+  var cancellables: Set<AnyCancellable> = []
   let textField: UnderLineTextField =  {
     let textField: UnderLineTextField = .init()
     

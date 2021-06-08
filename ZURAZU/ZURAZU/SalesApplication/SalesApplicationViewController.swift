@@ -12,7 +12,7 @@ import CombineDataSources
 final class SalesApplicationViewController: UIViewController {
   
   @IBOutlet weak var collectionView: UICollectionView!
-
+  
   private let model: [SalesApplicationSectionModel] = [
     SalesApplicationSectionPickerModel(title: "카테고리", isNecessary: true, items: ["Outer", "TOP | T-Shirts", "TOP | Shirts", "TOP | Knit", "Pants", "Skirt", "Onepeice"]),
     SalesApplicationSectionInputModel(title: "브랜드 및 구매처", placeHolder: "6자리 이상으로 입력해주세요"),
@@ -62,14 +62,14 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       let inputModel: SalesApplicationSectionInputModel? = model[indexPath.section] as? SalesApplicationSectionInputModel
       cell.updatePlaceHolder(message: inputModel?.placeHolder)
       cell.updateDescriptionLabel(message: inputModel?.description)
-
-            cell.textField.returnPublisher.sink { _ in
-              cell.textField.resignFirstResponder()
-            }.store(in: &cell.subscription)
-        
+      
+      cell.textField.returnPublisher.sink { _ in
+        cell.textField.resignFirstResponder()
+      }.store(in: &cell.cancellables)
+      
       cell.textField.textPublisher.sink { text in
         inputModel?.content = text ?? ""
-      }.store(in: &cell.subscription)
+      }.store(in: &cell.cancellables)
       return cell
       
     case .picker:
@@ -83,7 +83,7 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       
       cell.textField.textPublisher.sink { text in
         inputModel?.content = text ?? ""
-      }.store(in: &cell.subscription)
+      }.store(in: &cell.cancellables)
       
       return cell
       
@@ -147,7 +147,9 @@ extension SalesApplicationViewController: UIPickerViewDelegate, UIPickerViewData
   }
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    guard let cell: PickerCollectionViewCell = collectionView.cellForItem(at: .init(row: 0, section: pickerView.tag)) as? PickerCollectionViewCell else { return }
+    let indexPath: IndexPath = .init(row: 0, section: pickerView.tag)
+    guard let cell: PickerCollectionViewCell = collectionView.cellForItem(at: indexPath) as? PickerCollectionViewCell else { return }
+    
     cell.textField.text = (model[pickerView.tag] as? SalesApplicationSectionPickerModel)?.items[row] ?? ""
     cell.textField.resignFirstResponder()
   }

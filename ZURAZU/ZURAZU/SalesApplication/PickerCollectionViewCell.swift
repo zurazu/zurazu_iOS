@@ -10,7 +10,7 @@ import Combine
 
 final class PickerCollectionViewCell: UICollectionViewCell {
   
-  var subscription: [AnyCancellable] = []
+  var cancellables: Set<AnyCancellable> = []
   let borderView: UIView = {
     let view: UIView = .init()
     
@@ -40,7 +40,7 @@ final class PickerCollectionViewCell: UICollectionViewCell {
   
   override func prepareForReuse() {
     super.prepareForReuse()
-    subscription = []
+    cancellables = []
   }
   
   override init(frame: CGRect) {
@@ -83,7 +83,7 @@ private extension PickerCollectionViewCell {
                                  imageView.trailingAnchor.constraint(equalTo: borderView.trailingAnchor, constant: -12),
                                  imageView.centerYAnchor.constraint(equalTo: borderView.centerYAnchor)])
     
-    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapButton(sender:)))
+    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapButton(sender:)))
     
     imageView.isUserInteractionEnabled = true
     imageView.addGestureRecognizer(tapGesture)
