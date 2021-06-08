@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 final class PickerCollectionViewCell: UICollectionViewCell {
   
+  var subscription: [AnyCancellable] = []
   let borderView: UIView = {
-    let view:UIView = .init()
+    let view: UIView = .init()
     
     view.layer.borderWidth = 1
     view.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
@@ -22,7 +24,6 @@ final class PickerCollectionViewCell: UICollectionViewCell {
     let textField: UITextField = .init()
     
     textField.font = .tertiary
-    textField.textColor = .monoQuaternary
     textField.placeholder = "선택해주세요"
     
     return textField
@@ -36,6 +37,11 @@ final class PickerCollectionViewCell: UICollectionViewCell {
     
     return imageView
   }()
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    subscription = []
+  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -77,6 +83,14 @@ private extension PickerCollectionViewCell {
                                  imageView.trailingAnchor.constraint(equalTo: borderView.trailingAnchor, constant: -12),
                                  imageView.centerYAnchor.constraint(equalTo: borderView.centerYAnchor)])
     
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapButton(sender:)))
+    
+    imageView.isUserInteractionEnabled = true
+    imageView.addGestureRecognizer(tapGesture)
+  }
+  
+  @objc func tapButton(sender: UITapGestureRecognizer) {
+    textField.becomeFirstResponder()
   }
   
 }
