@@ -63,8 +63,8 @@ private extension MyPageViewController {
     
     NSLayoutConstraint.activate([
       guestGuideView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      guestGuideView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
-      guestGuideView.widthAnchor.constraint(equalTo: view.widthAnchor),
+      guestGuideView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+      guestGuideView.widthAnchor.constraint(equalTo: view.widthAnchor)
     ])
   }
   
