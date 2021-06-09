@@ -64,6 +64,7 @@ private extension InputView {
     textField.placeholder = inputViewType.placeHolder
     textField.layer.borderColor = .none
     textField.backgroundColor = .background
+    textField.textContentType = .oneTimeCode
     
     messageLabel.textColor = .redPrimary
     messageLabel.font = .systemFont(ofSize: 12)
