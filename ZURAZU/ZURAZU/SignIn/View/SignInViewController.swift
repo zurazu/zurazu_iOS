@@ -18,7 +18,7 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
   private let closeButton: UIButton = .init(frame: .zero)
   private let logoImageView: UIImageView = .init(frame: .zero)
   private let signInInputView: SignInInputView = .init(frame: .zero)
-  private let signInButton: SignInButton = .init(frame: .zero)
+  private let signInButton: SignButton = .init(frame: .zero)
   private let optionStackView: OptionStackView = .init(frame: .zero)
   
   override func viewDidLoad() {
@@ -162,6 +162,8 @@ private extension SignInViewController {
     closeButton.tintColor = .black
     
     logoImageView.image = #imageLiteral(resourceName: "zurazuLogoImage")
+    
+    signInButton.setTitle("로그인", for: .normal)
     
     signInInputView.emailInputView.textField.delegate = self
     signInInputView.passwordInputView.textField.delegate = self

@@ -102,7 +102,7 @@
 		BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */; };
 		BDA73CD126677E240088BEC4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD026677E240088BEC4 /* Product.swift */; };
 		BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD22668BBE10088BEC4 /* Validator.swift */; };
-		BDA73CD52668BF2B0088BEC4 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD42668BF2B0088BEC4 /* SignInButton.swift */; };
+		BDA73CD52668BF2B0088BEC4 /* SignButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD42668BF2B0088BEC4 /* SignButton.swift */; };
 		BDA7B2C62657A99C00DE2B27 /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA7B2C52657A99C00DE2B27 /* MainTabBarViewModel.swift */; };
 		E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1340D264BA2D800792751 /* UIFont+Constant.swift */; };
 		E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */; };
@@ -232,7 +232,7 @@
 		BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+First.swift"; sourceTree = "<group>"; };
 		BDA73CD026677E240088BEC4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		BDA73CD22668BBE10088BEC4 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
-		BDA73CD42668BF2B0088BEC4 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
+		BDA73CD42668BF2B0088BEC4 /* SignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignButton.swift; sourceTree = "<group>"; };
 		BDA7B2C52657A99C00DE2B27 /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -534,7 +534,7 @@
 				BD88BCCB264A9CAB0029CCC6 /* SignInInputView.swift */,
 				BD88BCD0264AA6A90029CCC6 /* OptionStackView.swift */,
 				BD88BCD5264AAF2B0029CCC6 /* OptionButton.swift */,
-				BDA73CD42668BF2B0088BEC4 /* SignInButton.swift */,
+				BDA73CD42668BF2B0088BEC4 /* SignButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1048,7 +1048,7 @@
 				B96D0AB82660E5EE00ED6485 /* SectionModel.swift in Sources */,
 				BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */,
 				BD9AA968265E44840046EB2F /* ItemDetailViewController.swift in Sources */,
-				BDA73CD52668BF2B0088BEC4 /* SignInButton.swift in Sources */,
+				BDA73CD52668BF2B0088BEC4 /* SignButton.swift in Sources */,
 				BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */,
 				B9591566265D20D300EC6538 /* SalesApplicationViewController.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
