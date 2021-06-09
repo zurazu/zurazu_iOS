@@ -29,13 +29,7 @@ extension SignInEndPoint: EndPointable {
   }
   
   var query: HTTPQuery? {
-    switch self {
-    case .requestSignIn(let email, let password):
-      return [
-        "email": email,
-        "password": password
-      ]
-    }
+    return nil
   }
   
   var httpMethod: HTTPMethod? {
@@ -50,6 +44,12 @@ extension SignInEndPoint: EndPointable {
   }
   
   var bodies: HTTPBody? {
-    return nil
+    switch self {
+    case .requestSignIn(let email, let password):
+      return [
+        "email": email,
+        "password": password
+      ]
+    }
   }
 }
