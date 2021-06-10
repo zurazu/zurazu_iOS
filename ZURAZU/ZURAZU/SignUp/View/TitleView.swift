@@ -33,6 +33,7 @@ final class TitleView: UIView {
   init(frame: CGRect, contentView: UIView, isNecessary: Bool = false) {
     self.contentView = contentView
     super.init(frame: frame)
+    necessaryLabel.isHidden = !isNecessary
     
     setupView()
     setupConstraint()
