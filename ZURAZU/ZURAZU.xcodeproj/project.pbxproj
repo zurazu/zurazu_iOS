@@ -99,6 +99,7 @@
 		BDA003A42656552E00C98928 /* SubCategory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA003A32656552E00C98928 /* SubCategory.storyboard */; };
 		BDA68CCE2670A64400F65568 /* SignUpStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CCD2670A64400F65568 /* SignUpStackView.swift */; };
 		BDA68CD02670A66600F65568 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CCF2670A66600F65568 /* TitleView.swift */; };
+		BDA68CD226721C3000F65568 /* SignUpPickerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */; };
 		BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */; };
 		BDA73CD126677E240088BEC4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD026677E240088BEC4 /* Product.swift */; };
 		BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD22668BBE10088BEC4 /* Validator.swift */; };
@@ -229,6 +230,7 @@
 		BDA003A32656552E00C98928 /* SubCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubCategory.storyboard; sourceTree = "<group>"; };
 		BDA68CCD2670A64400F65568 /* SignUpStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStackView.swift; sourceTree = "<group>"; };
 		BDA68CCF2670A66600F65568 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPickerLabel.swift; sourceTree = "<group>"; };
 		BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+First.swift"; sourceTree = "<group>"; };
 		BDA73CD026677E240088BEC4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		BDA73CD22668BBE10088BEC4 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				BD59AFBE266A0A9E00CC40A9 /* SignUpScene.swift */,
 				BDA68CCD2670A64400F65568 /* SignUpStackView.swift */,
 				BDA68CCF2670A66600F65568 /* TitleView.swift */,
+				BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1012,6 +1015,7 @@
 				BD88BB9F2643C75D0029CCC6 /* NetworkProvider.swift in Sources */,
 				BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */,
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
+				BDA68CD226721C3000F65568 /* SignUpPickerLabel.swift in Sources */,
 				BD9ADE3E266F41AA00F47B14 /* GuestGuideView.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BD9ADE26266E0DF600F47B14 /* MyPageViewController.swift in Sources */,
