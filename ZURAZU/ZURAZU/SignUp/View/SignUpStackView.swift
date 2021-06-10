@@ -13,6 +13,8 @@ final class SignUpStackView: UIStackView {
   let passwordInputView: InputView = .init(frame: .zero, inputViewType: .password)
   let confirmPasswordInputView: InputView = .init(frame: .zero, inputViewType: .confirmPassword)
   let nameInputView: InputView = .init(frame: .zero, inputViewType: .name)
+  let genderLabel: SignUpPickerLabel = .init(frame: .zero)
+  let birthLabel: SignUpPickerLabel = .init(frame: .zero)
   let genderPickerView: UIPickerView = .init(frame: .zero)
   let birthPickerView: UIDatePicker = .init(frame: .zero)
   
@@ -41,6 +43,9 @@ private extension SignUpStackView {
     addArrangedTitleView(passwordInputView, title: "비밀번호", isNecessary: true)
     addArrangedTitleView(confirmPasswordInputView, title: "비밀번호 확인", isNecessary: true)
     addArrangedTitleView(nameInputView, title: "실명")
+    
+    addArrangedTitleView(genderLabel, title: "성별")
+    addArrangedTitleView(birthLabel, title: "생년월일")
   }
   
   func addArrangedTitleView(_ view: UIView, title: String, isNecessary: Bool = false) {
