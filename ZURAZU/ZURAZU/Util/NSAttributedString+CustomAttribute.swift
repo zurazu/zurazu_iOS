@@ -46,4 +46,8 @@ enum Attributes {
     .font            : UIFont.tertiary
   ]
   
+  static let placeHolder: AttributesOfNSAttributedString = [
+    .foregroundColor : UIColor.monoQuaternary,
+    .font            : UIFont.secondary
+  ]
 }
