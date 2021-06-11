@@ -100,6 +100,7 @@
 		BDA68CCE2670A64400F65568 /* SignUpStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CCD2670A64400F65568 /* SignUpStackView.swift */; };
 		BDA68CD02670A66600F65568 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CCF2670A66600F65568 /* TitleView.swift */; };
 		BDA68CD226721C3000F65568 /* SignUpPickerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */; };
+		BDA68CD42672296700F65568 /* SignUpEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD32672296700F65568 /* SignUpEndPoint.swift */; };
 		BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */; };
 		BDA73CD126677E240088BEC4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD026677E240088BEC4 /* Product.swift */; };
 		BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD22668BBE10088BEC4 /* Validator.swift */; };
@@ -231,6 +232,7 @@
 		BDA68CCD2670A64400F65568 /* SignUpStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStackView.swift; sourceTree = "<group>"; };
 		BDA68CCF2670A66600F65568 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPickerLabel.swift; sourceTree = "<group>"; };
+		BDA68CD32672296700F65568 /* SignUpEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndPoint.swift; sourceTree = "<group>"; };
 		BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+First.swift"; sourceTree = "<group>"; };
 		BDA73CD026677E240088BEC4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		BDA73CD22668BBE10088BEC4 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 			isa = PBXGroup;
 			children = (
 				BD9ADE41266F519100F47B14 /* UserSignUpInformation.swift */,
+				BDA68CD32672296700F65568 /* SignUpEndPoint.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1027,6 +1030,7 @@
 				E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */,
 				BD9ADE30266E2C7F00F47B14 /* SignInEndPoint.swift in Sources */,
 				BD88BD50264D1B370029CCC6 /* UITableView+Register.swift in Sources */,
+				BDA68CD42672296700F65568 /* SignUpEndPoint.swift in Sources */,
 				BD88BD41264D13840029CCC6 /* CategoryScene.swift in Sources */,
 				BD59AFBB266A09D100CC40A9 /* SignUpViewModel.swift in Sources */,
 				B9591571265D2AF800EC6538 /* InputCollectionViewCell.swift in Sources */,
@@ -1290,7 +1294,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BW2B9C7ASY;
 				INFOPLIST_FILE = ZURAZUTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1313,7 +1317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BW2B9C7ASY;
 				INFOPLIST_FILE = ZURAZUTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
