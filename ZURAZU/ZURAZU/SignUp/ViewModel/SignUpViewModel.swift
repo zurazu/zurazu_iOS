@@ -20,6 +20,8 @@ protocol SignUpViewModelType {
   var isEmailValid: PassthroughSubject<Bool, Never> { get }
   var isPasswordValid: PassthroughSubject<Bool, Never> { get }
   var isConfirmPasswordValid: PassthroughSubject<Bool, Never> { get }
+  
+  var signUpEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class SignUpViewModel: SignUpViewModelType {
@@ -34,6 +36,8 @@ final class SignUpViewModel: SignUpViewModelType {
   var isEmailValid: PassthroughSubject<Bool, Never> = .init()
   var isPasswordValid: PassthroughSubject<Bool, Never> = .init()
   var isConfirmPasswordValid: PassthroughSubject<Bool, Never> = .init()
+  
+  var signUpEvent: PassthroughSubject<Void, Never> = .init()
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -77,6 +81,33 @@ private extension SignUpViewModel {
       .removeDuplicates()
       .sink {
         self.isValid.send($0)
+      }
+      .store(in: &cancellables)
+    
+    signUpEvent
+      .sink {
+        self.requestSignUp()
+      }
+      .store(in: &cancellables)
+  }
+}
+
+private extension SignUpViewModel {
+  
+  func requestSignUp() {
+    let networkProvider: NetworkProvider = .init()
+    let endPoint = SignUpEndPoint.signUp(email: email.value, password: password.value)
+    
+    let requestSignUpPublisher: AnyPublisher<Result<BaseResponse<NillResponse>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+    
+    requestSignUpPublisher
+      .sink { result in
+        switch result {
+        case .success(let resultResponse):
+          print(resultResponse)
+        case .failure(let error):
+          print(error.localizedDescription)
+        }
       }
       .store(in: &cancellables)
   }
