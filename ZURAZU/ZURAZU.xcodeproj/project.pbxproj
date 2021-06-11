@@ -101,6 +101,7 @@
 		BDA68CD02670A66600F65568 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CCF2670A66600F65568 /* TitleView.swift */; };
 		BDA68CD226721C3000F65568 /* SignUpPickerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */; };
 		BDA68CD42672296700F65568 /* SignUpEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD32672296700F65568 /* SignUpEndPoint.swift */; };
+		BDA68CD626736EDF00F65568 /* SignUpScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD526736EDF00F65568 /* SignUpScrollView.swift */; };
 		BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */; };
 		BDA73CD126677E240088BEC4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD026677E240088BEC4 /* Product.swift */; };
 		BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD22668BBE10088BEC4 /* Validator.swift */; };
@@ -233,6 +234,7 @@
 		BDA68CCF2670A66600F65568 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPickerLabel.swift; sourceTree = "<group>"; };
 		BDA68CD32672296700F65568 /* SignUpEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndPoint.swift; sourceTree = "<group>"; };
+		BDA68CD526736EDF00F65568 /* SignUpScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScrollView.swift; sourceTree = "<group>"; };
 		BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+First.swift"; sourceTree = "<group>"; };
 		BDA73CD026677E240088BEC4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		BDA73CD22668BBE10088BEC4 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				BDA68CCD2670A64400F65568 /* SignUpStackView.swift */,
 				BDA68CCF2670A66600F65568 /* TitleView.swift */,
 				BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */,
+				BDA68CD526736EDF00F65568 /* SignUpScrollView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 				BD9AA96E265E44FA0046EB2F /* ItemDetailScene.swift in Sources */,
 				BDA0039A2656547F00C98928 /* SubCategoryViewModel.swift in Sources */,
 				BDA0039F265654D600C98928 /* SubCategoryScene.swift in Sources */,
+				BDA68CD626736EDF00F65568 /* SignUpScrollView.swift in Sources */,
 				BD59AFB9266A09A700CC40A9 /* SignUpViewController.swift in Sources */,
 				BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */,
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
