@@ -102,6 +102,9 @@
 		BDA68CD226721C3000F65568 /* SignUpPickerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */; };
 		BDA68CD42672296700F65568 /* SignUpEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD32672296700F65568 /* SignUpEndPoint.swift */; };
 		BDA68CD626736EDF00F65568 /* SignUpScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD526736EDF00F65568 /* SignUpScrollView.swift */; };
+		BDA68CD82677454100F65568 /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD72677454100F65568 /* Authorization.swift */; };
+		BDA68CDA26776CB700F65568 /* TokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CD926776CB700F65568 /* TokenEndPoint.swift */; };
+		BDA68CDC26776CD200F65568 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA68CDB26776CD200F65568 /* AccessToken.swift */; };
 		BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */; };
 		BDA73CD126677E240088BEC4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD026677E240088BEC4 /* Product.swift */; };
 		BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD22668BBE10088BEC4 /* Validator.swift */; };
@@ -235,6 +238,9 @@
 		BDA68CD126721C3000F65568 /* SignUpPickerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPickerLabel.swift; sourceTree = "<group>"; };
 		BDA68CD32672296700F65568 /* SignUpEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEndPoint.swift; sourceTree = "<group>"; };
 		BDA68CD526736EDF00F65568 /* SignUpScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScrollView.swift; sourceTree = "<group>"; };
+		BDA68CD72677454100F65568 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
+		BDA68CD926776CB700F65568 /* TokenEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEndPoint.swift; sourceTree = "<group>"; };
+		BDA68CDB26776CD200F65568 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+First.swift"; sourceTree = "<group>"; };
 		BDA73CD026677E240088BEC4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		BDA73CD22668BBE10088BEC4 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -518,6 +524,9 @@
 				BD9AA96F265F99990046EB2F /* BaseResponse.swift */,
 				BD9AA9752660EBAC0046EB2F /* APICredentials.swift */,
 				BD9AA977266386D10046EB2F /* Scheduler.swift */,
+				BDA68CD72677454100F65568 /* Authorization.swift */,
+				BDA68CD926776CB700F65568 /* TokenEndPoint.swift */,
+				BDA68CDB26776CD200F65568 /* AccessToken.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1012,6 +1021,7 @@
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BD9ADE2C266E0E3500F47B14 /* MyPageViewModel.swift in Sources */,
+				BDA68CD82677454100F65568 /* Authorization.swift in Sources */,
 				BDA003952656545300C98928 /* SubCategoryViewController.swift in Sources */,
 				BD9AA970265F99990046EB2F /* BaseResponse.swift in Sources */,
 				BDA7B2C62657A99C00DE2B27 /* MainTabBarViewModel.swift in Sources */,
@@ -1028,6 +1038,7 @@
 				BD9AA98826663FE70046EB2F /* SubCategoryCollectionView.swift in Sources */,
 				BD88BCB3264A87B20029CCC6 /* SignInViewModel.swift in Sources */,
 				BDA68CD02670A66600F65568 /* TitleView.swift in Sources */,
+				BDA68CDA26776CB700F65568 /* TokenEndPoint.swift in Sources */,
 				BD9AA984266635540046EB2F /* SubCategoryCollectionViewCell.swift in Sources */,
 				BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */,
 				E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */,
@@ -1076,6 +1087,7 @@
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
 				BD88BCE8264B9C020029CCC6 /* MainTabBarScene.swift in Sources */,
 				BD9AA974265FA8310046EB2F /* MainCategoryEndPoint.swift in Sources */,
+				BDA68CDC26776CD200F65568 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
