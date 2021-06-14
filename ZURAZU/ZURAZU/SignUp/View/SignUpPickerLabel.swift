@@ -30,12 +30,12 @@ final class SignUpPickerLabel: UILabel {
   }
   
   override var intrinsicContentSize: CGSize {
-    get {
-      var contentSize = super.intrinsicContentSize
-      contentSize.height += topInset + bottomInset
-      contentSize.width += leftInset + rightInset
-      return contentSize
-    }
+    var contentSize = super.intrinsicContentSize
+    
+    contentSize.height += topInset + bottomInset
+    contentSize.width += leftInset + rightInset
+    
+    return contentSize
   }
   
   func updateText(with text: String) {

@@ -22,15 +22,7 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
   }()
   
   let stackView: SignUpStackView = .init(frame: .zero)
-  private lazy var scrollView: UIScrollView = {
-    let scrollView: UIScrollView = .init(frame: .zero)
-    
-    scrollView.showsVerticalScrollIndicator = false
-    scrollView.showsHorizontalScrollIndicator = false
-    scrollView.contentInset = UIEdgeInsets(top: 36, left: 0, bottom: 36, right: 0)
-    
-    return scrollView
-  }()
+  private lazy var scrollView: SignUpScrollView = .init(frame: .zero)
   
   private lazy var signUpButton: SignButton = {
     let button: SignButton = .init(frame: .zero)
@@ -134,6 +126,42 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
         self?.stackView.confirmPasswordInputView.showMessage(with: $0)
       }
       .store(in: &cancellables)
+    
+    signUpButton
+      .tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.signUpEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    stackView.emailInputView.textField
+      .returnPublisher
+      .sink { [weak self] in
+        self?.stackView.passwordInputView.textField.becomeFirstResponder()
+      }
+      .store(in: &cancellables)
+    
+    stackView.passwordInputView.textField
+      .returnPublisher
+      .sink { [weak self] in
+        self?.stackView.confirmPasswordInputView.textField.becomeFirstResponder()
+      }
+      .store(in: &cancellables)
+    
+    stackView.confirmPasswordInputView.textField
+      .returnPublisher
+      .sink { [weak self] in
+        self?.stackView.nameInputView.textField.becomeFirstResponder()
+      }
+      .store(in: &cancellables)
+    
+    stackView.nameInputView.textField
+      .returnPublisher
+      .sink { [weak self] in
+        self?.stackView.nameInputView.textField.resignFirstResponder()
+        self?.scrollView.setContentOffset(CGPoint(x: 0, y: -36), animated: true)
+      }
+      .store(in: &cancellables)
   }
 }
 
@@ -143,6 +171,15 @@ private extension SignUpViewController {
     title = "회원가입"
     let leftButtonItem: UIBarButtonItem = .init(customView: backButton)
     navigationItem.leftBarButtonItem = leftButtonItem
+    
+    stackView.emailInputView.delegate = scrollView
+    stackView.passwordInputView.delegate = scrollView
+    stackView.confirmPasswordInputView.delegate = scrollView
+    stackView.nameInputView.delegate = scrollView
+    
+    scrollView.delegate = self
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
   }
   
   func setupConstraint() {
@@ -169,5 +206,16 @@ private extension SignUpViewController {
       signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
       signUpButton.heightAnchor.constraint(equalToConstant: 53)
     ])
+  }
+  
+  @objc func keyboardWillHide() {
+    scrollView.setLastContentOffset()
+  }
+}
+
+extension SignUpViewController: UIScrollViewDelegate {
+  
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    view.endEditing(true)
   }
 }

@@ -38,6 +38,7 @@ private extension SignUpScrollView {
     showsVerticalScrollIndicator = false
     showsHorizontalScrollIndicator = false
     contentInset = UIEdgeInsets(top: 36, left: 0, bottom: 36, right: 0)
+    alwaysBounceVertical = true
   }
 }
 

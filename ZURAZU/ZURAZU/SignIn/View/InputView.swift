@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol InputViewDelegate: AnyObject {
+  
+  func inputViewEditingDidBegin(_ inputView: InputView, superviewFrame: CGRect?)
+}
+
 final class InputView: UIView {
   
   let textField: UITextField = .init(frame: .zero)
@@ -14,6 +19,8 @@ final class InputView: UIView {
   private let messageLabel: UILabel = .init(frame: .zero)
   
   private let inputViewType: InputViewType
+  
+  weak var delegate: InputViewDelegate?
   
   init(frame: CGRect, inputViewType: InputViewType) {
     self.inputViewType = inputViewType
@@ -70,6 +77,8 @@ private extension InputView {
     messageLabel.font = .systemFont(ofSize: 12)
     
     line.backgroundColor = .monoQuaternary
+    
+    textField.addTarget(self, action: #selector(editDidBegin(event:)), for: .editingDidBegin)
   }
   
   func showValidMessage() {
@@ -80,5 +89,9 @@ private extension InputView {
   func showInvalidMessage() {
     messageLabel.text = inputViewType.invalidMessage
     line.backgroundColor = .redPrimary
+  }
+  
+  @objc func editDidBegin(event: UIControl.Event) {
+    delegate?.inputViewEditingDidBegin(self, superviewFrame: superview?.frame)
   }
 }
