@@ -11,6 +11,8 @@ import Combine
 protocol MyPageViewModelType {
   
   var showSignInScene: PassthroughSubject<Void, Never> { get }
+  
+  func requestProfile()
 }
 
 final class MyPageViewModel: MyPageViewModelType {
@@ -21,6 +23,28 @@ final class MyPageViewModel: MyPageViewModelType {
   
   init() {
     bind()
+  }
+  
+  func requestProfile() {
+    let networkProvider: NetworkProvider = .init()
+    let endPoint = MyPageEndPoint.requestProfile
+    
+    let profilePublisher: AnyPublisher<Result<BaseResponse<MyPageData>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+    
+    profilePublisher
+      .sink { result in
+        switch result {
+        case .success(let responseResult):
+          if responseResult.status == "UNAUTHORIZED" {
+            Authorization.shared.requestWithNewAccessToken { [weak self] in
+              self?.requestProfile()
+            }
+          }
+        case .failure(let error):
+          print(error.localizedDescription)
+        }
+      }
+      .store(in: &cancellables)
   }
 }
 
