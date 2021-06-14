@@ -19,7 +19,7 @@ final class Authorization {
   func set(accessToken: String, refreshToken: String) {
     userDefaults.set(accessToken, forKey: "AccessToken")
     userDefaults.set(refreshToken, forKey: "RefreshToken")
-    userDefaults.set(true, forKey: "isSignIn")
+    userDefaults.set(true, forKey: "isSignedIn")
   }
   
   var accessToken: String? {
@@ -31,7 +31,7 @@ final class Authorization {
   }
   
   var isSignedIn: Bool {
-    return userDefaults.bool(forKey: "isSignIn")
+    return userDefaults.bool(forKey: "isSignedIn")
   }
   
   func requestWithNewAccessToken(completion: @escaping () -> Void) {
@@ -51,5 +51,11 @@ final class Authorization {
         }
       }
       .store(in: &cancellables)
+  }
+  
+  func removeUserInformation() {
+    userDefaults.removeObject(forKey: "AccessToken")
+    userDefaults.removeObject(forKey: "RefreshToken")
+    userDefaults.removeObject(forKey: "isSignedIn")
   }
 }
