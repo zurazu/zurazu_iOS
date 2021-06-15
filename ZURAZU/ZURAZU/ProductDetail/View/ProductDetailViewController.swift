@@ -1,5 +1,5 @@
 //
-//  ItemDetailViewController.swift
+//  ProductDetailViewController.swift
 //  ZURAZU
 //
 //  Created by 서명렬 on 2021/05/26.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class ItemDetailViewController: UIViewController, ViewModelBindableType {
+final class ProductDetailViewController: UIViewController, ViewModelBindableType {
   
-  var viewModel: ItemDetailViewModelType?
+  var viewModel: ProductDetailViewModelType?
   
   override func viewDidLoad() {
     super.viewDidLoad()
