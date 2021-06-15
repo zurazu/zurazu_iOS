@@ -14,14 +14,6 @@ final class Authorization {
   private let userDefaults: UserDefaults = .standard
   private var cancellables: Set<AnyCancellable> = []
   
-  private init() { }
-  
-  func set(accessToken: String, refreshToken: String) {
-    userDefaults.set(accessToken, forKey: "AccessToken")
-    userDefaults.set(refreshToken, forKey: "RefreshToken")
-    userDefaults.set(true, forKey: "isSignedIn")
-  }
-  
   var accessToken: String? {
     return userDefaults.string(forKey: "AccessToken")
   }
@@ -32,6 +24,14 @@ final class Authorization {
   
   var isSignedIn: Bool {
     return userDefaults.bool(forKey: "isSignedIn")
+  }
+  
+  private init() { }
+  
+  func set(accessToken: String, refreshToken: String) {
+    userDefaults.set(accessToken, forKey: "AccessToken")
+    userDefaults.set(refreshToken, forKey: "RefreshToken")
+    userDefaults.set(true, forKey: "isSignedIn")
   }
   
   func requestWithNewAccessToken(completion: @escaping () -> Void) {

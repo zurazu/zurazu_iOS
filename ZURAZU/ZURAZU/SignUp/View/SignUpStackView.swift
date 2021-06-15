@@ -42,7 +42,7 @@ private extension SignUpStackView {
     addArrangedTitleView(emailInputView, title: "이메일 주소 (ID)", isNecessary: true)
     addArrangedTitleView(passwordInputView, title: "비밀번호", isNecessary: true)
     addArrangedTitleView(confirmPasswordInputView, title: "비밀번호 확인", isNecessary: true)
-    addArrangedTitleView(nameInputView, title: "실명")
+    addArrangedTitleView(nameInputView, title: "실명", isNecessary: true)
     
     addArrangedTitleView(genderLabel, title: "성별")
     addArrangedTitleView(birthLabel, title: "생년월일")

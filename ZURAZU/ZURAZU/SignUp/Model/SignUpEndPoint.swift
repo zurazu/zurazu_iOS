@@ -10,7 +10,7 @@ import Foundation
 enum SignUpEndPoint {
   
 //  case signUp(email: String, password: String, realName: String, gender: String, birth: Date)
-  case signUp(email: String, password: String)
+  case signUp(email: String, password: String, realName: String)
 }
 
 extension SignUpEndPoint: EndPointable {
@@ -54,10 +54,11 @@ extension SignUpEndPoint: EndPointable {
 //      "gender": gender,
 //      "birth": birth
 //    ]
-    case .signUp(let email, let password):
+    case .signUp(let email, let password, let realName):
       return [
         "email": email,
-        "password": password
+        "password": password,
+        "realName": realName
       ]
     }
   }

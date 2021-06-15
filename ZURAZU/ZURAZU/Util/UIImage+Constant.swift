@@ -21,4 +21,5 @@ extension UIImage {
   static let personFill   : UIImage = UIImage(systemName: "person.fill")    ?? errorImage
   
   static let logoText     : UIImage = UIImage(named: "zurazuLogoImage")     ?? errorImage
+  static let baseProfile  : UIImage = UIImage(named: "base-profile")        ?? errorImage
 }

@@ -9,6 +9,6 @@ import Foundation
 
 struct Token: Decodable, Hashable {
   
-  let accessToken: String
-  let refreshToken: String
+  let accessToken: [String]
+  let refreshToken: [String]
 }

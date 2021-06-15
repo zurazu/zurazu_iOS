@@ -37,10 +37,10 @@ extension MyPageEndPoint: EndPointable {
   }
   
   var headers: HTTPHeader? {
-    // MARK: - token에 대한 정보 삽입해야 됨.
     return [
       "Content-Type": "application/json",
-      "Accept": "application/json"
+      "Accept": "application/json",
+      "Authentication": Authorization.shared.accessToken ?? ""
     ]
   }
   

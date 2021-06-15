@@ -76,8 +76,8 @@ private extension SignUpViewModel {
       }
       .store(in: &cancellables)
     
-    isEmailValid.combineLatest(isPasswordValid, isConfirmPasswordValid)
-      .map { $0 && $1 && $2 }
+    isEmailValid.combineLatest(isPasswordValid, isConfirmPasswordValid, name)
+      .map { $0 && $1 && $2 && !$3.isEmpty}
       .removeDuplicates()
       .sink {
         self.isValid.send($0)
@@ -96,15 +96,18 @@ private extension SignUpViewModel {
   
   func requestSignUp() {
     let networkProvider: NetworkProvider = .init()
-    let endPoint = SignUpEndPoint.signUp(email: email.value, password: password.value)
+    let endPoint = SignUpEndPoint.signUp(email: email.value, password: password.value, realName: name.value)
     
     let requestSignUpPublisher: AnyPublisher<Result<BaseResponse<NillResponse>, NetworkError>, Never> = networkProvider.request(route: endPoint)
     
     requestSignUpPublisher
-      .sink { result in
+      .sink { [weak self] result in
         switch result {
         case .success(let resultResponse):
-          print(resultResponse)
+          guard resultResponse.status == "OK"
+          else { return }
+          
+          self?.closeEvent.send(())
         case .failure(let error):
           print(error.localizedDescription)
         }

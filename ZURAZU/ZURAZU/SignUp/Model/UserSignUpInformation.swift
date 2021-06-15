@@ -11,7 +11,7 @@ struct UserSignUpInformation: Decodable, Hashable {
   // MARK: - 수정해야함.
   let email: String
   let password: String
-//  let realName: String
+  let realName: String
 //  let gender: String
 //  let birth: Date
 //  let phoneNumber: String?

@@ -95,6 +95,14 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
       }
       .store(in: &cancellables)
     
+    stackView.nameInputView.textField
+      .textPublisher
+      .compactMap { $0 }
+      .sink { [weak self] in
+        self?.viewModel?.name.send($0)
+      }
+      .store(in: &cancellables)
+    
     viewModel?.isValid
       .receive(on: Scheduler.main)
       .removeDuplicates()
