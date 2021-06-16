@@ -72,24 +72,21 @@ enum CollectionViewLayoutSectionFactory {
     return section
   }
   
-  static let transactionHistorySection: NSCollectionLayoutSection = {
+  static let defaultSection: NSCollectionLayoutSection = {
     let widthDimension: CGFloat = 1
     
     // Item
     let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
     let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
+    item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: 0, bottom: inset, trailing: 0)
     
     // Group
-    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .estimated(200))
+    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .estimated(130))
     let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-    item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: 0, bottom: inset, trailing: 0)
     
     // Section
     let section: NSCollectionLayoutSection = .init(group: group)
-    section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
-    
-    // Supplementary Item
-    section.boundarySupplementaryItems = [headerItem, footerItem]
+    section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: 0, bottom: inset, trailing: 0)
     
     return section
   }()
