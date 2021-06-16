@@ -201,8 +201,8 @@ private extension SalesApplicationViewController {
     let layout: UICollectionViewFlowLayout? = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
     layout?.sectionInset = .init(top: 0, left: 0, bottom: 22, right: 0)
     layout?.minimumInteritemSpacing = 5
-    navigationItem.setLeftBarButton(UIBarButtonItem(title: "취소", style: .plain, target: nil, action: nil), animated: false)
-    navigationItem.setRightBarButton(UIBarButtonItem(title: "확인", style: .plain, target: nil, action: nil), animated: false)
+    navigationItem.setLeftBarButton(UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancel(sender: ))), animated: false)
+    navigationItem.setRightBarButton(UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(sendInformationToServer(sender:))), animated: false)
     title = "판매 신청"
     collectionView.delegate = self
     collectionView.dataSource = self
@@ -214,5 +214,15 @@ private extension SalesApplicationViewController {
     collectionView.register(SalesApplicationSectionHeader.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: SalesApplicationSectionHeader.identifier)
+  }
+  
+  
+  @objc func sendInformationToServer(sender: UITapGestureRecognizer) {
+    SceneCoordinator.shared.close(animated: true)
+    print("전송 완료")
+  }
+  
+  @objc func cancel(sender: UITapGestureRecognizer) {
+    SceneCoordinator.shared.close(animated: true)
   }
 }
