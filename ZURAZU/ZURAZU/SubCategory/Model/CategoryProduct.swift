@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Products: Decodable, Hashable {
-  let products: [Product]
+struct CategoryProducts: Decodable, Hashable {
+  let products: [CategoryProduct]
 }
 
-struct Product: Decodable, Hashable {
+struct CategoryProduct: Decodable, Hashable {
   
   let brand: String
-  let image: ProductImage
+  let image: CategoryProductImage
   let name: String
   let productIdx: Int
   
-  struct ProductImage: Decodable, Hashable {
+  struct CategoryProductImage: Decodable, Hashable {
     
     let createDate: String
     let idx: Int
