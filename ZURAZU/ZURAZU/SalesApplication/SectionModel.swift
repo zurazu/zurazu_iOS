@@ -80,7 +80,7 @@ class SalesApplicationSectionPictureModel: SalesApplicationSectionModel {
   let style: SalesApplicationSectionStyle = .picture
   let title: String
   let subtitle: String?
-  var images: [UIImage] = []
+  var images: [Int: UIImage] = [:]
   
   init(title: String, subtitle: String? = nil, height: CGFloat = 104, headerHeight: CGFloat = 30, isNecessary: Bool = false) {
     self.title = title

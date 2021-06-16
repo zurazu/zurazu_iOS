@@ -47,6 +47,11 @@ final class InputCollectionViewCell: UICollectionViewCell {
     super.init(coder: coder)
     configure()
   }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    cancellables = []
+  }
 }
 
 extension InputCollectionViewCell {

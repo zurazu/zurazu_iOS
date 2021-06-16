@@ -8,10 +8,14 @@
 import UIKit
 import Combine
 import CombineDataSources
+import CombineCocoa
 
 final class SalesApplicationViewController: UIViewController {
   
   @IBOutlet weak var collectionView: UICollectionView!
+  
+  private let imagePicker = UIImagePickerController()
+  private var currentImageIndex = 0
   
   private let model: [SalesApplicationSectionModel] = [
     SalesApplicationSectionPickerModel(title: "카테고리", isNecessary: true, items: ["Outer", "TOP | T-Shirts", "TOP | Shirts", "TOP | Knit", "Pants", "Skirt", "Onepeice"]),
@@ -90,7 +94,11 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
     case .picture:
       guard let cell: PictureCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PictureCollectionViewCell", for: indexPath) as? PictureCollectionViewCell
       else { return UICollectionViewCell() }
+      let pictureModel: SalesApplicationSectionPictureModel? = model[indexPath.section] as? SalesApplicationSectionPictureModel
       
+      cell.tag = indexPath.item
+      cell.borderImageView.image = pictureModel?.images[indexPath.item]
+      cell.delegate = self
       return cell
     }
   }
@@ -110,6 +118,7 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
     
     return CGSize(width: collectionView.bounds.width, height: model[section].headerHeight)
   }
+  
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
@@ -156,6 +165,32 @@ extension SalesApplicationViewController: UIPickerViewDelegate, UIPickerViewData
 }
 
 extension SalesApplicationViewController: UITextFieldDelegate {
+  
+}
+
+extension SalesApplicationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    guard let image: UIImage = info[.originalImage] as? UIImage else { return }
+    (model.last as? SalesApplicationSectionPictureModel)?.images[currentImageIndex] = image
+    picker.dismiss(animated: true, completion: nil)
+    collectionView.reloadData()
+  }
+  
+  
+}
+
+extension SalesApplicationViewController: PictureCollectionViewCellDelegate {
+  
+  func tapImageView(_ cell: PictureCollectionViewCell) {
+    
+    imagePicker.delegate = self
+    imagePicker.sourceType = .savedPhotosAlbum
+    imagePicker.allowsEditing = false
+    currentImageIndex = cell.tag
+    
+    present(imagePicker, animated: true, completion: nil)
+  }
   
 }
 

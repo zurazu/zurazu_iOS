@@ -7,11 +7,21 @@
 
 import Foundation
 import UIKit
+import Combine
+
+protocol PictureCollectionViewCellDelegate: AnyObject {
+  
+  func tapImageView(_ cell: PictureCollectionViewCell)
+}
 
 final class PictureCollectionViewCell: UICollectionViewCell {
   
-  let borderView: UIView = {
-    let view: UIView = .init()
+  var cancellables: Set<AnyCancellable> = []
+  weak var delegate: PictureCollectionViewCellDelegate?
+  
+  let borderImageView: UIImageView = {
+    let view: UIImageView = .init()
+    
     view.layer.borderWidth = 1
     view.layer.borderColor = UIColor.monoSecondary.cgColor
     
@@ -27,6 +37,11 @@ final class PictureCollectionViewCell: UICollectionViewCell {
     super.init(coder: coder)
     configure()
   }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    cancellables = []
+  }
 }
 
 extension PictureCollectionViewCell {
@@ -36,14 +51,25 @@ extension PictureCollectionViewCell {
 private extension PictureCollectionViewCell {
   
   func configure() {
-    addSubview(borderView)
+    addSubview(borderImageView)
     
-    borderView.translatesAutoresizingMaskIntoConstraints = false
-
-    NSLayoutConstraint.activate([borderView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                                 borderView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                                 borderView.topAnchor.constraint(equalTo: topAnchor),
-                                 borderView.bottomAnchor.constraint(equalTo: bottomAnchor)])
+    borderImageView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([borderImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                                 borderImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                                 borderImageView.topAnchor.constraint(equalTo: topAnchor),
+                                 borderImageView.bottomAnchor.constraint(equalTo: bottomAnchor)])
+    
+    borderImageView.isUserInteractionEnabled = true
+    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapImageView(sender:)))
+    
+    borderImageView.addGestureRecognizer(tapGesture)
   }
+  
+  @objc func tapImageView(sender: UITapGestureRecognizer) {
+    delegate?.tapImageView(self)
+  }
+  
 }
+
 
