@@ -13,9 +13,15 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
   
   var viewModel: MyPageViewModelType?
   
-  // MARK: - 해당 sign in 버튼에 대한 모든 부분은 추후 수정돼야합니다.
-  private let signInButton: UIButton = .init(frame: .zero)
+  private let tableViewData: [MyPageTableViewModel] = [
+    UpdateProfileModel(),
+    SearchOrderModel(),
+    SearchSellModel(),
+    SignOutModel()
+  ]
+  
   private let guestGuideView: GuestGuideView = .init(frame: .zero)
+  private let profileView: ProfileView = .init(frame: .zero)
   private lazy var logoImageView: UIImageView = {
     let imageView: UIImageView = .init(image: .logoText)
     
@@ -37,6 +43,8 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
     super.viewWillAppear(animated)
     
     setupNavigationBar()
+    
+    viewModel?.requestData.send()
   }
   
   func bindViewModel() {
@@ -46,25 +54,67 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
         self?.logoImageView.removeFromSuperview()
       }
       .store(in: &cancellables)
+    
+    viewModel?.isSignedIn
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
+      .sink { [weak self] in
+        if $0 {
+          self?.guestGuideView.isHidden = true
+          self?.profileView.isHidden = false
+        } else {
+          self?.profileView.isHidden = true
+          self?.guestGuideView.isHidden = false
+        }
+      }
+      .store(in: &cancellables)
+    
+    profileView.tableView
+      .didSelectRowPublisher
+      .sink { [weak self] in
+        if $0.row == 3 {
+          self?.viewModel?.signOutEvent.send()
+        }
+      }
+      .store(in: &cancellables)
+    
+    viewModel?.profileData
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
+      .sink { [weak self] in
+        self?.profileView.updateView(with: $0)
+      }
+      .store(in: &cancellables)
   }
 }
 
 private extension MyPageViewController {
   
   func setupView() {
+    // MARK: - 삭제 필요함.
+//    Authorization.shared.removeUserInformation()
+    profileView.isHidden = true
+    guestGuideView.isHidden = true
     
+    profileView.tableView.register(MyPageTableViewCell.self)
+    profileView.tableView.dataSource = self
   }
   
   func setupConstraint() {
-    [guestGuideView].forEach {
+    [guestGuideView, profileView].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       view.addSubview($0)
     }
     
     NSLayoutConstraint.activate([
       guestGuideView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      guestGuideView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+      guestGuideView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
       guestGuideView.widthAnchor.constraint(equalTo: view.widthAnchor),
+      
+      profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      profileView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
   }
   
@@ -80,5 +130,24 @@ private extension MyPageViewController {
       logoImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
       logoImageView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, multiplier: 0.3)
     ])
+  }
+}
+
+extension MyPageViewController: UITableViewDataSource {
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    1
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    tableViewData.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell: MyPageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+    
+    cell.updateCell(with: tableViewData[indexPath.row])
+    
+    return cell
   }
 }

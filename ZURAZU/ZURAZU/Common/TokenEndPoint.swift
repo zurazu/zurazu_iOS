@@ -1,18 +1,18 @@
 //
-//  MyPageEndPoint.swift
+//  TokenEndPoint.swift
 //  ZURAZU
 //
-//  Created by 서명렬 on 2021/06/07.
+//  Created by 서명렬 on 2021/06/14.
 //
 
 import Foundation
 
-enum MyPageEndPoint {
+enum TokenEndPoint {
   
-  case requestProfile
+  case requestAccessToken
 }
 
-extension MyPageEndPoint: EndPointable {
+extension TokenEndPoint: EndPointable {
   
   var environmentBaseURL: String {
     return APICredentials.baseURL.rawValue
@@ -20,10 +20,9 @@ extension MyPageEndPoint: EndPointable {
   
   var baseURL: URLComponents {
     switch self {
-    case .requestProfile:
-      guard let url: URLComponents = .init(string: environmentBaseURL + APICredentials.profile.rawValue)
+    case .requestAccessToken:
+      guard let url: URLComponents = .init(string: environmentBaseURL + "/member/refreshToken")
       else { fatalError() }
-      
       return url
     }
   }
@@ -33,18 +32,19 @@ extension MyPageEndPoint: EndPointable {
   }
   
   var httpMethod: HTTPMethod? {
-    return .get
+    return .post
   }
   
   var headers: HTTPHeader? {
     return [
       "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authentication": Authorization.shared.accessToken ?? ""
+      "Accept": "application/json"
     ]
   }
   
   var bodies: HTTPBody? {
-    return nil
+    return [
+      "refreshToken": Authorization.shared.refreshToken ?? "noValue"
+    ]
   }
 }

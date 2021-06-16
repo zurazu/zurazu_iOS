@@ -18,7 +18,7 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
   private let closeButton: UIButton = .init(frame: .zero)
   private let logoImageView: UIImageView = .init(frame: .zero)
   private let signInInputView: SignInInputView = .init(frame: .zero)
-  private let signInButton: SignInButton = .init(frame: .zero)
+  private let signInButton: SignButton = .init(frame: .zero)
   private let optionStackView: OptionStackView = .init(frame: .zero)
   
   override func viewDidLoad() {
@@ -32,6 +32,13 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     super.viewWillAppear(animated)
     
     navigationController?.setNavigationBarHidden(true, animated: true)
+    tabBarController?.tabBar.isHidden = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    tabBarController?.tabBar.isHidden = false
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -85,7 +92,6 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     signInInputView.passwordInputView.textField
       .textPublisher
       .compactMap { $0 }
-      .filter { !$0.isEmpty }
       .sink { [weak self] in
         self?.viewModel?.password.send($0)
       }
@@ -156,6 +162,8 @@ private extension SignInViewController {
     closeButton.tintColor = .black
     
     logoImageView.image = #imageLiteral(resourceName: "zurazuLogoImage")
+    
+    signInButton.setTitle("로그인", for: .normal)
     
     signInInputView.emailInputView.textField.delegate = self
     signInInputView.passwordInputView.textField.delegate = self

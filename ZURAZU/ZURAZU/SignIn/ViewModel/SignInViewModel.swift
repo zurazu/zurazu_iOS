@@ -67,12 +67,16 @@ private extension SignInViewModel {
       .store(in: &cancellables)
     
     closeEvent
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
       .sink {
         SceneCoordinator.shared.close(animated: true)
       }
       .store(in: &cancellables)
     
     signInEvent
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
       .sink {
         self.requestSignIn()
       }
@@ -87,11 +91,18 @@ private extension SignInViewModel {
     let requestSignInPublisher: AnyPublisher<Result<BaseResponse<Token>, NetworkError>, Never> = networkProvider.request(route: endPoint)
     
     requestSignInPublisher
-      .sink { result in
+      .sink { [weak self] result in
         switch result {
         case .success(let responseResult):
           // MARK: - 성공 여부 판단 후 로직 추가해야됩니다. 화면 전환 또는 email / pw 재입력
           print(responseResult.message)
+          guard
+            let accessToken: String = responseResult.list?.accessToken.first,
+            let refreshToken: String = responseResult.list?.refreshToken.first
+          else { return }
+          
+          Authorization.shared.set(accessToken: accessToken, refreshToken: refreshToken)
+          self?.closeEvent.send(())
         case .failure(let error):
           print(error.localizedDescription)
         }

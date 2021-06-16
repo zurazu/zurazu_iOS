@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol InputViewDelegate: AnyObject {
+  
+  func inputViewEditingDidBegin(_ inputView: InputView, superviewFrame: CGRect?)
+}
+
 final class InputView: UIView {
   
   let textField: UITextField = .init(frame: .zero)
@@ -14,6 +19,8 @@ final class InputView: UIView {
   private let messageLabel: UILabel = .init(frame: .zero)
   
   private let inputViewType: InputViewType
+  
+  weak var delegate: InputViewDelegate?
   
   init(frame: CGRect, inputViewType: InputViewType) {
     self.inputViewType = inputViewType
@@ -46,7 +53,7 @@ private extension InputView {
       textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6),
       textField.heightAnchor.constraint(equalToConstant: 24),
       
-      line.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 6),
+      line.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 3),
       line.heightAnchor.constraint(equalToConstant: 1),
       line.leadingAnchor.constraint(equalTo: leadingAnchor),
       line.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -60,15 +67,18 @@ private extension InputView {
   
   func setupView() {
     textField.clearButtonMode = .always
-    
-    textField.placeholder = inputViewType.placeHolder
+    textField.attributedPlaceholder = NSAttributedString(string: inputViewType.placeHolder,
+                                                         attributes: Attributes.placeHolder)
     textField.layer.borderColor = .none
     textField.backgroundColor = .background
+    textField.textContentType = .oneTimeCode
     
     messageLabel.textColor = .redPrimary
     messageLabel.font = .systemFont(ofSize: 12)
     
     line.backgroundColor = .monoQuaternary
+    
+    textField.addTarget(self, action: #selector(editDidBegin(event:)), for: .editingDidBegin)
   }
   
   func showValidMessage() {
@@ -79,5 +89,9 @@ private extension InputView {
   func showInvalidMessage() {
     messageLabel.text = inputViewType.invalidMessage
     line.backgroundColor = .redPrimary
+  }
+  
+  @objc func editDidBegin(event: UIControl.Event) {
+    delegate?.inputViewEditingDidBegin(self, superviewFrame: superview?.frame)
   }
 }
