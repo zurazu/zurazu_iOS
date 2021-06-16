@@ -51,19 +51,22 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     let button: UIButton = .init()
     let image: UIImage? = .init(systemName: "plus.app")
     
-    image?.withTintColor(.white)
-    
-    button.backgroundColor = .monoPrimary
+    button.backgroundColor = .bluePrimary
     button.setImage(image, for: .normal)
     button.setTitle("판매 신청하기", for: .normal)
     button.setTitleColor(.white, for: .normal)
+    button.titleLabel?.font = .tertiaryBold
     button.imageView?.contentMode = .scaleAspectFit
+    button.imageView?.tintColor = .white
     button.contentHorizontalAlignment = .center
     button.semanticContentAttribute = .forceLeftToRight
+    button.layer.cornerRadius = 5
     
-    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 15)
     return button
   }()
+  
+  private var cancellables: Set<AnyCancellable> = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -72,7 +75,11 @@ final class MainViewController: UIViewController, ViewModelBindableType {
   }
   
   func bindViewModel() {
-    
+    salesApplicationButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.salesApplicationEvent.send()
+      }
+      .store(in: &cancellables)
   }
   
 }
@@ -93,7 +100,7 @@ extension MainViewController {
       
       salesApplicationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
       salesApplicationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-      salesApplicationButton.widthAnchor.constraint(equalToConstant: 110),
+      salesApplicationButton.widthAnchor.constraint(equalToConstant: 130),
       salesApplicationButton.heightAnchor.constraint(equalToConstant: 35)
     ])
   }
