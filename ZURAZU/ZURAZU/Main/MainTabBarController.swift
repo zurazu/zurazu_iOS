@@ -55,11 +55,7 @@ private extension MainTabBarController {
   }
   
   @objc func tappedHomeButton(sender: UIButton) {
-    guard let viewControllers = viewControllers else { return }
-    
-    selectedIndex = tabBarItems.centerIndex
-    let selectedViewController = viewControllers[selectedIndex]
-    tabBarController(self, didSelect: selectedViewController)
+    SceneCoordinator.shared.tabTransition(item: .main)
   }
 }
 

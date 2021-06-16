@@ -1,5 +1,5 @@
 //
-//  SignInButton.swift
+//  SignButton.swift
 //  ZURAZU
 //
 //  Created by 서명렬 on 2021/06/03.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SignInButton: UIButton {
+final class SignButton: UIButton {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -26,12 +26,11 @@ final class SignInButton: UIButton {
   }
 }
 
-private extension SignInButton {
+private extension SignButton {
   
   func setupView() {
     backgroundColor = .bluePrimary
     titleLabel?.font = .primaryBold
-    setTitle("로그인", for: .normal)
     setTitleColor(.background, for: .normal)
     
     isEnabled = false

@@ -11,7 +11,7 @@ import Combine
 protocol SubCategoryViewModelType {
   
   var subCategories: CurrentValueSubject<[SubCategory], Never> { get }
-  var categoryProducts: PassthroughSubject<[Product], Never> { get }
+  var categoryProducts: PassthroughSubject<[CategoryProduct], Never> { get }
   var selectedCategoryIndex: PassthroughSubject<IndexPath, Never> { get }
   var startFetching: PassthroughSubject<Void, Never> { get }
   var close: PassthroughSubject<Void, Never> { get }
@@ -25,7 +25,7 @@ final class SubCategoryViewModel: SubCategoryViewModelType {
   private var cancellables: Set<AnyCancellable> = []
   
   var subCategories: CurrentValueSubject<[SubCategory], Never> = .init([])
-  var categoryProducts: PassthroughSubject<[Product], Never> = .init()
+  var categoryProducts: PassthroughSubject<[CategoryProduct], Never> = .init()
   var selectedCategoryIndex: PassthroughSubject<IndexPath, Never> = .init()
   var startFetching: PassthroughSubject<Void, Never> = .init()
   var close: PassthroughSubject<Void, Never> = .init()
@@ -96,7 +96,7 @@ private extension SubCategoryViewModel {
   func fetchCategoryProducts(at subCategoryIdx: Int?) {
     let networkProvider: NetworkProvider = .init()
     
-    let categoryProductsPublisher: AnyPublisher<Result<BaseResponse<Products>, NetworkError>, Never> = networkProvider.request(route: SubCategoryEndPoint.categoryProducts(offset: offset, limit: limit, mainCategoryIdx: mainCategory.idx, subCategoryIdx: subCategoryIdx, notOnlySelectProgressing: false))
+    let categoryProductsPublisher: AnyPublisher<Result<BaseResponse<CategoryProducts>, NetworkError>, Never> = networkProvider.request(route: SubCategoryEndPoint.categoryProducts(offset: offset, limit: limit, mainCategoryIdx: mainCategory.idx, subCategoryIdx: subCategoryIdx, notOnlySelectProgressing: false))
     
     categoryProductsPublisher
       .sink { [weak self] result in

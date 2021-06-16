@@ -15,3 +15,5 @@ struct BaseResponse<T: Decodable>: Decodable {
   let message: String
   let list: T?
 }
+
+struct NillResponse: Decodable, Hashable { }

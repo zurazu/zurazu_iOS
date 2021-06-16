@@ -26,7 +26,7 @@ final class SceneCoordinator {
   }
   
   @discardableResult
-  func tabTransition() -> AnyPublisher<Void, TransitionError> {
+  func tabTransition(item: TabItem? = nil) -> AnyPublisher<Void, TransitionError> {
     return Future { [weak self] promise in
       // MARK: - 로직 수정 필요함 ㅠㅠ
       guard
@@ -37,7 +37,11 @@ final class SceneCoordinator {
         return
       }
       
-      let viewController: UIViewController = tabBarItems[tabBarController.selectedIndex]
+      let index: Int = item?.rawValue ?? tabBarController.selectedIndex
+      
+      let viewController: UIViewController = tabBarItems[index]
+      
+      tabBarController.selectedViewController = tabBarItems[index]
       
       guard let navigationController: UINavigationController = viewController as? UINavigationController else {
         self?.currentViewController = viewController

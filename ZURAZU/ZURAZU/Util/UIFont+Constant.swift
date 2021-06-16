@@ -36,4 +36,7 @@ extension UIFont {
   
   static let smallestBold   : UIFont = UIFont.systemFont(ofSize: FontSize.smallest, weight: .bold)
   static let smallest       : UIFont = UIFont.systemFont(ofSize: FontSize.smallest)
+  
+  static let gradeBold      : UIFont = UIFont.systemFont(ofSize: 58, weight: .bold)
+  static let grade          : UIFont = UIFont.systemFont(ofSize: 58)
 }

@@ -18,7 +18,7 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
   private let closeButton: UIButton = .init(frame: .zero)
   private let logoImageView: UIImageView = .init(frame: .zero)
   private let signInInputView: SignInInputView = .init(frame: .zero)
-  private let signInButton: SignInButton = .init(frame: .zero)
+  private let signInButton: SignButton = .init(frame: .zero)
   private let optionStackView: OptionStackView = .init(frame: .zero)
   
   override func viewDidLoad() {
@@ -28,6 +28,19 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     setupConstraint()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.setNavigationBarHidden(true, animated: true)
+    tabBarController?.tabBar.isHidden = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    tabBarController?.tabBar.isHidden = false
+  }
+  
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     super.touchesEnded(touches, with: event)
     
@@ -35,7 +48,6 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
   }
   
   func bindViewModel() {
-    
     viewModel?.isValid
       .receive(on: Scheduler.main)
       .removeDuplicates()
@@ -71,7 +83,7 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     signInInputView.emailInputView.textField
       .textPublisher
       .compactMap { $0 }
-      .output(in: 2...)
+      .filter { !$0.isEmpty }
       .sink { [weak self] in
         self?.viewModel?.email.send($0)
       }
@@ -80,7 +92,6 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     signInInputView.passwordInputView.textField
       .textPublisher
       .compactMap { $0 }
-      .output(in: 2...)
       .sink { [weak self] in
         self?.viewModel?.password.send($0)
       }
@@ -90,6 +101,20 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
       .tapPublisher
       .sink { [weak self] in
         self?.viewModel?.signUpEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    closeButton
+      .tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    signInButton
+      .tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.signInEvent.send()
       }
       .store(in: &cancellables)
   }
@@ -105,7 +130,7 @@ private extension SignInViewController {
     
     NSLayoutConstraint.activate([
       closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-      closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+      closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
       closeButton.widthAnchor.constraint(equalToConstant: 18),
       closeButton.heightAnchor.constraint(equalToConstant: 24),
       
@@ -132,10 +157,24 @@ private extension SignInViewController {
   }
   
   func setupView() {
-    closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+    closeButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
     closeButton.backgroundColor = .background
     closeButton.tintColor = .black
     
     logoImageView.image = #imageLiteral(resourceName: "zurazuLogoImage")
+    
+    signInButton.setTitle("로그인", for: .normal)
+    
+    signInInputView.emailInputView.textField.delegate = self
+    signInInputView.passwordInputView.textField.delegate = self
+  }
+}
+
+extension SignInViewController: UITextFieldDelegate {
+  
+  func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    viewModel?.isValid.send(false)
+    
+    return true
   }
 }

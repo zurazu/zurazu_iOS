@@ -19,4 +19,8 @@ extension UIImage {
   static let docTextFill  : UIImage = UIImage(systemName: "doc.text.fill")  ?? errorImage
   static let heartFill    : UIImage = UIImage(systemName: "heart.fill")     ?? errorImage
   static let personFill   : UIImage = UIImage(systemName: "person.fill")    ?? errorImage
+  
+  static let logoText     : UIImage = UIImage(named: "zurazuLogoImage")     ?? errorImage
+  static let baseProfile  : UIImage = UIImage(named: "base-profile")        ?? errorImage
+  static let location     : UIImage = UIImage(named: "location")     ?? errorImage
 }
