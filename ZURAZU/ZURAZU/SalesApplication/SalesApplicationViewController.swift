@@ -8,10 +8,14 @@
 import UIKit
 import Combine
 import CombineDataSources
+import CombineCocoa
 
 final class SalesApplicationViewController: UIViewController {
   
   @IBOutlet weak var collectionView: UICollectionView!
+  
+  private let imagePicker = UIImagePickerController()
+  private var currentImageIndex = 0
   
   private let model: [SalesApplicationSectionModel] = [
     SalesApplicationSectionPickerModel(title: "카테고리", isNecessary: true, items: ["Outer", "TOP | T-Shirts", "TOP | Shirts", "TOP | Knit", "Pants", "Skirt", "Onepeice"]),
@@ -90,7 +94,11 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
     case .picture:
       guard let cell: PictureCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PictureCollectionViewCell", for: indexPath) as? PictureCollectionViewCell
       else { return UICollectionViewCell() }
+      let pictureModel: SalesApplicationSectionPictureModel? = model[indexPath.section] as? SalesApplicationSectionPictureModel
       
+      cell.tag = indexPath.item
+      cell.borderImageView.image = pictureModel?.images[indexPath.item]
+      cell.delegate = self
       return cell
     }
   }
@@ -110,6 +118,7 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
     
     return CGSize(width: collectionView.bounds.width, height: model[section].headerHeight)
   }
+  
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
@@ -159,6 +168,32 @@ extension SalesApplicationViewController: UITextFieldDelegate {
   
 }
 
+extension SalesApplicationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    guard let image: UIImage = info[.originalImage] as? UIImage else { return }
+    (model.last as? SalesApplicationSectionPictureModel)?.images[currentImageIndex] = image
+    picker.dismiss(animated: true, completion: nil)
+    collectionView.reloadData()
+  }
+  
+  
+}
+
+extension SalesApplicationViewController: PictureCollectionViewCellDelegate {
+  
+  func tapImageView(_ cell: PictureCollectionViewCell) {
+    
+    imagePicker.delegate = self
+    imagePicker.sourceType = .savedPhotosAlbum
+    imagePicker.allowsEditing = false
+    currentImageIndex = cell.tag
+    
+    present(imagePicker, animated: true, completion: nil)
+  }
+  
+}
+
 private extension SalesApplicationViewController {
   
   func setupView() {
@@ -166,8 +201,8 @@ private extension SalesApplicationViewController {
     let layout: UICollectionViewFlowLayout? = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
     layout?.sectionInset = .init(top: 0, left: 0, bottom: 22, right: 0)
     layout?.minimumInteritemSpacing = 5
-    navigationItem.setLeftBarButton(UIBarButtonItem(title: "취소", style: .plain, target: nil, action: nil), animated: false)
-    navigationItem.setRightBarButton(UIBarButtonItem(title: "확인", style: .plain, target: nil, action: nil), animated: false)
+    navigationItem.setLeftBarButton(UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancel(sender: ))), animated: false)
+    navigationItem.setRightBarButton(UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(sendInformationToServer(sender:))), animated: false)
     title = "판매 신청"
     collectionView.delegate = self
     collectionView.dataSource = self
@@ -179,5 +214,15 @@ private extension SalesApplicationViewController {
     collectionView.register(SalesApplicationSectionHeader.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: SalesApplicationSectionHeader.identifier)
+  }
+  
+  
+  @objc func sendInformationToServer(sender: UITapGestureRecognizer) {
+    SceneCoordinator.shared.close(animated: true)
+    print("전송 완료")
+  }
+  
+  @objc func cancel(sender: UITapGestureRecognizer) {
+    SceneCoordinator.shared.close(animated: true)
   }
 }
