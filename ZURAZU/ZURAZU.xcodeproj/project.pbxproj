@@ -95,6 +95,7 @@
 		BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD22668BBE10088BEC4 /* Validator.swift */; };
 		BDA73CD52668BF2B0088BEC4 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA73CD42668BF2B0088BEC4 /* SignInButton.swift */; };
 		BDA7B2C62657A99C00DE2B27 /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA7B2C52657A99C00DE2B27 /* MainTabBarViewModel.swift */; };
+		E28D3974265FF565003EF80C /* ProductThumbnailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D3973265FF565003EF80C /* ProductThumbnailInfoView.swift */; };
 		E28D398426624B5A003EF80C /* CollectionViewLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D398326624B5A003EF80C /* CollectionViewLayoutFactory.swift */; };
 		E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1340D264BA2D800792751 /* UIFont+Constant.swift */; };
 		E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */; };
@@ -219,6 +220,7 @@
 		BDA7B2C52657A99C00DE2B27 /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E28D3973265FF565003EF80C /* ProductThumbnailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductThumbnailInfoView.swift; sourceTree = "<group>"; };
 		E28D398326624B5A003EF80C /* CollectionViewLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayoutFactory.swift; sourceTree = "<group>"; };
 		E2C1340D264BA2D800792751 /* UIFont+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constant.swift"; sourceTree = "<group>"; };
 		E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+CustomAttribute.swift"; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				BD88BC2426452C680029CCC6 /* MainViewController.swift */,
 				BD88BB482643ABDF0029CCC6 /* Main.storyboard */,
 				BD88BC7B264A58820029CCC6 /* MainScene.swift */,
+				E28D3973265FF565003EF80C /* ProductThumbnailInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -975,6 +978,7 @@
 				BD9AA986266638F10046EB2F /* UICollectionView+Register.swift in Sources */,
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
+				E28D3974265FF565003EF80C /* ProductThumbnailInfoView.swift in Sources */,
 				BD9ADE2C266E0E3500F47B14 /* MyPageViewModel.swift in Sources */,
 				BDA003952656545300C98928 /* SubCategoryViewController.swift in Sources */,
 				BD9AA970265F99990046EB2F /* BaseResponse.swift in Sources */,
