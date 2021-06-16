@@ -98,6 +98,7 @@
 		E28A010F26663BD10062DE81 /* ProductThumbnailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28A010E26663BD10062DE81 /* ProductThumbnailViewCell.swift */; };
 		E28D3974265FF565003EF80C /* ProductThumbnailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D3973265FF565003EF80C /* ProductThumbnailInfoView.swift */; };
 		E28D398426624B5A003EF80C /* CollectionViewLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D398326624B5A003EF80C /* CollectionViewLayoutFactory.swift */; };
+		E2BA43BD267364C20024176B /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA43BC267364C20024176B /* SectionHeaderView.swift */; };
 		E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1340D264BA2D800792751 /* UIFont+Constant.swift */; };
 		E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */; };
 		E2FB1E5A264545FB004893E0 /* UIColor+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E59264545FB004893E0 /* UIColor+Constant.swift */; };
@@ -224,6 +225,7 @@
 		E28A010E26663BD10062DE81 /* ProductThumbnailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductThumbnailViewCell.swift; sourceTree = "<group>"; };
 		E28D3973265FF565003EF80C /* ProductThumbnailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductThumbnailInfoView.swift; sourceTree = "<group>"; };
 		E28D398326624B5A003EF80C /* CollectionViewLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayoutFactory.swift; sourceTree = "<group>"; };
+		E2BA43BC267364C20024176B /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		E2C1340D264BA2D800792751 /* UIFont+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constant.swift"; sourceTree = "<group>"; };
 		E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+CustomAttribute.swift"; sourceTree = "<group>"; };
 		E2FB1E59264545FB004893E0 /* UIColor+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Constant.swift"; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				BD88BC7B264A58820029CCC6 /* MainScene.swift */,
 				E28D3973265FF565003EF80C /* ProductThumbnailInfoView.swift */,
 				E28A010E26663BD10062DE81 /* ProductThumbnailViewCell.swift */,
+				E2BA43BC267364C20024176B /* SectionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1030,6 +1033,7 @@
 				B9591566265D20D300EC6538 /* SalesApplicationViewController.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
 				B99FEEC5265E7976007C9E15 /* SalesApplicationScene.swift in Sources */,
+				E2BA43BD267364C20024176B /* SectionHeaderView.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
 				BD59AFBF266A0A9E00CC40A9 /* SignUpScene.swift in Sources */,
 				BD9AA96E265E44FA0046EB2F /* ItemDetailScene.swift in Sources */,
