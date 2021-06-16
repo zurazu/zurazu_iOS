@@ -47,6 +47,24 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     return collectionView
   }()
   
+  lazy var salesApplicationButton: UIButton = {
+    let button: UIButton = .init()
+    let image: UIImage? = .init(systemName: "plus.app")
+    
+    image?.withTintColor(.white)
+    
+    button.backgroundColor = .monoPrimary
+    button.setImage(image, for: .normal)
+    button.setTitle("판매 신청하기", for: .normal)
+    button.setTitleColor(.white, for: .normal)
+    button.imageView?.contentMode = .scaleAspectFit
+    button.contentHorizontalAlignment = .center
+    button.semanticContentAttribute = .forceLeftToRight
+    
+    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    return button
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -62,7 +80,7 @@ final class MainViewController: UIViewController, ViewModelBindableType {
 extension MainViewController {
   
   private func setupConstraint() {
-    [collectionView].forEach {
+    [collectionView, salesApplicationButton].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       view.addSubview($0)
     }
@@ -71,7 +89,12 @@ extension MainViewController {
       collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+      collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      
+      salesApplicationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+      salesApplicationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+      salesApplicationButton.widthAnchor.constraint(equalToConstant: 110),
+      salesApplicationButton.heightAnchor.constraint(equalToConstant: 35)
     ])
   }
 }
@@ -128,4 +151,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     return CollectionSeparatorView()
   }
   
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    viewModel?.detailProductEvent.send(1)
+  }
 }

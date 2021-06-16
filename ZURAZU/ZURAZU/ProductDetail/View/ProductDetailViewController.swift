@@ -12,6 +12,14 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
   
   var viewModel: ProductDetailViewModelType?
   
+  private lazy var backButton: UIButton = {
+    let button = UIButton(frame: .zero)
+    button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+    button.tintColor = .monoPrimary
+    
+    return button
+  }()
+  
   private var cancellables: Set<AnyCancellable> = []
   
   override func viewDidLoad() {
@@ -24,6 +32,7 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    viewModel?.productDeatilIndex.send(4)
   }
   
   func bindViewModel() {
@@ -35,13 +44,20 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
         // MARK: - 업데이트 해줘야함
       }
       .store(in: &cancellables)
+    
+    backButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }
 
 private extension ProductDetailViewController {
   
   func setupView() {
-    
+    let leftButtonItem: UIBarButtonItem = .init(customView: backButton)
+    navigationItem.leftBarButtonItem = leftButtonItem
   }
   
   func setupConstraint() {

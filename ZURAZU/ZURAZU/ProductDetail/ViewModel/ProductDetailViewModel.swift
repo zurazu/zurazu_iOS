@@ -13,6 +13,7 @@ protocol ProductDetailViewModelType {
   var productDeatilIndex: PassthroughSubject<Int, Never> { get }
   var product: PassthroughSubject<Product, Never> { get }
   var inspectionStandardEvent: PassthroughSubject<Void, Never> { get }
+  var closeEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class ProductDetailViewModel: ProductDetailViewModelType {
@@ -20,6 +21,7 @@ final class ProductDetailViewModel: ProductDetailViewModelType {
   var productDeatilIndex: PassthroughSubject<Int, Never> = .init()
   var product: PassthroughSubject<Product, Never> = .init()
   var inspectionStandardEvent: PassthroughSubject<Void, Never> = .init()
+  var closeEvent: PassthroughSubject<Void, Never> = .init()
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -42,6 +44,13 @@ private extension ProductDetailViewModel {
       .receive(on: Scheduler.main)
       .sink {
         SceneCoordinator.shared.transition(scene: InspectionStandardScene(), using: .modal, animated: true)
+      }
+      .store(in: &cancellables)
+    
+    closeEvent
+      .receive(on: Scheduler.main)
+      .sink {
+        SceneCoordinator.shared.close(animated: true)
       }
       .store(in: &cancellables)
   }
