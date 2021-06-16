@@ -11,7 +11,7 @@ import Combine
 protocol SubCategoryViewModelType {
   
   var subCategories: CurrentValueSubject<[SubCategory], Never> { get }
-  var categoryProducts: PassthroughSubject<[CategoryProduct], Never> { get }
+  var categoryProducts: CurrentValueSubject<[CategoryProduct], Never> { get }
   var selectedCategoryIndex: PassthroughSubject<IndexPath, Never> { get }
   var startFetching: PassthroughSubject<Void, Never> { get }
   var close: PassthroughSubject<Void, Never> { get }
@@ -25,7 +25,7 @@ final class SubCategoryViewModel: SubCategoryViewModelType {
   private var cancellables: Set<AnyCancellable> = []
   
   var subCategories: CurrentValueSubject<[SubCategory], Never> = .init([])
-  var categoryProducts: PassthroughSubject<[CategoryProduct], Never> = .init()
+  var categoryProducts: CurrentValueSubject<[CategoryProduct], Never> = .init([])
   var selectedCategoryIndex: PassthroughSubject<IndexPath, Never> = .init()
   var startFetching: PassthroughSubject<Void, Never> = .init()
   var close: PassthroughSubject<Void, Never> = .init()
@@ -105,7 +105,7 @@ private extension SubCategoryViewModel {
           guard let data = responseResult.list else { return }
           
           self?.categoryProducts.send(data.products)
-          self?.nextOffset()
+//          self?.nextOffset()
           
         case .failure(let error):
           print(error.localizedDescription)
