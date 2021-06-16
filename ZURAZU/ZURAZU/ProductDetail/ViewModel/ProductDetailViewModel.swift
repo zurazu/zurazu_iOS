@@ -6,11 +6,53 @@
 //
 
 import Foundation
+import Combine
 
 protocol ProductDetailViewModelType {
   
+  var productDeatilIndex: PassthroughSubject<Int, Never> { get }
+  var product: PassthroughSubject<Product, Never> { get }
 }
 
 final class ProductDetailViewModel: ProductDetailViewModelType {
   
+  var productDeatilIndex: PassthroughSubject<Int, Never> = .init()
+  var product: PassthroughSubject<Product, Never> = .init()
+  private var cancellables: Set<AnyCancellable> = []
+  
+  init() {
+    bind()
+  }
+  
+}
+
+private extension ProductDetailViewModel {
+  
+  func bind() {
+    productDeatilIndex
+      .sink { [weak self] in
+        self?.requestProductDetail(of: $0)
+      }
+      .store(in: &cancellables)
+  }
+  
+  func requestProductDetail(of productIndex: Int) {
+    let networkProvider: NetworkProvider = .init()
+    let endPoint = ProductDetailEndPoint.requestProductDetail(productIndex: productIndex)
+    
+    let productDetailPublisher: AnyPublisher<Result<BaseResponse<ProductDetail>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+    
+    productDetailPublisher
+      .sink { result in
+        switch result {
+        case .success(let productDetail):
+          // MARK: - 데이터 사용해야함.
+          print(productDetail)
+          self.product.send(productDetail.list!.product!)
+        case .failure(let error):
+          print(error.localizedDescription)
+        }
+      }
+      .store(in: &cancellables)
+  }
 }

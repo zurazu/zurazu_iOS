@@ -9,7 +9,9 @@ import UIKit
 
 struct ProductDetailScene: Scene {
   
-  var storyboard: String
+  var storyboard: String {
+    return "ProductDetail"
+  }
   
   func instantiate() -> UIViewController {
     guard var productDetailViewController: ProductDetailViewController = self.viewController(identifier: .productDetailVC) as? ProductDetailViewController
