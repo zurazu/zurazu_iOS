@@ -22,4 +22,5 @@ extension UIImage {
   
   static let logoText     : UIImage = UIImage(named: "zurazuLogoImage")     ?? errorImage
   static let baseProfile  : UIImage = UIImage(named: "base-profile")        ?? errorImage
+  static let location     : UIImage = UIImage(named: "location")     ?? errorImage
 }
