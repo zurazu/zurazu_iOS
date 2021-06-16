@@ -10,11 +10,11 @@ import UIKit
 enum FontSize {
   
   static let biggest     : CGFloat = 20
-  static let primary     : CGFloat = 17
-  static let secondary   : CGFloat = 15
-  static let tertiary    : CGFloat = 13
-  static let quaternary  : CGFloat = 11
-  static let smallest    : CGFloat = 10
+  static let primary     : CGFloat = 19
+  static let secondary   : CGFloat = 17
+  static let tertiary    : CGFloat = 15
+  static let quaternary  : CGFloat = 13
+  static let smallest    : CGFloat = 12
 }
 
 extension UIFont {

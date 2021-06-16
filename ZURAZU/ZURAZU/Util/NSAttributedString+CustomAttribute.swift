@@ -7,9 +7,9 @@
 
 import UIKit
 
+typealias AttributesOfNSAttributedString = [NSAttributedString.Key: Any]
+
 enum Attributes {
-  
-  typealias AttributesOfNSAttributedString = [NSAttributedString.Key: Any]
   
   static let category: AttributesOfNSAttributedString = [
     .foregroundColor : UIColor.bluePrimary,
