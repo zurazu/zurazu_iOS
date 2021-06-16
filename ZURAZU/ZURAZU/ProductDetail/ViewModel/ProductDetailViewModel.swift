@@ -12,18 +12,20 @@ protocol ProductDetailViewModelType {
   
   var productDeatilIndex: PassthroughSubject<Int, Never> { get }
   var product: PassthroughSubject<Product, Never> { get }
+  var inspectionStandardEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class ProductDetailViewModel: ProductDetailViewModelType {
   
   var productDeatilIndex: PassthroughSubject<Int, Never> = .init()
   var product: PassthroughSubject<Product, Never> = .init()
+  var inspectionStandardEvent: PassthroughSubject<Void, Never> = .init()
+  
   private var cancellables: Set<AnyCancellable> = []
   
   init() {
     bind()
   }
-  
 }
 
 private extension ProductDetailViewModel {
@@ -32,6 +34,14 @@ private extension ProductDetailViewModel {
     productDeatilIndex
       .sink { [weak self] in
         self?.requestProductDetail(of: $0)
+      }
+      .store(in: &cancellables)
+    
+    inspectionStandardEvent
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
+      .sink {
+        SceneCoordinator.shared.transition(scene: InspectionStandardScene(), using: .modal, animated: true)
       }
       .store(in: &cancellables)
   }

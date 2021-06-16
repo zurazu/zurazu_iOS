@@ -108,6 +108,14 @@
 		BDB48C092679BA1D003D86EB /* ProductDetailEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C082679BA1D003D86EB /* ProductDetailEndPoint.swift */; };
 		BDB48C0B2679BDAA003D86EB /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C0A2679BDAA003D86EB /* ProductDetail.swift */; };
 		BDB48C0D2679E247003D86EB /* ProductStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C0C2679E247003D86EB /* ProductStatus.swift */; };
+		BDB48C132679F9DB003D86EB /* InspectionStandardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C122679F9DB003D86EB /* InspectionStandardViewModel.swift */; };
+		BDB48C152679F9EF003D86EB /* InspectionStandardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C142679F9EF003D86EB /* InspectionStandardViewController.swift */; };
+		BDB48C172679FA93003D86EB /* InspectionStandard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB48C162679FA93003D86EB /* InspectionStandard.storyboard */; };
+		BDB48C192679FABD003D86EB /* InspectionStandardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C182679FABD003D86EB /* InspectionStandardScene.swift */; };
+		BDB48C1B2679FEA1003D86EB /* InspectionStandardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C1A2679FEA1003D86EB /* InspectionStandardModel.swift */; };
+		BDB48C1E267A013F003D86EB /* InspectionStandardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C1D267A013F003D86EB /* InspectionStandardTableViewCell.swift */; };
+		BDB48C20267A0408003D86EB /* InspectionStandardTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C1F267A0408003D86EB /* InspectionStandardTableView.swift */; };
+		BDB48C22267A070B003D86EB /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48C21267A070B003D86EB /* UIStackView+.swift */; };
 		E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1340D264BA2D800792751 /* UIFont+Constant.swift */; };
 		E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E542645401D004893E0 /* NSAttributedString+CustomAttribute.swift */; };
 		E2FB1E5A264545FB004893E0 /* UIColor+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1E59264545FB004893E0 /* UIColor+Constant.swift */; };
@@ -242,6 +250,14 @@
 		BDB48C082679BA1D003D86EB /* ProductDetailEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailEndPoint.swift; sourceTree = "<group>"; };
 		BDB48C0A2679BDAA003D86EB /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		BDB48C0C2679E247003D86EB /* ProductStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStatus.swift; sourceTree = "<group>"; };
+		BDB48C122679F9DB003D86EB /* InspectionStandardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionStandardViewModel.swift; sourceTree = "<group>"; };
+		BDB48C142679F9EF003D86EB /* InspectionStandardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionStandardViewController.swift; sourceTree = "<group>"; };
+		BDB48C162679FA93003D86EB /* InspectionStandard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InspectionStandard.storyboard; sourceTree = "<group>"; };
+		BDB48C182679FABD003D86EB /* InspectionStandardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionStandardScene.swift; sourceTree = "<group>"; };
+		BDB48C1A2679FEA1003D86EB /* InspectionStandardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionStandardModel.swift; sourceTree = "<group>"; };
+		BDB48C1D267A013F003D86EB /* InspectionStandardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionStandardTableViewCell.swift; sourceTree = "<group>"; };
+		BDB48C1F267A0408003D86EB /* InspectionStandardTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionStandardTableView.swift; sourceTree = "<group>"; };
+		BDB48C21267A070B003D86EB /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C1340D264BA2D800792751 /* UIFont+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constant.swift"; sourceTree = "<group>"; };
@@ -393,6 +409,7 @@
 				BD88BD2F264D12D70029CCC6 /* Category */,
 				BDA003902656540100C98928 /* SubCategory */,
 				BD9AA963265E443A0046EB2F /* ProductDetail */,
+				BDB48C0E2679F975003D86EB /* InspectionStandard */,
 				BD88BC94264A83B00029CCC6 /* SignIn */,
 				BD59AFB4266A094700CC40A9 /* SignUp */,
 				BD88BB4D2643ABE30029CCC6 /* LaunchScreen.storyboard */,
@@ -444,6 +461,7 @@
 				BD88BD4F264D1B370029CCC6 /* UITableView+Register.swift */,
 				BD9AA985266638F10046EB2F /* UICollectionView+Register.swift */,
 				BDA73CCE2667744E0088BEC4 /* IndexPath+First.swift */,
+				BDB48C21267A070B003D86EB /* UIStackView+.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -729,6 +747,44 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BDB48C0E2679F975003D86EB /* InspectionStandard */ = {
+			isa = PBXGroup;
+			children = (
+				BDB48C1C2679FEA8003D86EB /* Model */,
+				BDB48C102679F9B0003D86EB /* View */,
+				BDB48C0F2679F9A6003D86EB /* ViewModel */,
+			);
+			path = InspectionStandard;
+			sourceTree = "<group>";
+		};
+		BDB48C0F2679F9A6003D86EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BDB48C122679F9DB003D86EB /* InspectionStandardViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BDB48C102679F9B0003D86EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BDB48C142679F9EF003D86EB /* InspectionStandardViewController.swift */,
+				BDB48C162679FA93003D86EB /* InspectionStandard.storyboard */,
+				BDB48C182679FABD003D86EB /* InspectionStandardScene.swift */,
+				BDB48C1D267A013F003D86EB /* InspectionStandardTableViewCell.swift */,
+				BDB48C1F267A0408003D86EB /* InspectionStandardTableView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BDB48C1C2679FEA8003D86EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BDB48C1A2679FEA1003D86EB /* InspectionStandardModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -847,6 +903,7 @@
 				BD88BB4F2643ABE30029CCC6 /* LaunchScreen.storyboard in Resources */,
 				BD88BB4C2643ABE30029CCC6 /* Assets.xcassets in Resources */,
 				B9F68E77265BC5070006E2D4 /* SalesApplication.storyboard in Resources */,
+				BDB48C172679FA93003D86EB /* InspectionStandard.storyboard in Resources */,
 				BD9AA96A265E44900046EB2F /* ProductDetail.storyboard in Resources */,
 				BD88BB4A2643ABDF0029CCC6 /* Main.storyboard in Resources */,
 			);
@@ -1025,6 +1082,7 @@
 				E2FB1E5A264545FB004893E0 /* UIColor+Constant.swift in Sources */,
 				BD88BB9F2643C75D0029CCC6 /* NetworkProvider.swift in Sources */,
 				BD88BCCC264A9CAB0029CCC6 /* SignInInputView.swift in Sources */,
+				BDB48C22267A070B003D86EB /* UIStackView+.swift in Sources */,
 				BD88BC3D26452F8D0029CCC6 /* ViewModelBindableType.swift in Sources */,
 				BD9ADE3E266F41AA00F47B14 /* GuestGuideView.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
@@ -1039,18 +1097,22 @@
 				BD88BD50264D1B370029CCC6 /* UITableView+Register.swift in Sources */,
 				BD88BD41264D13840029CCC6 /* CategoryScene.swift in Sources */,
 				BD59AFBB266A09D100CC40A9 /* SignUpViewModel.swift in Sources */,
+				BDB48C152679F9EF003D86EB /* InspectionStandardViewController.swift in Sources */,
 				B9591571265D2AF800EC6538 /* InputCollectionViewCell.swift in Sources */,
 				BD9ADE2E266E267800F47B14 /* TabItem.swift in Sources */,
 				BDA73CCF2667744E0088BEC4 /* IndexPath+First.swift in Sources */,
 				BD9ADE2A266E0E0800F47B14 /* MyPageScene.swift in Sources */,
 				BD9AA96C265E44C20046EB2F /* ProductDetailViewModel.swift in Sources */,
 				BDA73CD32668BBE10088BEC4 /* Validator.swift in Sources */,
+				BDB48C20267A0408003D86EB /* InspectionStandardTableView.swift in Sources */,
 				BD88BB922643C21D0029CCC6 /* EndPointable.swift in Sources */,
 				BDB48C0B2679BDAA003D86EB /* ProductDetail.swift in Sources */,
+				BDB48C1B2679FEA1003D86EB /* InspectionStandardModel.swift in Sources */,
 				BD88BD17264D01180029CCC6 /* Array+.swift in Sources */,
 				BD88BD31264D12FD0029CCC6 /* CategoryViewController.swift in Sources */,
 				BD88BD1C264D032D0029CCC6 /* UIImage+Constant.swift in Sources */,
 				E2C1340E264BA2D800792751 /* UIFont+Constant.swift in Sources */,
+				BDB48C192679FABD003D86EB /* InspectionStandardScene.swift in Sources */,
 				BDA73CD126677E240088BEC4 /* CategoryProduct.swift in Sources */,
 				BD88BB9A2643C3220029CCC6 /* NetworkProvidable.swift in Sources */,
 				BD9ADE34266E38F500F47B14 /* Profile.swift in Sources */,
@@ -1069,6 +1131,7 @@
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
 				B99FEEC5265E7976007C9E15 /* SalesApplicationScene.swift in Sources */,
 				BD9ADE36266E399D00F47B14 /* MyPageEndPoint.swift in Sources */,
+				BDB48C1E267A013F003D86EB /* InspectionStandardTableViewCell.swift in Sources */,
 				BDA68CE82678C7A700F65568 /* GradeProgressView.swift in Sources */,
 				BD88BC42264534020029CCC6 /* MainViewModel.swift in Sources */,
 				BD59AFBF266A0A9E00CC40A9 /* SignUpScene.swift in Sources */,
@@ -1077,6 +1140,7 @@
 				BDA0039F265654D600C98928 /* SubCategoryScene.swift in Sources */,
 				BD59AFB9266A09A700CC40A9 /* SignUpViewController.swift in Sources */,
 				BD88BCC2264A8D170029CCC6 /* InputView.swift in Sources */,
+				BDB48C132679F9DB003D86EB /* InspectionStandardViewModel.swift in Sources */,
 				BD88BC7C264A58820029CCC6 /* MainScene.swift in Sources */,
 				BD88BCE8264B9C020029CCC6 /* MainTabBarScene.swift in Sources */,
 				BD9AA974265FA8310046EB2F /* MainCategoryEndPoint.swift in Sources */,

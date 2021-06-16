@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProductGradeFooterView: UIView {
+final class ProductGradeFooterView: UICollectionReusableView {
   
   let nameLabel: UILabel = .init(frame: .zero)
   let priceLabel: UILabel = .init(frame: .zero)
