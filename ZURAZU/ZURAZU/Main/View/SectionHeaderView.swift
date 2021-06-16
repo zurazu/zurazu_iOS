@@ -55,9 +55,11 @@ enum SectionTitle {
     return title
   }()
   
-  static let new: NSAttributedString = .init(string: "NEW",
-                                             attributes: [.foregroundColor: UIColor.monoPrimary,
-                                                          .font: UIFont.primaryBold])
+  static func title(with text: String) -> NSAttributedString {
+    .init(string: text,
+          attributes: [.foregroundColor: UIColor.monoPrimary,
+                       .font: UIFont.primaryBold])
+  }
 }
 
 class CollectionSeparatorView: UICollectionReusableView {

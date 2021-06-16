@@ -109,7 +109,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
       
       switch indexPath.section {
       case 0: headerView.update(with: SectionTitle.zurazuPick)
-      case 1: headerView.update(with: SectionTitle.new)
+      case 1: headerView.update(with: SectionTitle.title(with: "NEW"))
       default: headerView.update(with: SectionTitle.zurazuPick)
       }
       
