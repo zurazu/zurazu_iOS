@@ -48,7 +48,7 @@ extension ProductThumbnailInfoView {
                                                     attributes: size.name())
     }
     if let price: String = info?.price {
-      self.price.attributedText = NSAttributedString(string: DecimalWon(value: price),
+      self.price.attributedText = NSAttributedString(string: price.decimalWon(),
                                                      attributes: size.price())
     }
   }
@@ -81,16 +81,6 @@ extension ProductThumbnailInfoView {
     ])
   }
   
-  private func DecimalWon(value: String) -> String {
-    let numberFormatter = NumberFormatter()
-    numberFormatter.numberStyle = .decimal
-    
-    guard let number = Int(value),
-          let result = numberFormatter.string(from: NSNumber(value: number))
-    else { return "확인이 필요합니다." }
-    
-    return result + "원"
-  }
 }
 
 private extension ProductThumbnailSize {
@@ -148,4 +138,18 @@ struct ProductThumbnailInfo {
 
 enum ProductThumbnailSize {
   case large, medium, small
+}
+
+extension String {
+  
+  func decimalWon() -> String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    
+    guard let number = Int(self),
+          let result = numberFormatter.string(from: NSNumber(value: number))
+    else { return "확인이 필요합니다." }
+    
+    return result + "원"
+  }
 }
