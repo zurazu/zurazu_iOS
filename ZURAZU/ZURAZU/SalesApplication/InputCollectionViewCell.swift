@@ -24,6 +24,8 @@ final class InputCollectionViewCell: UICollectionViewCell {
     
     label.font = .tertiary
     label.textColor = .monoQuaternary
+    label.minimumScaleFactor = 0.5
+    label.adjustsFontSizeToFitWidth = true
     
     return label
   }()
@@ -91,6 +93,8 @@ private extension InputCollectionViewCell {
                                  marginView.topAnchor.constraint(equalTo: descriptionLabel.topAnchor),
                                  marginView.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor)])
     marginView.isHidden = true
+    
+    descriptionLabel.sizeToFit()
   }
 }
 

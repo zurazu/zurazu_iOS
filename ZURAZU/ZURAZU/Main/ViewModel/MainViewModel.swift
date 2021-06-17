@@ -12,12 +12,17 @@ protocol MainViewModelType {
   
   var detailProductEvent: PassthroughSubject<Int, Never> { get }
   var salesApplicationEvent: PassthroughSubject<Void, Never> { get }
+  var requestProductsData: PassthroughSubject<Void, Never> { get }
+  var products: CurrentValueSubject<[CategoryProduct], Never> { get }
 }
 
 final class MainViewModel: MainViewModelType {
   
   var detailProductEvent: PassthroughSubject<Int, Never> = .init()
   var salesApplicationEvent: PassthroughSubject<Void, Never> = .init()
+  var requestProductsData: PassthroughSubject<Void, Never> = .init()
+  
+  var products: CurrentValueSubject<[CategoryProduct], Never> = .init([])
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -43,9 +48,31 @@ private extension MainViewModel {
         SceneCoordinator.shared.transition(scene: SalesApplicationScene(), using: .push, animated: true)
       }
       .store(in: &cancellables)
+    
+    requestProductsData
+      .sink { [weak self] in
+        self?.requestProducts()
+      }
+      .store(in: &cancellables)
   }
   
   func requestProducts() {
+    let networkProvider: NetworkProvider = .init()
+    // MARK: - offset과 limit 계산해야함. subcategory화면에서도 마찬가지임.
+    let endPoint = SubCategoryEndPoint.categoryProducts(offset: 0, limit: 10, mainCategoryIdx: nil, subCategoryIdx: nil, notOnlySelectProgressing: false)
     
+    let productsPublisher: AnyPublisher<Result<BaseResponse<[CategoryProduct]>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+    
+    productsPublisher
+      .sink { result in
+        switch result {
+        case .success(let responseResult):
+          guard let list = responseResult.list else { return }
+          print(list)
+        case .failure(let error):
+          print(error.localizedDescription)
+        }
+      }
+      .store(in: &cancellables)
   }
 }

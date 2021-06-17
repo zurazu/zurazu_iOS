@@ -10,7 +10,7 @@ import Foundation
 enum SubCategoryEndPoint {
   
   case subCategories(mainIndex: Int)
-  case categoryProducts(offset: Int, limit: Int, mainCategoryIdx: Int, subCategoryIdx: Int?, notOnlySelectProgressing: Bool)
+  case categoryProducts(offset: Int, limit: Int, mainCategoryIdx: Int?, subCategoryIdx: Int?, notOnlySelectProgressing: Bool)
 }
 
 extension SubCategoryEndPoint: EndPointable {
@@ -42,9 +42,12 @@ extension SubCategoryEndPoint: EndPointable {
       var query: HTTPQuery = [
         "offset": offset,
         "limit": limit,
-        "mainCategoryIdx": mainCategoryIdx,
         "notOnlySelectProgressing": notOnlySelectProgressing
       ]
+      
+      if let mainCategoryIdx = mainCategoryIdx {
+        query["mainCategoryIdx"] = mainCategoryIdx
+      }
       
       if let subCategoryIdx = subCategoryIdx {
         query["subCategoryIdx"] = subCategoryIdx
@@ -68,7 +71,4 @@ extension SubCategoryEndPoint: EndPointable {
   var bodies: HTTPBody? {
     return nil
   }
-  
-  
-  
 }
