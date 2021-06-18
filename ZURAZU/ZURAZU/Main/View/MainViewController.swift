@@ -66,6 +66,14 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     return button
   }()
   
+  private lazy var logoImageView: UIImageView = {
+    let imageView: UIImageView = .init(image: .logoText)
+    
+    imageView.contentMode = .scaleAspectFit
+    
+    return imageView
+  }()
+  
   private var cancellables: Set<AnyCancellable> = []
   
   override func viewDidLoad() {
@@ -74,12 +82,26 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     setupConstraint()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    setupNavigationBar()
+    viewModel?.requestProductsData.send()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    logoImageView.removeFromSuperview()
+  }
+  
   func bindViewModel() {
     salesApplicationButton.tapPublisher
       .sink { [weak self] in
         self?.viewModel?.salesApplicationEvent.send()
       }
       .store(in: &cancellables)
+    
   }
   
 }
@@ -102,6 +124,20 @@ extension MainViewController {
       salesApplicationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
       salesApplicationButton.widthAnchor.constraint(equalToConstant: 130),
       salesApplicationButton.heightAnchor.constraint(equalToConstant: 35)
+    ])
+  }
+  
+  func setupNavigationBar() {
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationController?.setNavigationBarHidden(false, animated: false)
+    
+    navigationBar.addSubview(logoImageView)
+    logoImageView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      logoImageView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 16),
+      logoImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
+      logoImageView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, multiplier: 0.3)
     ])
   }
 }
