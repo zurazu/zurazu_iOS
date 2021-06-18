@@ -70,7 +70,7 @@ private extension TitleView {
       contentView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
       contentView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
       contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      contentView.heightAnchor.constraint(equalToConstant: 40),
+      contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
       contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
     ])
   }

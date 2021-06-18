@@ -42,7 +42,7 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
   lazy var marketingTermView: TermsOfServiceView = .init(frame: .zero, title: "ZURAZU 마케팅 정보 수신에 동의합니다.", titleSize: .normal, necessary: .choosable, childAxis: .vertical, childViews: [appPushTermView, emailTermView, smsTermView, kakaoTalkTermView])
   let ageTermView : TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .necessary, title: "만 14세 미만이 아닙니다.")
   
-  lazy var termsOfServiceView: TermsOfServiceView = .init(frame: .zero, title: "전체 동의", titleSize: .large, necessary: .none, childAxis: .vertical, childViews: [zurazuTermView, personalInformationTermView, marketingTermView, ageTermView])
+  lazy var termsOfServiceView: TitleView = .init(frame: .zero, contentView: TermsOfServiceView(frame: .zero, title: "전체 동의", titleSize: .large, necessary: .none, childAxis: .vertical, childViews: [zurazuTermView, personalInformationTermView, marketingTermView, ageTermView]), isNecessary: true)
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -200,6 +200,8 @@ private extension SignUpViewController {
     stackView.nameInputView.delegate = scrollView
     
     scrollView.delegate = self
+    
+    termsOfServiceView.updateTitle(with: "개인정보 이용 동의")
     
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
   }
