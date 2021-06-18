@@ -55,14 +55,15 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     button.setImage(image, for: .normal)
     button.setTitle("판매 신청하기", for: .normal)
     button.setTitleColor(.white, for: .normal)
+    button.setTitleColor(.monoQuaternary, for: .highlighted)
     button.titleLabel?.font = .tertiaryBold
-    button.imageView?.contentMode = .scaleAspectFit
+    button.imageView?.contentMode = .scaleAspectFill
     button.imageView?.tintColor = .white
     button.contentHorizontalAlignment = .center
     button.semanticContentAttribute = .forceLeftToRight
     button.layer.cornerRadius = 5
     
-    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 15)
+    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 20)
     return button
   }()
   

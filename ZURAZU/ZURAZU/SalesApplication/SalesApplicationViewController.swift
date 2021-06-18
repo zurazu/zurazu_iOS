@@ -218,8 +218,15 @@ private extension SalesApplicationViewController {
   
   
   @objc func sendInformationToServer(sender: UITapGestureRecognizer) {
-    SceneCoordinator.shared.close(animated: true)
-    print("전송 완료")
+    // MARK: - 임의의 데이터 넣어주는 부분입니다. 수정해야합니다.
+    
+    let product = OrderCompletedProduct(
+      orderedUserInformation: "주라주 000-0000-0000",
+      productInformation: "[브랜드 없음] 검은색 자켓",
+      price: 29850,
+      depositAccountNumber: "주라주 | 국민은행 110-1234-56789"
+    )
+    SceneCoordinator.shared.transition(scene: OrderCompleteScene(orderCompletedProduct: product), using: .push, animated: true)
   }
   
   @objc func cancel(sender: UITapGestureRecognizer) {
