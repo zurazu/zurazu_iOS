@@ -32,6 +32,18 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
     return button
   }()
   
+  let appPushTermView: TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .none, title: "앱 알림(앱푸시)")
+  let emailTermView: TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .none, title: "이메일")
+  let smsTermView: TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .none, title: "SMS")
+  let kakaoTalkTermView: TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .none, title: "카카오톡")
+  
+  let zurazuTermView : TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .necessary, title: "ZURAZU 이용약관에 동의합니다.")
+  let personalInformationTermView : TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .necessary, title: " ZURAZU 개인정보 수집 및 이용에 동의합니다.")
+  lazy var marketingTermView: TermsOfServiceView = .init(frame: .zero, title: "ZURAZU 마케팅 정보 수신에 동의합니다.", titleSize: .normal, necessary: .choosable, childAxis: .vertical, childViews: [appPushTermView, emailTermView, smsTermView, kakaoTalkTermView])
+  let ageTermView : TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .necessary, title: "만 14세 미만이 아닙니다.")
+  
+  lazy var termsOfServiceView: TermsOfServiceView = .init(frame: .zero, title: "전체 동의", titleSize: .large, necessary: .none, childAxis: .vertical, childViews: [zurazuTermView, personalInformationTermView, marketingTermView, ageTermView])
+  
   private var cancellables: Set<AnyCancellable> = []
   
   override func viewDidLoad() {
@@ -191,12 +203,13 @@ private extension SignUpViewController {
   }
   
   func setupConstraint() {
-    [scrollView, signUpButton].forEach {
+    [scrollView, signUpButton, termsOfServiceView].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       view.addSubview($0)
     }
     
     scrollView.addSubview(stackView)
+    scrollView.addSubview(termsOfServiceView)
     stackView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -204,9 +217,13 @@ private extension SignUpViewController {
       scrollView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
       
       stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-      stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
       stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
       stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+      
+      termsOfServiceView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
+      termsOfServiceView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+      termsOfServiceView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+      termsOfServiceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
       
       signUpButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
       signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
@@ -214,6 +231,10 @@ private extension SignUpViewController {
       signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
       signUpButton.heightAnchor.constraint(equalToConstant: 53)
     ])
+  }
+  
+  func bindTermsOfServiceView() {
+    
   }
   
   @objc func keyboardWillHide() {
