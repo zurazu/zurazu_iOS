@@ -81,8 +81,14 @@ final class TermsOfServiceView: UIView {
 private extension TermsOfServiceView {
   
   func setupView() {
+    titleLabel.numberOfLines = 0
+    
     checkBoxButton.setImage(.unCheck, for: .normal)
     checkBoxButton.addTarget(self, action: #selector(checkBoxButtonTapped), for: .touchUpInside)
+    
+    let gestureRecognizer: UITapGestureRecognizer = .init(target: self, action: #selector(checkBoxButtonTapped))
+    titleLabel.addGestureRecognizer(gestureRecognizer)
+    titleLabel.isUserInteractionEnabled = true
   }
   
   func setupConstraint() {
@@ -98,6 +104,7 @@ private extension TermsOfServiceView {
       checkBoxButton.heightAnchor.constraint(equalTo: checkBoxButton.heightAnchor),
       
       titleLabel.leadingAnchor.constraint(equalTo: checkBoxButton.trailingAnchor, constant: 10),
+      titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
       titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
       titleLabel.centerYAnchor.constraint(equalTo: checkBoxButton.centerYAnchor),
       
@@ -122,7 +129,7 @@ private extension TermsOfServiceView {
   func updateCheckBoxButton(for isSelected: Bool, withChildView: Bool = true) {
     self.isSelected = isSelected
     checkBoxButton.setImage(isSelected ? .check : .unCheck, for: .normal)
-//    superTermsOfServiceView?.updateCheckBoxButton(for: isSelected, withChildView: false)
+
     if withChildView {
       childStackView.arrangedSubviews.forEach {
         if let subView = $0 as? TermsOfServiceView {
