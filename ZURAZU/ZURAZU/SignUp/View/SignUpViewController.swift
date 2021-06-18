@@ -32,6 +32,21 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
     return button
   }()
   
+  let appPushTermView: TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .none, title: "앱 알림(앱푸시)")
+  let emailTermView: TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .none, title: "이메일")
+  let smsTermView: TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .none, title: "SMS")
+  let kakaoTalkTermView: TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .none, title: "카카오톡")
+  
+  let zurazuTermView : TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .necessary, title: "ZURAZU 이용약관에 동의합니다.")
+  let personalInformationTermView : TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .necessary, title: " ZURAZU 개인정보 수집 및 이용에 동의합니다.")
+  lazy var marketingTermView: TermsOfServiceView = .init(frame: .zero, title: "ZURAZU 마케팅 정보 수신에 동의합니다.", titleSize: .normal, necessary: .choosable, childAxis: .vertical, childViews: [appPushTermView, emailTermView, smsTermView, kakaoTalkTermView])
+  let ageTermView : TermsOfServiceView = .init(frame: .zero, titleSize: .normal, necessary: .necessary, title: "만 14세 미만이 아닙니다.")
+  
+  lazy var termsOfServiceView: TitleView = .init(frame: .zero, contentView: TermsOfServiceView(frame: .zero, title: "전체 동의", titleSize: .large, necessary: .none, childAxis: .vertical, childViews: [zurazuTermView, personalInformationTermView, marketingTermView, ageTermView]), isNecessary: true)
+  
+  let termsOfServiceButton: TermsOfServiceButton = .init(frame: .zero, title: "ZURAZU 이용 약관 보기")
+  let termsOfPersonalInformationButton: TermsOfServiceButton = .init(frame: .zero, title: "개인정보 이용 약관 보기")
+  
   private var cancellables: Set<AnyCancellable> = []
   
   override func viewDidLoad() {
@@ -170,6 +185,20 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
         self?.scrollView.setContentOffset(CGPoint(x: 0, y: -36), animated: true)
       }
       .store(in: &cancellables)
+    
+    termsOfServiceButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.zurazuTermsOfServiceEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    termsOfPersonalInformationButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.termsOfPersonalInformationEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    bindWithTermsOfServiceView()
   }
 }
 
@@ -187,6 +216,8 @@ private extension SignUpViewController {
     
     scrollView.delegate = self
     
+    termsOfServiceView.updateTitle(with: "개인정보 이용 동의")
+    
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
   }
   
@@ -196,17 +227,34 @@ private extension SignUpViewController {
       view.addSubview($0)
     }
     
-    scrollView.addSubview(stackView)
-    stackView.translatesAutoresizingMaskIntoConstraints = false
+    [stackView, termsOfServiceView, termsOfServiceButton, termsOfPersonalInformationButton].forEach {
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      scrollView.addSubview($0)
+    }
+    
     NSLayoutConstraint.activate([
       scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       scrollView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
       
       stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-      stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
       stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
       stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+      
+      termsOfServiceView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
+      termsOfServiceView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+      termsOfServiceView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+      
+      termsOfServiceButton.topAnchor.constraint(equalTo: termsOfServiceView.bottomAnchor, constant: 10),
+      termsOfServiceButton.leadingAnchor.constraint(equalTo: termsOfServiceView.leadingAnchor),
+      termsOfServiceButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      termsOfServiceButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+      
+      termsOfPersonalInformationButton.topAnchor.constraint(equalTo: termsOfServiceButton.topAnchor),
+      termsOfPersonalInformationButton.leadingAnchor.constraint(equalTo: termsOfServiceButton.trailingAnchor, constant: 10),
+      termsOfPersonalInformationButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+      termsOfPersonalInformationButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      termsOfPersonalInformationButton.bottomAnchor.constraint(equalTo: termsOfServiceButton.bottomAnchor),
       
       signUpButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
       signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
@@ -214,6 +262,58 @@ private extension SignUpViewController {
       signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
       signUpButton.heightAnchor.constraint(equalToConstant: 53)
     ])
+  }
+  
+  func bindWithTermsOfServiceView() {
+    zurazuTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedZurazuTermOfService.send($0)
+      }
+      .store(in: &cancellables)
+    
+    personalInformationTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedPersonalInformation.send($0)
+      }
+      .store(in: &cancellables)
+    
+    appPushTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedPushNotification.send($0)
+      }
+      .store(in: &cancellables)
+    
+    emailTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedReceiveEmail.send($0)
+      }
+      .store(in: &cancellables)
+    
+    smsTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedReceiveSMS.send($0)
+      }
+      .store(in: &cancellables)
+    
+    kakaoTalkTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedReceiveKakaoTalk.send($0)
+      }
+      .store(in: &cancellables)
+    
+    ageTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedUpperFourteen.send($0)
+      }
+      .store(in: &cancellables)
+    
   }
   
   @objc func keyboardWillHide() {
