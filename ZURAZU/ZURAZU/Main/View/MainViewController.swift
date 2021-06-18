@@ -51,19 +51,31 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     let button: UIButton = .init()
     let image: UIImage? = .init(systemName: "plus.app")
     
-    image?.withTintColor(.white)
-    
-    button.backgroundColor = .monoPrimary
+    button.backgroundColor = .bluePrimary
     button.setImage(image, for: .normal)
     button.setTitle("판매 신청하기", for: .normal)
     button.setTitleColor(.white, for: .normal)
-    button.imageView?.contentMode = .scaleAspectFit
+    button.setTitleColor(.monoQuaternary, for: .highlighted)
+    button.titleLabel?.font = .tertiaryBold
+    button.imageView?.contentMode = .scaleAspectFill
+    button.imageView?.tintColor = .white
     button.contentHorizontalAlignment = .center
     button.semanticContentAttribute = .forceLeftToRight
+    button.layer.cornerRadius = 5
     
-    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 20)
     return button
   }()
+  
+  private lazy var logoImageView: UIImageView = {
+    let imageView: UIImageView = .init(image: .logoText)
+    
+    imageView.contentMode = .scaleAspectFit
+    
+    return imageView
+  }()
+  
+  private var cancellables: Set<AnyCancellable> = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -71,7 +83,25 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     setupConstraint()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    setupNavigationBar()
+    viewModel?.requestProductsData.send()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    logoImageView.removeFromSuperview()
+  }
+  
   func bindViewModel() {
+    salesApplicationButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.salesApplicationEvent.send()
+      }
+      .store(in: &cancellables)
     
   }
   
@@ -93,8 +123,22 @@ extension MainViewController {
       
       salesApplicationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
       salesApplicationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-      salesApplicationButton.widthAnchor.constraint(equalToConstant: 110),
+      salesApplicationButton.widthAnchor.constraint(equalToConstant: 130),
       salesApplicationButton.heightAnchor.constraint(equalToConstant: 35)
+    ])
+  }
+  
+  func setupNavigationBar() {
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationController?.setNavigationBarHidden(false, animated: false)
+    
+    navigationBar.addSubview(logoImageView)
+    logoImageView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      logoImageView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 16),
+      logoImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
+      logoImageView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, multiplier: 0.3)
     ])
   }
 }

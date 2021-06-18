@@ -52,7 +52,9 @@ final class SceneCoordinator {
       
       self?.currentViewController = navigationController.viewControllers.last
       promise(.success(()))
-    }.eraseToAnyPublisher()
+    }
+    .receive(on: Scheduler.main)
+    .eraseToAnyPublisher()
   }
   
   @discardableResult
@@ -82,7 +84,9 @@ final class SceneCoordinator {
         }
         self?.currentViewController = target
       }
-    }.eraseToAnyPublisher()
+    }
+    .receive(on: Scheduler.main)
+    .eraseToAnyPublisher()
   }
   
   @discardableResult
@@ -114,6 +118,18 @@ final class SceneCoordinator {
           }
         }
       }
-    }.eraseToAnyPublisher()
+    }
+    .receive(on: Scheduler.main)
+    .eraseToAnyPublisher()
+  }
+  
+  @discardableResult
+  func goToHome() -> AnyPublisher<Void, TransitionError> {
+    return Future { [weak self] promise in
+      self?.currentViewController?.navigationController?.popToRootViewController(animated: true)
+      self?.tabTransition(item: .main)
+      promise(.success(()))
+    }
+    .eraseToAnyPublisher()
   }
 }

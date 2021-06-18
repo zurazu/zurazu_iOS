@@ -61,6 +61,7 @@ final class SubCategoryViewModel: SubCategoryViewModelType {
       }
       .sink { [weak self] in
         self?.fetchCategoryProducts(at: $0)
+        self?.offset = 0
       }
       .store(in: &cancellables)
   }

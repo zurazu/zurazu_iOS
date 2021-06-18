@@ -43,7 +43,7 @@ private extension ProductDetailViewModel {
       .subscribe(on: Scheduler.background)
       .receive(on: Scheduler.main)
       .sink {
-        SceneCoordinator.shared.transition(scene: InspectionStandardScene(), using: .modal, animated: true)
+        SceneCoordinator.shared.transition(scene: InspectionStandardScene(), using: .push, animated: true)
       }
       .store(in: &cancellables)
     

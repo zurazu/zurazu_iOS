@@ -48,6 +48,7 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    // 코드 수정해야함.
     viewModel?.productDeatilIndex.send(4)
   }
   
