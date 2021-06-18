@@ -16,6 +16,7 @@ final class SalesApplicationViewController: UIViewController {
   
   private let imagePicker = UIImagePickerController()
   private var currentImageIndex = 0
+  private var cancellables: Set<AnyCancellable> = []
   
   private let model: [SalesApplicationSectionModel] = [
     SalesApplicationSectionPickerModel(title: "카테고리", isNecessary: true, items: ["Outer", "TOP | T-Shirts", "TOP | Shirts", "TOP | Knit", "Pants", "Skirt", "Onepeice"]),
@@ -170,7 +171,7 @@ extension SalesApplicationViewController: UITextFieldDelegate {
 
 extension SalesApplicationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
     guard let image: UIImage = info[.originalImage] as? UIImage else { return }
     (model.last as? SalesApplicationSectionPictureModel)?.images[currentImageIndex] = image
     picker.dismiss(animated: true, completion: nil)
@@ -216,8 +217,50 @@ private extension SalesApplicationViewController {
                             withReuseIdentifier: SalesApplicationSectionHeader.identifier)
   }
   
+  func requestSalesApplication() {
+    let networkProvider: NetworkProvider = .init()
+    let categoryIdx = (model[0] as? SalesApplicationSectionPickerModel)?.items.firstIndex(of: model[0].content) ?? -1
+    let clothingStatus =  (model[5] as? SalesApplicationSectionPickerModel)?.items.firstIndex(of: model[5].content) ?? -1
+
+    let images = (model[5] as? SalesApplicationSectionPictureModel)?.images.values.compactMap({
+      $0
+    })
+    
+    let information = SalesApplicationInformation(categoryIdx: categoryIdx, brandName: model[1].content, purchasePrice: Int(model[2].content) ?? 0, desiredPrice: Int(model[3].content) ?? 0, clothingSize: model[4].content, clothingStatus: clothingStatus, comments: "", images: images ?? [])
+//
+    let endPoint = SalesApplicationEndPoint.requestSalesApplication(inforamtion: information)
+    
+    let salesPublisher: AnyPublisher<Result<BaseResponse<NillResponse>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+    
+    salesPublisher
+      .sink { [weak self] result in
+        switch result {
+        case .success(let responseResult):
+
+          guard
+            responseResult.status != "UNAUTHORIZED"
+          else
+          {
+            Authorization.shared.requestWithNewAccessToken { [weak self] in
+              self?.requestSalesApplication()
+            }
+            return
+          }
+          print("성공")
+//          self?.profileData.send(profile)
+//          self?.isSignedIn.send(true)
+          
+        case .failure(let error):
+          print(error.localizedDescription)
+          print("실패")
+//          self?.isSignedIn.send(false)
+        }
+      }
+      .store(in: &cancellables)
+  }
   
   @objc func sendInformationToServer(sender: UITapGestureRecognizer) {
+    
     SceneCoordinator.shared.close(animated: true)
     print("전송 완료")
   }

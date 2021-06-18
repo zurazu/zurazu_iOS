@@ -21,6 +21,7 @@
 		B96D0AB62660DD2800ED6485 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96D0AB52660DD2800ED6485 /* UnderLineTextField.swift */; };
 		B96D0AB82660E5EE00ED6485 /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96D0AB72660E5EE00ED6485 /* SectionModel.swift */; };
 		B99FEEC5265E7976007C9E15 /* SalesApplicationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99FEEC4265E7976007C9E15 /* SalesApplicationScene.swift */; };
+		B9A9ED43267CE54D00765C3B /* SalesApplicationEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A9ED42267CE54D00765C3B /* SalesApplicationEndPoint.swift */; };
 		B9B59F9F2663930D0065BFE8 /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B59F9E2663930D0065BFE8 /* PictureCollectionViewCell.swift */; };
 		B9F68E77265BC5070006E2D4 /* SalesApplication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F68E76265BC5070006E2D4 /* SalesApplication.storyboard */; };
 		BD59AFB9266A09A700CC40A9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59AFB8266A09A700CC40A9 /* SignUpViewController.swift */; };
@@ -175,6 +176,7 @@
 		B96D0AB52660DD2800ED6485 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
 		B96D0AB72660E5EE00ED6485 /* SectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
 		B99FEEC4265E7976007C9E15 /* SalesApplicationScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesApplicationScene.swift; sourceTree = "<group>"; };
+		B9A9ED42267CE54D00765C3B /* SalesApplicationEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesApplicationEndPoint.swift; sourceTree = "<group>"; };
 		B9B59F9E2663930D0065BFE8 /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		B9F68E76265BC5070006E2D4 /* SalesApplication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SalesApplication.storyboard; sourceTree = "<group>"; };
 		BD59AFB8266A09A700CC40A9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				B9B59F9E2663930D0065BFE8 /* PictureCollectionViewCell.swift */,
 				B96D0AB72660E5EE00ED6485 /* SectionModel.swift */,
 				B9004CA9266261A200DAE135 /* SalesApplicationSectionHeader.swift */,
+				B9A9ED42267CE54D00765C3B /* SalesApplicationEndPoint.swift */,
 			);
 			path = SalesApplication;
 			sourceTree = "<group>";
@@ -410,13 +413,6 @@
 			);
 			path = View;
 			sourceTree = "<group>";
-		};
-		BD59AFB7266A097900CC40A9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<unknown>";
 		};
 		BD88BB362643ABDF0029CCC6 = {
 			isa = PBXGroup;
@@ -1158,6 +1154,7 @@
 				BDA68CE22678A8DE00F65568 /* MyPageTableViewModel.swift in Sources */,
 				BDA68CDE2677723400F65568 /* ProfileView.swift in Sources */,
 				BDA003952656545300C98928 /* SubCategoryViewController.swift in Sources */,
+				B9A9ED43267CE54D00765C3B /* SalesApplicationEndPoint.swift in Sources */,
 				BD9AA970265F99990046EB2F /* BaseResponse.swift in Sources */,
 				BDA7B2C62657A99C00DE2B27 /* MainTabBarViewModel.swift in Sources */,
 				BD88BB432643ABDF0029CCC6 /* AppDelegate.swift in Sources */,
@@ -1216,10 +1213,10 @@
 				B959156D265D235C00EC6538 /* PickerCollectionViewCell.swift in Sources */,
 				B96D0AB82660E5EE00ED6485 /* SectionModel.swift in Sources */,
 				BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */,
-				BD9AA968265E44840046EB2F /* ItemDetailViewController.swift in Sources */,
+				BD9AA968265E44840046EB2F /* ProductDetailViewController.swift in Sources */,
 				BDA73CD52668BF2B0088BEC4 /* SignButton.swift in Sources */,
 				BD9AA968265E44840046EB2F /* ProductDetailViewController.swift in Sources */,
-				BDA73CD52668BF2B0088BEC4 /* SignInButton.swift in Sources */,
+				BDA73CD52668BF2B0088BEC4 /* SignButton.swift in Sources */,
 				BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */,
 				B9591566265D20D300EC6538 /* SalesApplicationViewController.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
