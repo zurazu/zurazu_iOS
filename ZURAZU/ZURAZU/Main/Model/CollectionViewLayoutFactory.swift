@@ -91,6 +91,23 @@ enum CollectionViewLayoutSectionFactory {
     return section
   }()
   
+  static let FullScreenHorizontalImageSection: NSCollectionLayoutSection = {
+    // Item
+    let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+    let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
+    
+    // Group
+    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
+    let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+    
+    // Section
+    let section: NSCollectionLayoutSection = .init(group: group)
+    section.orthogonalScrollingBehavior = .groupPaging
+    section.boundarySupplementaryItems = [detailViewFooterItem]
+    
+    return section
+  }()
+  
   static let headerItem: NSCollectionLayoutBoundarySupplementaryItem = {
     let headerItemSize: NSCollectionLayoutSize = .init(widthDimension: .estimated(UIScreen.main.bounds.width - inset * 4), heightDimension: .estimated(20))
     return .init(layoutSize: headerItemSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
@@ -98,6 +115,11 @@ enum CollectionViewLayoutSectionFactory {
   
   static let footerItem: NSCollectionLayoutBoundarySupplementaryItem = {
     let footerItemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1.2), heightDimension: .estimated(20))
+    return .init(layoutSize: footerItemSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
+  }()
+  
+  static let detailViewFooterItem: NSCollectionLayoutBoundarySupplementaryItem = {
+    let footerItemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(255))
     return .init(layoutSize: footerItemSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
   }()
 }

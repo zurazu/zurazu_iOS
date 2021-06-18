@@ -130,6 +130,7 @@
 		E20496722679E02E00668213 /* OrderProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20496712679E02E00668213 /* OrderProductViewCell.swift */; };
 		E204967D2679E96100668213 /* OrderPaymentInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204967C2679E96100668213 /* OrderPaymentInfoViewCell.swift */; };
 		E20496822679EC7F00668213 /* OrderPriceInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20496812679EC7F00668213 /* OrderPriceInfoViewCell.swift */; };
+		E2049693267A23A600668213 /* ProductDetailImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2049692267A23A600668213 /* ProductDetailImageViewCell.swift */; };
 		E28A010F26663BD10062DE81 /* ProductThumbnailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28A010E26663BD10062DE81 /* ProductThumbnailViewCell.swift */; };
 		E28D3974265FF565003EF80C /* ProductThumbnailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D3973265FF565003EF80C /* ProductThumbnailInfoView.swift */; };
 		E28D398426624B5A003EF80C /* CollectionViewLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D398326624B5A003EF80C /* CollectionViewLayoutFactory.swift */; };
@@ -292,6 +293,7 @@
 		E20496712679E02E00668213 /* OrderProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductViewCell.swift; sourceTree = "<group>"; };
 		E204967C2679E96100668213 /* OrderPaymentInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPaymentInfoViewCell.swift; sourceTree = "<group>"; };
 		E20496812679EC7F00668213 /* OrderPriceInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPriceInfoViewCell.swift; sourceTree = "<group>"; };
+		E2049692267A23A600668213 /* ProductDetailImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailImageViewCell.swift; sourceTree = "<group>"; };
 		E28A010E26663BD10062DE81 /* ProductThumbnailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductThumbnailViewCell.swift; sourceTree = "<group>"; };
 		E28D3973265FF565003EF80C /* ProductThumbnailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductThumbnailInfoView.swift; sourceTree = "<group>"; };
 		E28D398326624B5A003EF80C /* CollectionViewLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayoutFactory.swift; sourceTree = "<group>"; };
@@ -410,13 +412,6 @@
 			);
 			path = View;
 			sourceTree = "<group>";
-		};
-		BD59AFB7266A097900CC40A9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<unknown>";
 		};
 		BD88BB362643ABDF0029CCC6 = {
 			isa = PBXGroup;
@@ -702,6 +697,7 @@
 				BDA68CE32678C42400F65568 /* ProductGradeFooterView.swift */,
 				BDA68CE52678C4B200F65568 /* GradeView.swift */,
 				BDA68CE72678C7A700F65568 /* GradeProgressView.swift */,
+				E2049692267A23A600668213 /* ProductDetailImageViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1150,6 +1146,7 @@
 				BD9ADE32266E2DE200F47B14 /* Token.swift in Sources */,
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BDA68CE62678C4B200F65568 /* GradeView.swift in Sources */,
+				E2049693267A23A600668213 /* ProductDetailImageViewCell.swift in Sources */,
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BDA68CE42678C42400F65568 /* ProductGradeFooterView.swift in Sources */,
 				E28D3974265FF565003EF80C /* ProductThumbnailInfoView.swift in Sources */,
@@ -1216,10 +1213,10 @@
 				B959156D265D235C00EC6538 /* PickerCollectionViewCell.swift in Sources */,
 				B96D0AB82660E5EE00ED6485 /* SectionModel.swift in Sources */,
 				BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */,
-				BD9AA968265E44840046EB2F /* ItemDetailViewController.swift in Sources */,
+				BD9AA968265E44840046EB2F /* ProductDetailViewController.swift in Sources */,
 				BDA73CD52668BF2B0088BEC4 /* SignButton.swift in Sources */,
 				BD9AA968265E44840046EB2F /* ProductDetailViewController.swift in Sources */,
-				BDA73CD52668BF2B0088BEC4 /* SignInButton.swift in Sources */,
+				BDA73CD52668BF2B0088BEC4 /* SignButton.swift in Sources */,
 				BD88BD46264D14650029CCC6 /* CategoryViewModel.swift in Sources */,
 				B9591566265D20D300EC6538 /* SalesApplicationViewController.swift in Sources */,
 				BD88BCC7264A94E90029CCC6 /* InputViewType.swift in Sources */,
