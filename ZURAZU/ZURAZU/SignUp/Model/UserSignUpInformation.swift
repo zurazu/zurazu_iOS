@@ -14,12 +14,11 @@ struct UserSignUpInformation: Decodable, Hashable {
   let realName: String
 //  let gender: String
 //  let birth: Date
-//  let phoneNumber: String?
-//  let agreeTermsOfService: Bool? = false
-//  let agreeCollectionPersonalInfo: Bool = false
-//  let agreePushNotification: Bool
-//  let agreeReceiveEmail: Bool
-//  let agreeReceiveSMS: Bool
-//  let agreeReceiveKAKAO: Bool
-//  let agreeUpperFourteen: Bool
+  let agreeTermsOfService: Bool
+  let agreeCollectionPersonalInfo: Bool
+  let agreePushNotification: Bool
+  let agreeReceiveEmail: Bool
+  let agreeReceiveSMS: Bool
+  let agreeReceiveKAKAO: Bool
+  let agreeUpperFourteen: Bool
 }

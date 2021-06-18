@@ -137,22 +137,40 @@ private extension SignUpViewModel {
   
   func requestSignUp() {
     let networkProvider: NetworkProvider = .init()
-    let endPoint = SignUpEndPoint.signUp(email: email.value, password: password.value, realName: name.value)
+    let endPoint = SignUpEndPoint.signUp(userSignUpInformation: makeUserSignUpInformation())
     
     let requestSignUpPublisher: AnyPublisher<Result<BaseResponse<NillResponse>, NetworkError>, Never> = networkProvider.request(route: endPoint)
     
     requestSignUpPublisher
+      .receive(on: Scheduler.main)
       .sink { [weak self] result in
         switch result {
         case .success(let resultResponse):
           guard resultResponse.status == "OK"
           else { return }
           
-          self?.closeEvent.send(())
+          self?.closeEvent.send()
         case .failure(let error):
           print(error.localizedDescription)
         }
       }
       .store(in: &cancellables)
+  }
+  
+  func makeUserSignUpInformation() -> UserSignUpInformation {
+    let userSignupInformation: UserSignUpInformation = .init(
+      email: email.value,
+      password: password.value,
+      realName: name.value,
+      agreeTermsOfService: isAgreedZurazuTermOfService.value,
+      agreeCollectionPersonalInfo: isAgreedPersonalInformation.value,
+      agreePushNotification: isAgreedPushNotification.value,
+      agreeReceiveEmail: isAgreedReceiveEmail.value,
+      agreeReceiveSMS: isAgreedReceiveSMS.value,
+      agreeReceiveKAKAO: isAgreedReceiveKakaoTalk.value,
+      agreeUpperFourteen: isAgreedUpperFourteen.value
+    )
+    
+    return userSignupInformation
   }
 }
