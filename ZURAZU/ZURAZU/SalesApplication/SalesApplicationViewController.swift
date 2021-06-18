@@ -226,7 +226,7 @@ private extension SalesApplicationViewController {
 //      price: 29850,
 //      depositAccountNumber: "주라주 | 국민은행 110-1234-56789"
 //    )
-    SceneCoordinator.shared.transition(scene: SalesApplicationScene(), using: .push, animated: true)
+    SceneCoordinator.shared.transition(scene: SalesApplicationCompleteScene(), using: .push, animated: true)
   }
   
   @objc func cancel(sender: UITapGestureRecognizer) {

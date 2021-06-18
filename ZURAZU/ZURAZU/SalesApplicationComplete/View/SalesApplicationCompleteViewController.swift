@@ -24,6 +24,7 @@ final class SalesApplicationCompleteViewController: CompleteViewController, View
     homeButton.tapPublisher
       .sink { [weak self] in
         self?.viewModel?.closeEvent.send(())
+        self?.tabBarController?.tabBar.isHidden = false
       }
       .store(in: &cancellables)
   }
