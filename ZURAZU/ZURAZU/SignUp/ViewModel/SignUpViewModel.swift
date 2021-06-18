@@ -10,32 +10,57 @@ import Combine
 
 protocol SignUpViewModelType {
   
+  var isValid: PassthroughSubject<Bool, Never> { get }
+  
   var email: CurrentValueSubject<String, Never> { get }
   var password: CurrentValueSubject<String, Never> { get }
   var confirmPassword: CurrentValueSubject<String, Never> { get }
   var name: CurrentValueSubject<String, Never> { get }
   var closeEvent: PassthroughSubject<Void, Never> { get }
   
-  var isValid: PassthroughSubject<Bool, Never> { get }
+  var isInputDataValid: PassthroughSubject<Bool, Never> { get }
+  
   var isEmailValid: PassthroughSubject<Bool, Never> { get }
   var isPasswordValid: PassthroughSubject<Bool, Never> { get }
   var isConfirmPasswordValid: PassthroughSubject<Bool, Never> { get }
+  
+  var isTermOfServiceValid: PassthroughSubject<Bool, Never> { get }
+  
+  var isAgreedZurazuTermOfService: CurrentValueSubject<Bool, Never> { get }
+  var isAgreedPersonalInformation: CurrentValueSubject<Bool, Never> { get }
+  var isAgreedPushNotification: CurrentValueSubject<Bool, Never> { get }
+  var isAgreedReceiveEmail: CurrentValueSubject<Bool, Never> { get }
+  var isAgreedReceiveSMS: CurrentValueSubject<Bool, Never> { get }
+  var isAgreedReceiveKakaoTalk: CurrentValueSubject<Bool, Never> { get }
+  var isAgreedUpperFourteen: CurrentValueSubject<Bool, Never> { get }
   
   var signUpEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class SignUpViewModel: SignUpViewModelType {
-  
+
   var email: CurrentValueSubject<String, Never> = .init("")
   var password: CurrentValueSubject<String, Never> = .init("")
   var confirmPassword: CurrentValueSubject<String, Never> = .init("")
   var name: CurrentValueSubject<String, Never> = .init("")
   var closeEvent: PassthroughSubject<Void, Never> = .init()
   
+  var isInputDataValid: PassthroughSubject<Bool, Never> = .init()
+  
   var isValid: PassthroughSubject<Bool, Never> = .init()
   var isEmailValid: PassthroughSubject<Bool, Never> = .init()
   var isPasswordValid: PassthroughSubject<Bool, Never> = .init()
   var isConfirmPasswordValid: PassthroughSubject<Bool, Never> = .init()
+  
+  var isTermOfServiceValid: PassthroughSubject<Bool, Never> = .init()
+  
+  var isAgreedZurazuTermOfService: CurrentValueSubject<Bool, Never> = .init(false)
+  var isAgreedPersonalInformation: CurrentValueSubject<Bool, Never> = .init(false)
+  var isAgreedPushNotification: CurrentValueSubject<Bool, Never> = .init(false)
+  var isAgreedReceiveEmail: CurrentValueSubject<Bool, Never> = .init(false)
+  var isAgreedReceiveSMS: CurrentValueSubject<Bool, Never> = .init(false)
+  var isAgreedReceiveKakaoTalk: CurrentValueSubject<Bool, Never> = .init(false)
+  var isAgreedUpperFourteen: CurrentValueSubject<Bool, Never> = .init(false)
   
   var signUpEvent: PassthroughSubject<Void, Never> = .init()
   
@@ -80,13 +105,29 @@ private extension SignUpViewModel {
       .map { $0 && $1 && $2 && !$3.isEmpty}
       .removeDuplicates()
       .sink {
-        self.isValid.send($0)
+        self.isInputDataValid.send($0)
       }
       .store(in: &cancellables)
     
     signUpEvent
       .sink {
         self.requestSignUp()
+      }
+      .store(in: &cancellables)
+    
+    isAgreedZurazuTermOfService.combineLatest(isAgreedPersonalInformation, isAgreedUpperFourteen)
+      .map { $0 && $1 && $2 }
+      .removeDuplicates()
+      .sink {
+        self.isTermOfServiceValid.send($0)
+      }
+      .store(in: &cancellables)
+    
+    isInputDataValid.combineLatest(isTermOfServiceValid)
+      .map { $0 && $1 }
+      .removeDuplicates()
+      .sink {
+        self.isValid.send($0)
       }
       .store(in: &cancellables)
   }

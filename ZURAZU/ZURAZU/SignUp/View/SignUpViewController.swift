@@ -182,6 +182,8 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
         self?.scrollView.setContentOffset(CGPoint(x: 0, y: -36), animated: true)
       }
       .store(in: &cancellables)
+    
+    bindWithTermsOfServiceView()
   }
 }
 
@@ -233,7 +235,55 @@ private extension SignUpViewController {
     ])
   }
   
-  func bindTermsOfServiceView() {
+  func bindWithTermsOfServiceView() {
+    zurazuTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedZurazuTermOfService.send($0)
+      }
+      .store(in: &cancellables)
+    
+    personalInformationTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedPersonalInformation.send($0)
+      }
+      .store(in: &cancellables)
+    
+    appPushTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedPushNotification.send($0)
+      }
+      .store(in: &cancellables)
+    
+    emailTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedReceiveEmail.send($0)
+      }
+      .store(in: &cancellables)
+    
+    smsTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedReceiveSMS.send($0)
+      }
+      .store(in: &cancellables)
+    
+    kakaoTalkTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedReceiveKakaoTalk.send($0)
+      }
+      .store(in: &cancellables)
+    
+    ageTermView.publisher(for: \.isSelected)
+      .removeDuplicates()
+      .sink { [weak self] in
+        self?.viewModel?.isAgreedUpperFourteen.send($0)
+      }
+      .store(in: &cancellables)
     
   }
   

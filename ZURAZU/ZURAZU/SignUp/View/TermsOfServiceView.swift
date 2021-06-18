@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class TermsOfServiceView: UIView {
   
@@ -15,7 +16,7 @@ final class TermsOfServiceView: UIView {
   
   weak var superTermsOfServiceView: TermsOfServiceView?
   
-  var isSelected: Bool = false {
+  @objc dynamic var isSelected: Bool = false {
     didSet {
       checkBoxButton.isSelected = isSelected
       
