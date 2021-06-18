@@ -58,7 +58,6 @@ private extension TermsOfServiceViewerViewModel {
       .sink { [weak self] result in
         switch result {
         case .success(let responseResult):
-          print(responseResult)
           if let termsOfService = responseResult.list {
             self?.termsOfService.send(termsOfService)
           }

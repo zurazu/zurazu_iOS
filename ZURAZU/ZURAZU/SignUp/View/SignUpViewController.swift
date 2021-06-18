@@ -44,6 +44,9 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
   
   lazy var termsOfServiceView: TitleView = .init(frame: .zero, contentView: TermsOfServiceView(frame: .zero, title: "전체 동의", titleSize: .large, necessary: .none, childAxis: .vertical, childViews: [zurazuTermView, personalInformationTermView, marketingTermView, ageTermView]), isNecessary: true)
   
+  let termsOfServiceButton: TermsOfServiceButton = .init(frame: .zero, title: "ZURAZU 이용 약관 보기")
+  let termsOfPersonalInformationButton: TermsOfServiceButton = .init(frame: .zero, title: "개인정보 이용 약관 보기")
+  
   private var cancellables: Set<AnyCancellable> = []
   
   override func viewDidLoad() {
@@ -183,6 +186,18 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
       }
       .store(in: &cancellables)
     
+    termsOfServiceButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.zurazuTermsOfServiceEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    termsOfPersonalInformationButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.termsOfPersonalInformationEvent.send()
+      }
+      .store(in: &cancellables)
+    
     bindWithTermsOfServiceView()
   }
 }
@@ -207,14 +222,16 @@ private extension SignUpViewController {
   }
   
   func setupConstraint() {
-    [scrollView, signUpButton, termsOfServiceView].forEach {
+    [scrollView, signUpButton].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       view.addSubview($0)
     }
     
-    scrollView.addSubview(stackView)
-    scrollView.addSubview(termsOfServiceView)
-    stackView.translatesAutoresizingMaskIntoConstraints = false
+    [stackView, termsOfServiceView, termsOfServiceButton, termsOfPersonalInformationButton].forEach {
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      scrollView.addSubview($0)
+    }
+    
     NSLayoutConstraint.activate([
       scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -227,7 +244,17 @@ private extension SignUpViewController {
       termsOfServiceView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
       termsOfServiceView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
       termsOfServiceView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-      termsOfServiceView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+      
+      termsOfServiceButton.topAnchor.constraint(equalTo: termsOfServiceView.bottomAnchor, constant: 10),
+      termsOfServiceButton.leadingAnchor.constraint(equalTo: termsOfServiceView.leadingAnchor),
+      termsOfServiceButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      termsOfServiceButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+      
+      termsOfPersonalInformationButton.topAnchor.constraint(equalTo: termsOfServiceButton.topAnchor),
+      termsOfPersonalInformationButton.leadingAnchor.constraint(equalTo: termsOfServiceButton.trailingAnchor, constant: 10),
+      termsOfPersonalInformationButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+      termsOfPersonalInformationButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      termsOfPersonalInformationButton.bottomAnchor.constraint(equalTo: termsOfServiceButton.bottomAnchor),
       
       signUpButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
       signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),

@@ -34,6 +34,9 @@ final class TermsOfServiceViewerViewController: UIViewController, ViewModelBinda
     super.viewWillAppear(animated)
     
     viewModel?.requestTerms.send(())
+    navigationController?.setNavigationBarHidden(false, animated: animated)
+    tabBarController?.tabBar.isHidden = true
+
   }
   
   func bindViewModel() {

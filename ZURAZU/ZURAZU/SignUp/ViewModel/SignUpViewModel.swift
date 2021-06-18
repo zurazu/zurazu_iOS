@@ -35,6 +35,8 @@ protocol SignUpViewModelType {
   var isAgreedUpperFourteen: CurrentValueSubject<Bool, Never> { get }
   
   var signUpEvent: PassthroughSubject<Void, Never> { get }
+  var zurazuTermsOfServiceEvent: PassthroughSubject<Void, Never> { get }
+  var termsOfPersonalInformationEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class SignUpViewModel: SignUpViewModelType {
@@ -63,6 +65,8 @@ final class SignUpViewModel: SignUpViewModelType {
   var isAgreedUpperFourteen: CurrentValueSubject<Bool, Never> = .init(false)
   
   var signUpEvent: PassthroughSubject<Void, Never> = .init()
+  var zurazuTermsOfServiceEvent: PassthroughSubject<Void, Never> = .init()
+  var termsOfPersonalInformationEvent: PassthroughSubject<Void, Never> = .init()
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -128,6 +132,18 @@ private extension SignUpViewModel {
       .removeDuplicates()
       .sink {
         self.isValid.send($0)
+      }
+      .store(in: &cancellables)
+    
+    zurazuTermsOfServiceEvent
+      .sink {
+        SceneCoordinator.shared.transition(scene: TermsOfServiceViewerScene(termsOfServiceType: .accessTerms), using: .push, animated: true)
+      }
+      .store(in: &cancellables)
+    
+    termsOfPersonalInformationEvent
+      .sink {
+        SceneCoordinator.shared.transition(scene: TermsOfServiceViewerScene(termsOfServiceType: .privacyTerms), using: .push, animated: true)
       }
       .store(in: &cancellables)
   }
