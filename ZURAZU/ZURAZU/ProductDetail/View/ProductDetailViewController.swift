@@ -47,8 +47,8 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
     return collectionView
   }()
   
-  let orderButton: UIButton = .init(frame: .zero)
-  let dividerView: UIView = .init(frame: .zero)
+  private let orderButton: UIButton = .init(frame: .zero)
+  private let dividerView: UIView = .init(frame: .zero)
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -70,9 +70,8 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
     viewModel?.product
       .subscribe(on: Scheduler.background)
       .receive(on: Scheduler.main)
-      .sink { [weak self] in
-        print($0)
-        // MARK: - 업데이트 해줘야함
+      .sink { [weak self] _ in
+        self?.collectionView.reloadData()
       }
       .store(in: &cancellables)
     
@@ -150,9 +149,12 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
       return cell
       
     case 1:
-      let cell: ProductDetailInfoViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      let glanceableInfo =  GlanceableInfo(color: "아이보리", size: "S", material: "울 100%")
-      let fullInfo = FullInfo(brand: "무신사 스토어", washing: "첫 세탁은 드라이 클리닝을 추천합니다.\n서늘한 곳에 보관하고 직사광선을 피해주세요", details: "첫 세탁은 드라이 클리닝을 추천합니다.\n서늘한 곳에 보관하고 직사광선을 피해주세요")
+      let cell: ProductDetailInfoViewCell = collectionView.dequeueReusableCell(forIndexPath: .init())
+      
+      guard let product = viewModel?.product.value else { return cell }
+      
+      let glanceableInfo: GlanceableInfo = .init(color: product.colorChip.colorText, size: product.clothingSize, material: product.material)
+      let fullInfo: FullInfo = .init(brand: product.brand, washing: product.laundryComment, details: product.infoComment)
       
       cell.update(glanceableInfo: glanceableInfo, fullInfo: fullInfo)
       cell.backgroundColor = .white
@@ -175,7 +177,16 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     if kind == UICollectionView.elementKindSectionFooter,
        let footerView: ProductGradeFooterView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductGradeFooterView", for: indexPath) as? ProductGradeFooterView {
+      
       footerView.backgroundColor = .white
+      footerView.inspectionStandardButton.tapPublisher.sink { [weak self] in
+        self?.viewModel?.inspectionStandardEvent.send()
+      }
+      .store(in: &cancellables)
+      
+      guard let product = viewModel?.product.value else { return footerView }
+      
+      footerView.updateView(with: product)
       
       return footerView
     }

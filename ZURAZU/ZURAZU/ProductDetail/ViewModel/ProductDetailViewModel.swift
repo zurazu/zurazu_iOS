@@ -11,7 +11,7 @@ import Combine
 protocol ProductDetailViewModelType {
   
   var productDeatilIndex: PassthroughSubject<Int, Never> { get }
-  var product: PassthroughSubject<Product, Never> { get }
+  var product: CurrentValueSubject<Product?, Never> { get }
   var inspectionStandardEvent: PassthroughSubject<Void, Never> { get }
   var closeEvent: PassthroughSubject<Void, Never> { get }
 }
@@ -19,7 +19,7 @@ protocol ProductDetailViewModelType {
 final class ProductDetailViewModel: ProductDetailViewModelType {
   
   var productDeatilIndex: PassthroughSubject<Int, Never> = .init()
-  var product: PassthroughSubject<Product, Never> = .init()
+  var product: CurrentValueSubject<Product?, Never> = .init(nil)
   var inspectionStandardEvent: PassthroughSubject<Void, Never> = .init()
   var closeEvent: PassthroughSubject<Void, Never> = .init()
   
