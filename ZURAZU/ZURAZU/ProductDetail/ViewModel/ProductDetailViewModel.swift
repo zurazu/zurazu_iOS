@@ -12,6 +12,7 @@ protocol ProductDetailViewModelType {
   
   var productDeatilIndex: PassthroughSubject<Int, Never> { get }
   var product: CurrentValueSubject<Product?, Never> { get }
+  var images: CurrentValueSubject<[ProductImage], Never> { get }
   var inspectionStandardEvent: PassthroughSubject<Void, Never> { get }
   var closeEvent: PassthroughSubject<Void, Never> { get }
 }
@@ -20,6 +21,7 @@ final class ProductDetailViewModel: ProductDetailViewModelType {
   
   var productDeatilIndex: PassthroughSubject<Int, Never> = .init()
   var product: CurrentValueSubject<Product?, Never> = .init(nil)
+  var images: CurrentValueSubject<[ProductImage], Never> = .init([])
   var inspectionStandardEvent: PassthroughSubject<Void, Never> = .init()
   var closeEvent: PassthroughSubject<Void, Never> = .init()
   
@@ -57,17 +59,17 @@ private extension ProductDetailViewModel {
   
   func requestProductDetail(of productIndex: Int) {
     let networkProvider: NetworkProvider = .init()
-    let endPoint = ProductDetailEndPoint.requestProductDetail(productIndex: productIndex)
+    let endPoint: ProductDetailEndPoint = .requestProductDetail(productIndex: productIndex)
     
     let productDetailPublisher: AnyPublisher<Result<BaseResponse<ProductDetail>, NetworkError>, Never> = networkProvider.request(route: endPoint)
     
     productDetailPublisher
-      .sink { result in
+      .sink { [weak self] result in
         switch result {
         case .success(let productDetail):
-          // MARK: - 데이터 사용해야함.
-          print(productDetail)
-          self.product.send(productDetail.list!.product!)
+          guard let product = productDetail.list?.product else { return }
+          self?.product.send(product)
+          self?.images.send(productDetail.list?.images ?? [])
         case .failure(let error):
           print(error.localizedDescription)
         }

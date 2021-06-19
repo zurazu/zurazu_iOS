@@ -132,7 +132,7 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch section {
-    case 0: return 3
+    case 0: return viewModel?.images.value.count ?? 0
     case 1: return 1
     case 2: return 10
     default: return 0
@@ -145,6 +145,14 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
       let cell: ProductDetailImageViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"))
       cell.backgroundColor = .white
+      
+      let imageService: ImageService = .init()
+      
+      guard let imageURL = viewModel?.images.value[indexPath.item] else { return cell }
+      
+      imageService.loadImage(by: imageURL.url) { image in
+        cell.update(image: image ?? #imageLiteral(resourceName: "imgKakaofriendsFailure"))
+      }
       
       return cell
       
