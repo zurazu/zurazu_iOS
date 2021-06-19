@@ -17,9 +17,9 @@ enum TabItem: Int, CaseIterable {
   var scene: Scene {
     switch self {
     case .category: return CategoryScene()
-    case .log: return MainScene()
+    case .log: return UnpreparedScene(title: "거래내역")
     case .main: return MainScene()
-    case .like: return MainScene()
+    case .like: return UnpreparedScene(title: "좋아요")
     case .myPage: return MyPageScene()
     }
   }
