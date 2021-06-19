@@ -78,15 +78,15 @@ private extension PickerCollectionViewCell {
                                  borderView.topAnchor.constraint(equalTo: textField.topAnchor),
                                  borderView.bottomAnchor.constraint(equalTo: textField.bottomAnchor)])
     
-    NSLayoutConstraint.activate([imageView.heightAnchor.constraint(equalToConstant: 28),
-                                 imageView.widthAnchor.constraint(equalToConstant: 28),
+    NSLayoutConstraint.activate([imageView.heightAnchor.constraint(equalToConstant: 16),
+                                 imageView.widthAnchor.constraint(equalToConstant: 16),
                                  imageView.trailingAnchor.constraint(equalTo: borderView.trailingAnchor, constant: -12),
                                  imageView.centerYAnchor.constraint(equalTo: borderView.centerYAnchor)])
     
     let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapButton(sender:)))
     
-    imageView.isUserInteractionEnabled = true
-    imageView.addGestureRecognizer(tapGesture)
+    contentView.isUserInteractionEnabled = true
+    contentView.addGestureRecognizer(tapGesture)
   }
   
   @objc func tapButton(sender: UITapGestureRecognizer) {

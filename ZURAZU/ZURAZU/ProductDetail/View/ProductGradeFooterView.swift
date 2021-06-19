@@ -28,7 +28,7 @@ final class ProductGradeFooterView: UICollectionReusableView {
   
   func updateView(with product: Product) {
     nameLabel.text = product.name
-    priceLabel.text = decimalWon(value: product.price)
+    priceLabel.text = product.price.decimalWon()
     
     if let productStatus: ProductStatus = .init(rawValue: product.clothingStatus) {
       gradeView.updateView(with: productStatus)
@@ -93,13 +93,5 @@ private extension ProductGradeFooterView {
       inspectionStandardLabel.trailingAnchor.constraint(equalTo: gradeView.trailingAnchor),
       inspectionStandardLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
     ])
-  }
-  
-  func decimalWon(value: Int) -> String {
-    let numberFormatter = NumberFormatter()
-    numberFormatter.numberStyle = .decimal
-    guard let result = numberFormatter.string(from: NSNumber(value: value)) else { return " 원" }
-    
-    return result + "원"
   }
 }

@@ -47,6 +47,6 @@ extension SignUpScrollView: InputViewDelegate {
   func inputViewEditingDidBegin(_ inputView: InputView, superviewFrame: CGRect?) {
     guard let superviewFrame: CGRect = superviewFrame else { return }
     lastContentOffset = contentOffset
-    setContentOffset(CGPoint(x: superviewFrame.origin.x, y: superviewFrame.origin.y - 50), animated: true)
+    setContentOffset(CGPoint(x: superviewFrame.origin.x, y: superviewFrame.origin.y - 36), animated: true)
   }
 }

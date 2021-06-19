@@ -15,6 +15,7 @@ final class Authorization {
   private var cancellables: Set<AnyCancellable> = []
   
   var accessToken: String? {
+    print (userDefaults.string(forKey: "AccessToken"))
     return userDefaults.string(forKey: "AccessToken")
   }
   

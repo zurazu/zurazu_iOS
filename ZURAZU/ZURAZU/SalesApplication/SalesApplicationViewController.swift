@@ -24,11 +24,13 @@ final class SalesApplicationViewController: UIViewController {
     SalesApplicationSectionInputModel(title: "구매 가격", subTitle: "구매 가격을 적으시면 보다 정확한 판매가 산출이 가능합니다.", height: 55),
     SalesApplicationSectionInputModel(title: "희망 판매 가격"),
     SalesApplicationSectionPickerModel(title: "사이즈", isNecessary: false, items: ["S", "M", "L", "Free", "모름"]),
-    SalesApplicationSectionPickerModel(title: "착용 횟수", isNecessary: true, items: ["1", "2", "3", "4", "모름"]),
-    SalesApplicationSectionPictureModel(title: "상품 사진", subtitle: "제출된 사진은 상품의 상태를 점검하는 용도로만 쓰이며,\n실제 상품 상세컷은 주라주에서 자체 촬영한 사진으로 업로드됩니다.", headerHeight: 70, isNecessary: true)]
+    SalesApplicationSectionPickerModel(title: "착용 횟수", isNecessary: true, items: ["0~1회", "2~5회", "6~15회", "16회이상", "모름"]),
+    SalesApplicationSectionPictureModel(title: "상품 사진", subtitle: "제출된 사진은 상품의 상태를 점검하는 용도로만 쓰이며,\n실제 상품 상세컷은 주라주에서 자체 촬영한 사진으로 업로드됩니다.", headerHeight: 70, isNecessary: true),
+    SalesApplicationSectionCommentModel(title: "상세설명 ", placeHolder: "키 165에 엉덩이 덮는 기장입니다.", height: 166, isNecessary: false)]
   
   override func viewDidLoad() {
     super.viewDidLoad()
+
     
     setupView()
   }
@@ -48,7 +50,11 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
     if model[section].style != .picture {
       return 1
     }
-    return 5
+    return 3
+  }
+  
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    view.endEditing(true)
   }
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -63,33 +69,67 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       guard let cell: InputCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InputCollectionViewCell", for: indexPath) as? InputCollectionViewCell
       else { return UICollectionViewCell() }
       
+      if indexPath.section == 2 || indexPath.section ==  3 {
+        cell.textField.keyboardType = .numberPad
+      } else {
+        cell.textField.keyboardType = .default
+      }
+      
       cell.textField.delegate = self
       let inputModel: SalesApplicationSectionInputModel? = model[indexPath.section] as? SalesApplicationSectionInputModel
       cell.updatePlaceHolder(message: inputModel?.placeHolder)
       cell.updateDescriptionLabel(message: inputModel?.description)
       
+      cell.textField.text = inputModel?.content
+      
       cell.textField.returnPublisher.sink { _ in
         cell.textField.resignFirstResponder()
       }.store(in: &cell.cancellables)
       
-      cell.textField.textPublisher.sink { text in
+      cell.textField.textPublisher.sink { [weak self] text in
         inputModel?.content = text ?? ""
+        self?.isValid()
       }.store(in: &cell.cancellables)
       return cell
       
     case .picker:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PickerCollectionViewCell", for: indexPath) as? PickerCollectionViewCell
       else { return UICollectionViewCell() }
-      let inputModel: SalesApplicationSectionPickerModel? = model[indexPath.section] as? SalesApplicationSectionPickerModel
+      let pickerModel: SalesApplicationSectionPickerModel? = model[indexPath.section] as? SalesApplicationSectionPickerModel
       let pickerView: UIPickerView = .init()
+      
+      cell.textField.text = pickerModel?.content
       pickerView.delegate = self
       pickerView.tag = indexPath.section
       cell.textField.inputView = pickerView
       
-      cell.textField.textPublisher.sink { text in
-        inputModel?.content = text ?? ""
+      let selectButton = UIBarButtonItem()
+      selectButton.title = "선택"
+      selectButton.tintColor = .systemBlue
+      selectButton.target = self
+      selectButton.tapPublisher.sink { [weak self] _ in
+        cell.textField.resignFirstResponder()
+        let row = pickerView.selectedRow(inComponent: 0)
+        cell.textField.text = pickerModel?.items[row] ?? ""
+        pickerModel?.content = cell.textField.text ?? ""
+        self?.isValid()
       }.store(in: &cell.cancellables)
       
+      
+      
+      
+      let  toolbar = UIToolbar()
+      
+      toolbar.tintColor = .darkGray
+      
+      toolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 35)
+      toolbar.setItems([selectButton], animated: true)
+      
+      cell.textField.textPublisher.sink { [weak self] text in
+        pickerModel?.content = text ?? ""
+        self?.isValid()
+      }.store(in: &cell.cancellables)
+      cell.textField.inputAccessoryView = toolbar
       return cell
       
     case .picture:
@@ -100,6 +140,19 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       cell.tag = indexPath.item
       cell.borderImageView.image = pictureModel?.images[indexPath.item]
       cell.delegate = self
+      return cell
+    case .comment:
+      guard let cell: CommentCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CommentCollectionViewCell", for: indexPath) as? CommentCollectionViewCell
+      else { return UICollectionViewCell() }
+      let commentModel: SalesApplicationSectionCommentModel? = model[indexPath.section] as? SalesApplicationSectionCommentModel
+      
+      cell.updatePlaceHolder(message: commentModel?.placeHolder)
+      cell.textField.text = commentModel?.content
+      cell.textField.textPublisher.sink { [weak self] text in
+        commentModel?.content = text ?? ""
+        self?.isValid()
+      }.store(in: &cell.cancellables)
+           
       return cell
     }
   }
@@ -140,6 +193,11 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       return UICollectionReusableView()
     }
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesBegan(touches, with: event)
+    view.endEditing(true)
+  }
 }
 
 extension SalesApplicationViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -155,14 +213,7 @@ extension SalesApplicationViewController: UIPickerViewDelegate, UIPickerViewData
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return (model[pickerView.tag] as? SalesApplicationSectionPickerModel)?.items[row] ?? ""
   }
-  
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    let indexPath: IndexPath = .init(row: 0, section: pickerView.tag)
-    guard let cell: PickerCollectionViewCell = collectionView.cellForItem(at: indexPath) as? PickerCollectionViewCell else { return }
-    
-    cell.textField.text = (model[pickerView.tag] as? SalesApplicationSectionPickerModel)?.items[row] ?? ""
-    cell.textField.resignFirstResponder()
-  }
+
 }
 
 extension SalesApplicationViewController: UITextFieldDelegate {
@@ -173,9 +224,10 @@ extension SalesApplicationViewController: UIImagePickerControllerDelegate, UINav
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
     guard let image: UIImage = info[.originalImage] as? UIImage else { return }
-    (model.last as? SalesApplicationSectionPictureModel)?.images[currentImageIndex] = image
+    (model[6] as? SalesApplicationSectionPictureModel)?.images[currentImageIndex] = image
     picker.dismiss(animated: true, completion: nil)
     collectionView.reloadData()
+    isValid()
   }
   
   
@@ -204,6 +256,8 @@ private extension SalesApplicationViewController {
     layout?.minimumInteritemSpacing = 5
     navigationItem.setLeftBarButton(UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancel(sender: ))), animated: false)
     navigationItem.setRightBarButton(UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(sendInformationToServer(sender:))), animated: false)
+    
+    navigationItem.rightBarButtonItem?.isEnabled = false
     title = "판매 신청"
     collectionView.delegate = self
     collectionView.dataSource = self
@@ -211,6 +265,7 @@ private extension SalesApplicationViewController {
     collectionView.register(InputCollectionViewCell.self, forCellWithReuseIdentifier: "InputCollectionViewCell")
     collectionView.register(PickerCollectionViewCell.self, forCellWithReuseIdentifier: "PickerCollectionViewCell")
     collectionView.register(PictureCollectionViewCell.self, forCellWithReuseIdentifier: "PictureCollectionViewCell")
+    collectionView.register(CommentCollectionViewCell.self, forCellWithReuseIdentifier: "CommentCollectionViewCell")
     
     collectionView.register(SalesApplicationSectionHeader.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -221,22 +276,22 @@ private extension SalesApplicationViewController {
     let networkProvider: NetworkProvider = .init()
     let categoryIdx = (model[0] as? SalesApplicationSectionPickerModel)?.items.firstIndex(of: model[0].content) ?? -1
     let clothingStatus =  (model[5] as? SalesApplicationSectionPickerModel)?.items.firstIndex(of: model[5].content) ?? -1
-
-    let images = (model[5] as? SalesApplicationSectionPictureModel)?.images.values.compactMap({
+    
+    let images = (model[6] as? SalesApplicationSectionPictureModel)?.images.values.compactMap({
       $0
     })
     
-    let information = SalesApplicationInformation(categoryIdx: categoryIdx, brandName: model[1].content, purchasePrice: Int(model[2].content) ?? 0, desiredPrice: Int(model[3].content) ?? 0, clothingSize: model[4].content, clothingStatus: clothingStatus, comments: "", images: images ?? [])
-//
+    let information = SalesApplicationInformation(categoryIdx: categoryIdx, brandName: model[1].content, purchasePrice: Int(model[2].content) ?? 0, desiredPrice: Int(model[3].content) ?? 0, clothingSize: model[4].content, clothingStatus: clothingStatus, comments: model[7].content, images: images ?? [])
+    //
     let endPoint = SalesApplicationEndPoint.requestSalesApplication(inforamtion: information)
     
-    let salesPublisher: AnyPublisher<Result<BaseResponse<NillResponse>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+    let salesPublisher: AnyPublisher<Result<BaseResponse<NillResponse>, NetworkError>, Never> = networkProvider.request(route: endPoint, images: information.images)
     
     salesPublisher
       .sink { [weak self] result in
         switch result {
         case .success(let responseResult):
-
+          
           guard
             responseResult.status != "UNAUTHORIZED"
           else
@@ -244,16 +299,17 @@ private extension SalesApplicationViewController {
             Authorization.shared.requestWithNewAccessToken { [weak self] in
               self?.requestSalesApplication()
             }
+            print("다시")
             return
           }
           print("성공")
-//          self?.profileData.send(profile)
-//          self?.isSignedIn.send(true)
-          
+        //          self?.profileData.send(profile)
+        //          self?.isSignedIn.send(true)
+        
         case .failure(let error):
           print(error.localizedDescription)
           print("실패")
-//          self?.isSignedIn.send(false)
+        //          self?.isSignedIn.send(false)
         }
       }
       .store(in: &cancellables)
@@ -261,11 +317,37 @@ private extension SalesApplicationViewController {
   
   @objc func sendInformationToServer(sender: UITapGestureRecognizer) {
     
-    SceneCoordinator.shared.close(animated: true)
-    print("전송 완료")
+    requestSalesApplication()
+    //    SceneCoordinator.shared.close(animated: true)
+    //    print("전송 완료")
+    
+    //    SceneCoordinator.shared.transition(scene: SalesApplicationCompleteScene(), using: .push, animated: true)
   }
   
   @objc func cancel(sender: UITapGestureRecognizer) {
     SceneCoordinator.shared.close(animated: true)
+  }
+  
+  func isValid() {
+    if model.allSatisfy({ item in
+      switch item.isNecessary {
+      case false:
+        return true
+      case true:
+        if item.content.isEmpty {
+          if let imageItem = item as? SalesApplicationSectionPictureModel {
+            if !imageItem.images.isEmpty {
+              return true
+            }
+          }
+            return false
+        }
+        return true
+      }
+    }) {
+      navigationItem.rightBarButtonItem?.isEnabled = true
+    } else{
+      navigationItem.rightBarButtonItem?.isEnabled = false
+    }
   }
 }

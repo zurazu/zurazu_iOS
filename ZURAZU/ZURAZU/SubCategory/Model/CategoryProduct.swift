@@ -17,6 +17,7 @@ struct CategoryProduct: Decodable, Hashable {
   let image: CategoryProductImage
   let name: String
   let productIdx: Int
+  let price: Int
   
   struct CategoryProductImage: Decodable, Hashable {
     

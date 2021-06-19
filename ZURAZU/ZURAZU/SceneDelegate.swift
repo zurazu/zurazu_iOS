@@ -23,6 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       using: .root,
       animated: false
     )
+    SceneCoordinator.shared.tabTransition()
+       window.makeKeyAndVisible()
+//   SceneCoordinator.shared.transition(scene: SalesApplicationScene(), using: .root, animated: false)
     SceneCoordinator.shared.tabTransition(item: .category)
     window.makeKeyAndVisible()
   }

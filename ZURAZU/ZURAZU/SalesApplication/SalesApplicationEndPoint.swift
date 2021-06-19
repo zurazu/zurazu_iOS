@@ -63,20 +63,24 @@ extension SalesApplicationEndPoint: EndPointable {
   
   var headers: HTTPHeader? {
     return [
-      "Content-Type": "multipart/form-data",
+//      "Content-Type": "multipart/form-data",
       "Accept": "application/json",
       "Authentication": Authorization.shared.accessToken ?? ""
     ]
   }
   
   var bodies: HTTPBody? {
-    switch self {
-    case .requestSalesApplication(let inforamtion) :
-      var dictionary: [String: Any] = [:]
-      for (index, image) in inforamtion.images.enumerated() {
-        dictionary["image\(index)"] = image
-      }
-      return dictionary
-    }
+    return nil
+//    switch self {
+//    
+//    case .requestSalesApplication(let inforamtion) :
+//      var dictionary: [String: Any] = [:]
+//    
+//      for (index, image) in inforamtion.images.enumerated() {
+//        dictionary["image\(index)"] = image.jpegData(compressionQuality:0)!
+//      }
+//      print(dictionary.count)
+//      return dictionary
+//    }
   }
 }

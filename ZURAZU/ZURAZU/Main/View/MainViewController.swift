@@ -47,13 +47,61 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     return collectionView
   }()
   
+  lazy var salesApplicationButton: UIButton = {
+    let button: UIButton = .init()
+    let image: UIImage? = .init(systemName: "plus.app")
+    
+    button.backgroundColor = .bluePrimary
+    button.setImage(image, for: .normal)
+    button.setTitle("판매 신청하기", for: .normal)
+    button.setTitleColor(.white, for: .normal)
+    button.setTitleColor(.monoQuaternary, for: .highlighted)
+    button.titleLabel?.font = .tertiaryBold
+    button.imageView?.contentMode = .scaleAspectFill
+    button.imageView?.tintColor = .white
+    button.contentHorizontalAlignment = .center
+    button.semanticContentAttribute = .forceLeftToRight
+    button.layer.cornerRadius = 5
+    
+    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 20)
+    return button
+  }()
+  
+  private lazy var logoImageView: UIImageView = {
+    let imageView: UIImageView = .init(image: .logoText)
+    
+    imageView.contentMode = .scaleAspectFit
+    
+    return imageView
+  }()
+  
+  private var cancellables: Set<AnyCancellable> = []
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setupConstraint()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    setupNavigationBar()
+    viewModel?.requestProductsData.send()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    logoImageView.removeFromSuperview()
+  }
+  
   func bindViewModel() {
+    salesApplicationButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.salesApplicationEvent.send()
+      }
+      .store(in: &cancellables)
     
   }
   
@@ -62,7 +110,7 @@ final class MainViewController: UIViewController, ViewModelBindableType {
 extension MainViewController {
   
   private func setupConstraint() {
-    [collectionView].forEach {
+    [collectionView, salesApplicationButton].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       view.addSubview($0)
     }
@@ -71,7 +119,26 @@ extension MainViewController {
       collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+      collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      
+      salesApplicationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+      salesApplicationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+      salesApplicationButton.widthAnchor.constraint(equalToConstant: 130),
+      salesApplicationButton.heightAnchor.constraint(equalToConstant: 35)
+    ])
+  }
+  
+  func setupNavigationBar() {
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationController?.setNavigationBarHidden(false, animated: false)
+    
+    navigationBar.addSubview(logoImageView)
+    logoImageView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      logoImageView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 16),
+      logoImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
+      logoImageView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, multiplier: 0.3)
     ])
   }
 }
@@ -128,4 +195,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     return CollectionSeparatorView()
   }
   
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    viewModel?.detailProductEvent.send(1)
+  }
 }
