@@ -78,7 +78,7 @@ final class SceneCoordinator {
         target.providesPresentationContextTransitionStyle = true
         target.definesPresentationContext = true
         target.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        target.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
+        target.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.5)
         
         self?.currentViewController?.present(target, animated: animated) {
           promise(.success(()))

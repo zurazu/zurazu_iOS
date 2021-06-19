@@ -32,6 +32,13 @@ final class OrderCompleteViewController: CompleteViewController, ViewModelBindab
         self?.tabBarController?.tabBar.isHidden = false
       }
       .store(in: &cancellables)
+    
+    storageBoxInformationButton
+      .tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.storageBoxPopUpEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }
 
@@ -73,8 +80,8 @@ private extension OrderCompleteViewController {
       
       storageBoxInformationButton.topAnchor.constraint(equalTo: orderCompletedStackView.bottomAnchor, constant: 25),
       storageBoxInformationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      storageBoxInformationButton.widthAnchor.constraint(equalToConstant: 150),
-      storageBoxInformationButton.heightAnchor.constraint(equalToConstant: 32)
+      storageBoxInformationButton.widthAnchor.constraint(equalToConstant: 170),
+      storageBoxInformationButton.heightAnchor.constraint(equalToConstant: 40)
     ])
   }
 }
