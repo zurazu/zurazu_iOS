@@ -296,20 +296,21 @@ private extension SalesApplicationViewController {
             responseResult.status != "UNAUTHORIZED"
           else
           {
+            
             Authorization.shared.requestWithNewAccessToken { [weak self] in
               self?.requestSalesApplication()
             }
-            print("다시")
             return
           }
-          print("성공")
-        //          self?.profileData.send(profile)
-        //          self?.isSignedIn.send(true)
+          DispatchQueue.main.async {
+            SceneCoordinator.shared.transition(scene: SalesApplicationCompleteScene(), using: .push, animated: true)
+          }
+
         
         case .failure(let error):
-          print(error.localizedDescription)
-          print("실패")
-        //          self?.isSignedIn.send(false)
+          DispatchQueue.main.async {
+          self?.showAlert(message: error.localizedDescription)
+          }
         }
       }
       .store(in: &cancellables)
@@ -318,10 +319,8 @@ private extension SalesApplicationViewController {
   @objc func sendInformationToServer(sender: UITapGestureRecognizer) {
     
     requestSalesApplication()
-    //    SceneCoordinator.shared.close(animated: true)
-    //    print("전송 완료")
-    
-    //    SceneCoordinator.shared.transition(scene: SalesApplicationCompleteScene(), using: .push, animated: true)
+   
+   
   }
   
   @objc func cancel(sender: UITapGestureRecognizer) {
@@ -350,4 +349,15 @@ private extension SalesApplicationViewController {
       navigationItem.rightBarButtonItem?.isEnabled = false
     }
   }
+}
+
+extension UIViewController {
+  
+  func showAlert(message: String) {
+      let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+      let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+      alertController.addAction(cancelAction)
+      present(alertController, animated: true, completion: nil)
+  }
+  
 }

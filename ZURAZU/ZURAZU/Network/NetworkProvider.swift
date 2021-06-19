@@ -112,7 +112,6 @@ final class NetworkProvider: NetworkProvidable {
     }
 
     
-    print(images.count)
     httpBody.appendString("--\(boundary)--")
 
     request.httpBody = httpBody as Data
