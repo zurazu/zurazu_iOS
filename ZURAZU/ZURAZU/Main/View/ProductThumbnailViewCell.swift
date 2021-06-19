@@ -41,16 +41,18 @@ final class ProductThumbnailViewCell: UICollectionViewCell, Reusable {
       addSubview($0)
     }
     
+    let inset: CGFloat = 16
+    
     NSLayoutConstraint.activate([
-      imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-      imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
+      imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+      imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
       imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 10),
       
       infoView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
-      infoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      infoView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
-      infoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+      infoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+      infoView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -inset),
+      infoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)
     ])
   }
   

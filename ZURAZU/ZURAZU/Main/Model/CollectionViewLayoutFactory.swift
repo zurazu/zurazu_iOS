@@ -17,15 +17,14 @@ enum CollectionViewLayoutSectionFactory {
     // Item
     let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
     let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
+    item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: inset, trailing: 0)
     
     // Group
     let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .fractionalWidth(heightDimension))
     let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-    group.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
     
     // Section
     let section: NSCollectionLayoutSection = .init(group: group)
-    section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
     section.orthogonalScrollingBehavior = .groupPaging
     
     // Supplementary Item
@@ -49,7 +48,6 @@ enum CollectionViewLayoutSectionFactory {
     // Item
     let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .fractionalWidth(heightDimension))
     let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
-    item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
     
     // Group
     let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(heightDimension))
@@ -57,7 +55,6 @@ enum CollectionViewLayoutSectionFactory {
     
     // Section
     let section: NSCollectionLayoutSection = .init(group: group)
-    section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
     
     // Supplementary Item
     var boundarySupplementaryItems: [NSCollectionLayoutBoundarySupplementaryItem] = []
@@ -72,16 +69,15 @@ enum CollectionViewLayoutSectionFactory {
     return section
   }
   
-  static let defaultSection: NSCollectionLayoutSection = {
+  static let productDetailInfoSection: NSCollectionLayoutSection = {
     let widthDimension: CGFloat = 1
     
     // Item
     let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
     let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
-    item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: 0, bottom: inset, trailing: 0)
     
     // Group
-    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .estimated(130))
+    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .estimated(430))
     let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
     
     // Section
@@ -91,7 +87,7 @@ enum CollectionViewLayoutSectionFactory {
     return section
   }()
   
-  static let FullScreenHorizontalImageSection: NSCollectionLayoutSection = {
+  static let fullScreenHorizontalImageSection: NSCollectionLayoutSection = {
     // Item
     let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
     let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
@@ -109,7 +105,7 @@ enum CollectionViewLayoutSectionFactory {
   }()
   
   static let headerItem: NSCollectionLayoutBoundarySupplementaryItem = {
-    let headerItemSize: NSCollectionLayoutSize = .init(widthDimension: .estimated(UIScreen.main.bounds.width - inset * 4), heightDimension: .estimated(20))
+    let headerItemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(20))
     return .init(layoutSize: headerItemSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
   }()
   
@@ -126,7 +122,7 @@ enum CollectionViewLayoutSectionFactory {
 
 private extension CollectionViewLayoutSectionFactory {
   
-  static let inset: CGFloat = 8
+  static let inset: CGFloat = 20
   
   static func heightDimensionRatio(with widthDimension: CGFloat) -> CGFloat {
     widthDimension * 1.4

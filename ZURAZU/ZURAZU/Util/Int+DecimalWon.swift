@@ -12,8 +12,17 @@ extension Int {
   func decimalWon() -> String {
     let numberFormatter = NumberFormatter()
     numberFormatter.numberStyle = .decimal
-    guard let result = numberFormatter.string(from: NSNumber(value: self)) else { return " 원" }
+    guard let result = numberFormatter.string(from: NSNumber(value: self)) else { return "확인이 필요합니다." }
     
     return result + "원"
+  }
+}
+
+extension String {
+  
+  func decimalWon() -> String {
+    guard let number = Int(self) else { return "확인이 필요합니다." }
+    
+    return number.decimalWon()
   }
 }

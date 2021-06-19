@@ -26,10 +26,8 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     
     let layout: UICollectionViewCompositionalLayout = .init(sectionProvider: { (sectionIndex, _) -> NSCollectionLayoutSection? in
       switch sectionIndex {
-      case 0: return SectionFactory.horizontalProductSection(headerItem: SectionFactory.headerItem,
-                                                             footerItem: SectionFactory.footerItem)
-      case 1: return SectionFactory.mainProductSection(headerItem: SectionFactory.headerItem,
-                                                       footerItem: SectionFactory.footerItem)
+      case 0: return SectionFactory.horizontalProductSection(headerItem: SectionFactory.headerItem)
+      case 1: return SectionFactory.mainProductSection(headerItem: SectionFactory.headerItem)
       default: return nil
       }
     })
@@ -38,11 +36,10 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     
     collectionView.dataSource = self
     collectionView.delegate = self
-    collectionView.backgroundColor = .white
+    collectionView.backgroundColor = .monoQuinary
     
     collectionView.register(ProductThumbnailViewCell.self)
     collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeaderView")
-    collectionView.register(CollectionSeparatorView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionSeparatorView")
     
     return collectionView
   }()
@@ -160,6 +157,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: datas[indexPath.item], size: size)
+    cell.backgroundColor = .white
     return cell
   }
   
@@ -180,18 +178,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
       default: headerView.update(with: SectionTitle.zurazuPick)
       }
       
+      headerView.backgroundColor = .white
+      
       return headerView
     }
-
-    if kind == UICollectionView.elementKindSectionFooter,
-       let footerView: CollectionSeparatorView = collectionView.dequeueReusableSupplementaryView(
-        ofKind: kind,
-        withReuseIdentifier: "CollectionSeparatorView",
-        for: indexPath) as? CollectionSeparatorView {
-
-      return footerView
-    }
-
+    
     return CollectionSeparatorView()
   }
   

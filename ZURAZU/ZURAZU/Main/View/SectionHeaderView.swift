@@ -32,11 +32,13 @@ class SectionHeaderView: UICollectionReusableView {
       addSubview($0)
     }
     
+    let inset: CGFloat = 16
+    
     NSLayoutConstraint.activate([
-      title.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-      title.leadingAnchor.constraint(equalTo: leadingAnchor),
-      title.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
-      title.bottomAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor)
+      title.topAnchor.constraint(equalTo: topAnchor, constant: inset),
+      title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      title.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -inset),
+      title.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -inset)
     ])
   }
   
