@@ -13,6 +13,7 @@ final class SceneCoordinator {
   static let shared: SceneCoordinator = .init()
   
   private var window: UIWindow?
+
   private var currentViewController: UIViewController?
   
   private init() { }

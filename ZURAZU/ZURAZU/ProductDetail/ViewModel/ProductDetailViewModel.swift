@@ -82,6 +82,7 @@ private extension ProductDetailViewModel {
           guard let product = productDetail.list?.product else { return }
           self?.product.send(product)
           self?.images.send(productDetail.list?.images ?? [])
+
         case .failure(let error):
           print(error.localizedDescription)
         }

@@ -13,6 +13,7 @@ enum SalesApplicationSectionStyle {
   case input
   case picker
   case picture
+  case comment
 }
 
 protocol SalesApplicationSectionModel {
@@ -87,6 +88,29 @@ class SalesApplicationSectionPictureModel: SalesApplicationSectionModel {
     self.height = height
     self.headerHeight = headerHeight
     self.subtitle = subtitle
+    self.isNecessary = isNecessary
+  }
+}
+
+class SalesApplicationSectionCommentModel: SalesApplicationSectionModel {
+  
+  var content: String = ""
+  let height: CGFloat
+  let headerHeight: CGFloat
+  let isNecessary: Bool
+  let style: SalesApplicationSectionStyle = .comment
+  let title: String
+  let placeHolder: String?
+  let description: String?
+  let subtitle: String?
+  
+  init(title: String, subTitle: String? = nil, placeHolder: String? = nil, height: CGFloat = 30, headerHeight: CGFloat = 30, isNecessary: Bool = false, subtitle: String? = nil) {
+    self.title = title
+    self.placeHolder = placeHolder
+    self.height = height
+    self.headerHeight = headerHeight
+    self.subtitle = subtitle
+    self.description = subTitle
     self.isNecessary = isNecessary
   }
 }

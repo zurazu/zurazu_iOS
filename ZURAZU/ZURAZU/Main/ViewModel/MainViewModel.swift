@@ -69,6 +69,7 @@ private extension MainViewModel {
         switch result {
         case .success(let responseResult):
           guard let list = responseResult.list else { return }
+
           self?.products.send(list.products)
         case .failure(let error):
           print(error.localizedDescription)

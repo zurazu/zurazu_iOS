@@ -16,5 +16,6 @@ enum APICredentials: String {
   case signIn = "/member/login"
   case signUp = "/member/register"
   case profile = "/member/profile"
+  case salesApplication = "/member/applySellProduct/register"
   case terms = "/zurazuTerms"
 }
