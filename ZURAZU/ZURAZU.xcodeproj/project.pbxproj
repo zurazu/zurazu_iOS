@@ -152,6 +152,10 @@
 		BDB48CA8267E0F62003D86EB /* UnpreparedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CA7267E0F62003D86EB /* UnpreparedViewController.swift */; };
 		BDB48CAA267E0FA4003D86EB /* Unprepared.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB48CA9267E0FA4003D86EB /* Unprepared.storyboard */; };
 		BDB48CAC267E108F003D86EB /* UnpreparedScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CAB267E108F003D86EB /* UnpreparedScene.swift */; };
+		BDB48CAE267E134C003D86EB /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CAD267E134C003D86EB /* OrderViewController.swift */; };
+		BDB48CB0267E13B8003D86EB /* OrderScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CAF267E13B8003D86EB /* OrderScene.swift */; };
+		BDB48CB3267E13EC003D86EB /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB48CB2267E13EC003D86EB /* Order.storyboard */; };
+		BDB48CB5267E1400003D86EB /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CB4267E1400003D86EB /* OrderViewModel.swift */; };
 		E20496722679E02E00668213 /* OrderProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20496712679E02E00668213 /* OrderProductViewCell.swift */; };
 		E204967D2679E96100668213 /* OrderPaymentInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204967C2679E96100668213 /* OrderPaymentInfoViewCell.swift */; };
 		E20496822679EC7F00668213 /* OrderPriceInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20496812679EC7F00668213 /* OrderPriceInfoViewCell.swift */; };
@@ -344,6 +348,10 @@
 		BDB48CA7267E0F62003D86EB /* UnpreparedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpreparedViewController.swift; sourceTree = "<group>"; };
 		BDB48CA9267E0FA4003D86EB /* Unprepared.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Unprepared.storyboard; sourceTree = "<group>"; };
 		BDB48CAB267E108F003D86EB /* UnpreparedScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpreparedScene.swift; sourceTree = "<group>"; };
+		BDB48CAD267E134C003D86EB /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		BDB48CAF267E13B8003D86EB /* OrderScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderScene.swift; sourceTree = "<group>"; };
+		BDB48CB2267E13EC003D86EB /* Order.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Order.storyboard; sourceTree = "<group>"; };
+		BDB48CB4267E1400003D86EB /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20496712679E02E00668213 /* OrderProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductViewCell.swift; sourceTree = "<group>"; };
@@ -1053,10 +1061,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BDB48CB1267E13BE003D86EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BDB48CB4267E1400003D86EB /* OrderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E204966F2679DFCE00668213 /* Order */ = {
 			isa = PBXGroup;
 			children = (
 				E20496702679DFE200668213 /* View */,
+				BDB48CB1267E13BE003D86EB /* ViewModel */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -1064,6 +1081,9 @@
 		E20496702679DFE200668213 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BDB48CAD267E134C003D86EB /* OrderViewController.swift */,
+				BDB48CB2267E13EC003D86EB /* Order.storyboard */,
+				BDB48CAF267E13B8003D86EB /* OrderScene.swift */,
 				E20496712679E02E00668213 /* OrderProductViewCell.swift */,
 				E204967C2679E96100668213 /* OrderPaymentInfoViewCell.swift */,
 				E20496812679EC7F00668213 /* OrderPriceInfoViewCell.swift */,
@@ -1180,6 +1200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB48CB3267E13EC003D86EB /* Order.storyboard in Resources */,
 				BD88BD3C264D13320029CCC6 /* Category.storyboard in Resources */,
 				BD9ADE28266E0DFF00F47B14 /* MyPage.storyboard in Resources */,
 				BDB48CAA267E0FA4003D86EB /* Unprepared.storyboard in Resources */,
@@ -1360,9 +1381,11 @@
 				BDB48C4D267C8A36003D86EB /* TermsOfServiceView.swift in Sources */,
 				BDA68CCE2670A64400F65568 /* SignUpStackView.swift in Sources */,
 				BD88BCDE264B94820029CCC6 /* MainTabBarController.swift in Sources */,
+				BDB48CB0267E13B8003D86EB /* OrderScene.swift in Sources */,
 				B9B59F9F2663930D0065BFE8 /* PictureCollectionViewCell.swift in Sources */,
 				BDA68CE02678929700F65568 /* MyPageTableViewCell.swift in Sources */,
 				BD9AA986266638F10046EB2F /* UICollectionView+Register.swift in Sources */,
+				BDB48CB5267E1400003D86EB /* OrderViewModel.swift in Sources */,
 				BD9ADE32266E2DE200F47B14 /* Token.swift in Sources */,
 				BD88BCA6264A86C60029CCC6 /* SignInScene.swift in Sources */,
 				BDA68CE62678C4B200F65568 /* GradeView.swift in Sources */,
@@ -1403,6 +1426,7 @@
 				BD88BC96264A85A90029CCC6 /* SignInViewController.swift in Sources */,
 				E2FB1E552645401D004893E0 /* NSAttributedString+CustomAttribute.swift in Sources */,
 				BDB48C092679BA1D003D86EB /* ProductDetailEndPoint.swift in Sources */,
+				BDB48CAE267E134C003D86EB /* OrderViewController.swift in Sources */,
 				BD9ADE30266E2C7F00F47B14 /* SignInEndPoint.swift in Sources */,
 				BDB48C2B267B3B08003D86EB /* CompleteViewController.swift in Sources */,
 				BD88BD50264D1B370029CCC6 /* UITableView+Register.swift in Sources */,
