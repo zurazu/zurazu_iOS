@@ -36,6 +36,7 @@ private extension MyPageViewModel {
   
   func bind() {
     showSignInScene
+      .receive(on: Scheduler.main)
       .sink {
         SceneCoordinator.shared.transition(scene: SignInScene(), using: .push, animated: true)
       }

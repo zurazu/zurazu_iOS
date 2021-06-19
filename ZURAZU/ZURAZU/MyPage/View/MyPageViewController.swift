@@ -91,8 +91,6 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
 private extension MyPageViewController {
   
   func setupView() {
-    // MARK: - 삭제 필요함.
-//    Authorization.shared.removeUserInformation()
     profileView.isHidden = true
     guestGuideView.isHidden = true
     
