@@ -132,14 +132,20 @@ extension SubCategoryViewController: UICollectionViewDataSource, UICollectionVie
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-    guard let datas = viewModel?.categoryProducts.value else {
-      return ProductThumbnailViewCell() }
-    
     let cell: ProductThumbnailViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    let data: ProductThumbnailInfo = .init(brandName: datas[indexPath.item].brand, name: datas[indexPath.item].name, price: "10000")
+    guard let product = viewModel?.categoryProducts.value[indexPath.row] else { return cell }
     
-    cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: data, size: .large)
+    let info: ProductThumbnailInfo = .init(
+      brandName: product.brand,
+      name: product.name,
+      price: product.price.decimalWon()
+    )
+    
+    cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: info, size: .large)
+    
+    ImageService().loadImage(by: product.image.url) { image in
+      cell.update(image: image)
+    }
     return cell
   }
   

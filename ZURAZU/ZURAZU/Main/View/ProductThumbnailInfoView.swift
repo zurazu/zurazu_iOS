@@ -34,9 +34,9 @@ final class ProductThumbnailInfoView: UIView {
   }
 }
 
-extension ProductThumbnailInfoView {
+private extension ProductThumbnailInfoView {
   
-  private func setupFont() {
+  func setupFont() {
     guard let size = size else { return }
     
     if let brandName: String = info?.brandName {
@@ -48,12 +48,12 @@ extension ProductThumbnailInfoView {
                                                     attributes: size.name())
     }
     if let price: String = info?.price {
-      self.price.attributedText = NSAttributedString(string: price.decimalWon(),
+      self.price.attributedText = NSAttributedString(string: price,
                                                      attributes: size.price())
     }
   }
   
-  private func setupConstraint() {
+  func setupConstraint() {
     translatesAutoresizingMaskIntoConstraints = false
     
     [brandName, name, price].forEach {

@@ -24,6 +24,9 @@ final class MainViewModel: MainViewModelType {
   
   var products: CurrentValueSubject<[CategoryProduct], Never> = .init([])
   
+  private var offset: Int = 0
+  private let limit: Int = 20
+  
   private var cancellables: Set<AnyCancellable> = []
   
   init() {
@@ -59,8 +62,7 @@ private extension MainViewModel {
   
   func requestProducts() {
     let networkProvider: NetworkProvider = .init()
-    // MARK: - offset과 limit 계산해야함. subcategory화면에서도 마찬가지임.
-    let endPoint: SubCategoryEndPoint = .categoryProducts(offset: 0, limit: 10, mainCategoryIdx: nil, subCategoryIdx: nil, notOnlySelectProgressing: false)
+    let endPoint: SubCategoryEndPoint = .categoryProducts(offset: offset, limit: limit, mainCategoryIdx: nil, subCategoryIdx: nil, notOnlySelectProgressing: false)
     
     let productsPublisher: AnyPublisher<Result<BaseResponse<CategoryProducts>, NetworkError>, Never> = networkProvider.request(route: endPoint)
     
@@ -69,11 +71,16 @@ private extension MainViewModel {
         switch result {
         case .success(let responseResult):
           guard let list = responseResult.list else { return }
+
           self?.products.send(list.products)
         case .failure(let error):
           print(error.localizedDescription)
         }
       }
       .store(in: &cancellables)
+  }
+  
+  func nextOffset() {
+    offset += limit
   }
 }

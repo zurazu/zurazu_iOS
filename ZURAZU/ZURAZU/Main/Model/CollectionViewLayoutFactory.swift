@@ -12,7 +12,7 @@ enum CollectionViewLayoutSectionFactory {
   static func horizontalProductSection(headerItem: NSCollectionLayoutBoundarySupplementaryItem? = nil,
                                        footerItem: NSCollectionLayoutBoundarySupplementaryItem? = nil) -> NSCollectionLayoutSection {
     let widthDimension: CGFloat = 0.4
-    let heightDimension: CGFloat = CollectionViewLayoutSectionFactory.heightDimensionRatio(with: widthDimension)
+    let heightDimension: CGFloat = CollectionViewLayoutSectionFactory.heightDimensionRatio(with: widthDimension + 0.03)
     
     // Item
     let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))

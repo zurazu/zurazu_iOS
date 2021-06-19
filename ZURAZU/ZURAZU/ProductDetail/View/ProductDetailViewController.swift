@@ -140,7 +140,7 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
     switch section {
     case 0: return viewModel?.images.value.count ?? 0
     case 1: return 1
-    case 2: return 10
+    case 2: return viewModel?.zurazuPickProduct.value.count ?? 0
     default: return 0
     }
   }
@@ -177,7 +177,21 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
       
     default:
       let cell: ProductThumbnailViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: .init(brandName: "brand", name: "name", price: "10000"), size: .medium)
+      
+      guard let zurazuPickProduct = viewModel?.zurazuPickProduct.value[indexPath.row]
+      else { return cell }
+      
+      let productThumbnailInfo: ProductThumbnailInfo = .init(
+        brandName: zurazuPickProduct.brand,
+        name: zurazuPickProduct.name,
+        price: zurazuPickProduct.price.decimalWon()
+      )
+      
+      cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: productThumbnailInfo, size: .medium)
+      ImageService().loadImage(by: zurazuPickProduct.image.url) { image in
+        cell.update(image: image)
+      }
+      
       cell.backgroundColor = .white
       
       return cell
@@ -190,7 +204,11 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     if kind == UICollectionView.elementKindSectionFooter,
-       let footerView: ProductGradeFooterView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductGradeFooterView", for: indexPath) as? ProductGradeFooterView {
+       let footerView: ProductGradeFooterView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: kind,
+        withReuseIdentifier: "ProductGradeFooterView",
+        for: indexPath
+       ) as? ProductGradeFooterView {
       
       footerView.backgroundColor = .white
       footerView.inspectionStandardButton.tapPublisher.sink { [weak self] in
@@ -217,5 +235,11 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
     }
     
     return UICollectionReusableView()
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if indexPath.section == 2 {
+      viewModel?.selectedProduct.send(indexPath.row)
+    }
   }
 }

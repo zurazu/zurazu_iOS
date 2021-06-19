@@ -11,12 +11,14 @@ import Combine
 protocol OrderCompleteViewModelType {
   
   var orderCompletedProduct: OrderCompletedProduct { get }
+  var storageBoxPopUpEvent: PassthroughSubject<Void, Never> { get }
   
   var closeEvent: PassthroughSubject<Void, Never> { get }
 }
 
 final class OrderCompleteViewModel: OrderCompleteViewModelType {
   
+  var storageBoxPopUpEvent: PassthroughSubject<Void, Never> = .init()
   var closeEvent: PassthroughSubject<Void, Never> = .init()
   
   private var cancellables: Set<AnyCancellable> = []
@@ -37,6 +39,14 @@ private extension OrderCompleteViewModel {
       .receive(on: Scheduler.main)
       .sink {
         SceneCoordinator.shared.goToHome()
+      }
+      .store(in: &cancellables)
+    
+    storageBoxPopUpEvent
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
+      .sink {
+        SceneCoordinator.shared.transition(scene: StorageBoxPopUpScene(), using: .present, animated: false)
       }
       .store(in: &cancellables)
   }
