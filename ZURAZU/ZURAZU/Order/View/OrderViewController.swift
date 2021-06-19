@@ -48,25 +48,19 @@ final class OrderViewController: UIViewController, ViewModelBindableType {
   
   var name: String? {
     didSet {
-      guard let name = name, !name.isEmpty,
-            let phoneNumber = phoneNumber, !phoneNumber.isEmpty else {
-        ordererInfo = ""
-        
-        return
-      }
-      ordererInfo = name + " " + phoneNumber
+      orderInfoDidEdit()
     }
   }
   
   var phoneNumber: String? {
     didSet {
-      guard let name = name, !name.isEmpty,
-            let phoneNumber = phoneNumber, !phoneNumber.isEmpty else {
-        ordererInfo = ""
-        
-        return
-      }
-      ordererInfo = name + " " + phoneNumber
+      orderInfoDidEdit()
+    }
+  }
+  
+  var email: String? {
+    didSet {
+      orderInfoDidEdit()
     }
   }
   
@@ -80,6 +74,17 @@ final class OrderViewController: UIViewController, ViewModelBindableType {
       orderButton.isEnabled = true
       orderButton.backgroundColor = .bluePrimary
     }
+  }
+  
+  private func orderInfoDidEdit() {
+    guard let name = name, !name.isEmpty,
+          let phoneNumber = phoneNumber, !phoneNumber.isEmpty,
+          let email = email, !email.isEmpty else {
+      ordererInfo = ""
+      
+      return
+    }
+    ordererInfo = name + " " + phoneNumber
   }
   
   override func viewDidLoad() {
