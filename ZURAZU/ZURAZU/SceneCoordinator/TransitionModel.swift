@@ -11,7 +11,7 @@ enum TransitionStyle {
   
   case root
   case push
-  case modal
+  case present
 }
 
 enum TransitionError: Error {

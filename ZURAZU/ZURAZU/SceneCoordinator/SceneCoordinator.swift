@@ -74,7 +74,12 @@ final class SceneCoordinator {
         
         promise(.success(()))
         
-      case .modal:
+      case .present:
+        target.providesPresentationContextTransitionStyle = true
+        target.definesPresentationContext = true
+        target.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        target.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
+        
         self?.currentViewController?.present(target, animated: animated) {
           promise(.success(()))
         }
@@ -99,6 +104,7 @@ final class SceneCoordinator {
         
         self?.currentViewController = lastViewController
         promise(.success(()))
+        return
       }
       
       if let tabbarController = self?.currentViewController?.presentingViewController as? UITabBarController {
@@ -106,12 +112,20 @@ final class SceneCoordinator {
           self?.currentViewController?.dismiss(animated: animated) { [weak self] in
             self?.currentViewController = navigationController.topViewController
             promise(.success(()))
+            return
           }
         } else {
           self?.currentViewController?.dismiss(animated: animated) { [weak self] in
             self?.currentViewController = tabbarController.selectedViewController
             promise(.success(()))
+            return
           }
+        }
+      } else {
+        let target = self?.currentViewController
+        self?.currentViewController = (target?.presentingViewController as? UINavigationController)?.viewControllers.last
+        target?.dismiss(animated: animated) {
+          promise(.success(()))
         }
       }
     }
