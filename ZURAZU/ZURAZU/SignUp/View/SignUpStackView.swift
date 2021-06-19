@@ -32,7 +32,7 @@ final class SignUpStackView: UIStackView {
 private extension SignUpStackView {
   
   func setupView() {
-    spacing = 25
+    spacing = 15
     axis = .vertical
     alignment = .fill
     
