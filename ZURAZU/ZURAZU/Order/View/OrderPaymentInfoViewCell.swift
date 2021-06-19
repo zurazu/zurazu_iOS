@@ -50,19 +50,26 @@ class OrderPaymentInfoViewCell: UICollectionViewCell, Reusable {
       addSubview($0)
     }
     
+    let inset: CGFloat = 16
+    
     NSLayoutConstraint.activate([
-      title.topAnchor.constraint(equalTo: contentView.topAnchor),
-      title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      title.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
+      widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+      
+      title.topAnchor.constraint(equalTo: topAnchor, constant: inset),
+      title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      title.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -inset),
+      title.heightAnchor.constraint(equalToConstant: 20),
       
       paymentMethod.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 21),
-      paymentMethod.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      paymentMethod.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
+      paymentMethod.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      paymentMethod.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -inset),
+      paymentMethod.heightAnchor.constraint(equalToConstant: 20),
       
       accountInfo.topAnchor.constraint(equalTo: paymentMethod.bottomAnchor, constant: 8),
-      accountInfo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      accountInfo.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
-      accountInfo.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+      accountInfo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      accountInfo.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -inset),
+      accountInfo.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset),
+      accountInfo.heightAnchor.constraint(equalToConstant: 20)
     ])
   }
 }

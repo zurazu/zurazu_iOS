@@ -26,7 +26,7 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
     let layout: UICollectionViewCompositionalLayout = .init(sectionProvider: { (sectionIndex, _) -> NSCollectionLayoutSection? in
       switch sectionIndex {
       case 0: return SectionFactory.fullScreenHorizontalImageSection
-      case 1: return SectionFactory.productDetailInfoSection
+      case 1: return SectionFactory.productDetailInfoSection()
       case 2: return SectionFactory.horizontalProductSection(headerItem: SectionFactory.headerItem)
       default: return nil
       }

@@ -63,8 +63,13 @@ private extension ProductDetailViewModel {
     
     orderEvent
       .receive(on: Scheduler.main)
-      .sink {
-        SceneCoordinator.shared.transition(scene: OrderScene(), using: .push, animated: true)
+      .sink { [weak self] in
+        guard let product = self?.product.value,
+              let imageURL = self?.images.value.first?.url
+        else { return }
+        
+        let scene = OrderScene(product: product, imageURL: imageURL)
+        SceneCoordinator.shared.transition(scene: scene, using: .push, animated: true)
       }
       .store(in: &cancellables)
   }

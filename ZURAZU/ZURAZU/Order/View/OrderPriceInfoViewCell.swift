@@ -53,20 +53,27 @@ class OrderPriceInfoViewCell: UICollectionViewCell, Reusable {
       addSubview($0)
     }
     
+    let inset: CGFloat = 16
+    
     NSLayoutConstraint.activate([
-      title.topAnchor.constraint(equalTo: contentView.topAnchor),
-      title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      title.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
+      widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+      
+      title.topAnchor.constraint(equalTo: topAnchor, constant: inset),
+      title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      title.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -inset),
+      title.heightAnchor.constraint(equalToConstant: 20),
       
       info.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 21),
-      info.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      info.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
-      info.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      info.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      info.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -inset),
+      info.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset),
+      info.heightAnchor.constraint(equalToConstant: 20),
       
       price.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 21),
       price.leadingAnchor.constraint(greaterThanOrEqualTo: info.leadingAnchor),
-      price.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      price.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+      price.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
+      price.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
+      price.heightAnchor.constraint(equalToConstant: 20)
     ])
   }
 }

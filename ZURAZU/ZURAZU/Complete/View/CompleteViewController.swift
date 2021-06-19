@@ -74,7 +74,7 @@ private extension CompleteViewController {
       homeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
       homeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
-      guideLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+      guideLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
       guideLabel.topAnchor.constraint(equalTo: homeImageView.bottomAnchor, constant: 25),
       guideLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       

@@ -48,20 +48,25 @@ class OrderProductViewCell: UICollectionViewCell, Reusable {
       addSubview($0)
     }
     
+    let inset: CGFloat = 16
+    
     NSLayoutConstraint.activate([
-      title.topAnchor.constraint(equalTo: contentView.topAnchor),
-      title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      title.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
+      widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+      
+      title.topAnchor.constraint(equalTo: topAnchor, constant: inset),
+      title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      title.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -inset),
+      title.heightAnchor.constraint(equalToConstant: 20),
       
       imageView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 21),
-      imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
       imageView.widthAnchor.constraint(equalToConstant: 65),
       imageView.heightAnchor.constraint(equalToConstant: 65),
+      imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset),
       
       infoView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 21),
       infoView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-      infoView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor),
-      infoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+      infoView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -inset)
     ])
   }
 }

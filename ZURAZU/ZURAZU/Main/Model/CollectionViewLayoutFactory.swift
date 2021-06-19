@@ -69,7 +69,7 @@ enum CollectionViewLayoutSectionFactory {
     return section
   }
   
-  static let productDetailInfoSection: NSCollectionLayoutSection = {
+  static func productDetailInfoSection(height: CGFloat = 430) -> NSCollectionLayoutSection {
     let widthDimension: CGFloat = 1
     
     // Item
@@ -77,12 +77,32 @@ enum CollectionViewLayoutSectionFactory {
     let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
     
     // Group
-    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .estimated(430))
+    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .estimated(height))
     let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
     
     // Section
     let section: NSCollectionLayoutSection = .init(group: group)
     section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: 0, bottom: inset, trailing: 0)
+    
+    return section
+  }
+  
+  static let orderSection: NSCollectionLayoutSection = {
+    let widthDimension: CGFloat = 1
+    let inset: CGFloat = 4
+    
+    // Item
+    let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+    let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
+    
+    // Group
+    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .estimated(140))
+    let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+    
+    // Section
+    let section: NSCollectionLayoutSection = .init(group: group)
+    section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: 0, bottom: inset, trailing: 0)
+    section.interGroupSpacing = 10
     
     return section
   }()
@@ -93,7 +113,7 @@ enum CollectionViewLayoutSectionFactory {
     let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
     
     // Group
-    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
+    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalWidth(1))
     let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
     
     // Section
