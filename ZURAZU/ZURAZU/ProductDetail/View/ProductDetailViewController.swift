@@ -62,8 +62,14 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    // 코드 수정해야함.
-    viewModel?.productDeatilIndex.send(4)
+    tabBarController?.tabBar.isHidden = true
+    viewModel?.requestProductDetailData.send()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    tabBarController?.tabBar.isHidden = false
   }
   
   func bindViewModel() {
@@ -78,6 +84,12 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
     backButton.tapPublisher
       .sink { [weak self] in
         self?.viewModel?.closeEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    orderButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.orderEvent.send()
       }
       .store(in: &cancellables)
   }
@@ -95,12 +107,6 @@ private extension ProductDetailViewController {
     orderButton.setTitle("구매하기", for: .normal)
     orderButton.titleLabel?.font = .secondaryBold
     orderButton.setTitleColor(.white, for: .normal)
-    
-//    title = "상세 보기"
-    
-//    if let orderCompletedProduct = viewModel?.orderCompletedProduct {
-//      orderCompletedStackView.updateView(with: orderCompletedProduct)
-//    }
   }
   
   func setupConstraint() {
@@ -212,8 +218,4 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
     
     return UICollectionReusableView()
   }
-  
-//  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//    viewModel?.detailProductEvent.send(1)
-//  }
 }

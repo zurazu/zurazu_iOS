@@ -13,11 +13,7 @@ final class SceneCoordinator {
   static let shared: SceneCoordinator = .init()
   
   private var window: UIWindow?
-  private var currentViewController: UIViewController? {
-    didSet {
-      print(currentViewController)
-    }
-  }
+  private var currentViewController: UIViewController?
   
   private init() { }
   

@@ -15,6 +15,8 @@ final class ProductGradeFooterView: UICollectionReusableView {
   let inspectionStandardButton: UIButton = .init(frame: .zero)
   let inspectionStandardLabel: UILabel = .init(frame: .zero)
   
+  private var isFirst: Bool = true
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
@@ -30,9 +32,11 @@ final class ProductGradeFooterView: UICollectionReusableView {
     nameLabel.text = product.name
     priceLabel.text = product.price.decimalWon()
     
-    if let productStatus: ProductStatus = .init(rawValue: product.clothingStatus) {
+    if isFirst, let productStatus: ProductStatus = .init(rawValue: product.clothingStatus) {
       gradeView.updateView(with: productStatus)
     }
+    
+    isFirst = false
   }
 }
 
@@ -41,12 +45,10 @@ private extension ProductGradeFooterView {
   func setupView() {
     nameLabel.font = .biggest
     nameLabel.textColor = .monoPrimary
-    nameLabel.text = "스프라이트 바지"
     nameLabel.sizeToFit()
     
     priceLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
     priceLabel.textColor = .monoPrimary
-    priceLabel.text = "20000원"
     
     let attributedString = NSAttributedString(string: "검수 기준",
                                               attributes: [

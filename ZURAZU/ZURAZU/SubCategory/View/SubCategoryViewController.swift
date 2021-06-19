@@ -143,4 +143,7 @@ extension SubCategoryViewController: UICollectionViewDataSource, UICollectionVie
     return cell
   }
   
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    viewModel?.selectedProductIndex.send(indexPath.row)
+  }
 }

@@ -63,8 +63,6 @@ private extension GradeView {
     gradeLabel.font = .gradeBold
     gradeLabel.textColor = .bluePrimary
     gradeLabel.textAlignment = .center
-    // MARK: - Default로 해놓은 것이기 때문에 삭제해야합니다.
-    gradeLabel.text = "A"
     
     label.font = .primaryBold
     label.textColor = .monoPrimary
