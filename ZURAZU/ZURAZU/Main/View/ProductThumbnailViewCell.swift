@@ -40,6 +40,10 @@ final class ProductThumbnailViewCell: UICollectionViewCell, Reusable {
     pickLabel.isHidden = size != .medium
   }
   
+  func update(image: UIImage?) {
+    imageView.image = image
+  }
+  
   private func setupConstraint() {
     translatesAutoresizingMaskIntoConstraints = false
     
@@ -54,7 +58,7 @@ final class ProductThumbnailViewCell: UICollectionViewCell, Reusable {
       imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
       imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
       imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
-      imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 10),
+      imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
       
       infoView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
       infoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),

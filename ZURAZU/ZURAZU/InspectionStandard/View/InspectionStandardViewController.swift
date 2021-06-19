@@ -58,6 +58,12 @@ class InspectionStandardViewController: UIViewController, ViewModelBindableType 
     setupConstraint()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    tabBarController?.tabBar.isHidden = true
+  }
+  
   func bindViewModel() {
     backButton.tapPublisher
       .sink { [weak self] in

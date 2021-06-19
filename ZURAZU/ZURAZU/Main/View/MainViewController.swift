@@ -12,15 +12,6 @@ final class MainViewController: UIViewController, ViewModelBindableType {
   
   var viewModel: MainViewModelType?
   
-  private let datas: [ProductThumbnailInfo] = [.init(brandName: "1", name: "hello", price: "10000"),
-                                               .init(brandName: "2", name: "hello", price: "10000"),
-                                               .init(brandName: "3", name: "hello", price: "10000"),
-                                               .init(brandName: "4", name: "hello", price: "10000"),
-                                               .init(brandName: "5", name: "hello", price: "10000"),
-                                               .init(brandName: "6", name: "hello", price: "10000"),
-                                               .init(brandName: "7", name: "hello", price: "10000"),
-                                               .init(brandName: "8", name: "hello", price: "10000")]
-  
   private lazy var collectionView: UICollectionView = {
     typealias SectionFactory = CollectionViewLayoutSectionFactory
     
@@ -100,6 +91,12 @@ final class MainViewController: UIViewController, ViewModelBindableType {
       }
       .store(in: &cancellables)
     
+    viewModel?.products
+      .receive(on: Scheduler.main)
+      .sink { [weak self] _ in
+        self?.collectionView.reloadData()
+      }
+      .store(in: &cancellables)
   }
   
 }
@@ -143,7 +140,7 @@ extension MainViewController {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    datas.count
+    return viewModel?.products.value.count ?? 0
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -156,7 +153,20 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     default: size = .small
     }
     
-    cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: datas[indexPath.item], size: size)
+    guard let product = viewModel?.products.value[indexPath.row] else { return cell }
+    
+    let info: ProductThumbnailInfo = .init(
+      brandName: product.brand,
+      name: product.name,
+      price: product.price.decimalWon()
+    )
+    
+    cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: info, size: size)
+    
+    ImageService().loadImage(by: product.image.url) { image in
+      cell.update(image: image)
+    }
+
     cell.backgroundColor = .white
     return cell
   }
@@ -187,6 +197,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    viewModel?.detailProductEvent.send(1)
+    viewModel?.detailProductEvent.send(indexPath.row)
   }
 }
