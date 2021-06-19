@@ -167,6 +167,8 @@
 		BDB48CC6267E58B1003D86EB /* StorageBoxInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CC5267E58B1003D86EB /* StorageBoxInformationView.swift */; };
 		BDB48CC9267E5A59003D86EB /* StorageBoxInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CC8267E5A59003D86EB /* StorageBoxInformation.swift */; };
 		BDB48CCB267E5DEF003D86EB /* InformationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CCA267E5DEF003D86EB /* InformationTextView.swift */; };
+		BDB48CCE267E995A003D86EB /* OrderEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CCD267E995A003D86EB /* OrderEndPoint.swift */; };
+		BDB48CD0267E9A02003D86EB /* OrderInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CCF267E9A02003D86EB /* OrderInformation.swift */; };
 		E20496722679E02E00668213 /* OrderProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20496712679E02E00668213 /* OrderProductViewCell.swift */; };
 		E204967D2679E96100668213 /* OrderPaymentInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204967C2679E96100668213 /* OrderPaymentInfoViewCell.swift */; };
 		E20496822679EC7F00668213 /* OrderPriceInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20496812679EC7F00668213 /* OrderPriceInfoViewCell.swift */; };
@@ -375,6 +377,8 @@
 		BDB48CC5267E58B1003D86EB /* StorageBoxInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageBoxInformationView.swift; sourceTree = "<group>"; };
 		BDB48CC8267E5A59003D86EB /* StorageBoxInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageBoxInformation.swift; sourceTree = "<group>"; };
 		BDB48CCA267E5DEF003D86EB /* InformationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTextView.swift; sourceTree = "<group>"; };
+		BDB48CCD267E995A003D86EB /* OrderEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEndPoint.swift; sourceTree = "<group>"; };
+		BDB48CCF267E9A02003D86EB /* OrderInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInformation.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20496712679E02E00668213 /* OrderProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductViewCell.swift; sourceTree = "<group>"; };
@@ -1136,9 +1140,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BDB48CCC267E994C003D86EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BDB48CCD267E995A003D86EB /* OrderEndPoint.swift */,
+				BDB48CCF267E9A02003D86EB /* OrderInformation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E204966F2679DFCE00668213 /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				BDB48CCC267E994C003D86EB /* Model */,
 				E20496702679DFE200668213 /* View */,
 				BDB48CB1267E13BE003D86EB /* ViewModel */,
 			);
@@ -1466,6 +1480,7 @@
 				BD88BBB22643EA190029CCC6 /* Publisher+.swift in Sources */,
 				BDA68CE42678C42400F65568 /* ProductGradeFooterView.swift in Sources */,
 				E28D3974265FF565003EF80C /* ProductThumbnailInfoView.swift in Sources */,
+				BDB48CCE267E995A003D86EB /* OrderEndPoint.swift in Sources */,
 				E204DD91267CF55000C932F6 /* FullInfoStackView.swift in Sources */,
 				BDB48C3A267B50EA003D86EB /* SalesApplicationCompleteViewModel.swift in Sources */,
 				BD9ADE2C266E0E3500F47B14 /* MyPageViewModel.swift in Sources */,
@@ -1528,6 +1543,7 @@
 				BDB48C0B2679BDAA003D86EB /* ProductDetail.swift in Sources */,
 				BDB48C1B2679FEA1003D86EB /* InspectionStandardModel.swift in Sources */,
 				BDB48CC6267E58B1003D86EB /* StorageBoxInformationView.swift in Sources */,
+				BDB48CD0267E9A02003D86EB /* OrderInformation.swift in Sources */,
 				E20496722679E02E00668213 /* OrderProductViewCell.swift in Sources */,
 				BD88BD17264D01180029CCC6 /* Array+.swift in Sources */,
 				BD88BD31264D12FD0029CCC6 /* CategoryViewController.swift in Sources */,

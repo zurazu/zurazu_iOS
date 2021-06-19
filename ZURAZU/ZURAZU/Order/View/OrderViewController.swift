@@ -49,18 +49,21 @@ final class OrderViewController: UIViewController, ViewModelBindableType {
   var name: String? {
     didSet {
       orderInfoDidEdit()
+      viewModel?.name = name
     }
   }
   
   var phoneNumber: String? {
     didSet {
       orderInfoDidEdit()
+      viewModel?.phoneNumber = phoneNumber
     }
   }
   
   var email: String? {
     didSet {
       orderInfoDidEdit()
+      viewModel?.email = email
     }
   }
   

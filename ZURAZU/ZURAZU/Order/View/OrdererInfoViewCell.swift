@@ -136,45 +136,45 @@ final class OrdererInfoViewCell: UICollectionViewCell, Reusable {
 
 extension OrdererInfoViewCell: UITextFieldDelegate {
   
-  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    guard textField == phoneTextField else { return true }
-    
-    let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-    let components = newString.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
-    
-    let decimalString = components.joined(separator: "") as NSString
-    let length = decimalString.length
-    let hasLeadingOne = length > 0 && decimalString.hasPrefix("1")
-    
-    if length == 0 || (length > 11 && !hasLeadingOne) || length > 12 {
-      let newLength = (textField.text! as NSString).length + (string as NSString).length - range.length as Int
-      
-      return (newLength > 11) ? false : true
-    }
-    var index = 0 as Int
-    let formattedString = NSMutableString()
-    
-    if hasLeadingOne {
-      formattedString.append("1 ")
-      index += 1
-    }
-    if (length - index) > 3 {
-      let areaCode = decimalString.substring(with: NSRange(location: index, length: 3))
-      formattedString.appendFormat("%@-", areaCode)
-      index += 3
-    }
-    if length - index > 4 {
-      let prefix = decimalString.substring(with: NSRange(location: index, length: 4))
-      formattedString.appendFormat("%@-", prefix)
-      index += 4
-    }
-    
-    let remainder = decimalString.substring(from: index)
-    formattedString.append(remainder)
-    textField.text = formattedString as String
-    
-    return false
-  }
+//  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//    guard textField == phoneTextField else { return true }
+//
+//    let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+//    let components = newString.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
+//
+//    let decimalString = components.joined(separator: "") as NSString
+//    let length = decimalString.length
+//    let hasLeadingOne = length > 0 && decimalString.hasPrefix("1")
+//
+//    if length == 0 || (length > 11 && !hasLeadingOne) || length > 12 {
+//      let newLength = (textField.text! as NSString).length + (string as NSString).length - range.length as Int
+//
+//      return (newLength > 11) ? false : true
+//    }
+//    var index = 0 as Int
+//    let formattedString = NSMutableString()
+//
+//    if hasLeadingOne {
+//      formattedString.append("1 ")
+//      index += 1
+//    }
+//    if (length - index) > 3 {
+//      let areaCode = decimalString.substring(with: NSRange(location: index, length: 3))
+//      formattedString.appendFormat("%@-", areaCode)
+//      index += 3
+//    }
+//    if length - index > 4 {
+//      let prefix = decimalString.substring(with: NSRange(location: index, length: 4))
+//      formattedString.appendFormat("%@-", prefix)
+//      index += 4
+//    }
+//
+//    let remainder = decimalString.substring(from: index)
+//    formattedString.append(remainder)
+//    textField.text = formattedString as String
+//
+//    return false
+//  }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
