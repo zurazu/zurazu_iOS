@@ -94,8 +94,6 @@ private extension SignInViewModel {
       .sink { [weak self] result in
         switch result {
         case .success(let responseResult):
-          // MARK: - 성공 여부 판단 후 로직 추가해야됩니다. 화면 전환 또는 email / pw 재입력
-          print(responseResult.message)
           guard
             let accessToken: String = responseResult.list?.accessToken.first,
             let refreshToken: String = responseResult.list?.refreshToken.first

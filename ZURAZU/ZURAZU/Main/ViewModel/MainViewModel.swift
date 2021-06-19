@@ -37,8 +37,9 @@ private extension MainViewModel {
     detailProductEvent
       .subscribe(on: Scheduler.background)
       .receive(on: Scheduler.main)
-      .sink { productIndex in
-        SceneCoordinator.shared.transition(scene: ProductDetailScene(), using: .push, animated: true)
+      .sink { [weak self] in
+        guard let index = self?.products.value[$0].productIdx else { return }
+        SceneCoordinator.shared.transition(scene: ProductDetailScene(index: index), using: .push, animated: true)
       }
       .store(in: &cancellables)
     
@@ -64,11 +65,12 @@ private extension MainViewModel {
     let productsPublisher: AnyPublisher<Result<BaseResponse<CategoryProducts>, NetworkError>, Never> = networkProvider.request(route: endPoint)
     
     productsPublisher
-      .sink { result in
+      .sink { [weak self] result in
         switch result {
         case .success(let responseResult):
           guard let list = responseResult.list else { return }
-//          print(list)
+
+          self?.products.send(list.products)
         case .failure(let error):
           print(error.localizedDescription)
         }

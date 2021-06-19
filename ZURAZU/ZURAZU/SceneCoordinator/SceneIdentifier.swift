@@ -23,4 +23,6 @@ enum SceneIdentifier: String {
   case orderCompleteVC = "OrderCompleteViewController"
   case salesApplicationCompleteVC = "SalesApplicationCompleteViewController"
   case termsOfServiceViewerVC = "TermsOfServiceViewerViewController"
+  case unpreparedNavC = "UnpreparedNavigationController"
+  case orderVC = "OrderViewController"
 }

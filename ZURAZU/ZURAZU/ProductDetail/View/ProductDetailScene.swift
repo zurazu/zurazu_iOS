@@ -13,11 +13,13 @@ struct ProductDetailScene: Scene {
     return "ProductDetail"
   }
   
+  var index: Int
+  
   func instantiate() -> UIViewController {
     guard var productDetailViewController: ProductDetailViewController = self.viewController(identifier: .productDetailVC) as? ProductDetailViewController
     else { fatalError() }
     
-    let viewModel: ProductDetailViewModel = .init()
+    let viewModel: ProductDetailViewModel = .init(index: index)
     productDetailViewController.bind(viewModel: viewModel)
     
     return productDetailViewController

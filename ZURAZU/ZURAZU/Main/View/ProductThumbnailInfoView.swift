@@ -139,17 +139,3 @@ struct ProductThumbnailInfo {
 enum ProductThumbnailSize {
   case large, medium, small
 }
-
-extension String {
-  
-  func decimalWon() -> String {
-    let numberFormatter = NumberFormatter()
-    numberFormatter.numberStyle = .decimal
-    
-    guard let number = Int(self),
-          let result = numberFormatter.string(from: NSNumber(value: number))
-    else { return "확인이 필요합니다." }
-    
-    return result + "원"
-  }
-}

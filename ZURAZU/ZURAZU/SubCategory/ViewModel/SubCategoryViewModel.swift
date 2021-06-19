@@ -11,7 +11,8 @@ import Combine
 protocol SubCategoryViewModelType {
   
   var subCategories: CurrentValueSubject<[SubCategory], Never> { get }
-  var categoryProducts: PassthroughSubject<[CategoryProduct], Never> { get }
+  var categoryProducts: CurrentValueSubject<[CategoryProduct], Never> { get }
+  var selectedProductIndex: PassthroughSubject<Int, Never> { get }
   var selectedCategoryIndex: PassthroughSubject<IndexPath, Never> { get }
   var startFetching: PassthroughSubject<Void, Never> { get }
   var close: PassthroughSubject<Void, Never> { get }
@@ -25,7 +26,8 @@ final class SubCategoryViewModel: SubCategoryViewModelType {
   private var cancellables: Set<AnyCancellable> = []
   
   var subCategories: CurrentValueSubject<[SubCategory], Never> = .init([])
-  var categoryProducts: PassthroughSubject<[CategoryProduct], Never> = .init()
+  var categoryProducts: CurrentValueSubject<[CategoryProduct], Never> = .init([])
+  var selectedProductIndex: PassthroughSubject<Int, Never> = .init()
   var selectedCategoryIndex: PassthroughSubject<IndexPath, Never> = .init()
   var startFetching: PassthroughSubject<Void, Never> = .init()
   var close: PassthroughSubject<Void, Never> = .init()
@@ -60,8 +62,15 @@ final class SubCategoryViewModel: SubCategoryViewModelType {
         return selectedCategory.idx
       }
       .sink { [weak self] in
-        self?.fetchCategoryProducts(at: $0)
         self?.offset = 0
+        self?.fetchCategoryProducts(at: $0)
+      }
+      .store(in: &cancellables)
+    
+    selectedProductIndex
+      .sink { [weak self] in
+        guard let index = self?.categoryProducts.value[$0].productIdx else { return }
+        SceneCoordinator.shared.transition(scene: ProductDetailScene(index: index), using: .push, animated: true)
       }
       .store(in: &cancellables)
   }
