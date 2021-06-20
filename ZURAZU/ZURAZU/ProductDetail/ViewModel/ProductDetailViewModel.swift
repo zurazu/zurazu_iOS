@@ -70,6 +70,13 @@ private extension ProductDetailViewModel {
     orderEvent
       .receive(on: Scheduler.main)
       .sink { [weak self] in
+        
+        if !Authorization.shared.isSignedIn {
+          SceneCoordinator.shared.tabTransition(item: .myPage)
+          
+          return
+        }
+        
         guard let product = self?.product.value,
               let imageURL = self?.images.value.first?.url
         else { return }
