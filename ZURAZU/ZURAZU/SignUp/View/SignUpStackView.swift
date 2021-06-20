@@ -44,8 +44,8 @@ private extension SignUpStackView {
     addArrangedTitleView(confirmPasswordInputView, title: "비밀번호 확인", isNecessary: true)
     addArrangedTitleView(nameInputView, title: "실명", isNecessary: true)
     
-    addArrangedTitleView(genderLabel, title: "성별")
-    addArrangedTitleView(birthLabel, title: "생년월일")
+//    addArrangedTitleView(genderLabel, title: "성별")
+//    addArrangedTitleView(birthLabel, title: "생년월일")
   }
   
   func addArrangedTitleView(_ view: UIView, title: String, isNecessary: Bool = false) {
