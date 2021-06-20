@@ -49,7 +49,11 @@ private extension MainViewModel {
     salesApplicationEvent
       .receive(on: Scheduler.main)
       .sink {
-        SceneCoordinator.shared.transition(scene: SalesApplicationScene(), using: .push, animated: true)
+        if Authorization.shared.isSignedIn {
+          SceneCoordinator.shared.transition(scene: SalesApplicationScene(), using: .push, animated: true)
+        } else {
+          SceneCoordinator.shared.tabTransition(item: .myPage)
+        }
       }
       .store(in: &cancellables)
     
