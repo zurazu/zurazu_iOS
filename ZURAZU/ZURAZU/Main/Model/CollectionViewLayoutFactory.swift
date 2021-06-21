@@ -70,14 +70,15 @@ enum CollectionViewLayoutSectionFactory {
   }
   
   static func productDetailInfoSection(height: CGFloat = 430) -> NSCollectionLayoutSection {
-    let widthDimension: CGFloat = 1
+    let widthDimension: NSCollectionLayoutDimension = .fractionalWidth(1)
+    let heightDimension: NSCollectionLayoutDimension = .estimated(height)
     
     // Item
-    let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+    let itemSize: NSCollectionLayoutSize = .init(widthDimension: widthDimension, heightDimension: heightDimension)
     let item: NSCollectionLayoutItem = .init(layoutSize: itemSize)
     
     // Group
-    let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(widthDimension), heightDimension: .estimated(height))
+    let groupSize: NSCollectionLayoutSize = .init(widthDimension: widthDimension, heightDimension: heightDimension)
     let group: NSCollectionLayoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
     
     // Section

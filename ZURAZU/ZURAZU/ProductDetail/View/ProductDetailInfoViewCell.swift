@@ -44,20 +44,20 @@ final class ProductDetailInfoViewCell: UICollectionViewCell, Reusable {
     let inset: CGFloat = 30
     
     NSLayoutConstraint.activate([
-      glanceableInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
-      glanceableInfoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-      glanceableInfoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+      glanceableInfoStackView.topAnchor.constraint(equalTo: topAnchor, constant: inset),
+      glanceableInfoStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      glanceableInfoStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
       glanceableInfoStackView.heightAnchor.constraint(equalToConstant: 80),
       
       dividerView.topAnchor.constraint(equalTo: glanceableInfoStackView.bottomAnchor, constant: inset),
-      dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      dividerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      dividerView.trailingAnchor.constraint(equalTo: trailingAnchor),
       dividerView.heightAnchor.constraint(equalToConstant: 2),
       
       fullInfoStackView.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: inset),
-      fullInfoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-      fullInfoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset)
-//      fullInfoStackView.heightAnchor.constraint(equalToConstant: 200)
+      fullInfoStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+      fullInfoStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
+      fullInfoStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset)
     ])
   }
   

@@ -81,6 +81,14 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
       }
       .store(in: &cancellables)
     
+    viewModel?.zurazuPickProduct
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
+      .sink { [weak self] _ in
+        self?.collectionView.reloadData()
+      }
+      .store(in: &cancellables)
+    
     backButton.tapPublisher
       .sink { [weak self] in
         self?.viewModel?.closeEvent.send()
