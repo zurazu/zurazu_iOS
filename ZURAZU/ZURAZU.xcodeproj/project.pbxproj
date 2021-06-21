@@ -169,6 +169,7 @@
 		BDB48CCB267E5DEF003D86EB /* InformationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CCA267E5DEF003D86EB /* InformationTextView.swift */; };
 		BDB48CCE267E995A003D86EB /* OrderEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CCD267E995A003D86EB /* OrderEndPoint.swift */; };
 		BDB48CD0267E9A02003D86EB /* OrderInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CCF267E9A02003D86EB /* OrderInformation.swift */; };
+		BDB48CD326805F8D003D86EB /* SalesApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB48CD226805F8D003D86EB /* SalesApplicationViewModel.swift */; };
 		E20496722679E02E00668213 /* OrderProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20496712679E02E00668213 /* OrderProductViewCell.swift */; };
 		E204967D2679E96100668213 /* OrderPaymentInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204967C2679E96100668213 /* OrderPaymentInfoViewCell.swift */; };
 		E20496822679EC7F00668213 /* OrderPriceInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20496812679EC7F00668213 /* OrderPriceInfoViewCell.swift */; };
@@ -379,6 +380,7 @@
 		BDB48CCA267E5DEF003D86EB /* InformationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTextView.swift; sourceTree = "<group>"; };
 		BDB48CCD267E995A003D86EB /* OrderEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEndPoint.swift; sourceTree = "<group>"; };
 		BDB48CCF267E9A02003D86EB /* OrderInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInformation.swift; sourceTree = "<group>"; };
+		BDB48CD226805F8D003D86EB /* SalesApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesApplicationViewModel.swift; sourceTree = "<group>"; };
 		C6C14E90244A7910B30570D9 /* Pods-ZURAZUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZURAZUTests.debug.xcconfig"; path = "Target Support Files/Pods-ZURAZUTests/Pods-ZURAZUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D112E81F6ADCE03F2C0351B6 /* Pods_ZURAZUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZURAZUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20496712679E02E00668213 /* OrderProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductViewCell.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 		B9F68E75265BC49C0006E2D4 /* SalesApplication */ = {
 			isa = PBXGroup;
 			children = (
+				BDB48CD126805F7C003D86EB /* ViewModel */,
 				B9F68E76265BC5070006E2D4 /* SalesApplication.storyboard */,
 				B9591565265D20D300EC6538 /* SalesApplicationViewController.swift */,
 				B959156B265D235C00EC6538 /* PickerCollectionViewCell.swift */,
@@ -1149,6 +1152,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BDB48CD126805F7C003D86EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BDB48CD226805F8D003D86EB /* SalesApplicationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E204966F2679DFCE00668213 /* Order */ = {
 			isa = PBXGroup;
 			children = (
@@ -1567,6 +1578,7 @@
 				B9004CAA266261A200DAE135 /* SalesApplicationSectionHeader.swift in Sources */,
 				B959156D265D235C00EC6538 /* PickerCollectionViewCell.swift in Sources */,
 				B96D0AB82660E5EE00ED6485 /* SectionModel.swift in Sources */,
+				BDB48CD326805F8D003D86EB /* SalesApplicationViewModel.swift in Sources */,
 				BD9AA9762660EBAC0046EB2F /* APICredentials.swift in Sources */,
 				BD9AA968265E44840046EB2F /* ProductDetailViewController.swift in Sources */,
 				BDA73CD52668BF2B0088BEC4 /* SignButton.swift in Sources */,
