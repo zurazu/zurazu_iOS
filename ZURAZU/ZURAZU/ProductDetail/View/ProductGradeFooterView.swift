@@ -61,7 +61,7 @@ private extension ProductGradeFooterView {
     
     inspectionStandardLabel.font = .quaternary
     inspectionStandardLabel.textColor = .monoTertiary
-    inspectionStandardLabel.text = "해당 제품은 안내된 항목에 대해, 주라주의 자체 검수 기준을 통과했음을 알립니다."
+    inspectionStandardLabel.text = "해당 제품은 안내된 항목에 대해, 주라주의 자체 검수 및 관리를 거쳤음을 알립니다."
     inspectionStandardLabel.numberOfLines = 0
   }
   

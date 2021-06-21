@@ -26,7 +26,7 @@ class OrderPaymentInfoViewCell: UICollectionViewCell, Reusable {
   
   private let accountInfo: UILabel = {
     let label: UILabel = .init()
-    label.text = "주라주 | 국민은행 1234-123453434-1234"
+    label.text = "유인경 | 카카오뱅크 3333-09-2392406"
     label.textColor = .monoPrimary
     
     return label
