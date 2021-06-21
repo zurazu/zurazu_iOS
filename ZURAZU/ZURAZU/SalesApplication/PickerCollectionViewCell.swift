@@ -73,10 +73,12 @@ private extension PickerCollectionViewCell {
                                  borderView.topAnchor.constraint(equalTo: topAnchor),
                                  borderView.bottomAnchor.constraint(equalTo: bottomAnchor)])
     
-    NSLayoutConstraint.activate([borderView.trailingAnchor.constraint(greaterThanOrEqualTo: textField.trailingAnchor),
-                                 borderView.leadingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -10),
-                                 borderView.topAnchor.constraint(equalTo: textField.topAnchor),
-                                 borderView.bottomAnchor.constraint(equalTo: textField.bottomAnchor)])
+    NSLayoutConstraint.activate([
+      textField.leadingAnchor.constraint(equalTo: borderView.leadingAnchor, constant: 15),
+      textField.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -15),
+      textField.topAnchor.constraint(equalTo: borderView.topAnchor),
+      textField.bottomAnchor.constraint(equalTo: borderView.bottomAnchor)
+    ])
     
     NSLayoutConstraint.activate([imageView.heightAnchor.constraint(equalToConstant: 16),
                                  imageView.widthAnchor.constraint(equalToConstant: 16),

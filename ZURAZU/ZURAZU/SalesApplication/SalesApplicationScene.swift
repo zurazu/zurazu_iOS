@@ -14,7 +14,11 @@ struct SalesApplicationScene: Scene {
   }
 
   func instantiate() -> UIViewController {
-    let viewController: UIViewController = self.viewController(identifier: .salesApplicationVC)
+    guard var viewController: SalesApplicationViewController = self.viewController(identifier: .salesApplicationVC) as? SalesApplicationViewController
+    else { fatalError() }
+    
+    let viewModel: SalesApplicationViewModel = .init()
+    viewController.bind(viewModel: viewModel)
     
     return viewController
   }

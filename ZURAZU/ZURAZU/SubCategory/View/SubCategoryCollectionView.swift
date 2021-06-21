@@ -55,16 +55,16 @@ private extension SubCategoryCollectionView {
     
     flowLayout.scrollDirection = .horizontal
     flowLayout.minimumLineSpacing = 25
-    flowLayout.estimatedItemSize = CGSize(width: 50, height: 44)
+    flowLayout.estimatedItemSize = CGSize(width: 75, height: 44)
   }
   
   func setupView() {
-    alwaysBounceHorizontal = true
+    alwaysBounceHorizontal = false
     showsVerticalScrollIndicator = false
     showsHorizontalScrollIndicator = false
     register(SubCategoryCollectionViewCell.self)
     backgroundColor = .white
-    contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 80)
     allowsMultipleSelection = false
   }
   

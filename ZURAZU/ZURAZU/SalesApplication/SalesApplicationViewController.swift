@@ -10,7 +10,9 @@ import Combine
 import CombineDataSources
 import CombineCocoa
 
-final class SalesApplicationViewController: UIViewController {
+final class SalesApplicationViewController: UIViewController, ViewModelBindableType {
+  
+  var viewModel: SalesApplicationViewModelType?
   
   @IBOutlet weak var collectionView: UICollectionView!
   
@@ -31,8 +33,13 @@ final class SalesApplicationViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    
     setupView()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    viewModel?.startEvent.send()
   }
   
   override func viewDidLayoutSubviews() {
@@ -41,6 +48,10 @@ final class SalesApplicationViewController: UIViewController {
       let cell: InputCollectionViewCell? = $0 as? InputCollectionViewCell
       cell?.textField.setNeedsDisplay()
     }
+  }
+  
+  func bindViewModel() {
+    
   }
 }
 
@@ -108,6 +119,16 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       selectButton.tintColor = .systemBlue
       selectButton.target = self
       selectButton.tapPublisher.sink { [weak self] _ in
+        if pickerView.tag == 0 {
+          cell.textField.resignFirstResponder()
+          let row = pickerView.selectedRow(inComponent: 0)
+//          cell.textField.text = pickerModel?.items[row] ?? ""
+          cell.textField.text = self?.viewModel?.subCategories.value[row].korean
+          pickerModel?.content = cell.textField.text ?? ""
+          self?.isValid()
+          return
+        }
+        
         cell.textField.resignFirstResponder()
         let row = pickerView.selectedRow(inComponent: 0)
         cell.textField.text = pickerModel?.items[row] ?? ""
@@ -207,10 +228,21 @@ extension SalesApplicationViewController: UIPickerViewDelegate, UIPickerViewData
   }
   
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    if pickerView.tag == 0,
+       let viewModel = viewModel {
+      return viewModel.subCategories.value.count
+    }
+    
     return (model[pickerView.tag] as? SalesApplicationSectionPickerModel)?.items.count ?? 0
   }
   
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    if pickerView.tag == 0,
+       let viewModel = viewModel {
+      let items = viewModel.subCategories.value
+      return items[row].korean
+    }
+    
     return (model[pickerView.tag] as? SalesApplicationSectionPickerModel)?.items[row] ?? ""
   }
 
@@ -273,15 +305,17 @@ private extension SalesApplicationViewController {
   }
   
   func requestSalesApplication() {
+    guard let viewModel = viewModel else { return }
     let networkProvider: NetworkProvider = .init()
-    let categoryIdx = (model[0] as? SalesApplicationSectionPickerModel)?.items.firstIndex(of: model[0].content) ?? -1
+//    let categoryIdx = (model[0] as? SalesApplicationSectionPickerModel)?.items.firstIndex(of: model[0].content) ?? -1
+    let categoryIdx = viewModel.subCategories.value.firstIndex { $0.korean == model[0].content } ?? -1
     let clothingStatus =  (model[5] as? SalesApplicationSectionPickerModel)?.items.firstIndex(of: model[5].content) ?? -1
     
     let images = (model[6] as? SalesApplicationSectionPictureModel)?.images.values.compactMap({
       $0
     })
     
-    let information = SalesApplicationInformation(categoryIdx: categoryIdx, brandName: model[1].content, purchasePrice: Int(model[2].content) ?? 0, desiredPrice: Int(model[3].content) ?? 0, clothingSize: model[4].content, clothingStatus: clothingStatus, comments: model[7].content, images: images ?? [])
+    let information = SalesApplicationInformation(categoryIdx: viewModel.subCategories.value[categoryIdx].idx, brandName: model[1].content, purchasePrice: Int(model[2].content) ?? 0, desiredPrice: Int(model[3].content) ?? 0, clothingSize: model[4].content, clothingStatus: clothingStatus, comments: model[7].content, images: images ?? [])
     //
     let endPoint = SalesApplicationEndPoint.requestSalesApplication(inforamtion: information)
     
