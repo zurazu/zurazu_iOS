@@ -17,6 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     guard let window: UIWindow = window else { return }
     
+    window.overrideUserInterfaceStyle = .light
+    
     SceneCoordinator.shared.setup(with: window)
     SceneCoordinator.shared.transition(
       scene: MainTabBarScene(),

@@ -90,7 +90,7 @@ private extension OrderViewModel {
           if responseResult.status == "OK" {
             guard let self = self else { return }
             
-            let scene = OrderCompleteScene(orderCompletedProduct: .init(orderedUserInformation: self.ordererInfo ?? "", productInformation: "[\(self.product.brand)] \(self.product.name)", price: self.product.price, depositAccountNumber: "주라주 | 국민은행 1234-123453434-1234"))
+            let scene = OrderCompleteScene(orderCompletedProduct: .init(orderedUserInformation: self.ordererInfo ?? "", productInformation: "[\(self.product.brand)] \(self.product.name)", price: self.product.price, depositAccountNumber: "유인경 | 카카오뱅크 3333-09-2392406"))
             
             DispatchQueue.main.async {
               SceneCoordinator.shared.transition(scene: scene, using: .push, animated: true)
