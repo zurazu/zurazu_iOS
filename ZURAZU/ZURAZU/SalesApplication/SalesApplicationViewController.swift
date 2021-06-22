@@ -80,22 +80,28 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       guard let cell: InputCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InputCollectionViewCell", for: indexPath) as? InputCollectionViewCell
       else { return UICollectionViewCell() }
       
-      if indexPath.section == 2 || indexPath.section ==  3 {
-        cell.textField.keyboardType = .numberPad
-      } else {
-        cell.textField.keyboardType = .default
-      }
+      cell.textField.returnPublisher
+        .sink {
+          print(cell.textField.tag)
+          if indexPath.section == 1 || indexPath.section == 2 {
+            guard let nextCell = collectionView.cellForItem(at: IndexPath(row: indexPath.row, section: indexPath.section + 1)) as? InputCollectionViewCell
+            else { return }
+            nextCell.textField.becomeFirstResponder()
+
+            return
+          }
+
+          cell.textField.resignFirstResponder()
+        }
+        .store(in: &cancellables)
       
       cell.textField.delegate = self
+      cell.textField.tag = indexPath.section
       let inputModel: SalesApplicationSectionInputModel? = model[indexPath.section] as? SalesApplicationSectionInputModel
       cell.updatePlaceHolder(message: inputModel?.placeHolder)
       cell.updateDescriptionLabel(message: inputModel?.description)
       
       cell.textField.text = inputModel?.content
-      
-      cell.textField.returnPublisher.sink { _ in
-        cell.textField.resignFirstResponder()
-      }.store(in: &cell.cancellables)
       
       cell.textField.textPublisher.sink { [weak self] text in
         inputModel?.content = text ?? ""
@@ -249,7 +255,16 @@ extension SalesApplicationViewController: UIPickerViewDelegate, UIPickerViewData
 }
 
 extension SalesApplicationViewController: UITextFieldDelegate {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if textField.tag == 1 { return true }
+    let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
+    
+    return (string.rangeOfCharacter(from: invalidCharacters) == nil)
+  }
   
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    return true
+  }
 }
 
 extension SalesApplicationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
