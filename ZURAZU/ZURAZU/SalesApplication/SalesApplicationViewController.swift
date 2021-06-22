@@ -105,7 +105,6 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       
       cell.textField.returnPublisher
         .sink {
-          print(cell.textField.tag)
           if indexPath.section == 1 || indexPath.section == 2 {
             guard let nextCell = collectionView.cellForItem(at: IndexPath(row: indexPath.row, section: indexPath.section + 1)) as? InputCollectionViewCell
             else { return }
