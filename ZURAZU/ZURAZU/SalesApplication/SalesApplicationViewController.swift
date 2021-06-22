@@ -19,6 +19,7 @@ final class SalesApplicationViewController: UIViewController, ViewModelBindableT
   private let imagePicker = UIImagePickerController()
   private var currentImageIndex = 0
   private var cancellables: Set<AnyCancellable> = []
+  private var keyboardSize: CGRect = .init(x: 0, y: 0, width: 0, height: UIScreen.main.bounds.height * 0.3)
   
   private let model: [SalesApplicationSectionModel] = [
     SalesApplicationSectionPickerModel(title: "카테고리", isNecessary: true, items: ["Outer", "TOP | T-Shirts", "TOP | Shirts", "TOP | Knit", "Pants", "Skirt", "Onepeice"]),
@@ -39,7 +40,16 @@ final class SalesApplicationViewController: UIViewController, ViewModelBindableT
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    tabBarController?.tabBar.isHidden = true
     viewModel?.startEvent.send()
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    tabBarController?.tabBar.isHidden = false
   }
   
   override func viewDidLayoutSubviews() {
@@ -50,8 +60,21 @@ final class SalesApplicationViewController: UIViewController, ViewModelBindableT
     }
   }
   
+  deinit {
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+  }
+  
   func bindViewModel() {
     
+  }
+}
+
+private extension SalesApplicationViewController {
+  
+  @objc func keyboardWillShow(_ notification: Notification) {
+    if let userInfo = notification.userInfo {
+      keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect ?? .zero
+    }
   }
 }
 
@@ -180,7 +203,24 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
         self?.isValid()
       }.store(in: &cell.cancellables)
            
+      cell.textField.didBeginEditingPublisher
+        .sink {
+          UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: []) { [weak self] in
+            if let keyboardHight = self?.keyboardSize.height {
+              self?.collectionView.transform = CGAffineTransform(translationX: 0, y: -keyboardHight)
+            }
+          }
+        }
+        .store(in: &cell.cancellables)
+      
+      cell.textField.addTarget(self, action: #selector(commentEndEditing), for: .editingDidEnd)
       return cell
+    }
+  }
+  
+  @objc func commentEndEditing() {
+    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: []) { [weak self] in
+      self?.collectionView.transform = .identity
     }
   }
   
