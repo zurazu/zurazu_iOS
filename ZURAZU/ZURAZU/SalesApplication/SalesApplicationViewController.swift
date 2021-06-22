@@ -19,6 +19,7 @@ final class SalesApplicationViewController: UIViewController, ViewModelBindableT
   private let imagePicker = UIImagePickerController()
   private var currentImageIndex = 0
   private var cancellables: Set<AnyCancellable> = []
+  private var keyboardSize: CGRect = .init(x: 0, y: 0, width: 0, height: UIScreen.main.bounds.height * 0.3)
   
   private let model: [SalesApplicationSectionModel] = [
     SalesApplicationSectionPickerModel(title: "카테고리", isNecessary: true, items: ["Outer", "TOP | T-Shirts", "TOP | Shirts", "TOP | Knit", "Pants", "Skirt", "Onepeice"]),
@@ -39,7 +40,16 @@ final class SalesApplicationViewController: UIViewController, ViewModelBindableT
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    tabBarController?.tabBar.isHidden = true
     viewModel?.startEvent.send()
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    tabBarController?.tabBar.isHidden = false
   }
   
   override func viewDidLayoutSubviews() {
@@ -50,8 +60,21 @@ final class SalesApplicationViewController: UIViewController, ViewModelBindableT
     }
   }
   
+  deinit {
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+  }
+  
   func bindViewModel() {
     
+  }
+}
+
+private extension SalesApplicationViewController {
+  
+  @objc func keyboardWillShow(_ notification: Notification) {
+    if let userInfo = notification.userInfo {
+      keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect ?? .zero
+    }
   }
 }
 
@@ -80,22 +103,28 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
       guard let cell: InputCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InputCollectionViewCell", for: indexPath) as? InputCollectionViewCell
       else { return UICollectionViewCell() }
       
-      if indexPath.section == 2 || indexPath.section ==  3 {
-        cell.textField.keyboardType = .numberPad
-      } else {
-        cell.textField.keyboardType = .default
-      }
+      cell.textField.returnPublisher
+        .sink {
+          print(cell.textField.tag)
+          if indexPath.section == 1 || indexPath.section == 2 {
+            guard let nextCell = collectionView.cellForItem(at: IndexPath(row: indexPath.row, section: indexPath.section + 1)) as? InputCollectionViewCell
+            else { return }
+            nextCell.textField.becomeFirstResponder()
+
+            return
+          }
+
+          cell.textField.resignFirstResponder()
+        }
+        .store(in: &cancellables)
       
       cell.textField.delegate = self
+      cell.textField.tag = indexPath.section
       let inputModel: SalesApplicationSectionInputModel? = model[indexPath.section] as? SalesApplicationSectionInputModel
       cell.updatePlaceHolder(message: inputModel?.placeHolder)
       cell.updateDescriptionLabel(message: inputModel?.description)
       
       cell.textField.text = inputModel?.content
-      
-      cell.textField.returnPublisher.sink { _ in
-        cell.textField.resignFirstResponder()
-      }.store(in: &cell.cancellables)
       
       cell.textField.textPublisher.sink { [weak self] text in
         inputModel?.content = text ?? ""
@@ -174,7 +203,24 @@ extension SalesApplicationViewController: UICollectionViewDelegateFlowLayout, UI
         self?.isValid()
       }.store(in: &cell.cancellables)
            
+      cell.textField.didBeginEditingPublisher
+        .sink {
+          UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: []) { [weak self] in
+            if let keyboardHight = self?.keyboardSize.height {
+              self?.collectionView.transform = CGAffineTransform(translationX: 0, y: -keyboardHight)
+            }
+          }
+        }
+        .store(in: &cell.cancellables)
+      
+      cell.textField.addTarget(self, action: #selector(commentEndEditing), for: .editingDidEnd)
       return cell
+    }
+  }
+  
+  @objc func commentEndEditing() {
+    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: []) { [weak self] in
+      self?.collectionView.transform = .identity
     }
   }
   
@@ -249,7 +295,16 @@ extension SalesApplicationViewController: UIPickerViewDelegate, UIPickerViewData
 }
 
 extension SalesApplicationViewController: UITextFieldDelegate {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if textField.tag == 1 { return true }
+    let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
+    
+    return (string.rangeOfCharacter(from: invalidCharacters) == nil)
+  }
   
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    return true
+  }
 }
 
 extension SalesApplicationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
