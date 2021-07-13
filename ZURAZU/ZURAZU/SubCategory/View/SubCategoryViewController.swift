@@ -142,11 +142,16 @@ extension SubCategoryViewController: UICollectionViewDataSource, UICollectionVie
       price: product.price.decimalWon()
     )
     
-    cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: info, size: .large)
+    cell.update(info: info, size: .large)
     
-    ImageService().loadImage(by: product.image.url) { image in
-      cell.update(image: image)
+    DispatchQueue.global().async {
+      ImageService().loadImage(by: product.image.url) { image in
+        DispatchQueue.main.async {
+          cell.update(image: image)
+        }
+      }
     }
+    
     return cell
   }
   

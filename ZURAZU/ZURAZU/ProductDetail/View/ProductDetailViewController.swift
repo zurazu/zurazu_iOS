@@ -196,9 +196,14 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
         price: zurazuPickProduct.price.decimalWon()
       )
       
-      cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: productThumbnailInfo, size: .medium)
-      ImageService().loadImage(by: zurazuPickProduct.image.url) { image in
-        cell.update(image: image)
+      cell.update(info: productThumbnailInfo, size: .medium)
+      
+      DispatchQueue.global().async {
+        ImageService().loadImage(by: zurazuPickProduct.image.url) { image in
+          DispatchQueue.main.async {
+            cell.update(image: image)
+          }
+        }
       }
       
       cell.backgroundColor = .white
