@@ -37,6 +37,7 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
+    binding()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -46,8 +47,37 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
     
     viewModel?.requestData.send()
   }
+}
+
+private extension MyPageViewController {
   
-  func bindViewModel() {
+  func setupView() {
+    profileView.isHidden = true
+    guestGuideView.isHidden = true
+    
+    profileView.tableView.register(MyPageTableViewCell.self)
+    profileView.tableView.dataSource = self
+  }
+  
+  func setupConstraint() {
+    [guestGuideView, profileView].forEach {
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview($0)
+    }
+    
+    NSLayoutConstraint.activate([
+      guestGuideView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      guestGuideView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+      guestGuideView.widthAnchor.constraint(equalTo: view.widthAnchor),
+      
+      profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      profileView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+    ])
+  }
+  
+  func binding() {
     guestGuideView.signInButton.tapPublisher
       .sink { [weak self] in
         self?.viewModel?.showSignInScene.send()
@@ -85,35 +115,6 @@ final class MyPageViewController: UIViewController, ViewModelBindableType {
         self?.profileView.updateView(with: $0)
       }
       .store(in: &cancellables)
-  }
-}
-
-private extension MyPageViewController {
-  
-  func setupView() {
-    profileView.isHidden = true
-    guestGuideView.isHidden = true
-    
-    profileView.tableView.register(MyPageTableViewCell.self)
-    profileView.tableView.dataSource = self
-  }
-  
-  func setupConstraint() {
-    [guestGuideView, profileView].forEach {
-      $0.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview($0)
-    }
-    
-    NSLayoutConstraint.activate([
-      guestGuideView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      guestGuideView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
-      guestGuideView.widthAnchor.constraint(equalTo: view.widthAnchor),
-      
-      profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      profileView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-    ])
   }
   
   func setupNavigationBar() {

@@ -12,8 +12,6 @@ protocol ViewModelBindableType {
   associatedtype ViewModelType
   
   var viewModel: ViewModelType? { get set }
-  
-  func bindViewModel()
 }
 
 extension ViewModelBindableType where Self: UIViewController {
@@ -21,8 +19,6 @@ extension ViewModelBindableType where Self: UIViewController {
   mutating func bind(viewModel: ViewModelType) {
     self.viewModel = viewModel
     self.loadViewIfNeeded()
-    
-    bindViewModel()
   }
 }
 
@@ -30,7 +26,5 @@ extension ViewModelBindableType where Self: UITabBarController {
   
   mutating func bind(viewModel: ViewModelType) {
     self.viewModel = viewModel
-    
-    bindViewModel()
   }
 }

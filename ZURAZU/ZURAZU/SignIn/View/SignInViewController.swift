@@ -26,6 +26,7 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
+    binding()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -46,8 +47,58 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
     
     view.endEditing(true)
   }
+}
+
+private extension SignInViewController {
   
-  func bindViewModel() {
+  func setupConstraint() {
+    [closeButton, logoImageView, signInInputView, signInButton, optionStackView].forEach {
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview($0)
+    }
+    
+    NSLayoutConstraint.activate([
+      closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+      closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+      closeButton.widthAnchor.constraint(equalToConstant: 18),
+      closeButton.heightAnchor.constraint(equalToConstant: 24),
+      
+      logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.2),
+      logoImageView.widthAnchor.constraint(equalToConstant: 153),
+      logoImageView.heightAnchor.constraint(equalToConstant: 26),
+      logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      
+      signInInputView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 97),
+      signInInputView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      signInInputView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      signInInputView.heightAnchor.constraint(equalToConstant: 160),
+      
+      signInButton.topAnchor.constraint(equalTo: signInInputView.bottomAnchor, constant: 20),
+      signInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+      signInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+      signInButton.heightAnchor.constraint(equalToConstant: 44),
+      
+      optionStackView.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17),
+      optionStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      optionStackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      optionStackView.heightAnchor.constraint(equalToConstant: 16)
+    ])
+  }
+  
+  func setupView() {
+    closeButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+    closeButton.backgroundColor = .background
+    closeButton.tintColor = .black
+    
+    logoImageView.image = #imageLiteral(resourceName: "zurazuLogoImage")
+    
+    signInButton.setTitle("로그인", for: .normal)
+    
+    signInInputView.emailInputView.textField.delegate = self
+    signInInputView.passwordInputView.textField.delegate = self
+  }
+  
+  func binding() {
     viewModel?.isValid
       .receive(on: Scheduler.main)
       .removeDuplicates()
@@ -117,56 +168,6 @@ final class SignInViewController: UIViewController, ViewModelBindableType {
         self?.viewModel?.signInEvent.send()
       }
       .store(in: &cancellables)
-  }
-}
-
-private extension SignInViewController {
-  
-  func setupConstraint() {
-    [closeButton, logoImageView, signInInputView, signInButton, optionStackView].forEach {
-      $0.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview($0)
-    }
-    
-    NSLayoutConstraint.activate([
-      closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-      closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
-      closeButton.widthAnchor.constraint(equalToConstant: 18),
-      closeButton.heightAnchor.constraint(equalToConstant: 24),
-      
-      logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.2),
-      logoImageView.widthAnchor.constraint(equalToConstant: 153),
-      logoImageView.heightAnchor.constraint(equalToConstant: 26),
-      logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      
-      signInInputView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 97),
-      signInInputView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      signInInputView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      signInInputView.heightAnchor.constraint(equalToConstant: 160),
-      
-      signInButton.topAnchor.constraint(equalTo: signInInputView.bottomAnchor, constant: 20),
-      signInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-      signInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-      signInButton.heightAnchor.constraint(equalToConstant: 44),
-      
-      optionStackView.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17),
-      optionStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      optionStackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
-      optionStackView.heightAnchor.constraint(equalToConstant: 16)
-    ])
-  }
-  
-  func setupView() {
-    closeButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-    closeButton.backgroundColor = .background
-    closeButton.tintColor = .black
-    
-    logoImageView.image = #imageLiteral(resourceName: "zurazuLogoImage")
-    
-    signInButton.setTitle("로그인", for: .normal)
-    
-    signInInputView.emailInputView.textField.delegate = self
-    signInInputView.passwordInputView.textField.delegate = self
   }
 }
 

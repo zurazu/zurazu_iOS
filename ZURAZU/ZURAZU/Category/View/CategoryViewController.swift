@@ -29,21 +29,7 @@ final class CategoryViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
-  }
-  
-  func bindViewModel() {
-    viewModel?.mainCategories
-      .receive(on: Scheduler.main)
-      .bind(subscriber: tableView.rowsSubscriber(cellIdentifier: "CategoryTableViewCell", cellType: CategoryTableViewCell.self, cellConfig: { cell, _, model in
-      cell.updateCell(with: model)
-    }))
-    .store(in: &cancellables)
-    
-    tableView.didSelectRowPublisher
-      .sink { [weak self] in
-        self?.viewModel?.coordinateSubCategory.send($0)
-      }
-      .store(in: &cancellables)
+    binding()
     
     viewModel?.startFetching.send()
   }
@@ -58,7 +44,7 @@ private extension CategoryViewController {
   func setupConstraint() {
     [tableView].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview(tableView)
+      view.addSubview($0)
     }
     
     NSLayoutConstraint.activate([
@@ -67,5 +53,20 @@ private extension CategoryViewController {
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
+  }
+  
+  func binding() {
+    viewModel?.mainCategories
+      .receive(on: Scheduler.main)
+      .bind(subscriber: tableView.rowsSubscriber(cellIdentifier: CategoryTableViewCell.defaultReuseIdentifier, cellType: CategoryTableViewCell.self, cellConfig: { cell, _, model in
+      cell.updateCell(with: model)
+    }))
+    .store(in: &cancellables)
+    
+    tableView.didSelectRowPublisher
+      .sink { [weak self] in
+        self?.viewModel?.coordinateSubCategory.send($0)
+      }
+      .store(in: &cancellables)
   }
 }

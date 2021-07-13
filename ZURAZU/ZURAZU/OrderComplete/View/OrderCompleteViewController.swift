@@ -24,22 +24,6 @@ final class OrderCompleteViewController: CompleteViewController, ViewModelBindab
     setupView()
     setupConstraint()
   }
-  
-  func bindViewModel() {
-    homeButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.closeEvent.send()
-        self?.tabBarController?.tabBar.isHidden = false
-      }
-      .store(in: &cancellables)
-    
-    storageBoxInformationButton
-      .tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.storageBoxPopUpEvent.send()
-      }
-      .store(in: &cancellables)
-  }
 }
 
 private extension OrderCompleteViewController {
@@ -83,5 +67,21 @@ private extension OrderCompleteViewController {
       storageBoxInformationButton.widthAnchor.constraint(equalToConstant: 170),
       storageBoxInformationButton.heightAnchor.constraint(equalToConstant: 40)
     ])
+  }
+  
+  func binding() {
+    homeButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send()
+        self?.tabBarController?.tabBar.isHidden = false
+      }
+      .store(in: &cancellables)
+    
+    storageBoxInformationButton
+      .tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.storageBoxPopUpEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }

@@ -28,6 +28,7 @@ final class TermsOfServiceViewerViewController: UIViewController, ViewModelBinda
     
     setupView()
     setupConstraint()
+    binding()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -37,22 +38,6 @@ final class TermsOfServiceViewerViewController: UIViewController, ViewModelBinda
     navigationController?.setNavigationBarHidden(false, animated: animated)
     tabBarController?.tabBar.isHidden = true
 
-  }
-  
-  func bindViewModel() {
-    viewModel?.termsOfService
-      .receive(on: Scheduler.main)
-      .sink { [weak self] in
-        self?.title = $0.terms.title
-        self?.textView.text = $0.terms.content
-      }
-      .store(in: &cancellables)
-    
-    backButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.closeEvent.send()
-      }
-      .store(in: &cancellables)
   }
 }
 
@@ -75,5 +60,21 @@ private extension TermsOfServiceViewerViewController {
       textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       textView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
+  }
+  
+  func binding() {
+    viewModel?.termsOfService
+      .receive(on: Scheduler.main)
+      .sink { [weak self] in
+        self?.title = $0.terms.title
+        self?.textView.text = $0.terms.content
+      }
+      .store(in: &cancellables)
+    
+    backButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }

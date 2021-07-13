@@ -69,6 +69,7 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     super.viewDidLoad()
     
     setupConstraint()
+    binding()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -83,22 +84,6 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     
     logoImageView.removeFromSuperview()
   }
-  
-  func bindViewModel() {
-    salesApplicationButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.salesApplicationEvent.send()
-      }
-      .store(in: &cancellables)
-    
-    viewModel?.products
-      .receive(on: Scheduler.main)
-      .sink { [weak self] _ in
-        self?.collectionView.reloadData()
-      }
-      .store(in: &cancellables)
-  }
-  
 }
 
 extension MainViewController {
@@ -134,6 +119,21 @@ extension MainViewController {
       logoImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
       logoImageView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, multiplier: 0.3)
     ])
+  }
+  
+  func binding(){
+    salesApplicationButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.salesApplicationEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    viewModel?.products
+      .receive(on: Scheduler.main)
+      .sink { [weak self] _ in
+        self?.collectionView.reloadData()
+      }
+      .store(in: &cancellables)
   }
 }
 

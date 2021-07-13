@@ -46,6 +46,7 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
+    binding()
     
     self.viewModel?.startFetching.send()
   }
@@ -55,13 +56,40 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
     
     self.viewModel?.selectedCategoryIndex.send(IndexPath.first)
   }
+}
+
+private extension SubCategoryViewController {
   
-  func bindViewModel() {
+  func setupView() {
+    let leftButtonItem: UIBarButtonItem = .init(customView: backButton)
+    navigationItem.leftBarButtonItem = leftButtonItem
+  }
+  
+  func setupConstraint() {
+    [categoryCollectionView, productsCollectionView].forEach {
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview($0)
+    }
+    
+    NSLayoutConstraint.activate([
+      categoryCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      categoryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      categoryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      categoryCollectionView.heightAnchor.constraint(equalToConstant: 44),
+      
+      productsCollectionView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor, constant: 10),
+      productsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      productsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      productsCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+    ])
+  }
+  
+  func binding() {
     viewModel?.subCategories
       .receive(on: Scheduler.main)
       .bind(
         subscriber: categoryCollectionView.itemsSubscriber(
-          cellIdentifier: "SubCategoryCollectionViewCell",
+          cellIdentifier: SubCategoryCollectionViewCell.defaultReuseIdentifier,
           cellType: SubCategoryCollectionViewCell.self,
           cellConfig: { cell, _, subCategory in
             cell.updateCell(withSubCategory: subCategory)
@@ -95,33 +123,6 @@ final class SubCategoryViewController: UIViewController, ViewModelBindableType {
         self?.productsCollectionView.reloadData()
       }
       .store(in: &cancellables)
-  }
-}
-
-private extension SubCategoryViewController {
-  
-  func setupView() {
-    let leftButtonItem: UIBarButtonItem = .init(customView: backButton)
-    navigationItem.leftBarButtonItem = leftButtonItem
-  }
-  
-  func setupConstraint() {
-    [categoryCollectionView, productsCollectionView].forEach {
-      $0.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview($0)
-    }
-    
-    NSLayoutConstraint.activate([
-      categoryCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      categoryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      categoryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      categoryCollectionView.heightAnchor.constraint(equalToConstant: 44),
-      
-      productsCollectionView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor, constant: 10),
-      productsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      productsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      productsCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-    ])
   }
 }
 

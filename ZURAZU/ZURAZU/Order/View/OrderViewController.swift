@@ -106,21 +106,6 @@ final class OrderViewController: UIViewController, ViewModelBindableType {
   override func viewWillDisappear(_ animated: Bool) {
     tabBarController?.tabBar.isHidden = false
   }
-  
-  func bindViewModel() {
-    backButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.closeEvent.send()
-      }
-      .store(in: &cancellables)
-    
-    orderButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.ordererInfo = self?.ordererInfo
-        self?.viewModel?.orderEvent.send()
-      }
-      .store(in: &cancellables)
-  }
 }
 
 private extension OrderViewController {
@@ -154,6 +139,21 @@ private extension OrderViewController {
       orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
       orderButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
     ])
+  }
+  
+  func binding() {
+    backButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    orderButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.ordererInfo = self?.ordererInfo
+        self?.viewModel?.orderEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }
 
