@@ -63,15 +63,6 @@ class InspectionStandardViewController: UIViewController, ViewModelBindableType 
     
     tabBarController?.tabBar.isHidden = true
   }
-  
-  func bindViewModel() {
-    backButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.closeEvent.send()
-      }
-      .store(in: &cancellables)
-  }
-  
 }
 
 private extension InspectionStandardViewController {
@@ -96,6 +87,14 @@ private extension InspectionStandardViewController {
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
+  }
+  
+  func binding() {
+    backButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }
 

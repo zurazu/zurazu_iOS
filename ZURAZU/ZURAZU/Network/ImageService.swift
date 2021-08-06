@@ -17,12 +17,47 @@ struct ImageService {
       return
     }
     
-    guard let url = URL(string: urlString),
-          let data = try? Data(contentsOf: url, options: .uncached),
-          let image = UIImage(data: data)
-    else { completionHandler(nil); return }
+    DispatchQueue.global().async {
+      guard
+        let url = URL(string: urlString),
+        let downSmapledImage = downSampledImage(
+          from: url,
+          size: CGSize(width: 300, height: 300), scale: 1
+        )
+      else {
+        completionHandler(nil)
+        return
+      }
+      
+      ImageService.memoryCache.setObject(downSmapledImage, forKey: urlString as NSString)
+      
+      DispatchQueue.main.async {
+        completionHandler(downSmapledImage)
+      }
+      
+    }
+  }
+  
+  private func downSampledImage(
+    from url: URL,
+    size: CGSize,
+    scale: CGFloat
+  ) -> UIImage? {
+    let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+    guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, imageSourceOptions)
+    else { return nil }
     
-    ImageService.memoryCache.setObject(image, forKey: urlString as NSString)
-    completionHandler(image)
+    let maxDimensionInPixels = max(size.width, size.height) * scale
+    let downSamplingOptions = [
+      kCGImageSourceCreateThumbnailFromImageAlways: true,
+      kCGImageSourceShouldCacheImmediately: true,
+      kCGImageSourceCreateThumbnailWithTransform: true,
+      kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels
+    ] as CFDictionary
+    
+    guard let downSampledImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downSamplingOptions)
+    else { return nil }
+    
+    return UIImage(cgImage: downSampledImage)
   }
 }

@@ -18,15 +18,7 @@ final class SalesApplicationCompleteViewController: CompleteViewController, View
     super.viewDidLoad()
     
     setupView()
-  }
-  
-  func bindViewModel() {
-    homeButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.closeEvent.send(())
-        self?.tabBarController?.tabBar.isHidden = false
-      }
-      .store(in: &cancellables)
+    binding()
   }
 }
 
@@ -36,5 +28,14 @@ private extension SalesApplicationCompleteViewController {
     title = "판매 신청 완료"
     
     updateGuideText(with: "사진 확인에는 약 1일이 소요됩니다.")
+  }
+  
+  func binding() {
+    homeButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send(())
+        self?.tabBarController?.tabBar.isHidden = false
+      }
+      .store(in: &cancellables)
   }
 }

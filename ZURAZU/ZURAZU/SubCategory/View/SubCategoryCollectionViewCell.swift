@@ -28,7 +28,12 @@ final class SubCategoryCollectionViewCell: UICollectionViewCell, Reusable {
   
   override var isSelected: Bool {
     didSet {
-      isSelected ? updateToSelected() : updateToDeselected()
+      if isSelected {
+        updateToSelected()
+        animateToSelected()
+        return
+      }
+      updateToDeselected()
     }
   }
   
@@ -65,18 +70,19 @@ private extension SubCategoryCollectionViewCell {
   
   // MARK: - 해당 AttributedString들을 상수화 해야합니다!
   func updateToSelected() {
-    let attributedString: NSAttributedString = .init(string: categoryLabelText, attributes: [
-      .foregroundColor : UIColor.bluePrimary,
-      .font            : UIFont.secondaryBold
-    ])
+    let attributedString: NSAttributedString = .init(
+      string: categoryLabelText,
+      attributes: Attributes.selectedSubCategory
+    )
+    
     categoryLabel.attributedText = attributedString
   }
   
   func updateToDeselected() {
-    let attributedString: NSAttributedString = .init(string: categoryLabelText, attributes: [
-      .foregroundColor : UIColor.monoTertiary,
-      .font            : UIFont.secondary
-    ])
+    let attributedString: NSAttributedString = .init(
+      string: categoryLabelText,
+      attributes: Attributes.deselectedSubCategory
+    )
     categoryLabel.attributedText = attributedString
   }
   

@@ -35,25 +35,7 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     return collectionView
   }()
   
-  lazy var salesApplicationButton: UIButton = {
-    let button: UIButton = .init()
-    let image: UIImage? = .init(systemName: "plus.app")
-    
-    button.backgroundColor = .bluePrimary
-    button.setImage(image, for: .normal)
-    button.setTitle("판매 신청하기", for: .normal)
-    button.setTitleColor(.white, for: .normal)
-    button.setTitleColor(.monoQuaternary, for: .highlighted)
-    button.titleLabel?.font = .tertiaryBold
-    button.imageView?.contentMode = .scaleAspectFill
-    button.imageView?.tintColor = .white
-    button.contentHorizontalAlignment = .center
-    button.semanticContentAttribute = .forceLeftToRight
-    button.layer.cornerRadius = 5
-    
-    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 20)
-    return button
-  }()
+  let salesApplicationButton: SalesApplicationButton = .init(frame: .zero)
   
   private lazy var logoImageView: UIImageView = {
     let imageView: UIImageView = .init(image: .logoText)
@@ -63,12 +45,15 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     return imageView
   }()
   
+  private lazy var salesApplicationButtonTrailing = salesApplicationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+  
   private var cancellables: Set<AnyCancellable> = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     setupConstraint()
+    binding()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -83,22 +68,6 @@ final class MainViewController: UIViewController, ViewModelBindableType {
     
     logoImageView.removeFromSuperview()
   }
-  
-  func bindViewModel() {
-    salesApplicationButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.salesApplicationEvent.send()
-      }
-      .store(in: &cancellables)
-    
-    viewModel?.products
-      .receive(on: Scheduler.main)
-      .sink { [weak self] _ in
-        self?.collectionView.reloadData()
-      }
-      .store(in: &cancellables)
-  }
-  
 }
 
 extension MainViewController {
@@ -115,7 +84,8 @@ extension MainViewController {
       collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
       
-      salesApplicationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+      //      salesApplicationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+      salesApplicationButtonTrailing,
       salesApplicationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
       salesApplicationButton.widthAnchor.constraint(equalToConstant: 130),
       salesApplicationButton.heightAnchor.constraint(equalToConstant: 35)
@@ -134,6 +104,21 @@ extension MainViewController {
       logoImageView.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
       logoImageView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, multiplier: 0.3)
     ])
+  }
+  
+  func binding() {
+    salesApplicationButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.salesApplicationEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    viewModel?.products
+      .receive(on: Scheduler.main)
+      .sink { [weak self] _ in
+        self?.collectionView.reloadData()
+      }
+      .store(in: &cancellables)
   }
 }
 
@@ -161,15 +146,43 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
       price: product.price.decimalWon()
     )
     
-    cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: info, size: size)
+    cell.update(info: info, size: size)
     
-    ImageService().loadImage(by: product.image.url) { image in
-      cell.update(image: image)
+    DispatchQueue.global().async {
+      ImageService().loadImage(by: product.image.url) { image in
+        DispatchQueue.main.async {
+          cell.update(image: image)
+        }
+      }
     }
-
+    
+    
     cell.backgroundColor = .white
     return cell
   }
+  
+  // MARK: - 넣을지 말지..
+//  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//    view.layoutIfNeeded()
+//    let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+//    if translation.y > 0 {
+//      salesApplicationButtonTrailing.constant = -16
+//    } else {
+//      salesApplicationButtonTrailing.constant = 120
+//    }
+//
+//    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.1, options: .curveEaseInOut) { [weak self] in
+//      self?.view.layoutIfNeeded()
+//    }
+//  }
+//
+//  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//    salesApplicationButtonTrailing.constant = -16
+//
+//    UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.1, options: .curveEaseInOut) { [weak self] in
+//      self?.view.layoutIfNeeded()
+//    }
+//  }
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     2

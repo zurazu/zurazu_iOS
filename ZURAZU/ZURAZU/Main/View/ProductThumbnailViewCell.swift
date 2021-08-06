@@ -23,31 +23,34 @@ final class ProductThumbnailViewCell: UICollectionViewCell, Reusable {
     
     return label
   }()
+  private let indicator: UIActivityIndicatorView = .init(frame: .zero)
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
     setupConstraint()
+    
+    indicator.startAnimating()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func update(image: UIImage, info: ProductThumbnailInfo, size: ProductThumbnailSize) {
-    imageView.image = image
+  func update(info: ProductThumbnailInfo, size: ProductThumbnailSize) {
     infoView.update(info: info, size: size)
     pickLabel.isHidden = size != .medium
   }
   
   func update(image: UIImage?) {
     imageView.image = image
+    indicator.stopAnimating()
   }
   
   private func setupConstraint() {
     translatesAutoresizingMaskIntoConstraints = false
     
-    [imageView, infoView, pickLabel].forEach {
+    [imageView, infoView, pickLabel, indicator].forEach {
       $0.translatesAutoresizingMaskIntoConstraints = false
       addSubview($0)
     }
@@ -66,7 +69,12 @@ final class ProductThumbnailViewCell: UICollectionViewCell, Reusable {
       infoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
       
       pickLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
-      pickLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2)
+      pickLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
+      
+      indicator.topAnchor.constraint(equalTo: imageView.topAnchor),
+      indicator.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+      indicator.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+      indicator.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
     ])
   }
   

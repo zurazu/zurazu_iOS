@@ -54,6 +54,7 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
     
     setupView()
     setupConstraint()
+    binding()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -69,8 +70,71 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
     navigationController?.setNavigationBarHidden(true, animated: animated)
     tabBarController?.tabBar.isHidden = false
   }
+}
+
+private extension SignUpViewController {
   
-  func bindViewModel() {
+  func setupView() {
+    title = "회원가입"
+    let leftButtonItem: UIBarButtonItem = .init(customView: backButton)
+    navigationItem.leftBarButtonItem = leftButtonItem
+    
+    stackView.emailInputView.delegate = scrollView
+    stackView.passwordInputView.delegate = scrollView
+    stackView.confirmPasswordInputView.delegate = scrollView
+    stackView.nameInputView.delegate = scrollView
+    
+    scrollView.delegate = self
+    
+    termsOfServiceView.updateTitle(with: "개인정보 이용 동의")
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+  
+  func setupConstraint() {
+    [scrollView, signUpButton].forEach {
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview($0)
+    }
+    
+    [stackView, termsOfServiceView, termsOfServiceButton, termsOfPersonalInformationButton].forEach {
+      $0.translatesAutoresizingMaskIntoConstraints = false
+      scrollView.addSubview($0)
+    }
+    
+    NSLayoutConstraint.activate([
+      scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      scrollView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+      
+      stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+      stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+      stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+      
+      termsOfServiceView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
+      termsOfServiceView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+      termsOfServiceView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+      
+      termsOfServiceButton.topAnchor.constraint(equalTo: termsOfServiceView.bottomAnchor, constant: 10),
+      termsOfServiceButton.leadingAnchor.constraint(equalTo: termsOfServiceView.leadingAnchor),
+      termsOfServiceButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      termsOfServiceButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+      
+      termsOfPersonalInformationButton.topAnchor.constraint(equalTo: termsOfServiceButton.topAnchor),
+      termsOfPersonalInformationButton.leadingAnchor.constraint(equalTo: termsOfServiceButton.trailingAnchor, constant: 10),
+      termsOfPersonalInformationButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+      termsOfPersonalInformationButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
+      termsOfPersonalInformationButton.bottomAnchor.constraint(equalTo: termsOfServiceButton.bottomAnchor),
+      
+      signUpButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
+      signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+      signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+      signUpButton.heightAnchor.constraint(equalToConstant: 53)
+    ])
+  }
+  
+  func binding() {
     backButton
       .tapPublisher
       .sink { [weak self] in
@@ -199,69 +263,6 @@ final class SignUpViewController: UIViewController, ViewModelBindableType {
       .store(in: &cancellables)
     
     bindWithTermsOfServiceView()
-  }
-}
-
-private extension SignUpViewController {
-  
-  func setupView() {
-    title = "회원가입"
-    let leftButtonItem: UIBarButtonItem = .init(customView: backButton)
-    navigationItem.leftBarButtonItem = leftButtonItem
-    
-    stackView.emailInputView.delegate = scrollView
-    stackView.passwordInputView.delegate = scrollView
-    stackView.confirmPasswordInputView.delegate = scrollView
-    stackView.nameInputView.delegate = scrollView
-    
-    scrollView.delegate = self
-    
-    termsOfServiceView.updateTitle(with: "개인정보 이용 동의")
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-  }
-  
-  func setupConstraint() {
-    [scrollView, signUpButton].forEach {
-      $0.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview($0)
-    }
-    
-    [stackView, termsOfServiceView, termsOfServiceButton, termsOfPersonalInformationButton].forEach {
-      $0.translatesAutoresizingMaskIntoConstraints = false
-      scrollView.addSubview($0)
-    }
-    
-    NSLayoutConstraint.activate([
-      scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      scrollView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-      
-      stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-      stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-      stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-      
-      termsOfServiceView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
-      termsOfServiceView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-      termsOfServiceView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-      
-      termsOfServiceButton.topAnchor.constraint(equalTo: termsOfServiceView.bottomAnchor, constant: 10),
-      termsOfServiceButton.leadingAnchor.constraint(equalTo: termsOfServiceView.leadingAnchor),
-      termsOfServiceButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
-      termsOfServiceButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-      
-      termsOfPersonalInformationButton.topAnchor.constraint(equalTo: termsOfServiceButton.topAnchor),
-      termsOfPersonalInformationButton.leadingAnchor.constraint(equalTo: termsOfServiceButton.trailingAnchor, constant: 10),
-      termsOfPersonalInformationButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-      termsOfPersonalInformationButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
-      termsOfPersonalInformationButton.bottomAnchor.constraint(equalTo: termsOfServiceButton.bottomAnchor),
-      
-      signUpButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
-      signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
-      signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-      signUpButton.heightAnchor.constraint(equalToConstant: 53)
-    ])
   }
   
   func bindWithTermsOfServiceView() {

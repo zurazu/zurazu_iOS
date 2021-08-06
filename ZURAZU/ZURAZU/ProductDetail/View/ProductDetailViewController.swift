@@ -57,6 +57,7 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
     
     setupView()
     setupConstraint()
+    binding()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -70,36 +71,6 @@ final class ProductDetailViewController: UIViewController, ViewModelBindableType
     super.viewWillDisappear(animated)
     
     tabBarController?.tabBar.isHidden = false
-  }
-  
-  func bindViewModel() {
-    viewModel?.product
-      .subscribe(on: Scheduler.background)
-      .receive(on: Scheduler.main)
-      .sink { [weak self] _ in
-        self?.collectionView.reloadData()
-      }
-      .store(in: &cancellables)
-    
-    viewModel?.zurazuPickProduct
-      .subscribe(on: Scheduler.background)
-      .receive(on: Scheduler.main)
-      .sink { [weak self] _ in
-        self?.collectionView.reloadData()
-      }
-      .store(in: &cancellables)
-    
-    backButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.closeEvent.send()
-      }
-      .store(in: &cancellables)
-    
-    orderButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.orderEvent.send()
-      }
-      .store(in: &cancellables)
   }
 }
 
@@ -139,6 +110,36 @@ private extension ProductDetailViewController {
       orderButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
       orderButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
     ])
+  }
+  
+  func binding() {
+    viewModel?.product
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
+      .sink { [weak self] _ in
+        self?.collectionView.reloadData()
+      }
+      .store(in: &cancellables)
+    
+    viewModel?.zurazuPickProduct
+      .subscribe(on: Scheduler.background)
+      .receive(on: Scheduler.main)
+      .sink { [weak self] _ in
+        self?.collectionView.reloadData()
+      }
+      .store(in: &cancellables)
+    
+    backButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send()
+      }
+      .store(in: &cancellables)
+    
+    orderButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.orderEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }
 
@@ -195,9 +196,14 @@ extension ProductDetailViewController: UICollectionViewDataSource, UICollectionV
         price: zurazuPickProduct.price.decimalWon()
       )
       
-      cell.update(image: #imageLiteral(resourceName: "imgKakaofriendsFailure"), info: productThumbnailInfo, size: .medium)
-      ImageService().loadImage(by: zurazuPickProduct.image.url) { image in
-        cell.update(image: image)
+      cell.update(info: productThumbnailInfo, size: .medium)
+      
+      DispatchQueue.global().async {
+        ImageService().loadImage(by: zurazuPickProduct.image.url) { image in
+          DispatchQueue.main.async {
+            cell.update(image: image)
+          }
+        }
       }
       
       cell.backgroundColor = .white

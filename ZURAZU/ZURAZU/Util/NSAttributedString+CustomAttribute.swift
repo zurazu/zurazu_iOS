@@ -50,4 +50,14 @@ enum Attributes {
     .foregroundColor : UIColor.monoQuaternary,
     .font            : UIFont.secondary
   ]
+  
+  static let selectedSubCategory: AttributesOfNSAttributedString = [
+    .foregroundColor : UIColor.bluePrimary,
+    .font            : UIFont.secondaryBold
+  ]
+  
+  static let deselectedSubCategory: AttributesOfNSAttributedString = [
+    .foregroundColor : UIColor.monoTertiary,
+    .font            : UIFont.secondary
+  ]
 }

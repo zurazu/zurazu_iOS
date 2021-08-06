@@ -7,7 +7,7 @@ target 'ZURAZU' do
   
   pod 'CombineCocoa'
 	pod 'CombineDataSources'
-  pod 'SwiftLint'
+	pod 'SwiftLint'
   # Pods for ZURAZU
   
   target 'ZURAZUTests' do

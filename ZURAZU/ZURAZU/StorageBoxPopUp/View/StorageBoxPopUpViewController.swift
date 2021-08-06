@@ -25,20 +25,13 @@ final class StorageBoxPopUpViewController: UIViewController, ViewModelBindableTy
     
     setupView()
     setupConstraint()
+    binding()
   }
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     
     
-  }
-  
-  func bindViewModel() {
-    closeButton.tapPublisher
-      .sink { [weak self] in
-        self?.viewModel?.closeEvent.send()
-      }
-      .store(in: &cancellables)
   }
 }
 
@@ -95,5 +88,13 @@ private extension StorageBoxPopUpViewController {
       closeButton.bottomAnchor.constraint(equalTo: informationBoxView.bottomAnchor),
       closeButton.widthAnchor.constraint(equalTo: informationBoxView.widthAnchor, multiplier: 0.9)
     ])
+  }
+  
+  func binding() {
+    closeButton.tapPublisher
+      .sink { [weak self] in
+        self?.viewModel?.closeEvent.send()
+      }
+      .store(in: &cancellables)
   }
 }

@@ -33,10 +33,6 @@ final class MainTabBarController: UITabBarController, ViewModelBindableType {
     
     setupView()
   }
-  
-  func bindViewModel() {
-    
-  }
 }
 
 private extension MainTabBarController {

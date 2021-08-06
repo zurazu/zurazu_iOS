@@ -63,10 +63,6 @@ final class SalesApplicationViewController: UIViewController, ViewModelBindableT
   deinit {
     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
   }
-  
-  func bindViewModel() {
-    
-  }
 }
 
 private extension SalesApplicationViewController {

@@ -68,9 +68,11 @@ final class SubCategoryViewModel: SubCategoryViewModelType {
       .store(in: &cancellables)
     
     selectedProductIndex
-      .sink { [weak self] in
-        guard let index = self?.categoryProducts.value[$0].productIdx else { return }
-        SceneCoordinator.shared.transition(scene: ProductDetailScene(index: index), using: .push, animated: true)
+      .compactMap { [weak self] in
+        self?.categoryProducts.value[$0].productIdx
+      }
+      .sink {
+        SceneCoordinator.shared.transition(scene: ProductDetailScene(index: $0), using: .push, animated: true)
       }
       .store(in: &cancellables)
   }
@@ -80,7 +82,8 @@ private extension SubCategoryViewModel {
   
   func fetchSubCategories() {
     let networkProvider: NetworkProvider = .init()
-    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<[SubCategory]>, NetworkError>, Never> = networkProvider.request(route: SubCategoryEndPoint.subCategories(mainIndex: mainCategory.idx))
+    let endPoint: SubCategoryEndPoint = .subCategories(mainIndex: mainCategory.idx)
+    let subCategoryPublisher: AnyPublisher<Result<BaseResponse<[SubCategory]>, NetworkError>, Never> = networkProvider.request(route: endPoint)
     
     subCategoryPublisher
       .receive(on: Scheduler.main)
@@ -105,9 +108,9 @@ private extension SubCategoryViewModel {
   // MARK: - 해당 관련 코드는 미완성이므로 수정이 필요합니다!
   func fetchCategoryProducts(at subCategoryIdx: Int?) {
     let networkProvider: NetworkProvider = .init()
-    
-    let categoryProductsPublisher: AnyPublisher<Result<BaseResponse<CategoryProducts>, NetworkError>, Never> = networkProvider.request(route: SubCategoryEndPoint.categoryProducts(offset: offset, limit: limit, mainCategoryIdx: mainCategory.idx, subCategoryIdx: subCategoryIdx, notOnlySelectProgressing: false))
-    
+    let endPoint: SubCategoryEndPoint = .categoryProducts(offset: offset, limit: limit, mainCategoryIdx: mainCategory.idx, subCategoryIdx: subCategoryIdx, notOnlySelectProgressing: false)
+    let categoryProductsPublisher: AnyPublisher<Result<BaseResponse<CategoryProducts>, NetworkError>, Never> = networkProvider.request(route: endPoint)
+      
     categoryProductsPublisher
       .sink { [weak self] result in
         switch result {
